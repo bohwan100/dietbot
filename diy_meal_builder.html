@@ -800,8 +800,8 @@
     <!-- Category Filter & Elimination Mode Toggle -->
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
       <div class="cat-tabs" style="margin-bottom: 0;">
-      <button class="tab-btn active" data-cat="all" onclick="filterCategory('all', this)">✨ 전체 원물 (70)</button>
-      <button class="tab-btn" data-cat="veg" onclick="filterCategory('veg', this)">🥗 신선 채소 & 샐러드 (35)</button>
+      <button class="tab-btn active" data-cat="all" onclick="filterCategory('all', this)">✨ 전체 원물 (75)</button>
+      <button class="tab-btn" data-cat="veg" onclick="filterCategory('veg', this)">🥗 신선 채소 & 샐러드 (40)</button>
       <button class="tab-btn" data-cat="protein" onclick="filterCategory('protein', this)">🍗 신선 단백질 (17)</button>
       <button class="tab-btn" data-cat="carb" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 (11)</button>
       <button class="tab-btn" data-cat="fat" onclick="filterCategory('fat', this)">🥑 건강한 지방 (7)</button>
@@ -997,32 +997,23 @@
         const isSelected = selectedFoodIds.has(food.id);
 
         // ✨ 황금빛 추천 궁합 판별:
-        // [1순위] 탄·단·지가 먼저 다 차는 것이 최우선!
-        // [2순위] 탄·단·지가 다 찬 후 나머지 칼로리를 채우도록 추천!
+        // [1] 생화학적·지용성 직접 시너지: 당근(카로티노이드)+올리브유(기름), 토마토(리코펜)+바질/오일, 고기+깻잎/양파 등 상호 영양 시너지 최우선 추천!
+        // [2] 탄·단·지 매크로 순차 보충: 부족한 단백질/탄수화물/지방을 채울 핵심 원물 추천!
         let isGlowing = false;
         if (selectedFoodIds.size > 0 && !isSelected) {
+          const isDirectSynergy = allSynergyIds.has(food.id);
+
+          let isNeededMacro = false;
           if (!isMacroFilled) {
-            // 1순위: 아직 탄·단·지가 부족할 때 ➔ 부족한 영양소만 골라서 집중 추천
-            if (!isProteinFilled) {
-              if (food.category === 'protein' || (food.protein >= 10 && allSynergyIds.has(food.id))) {
-                isGlowing = true;
-              }
-            } else if (!isCarbFilled) {
-              if (food.category === 'carb' && (allSynergyIds.has(food.id) || selectedFoodIds.size === 1)) {
-                isGlowing = true;
-              }
-            } else if (!isFatFilled) {
-              if (food.category === 'fat' && (allSynergyIds.has(food.id) || selectedFoodIds.size >= 2)) {
-                isGlowing = true;
-              }
-            }
-          } else {
-            // 2순위: 탄·단·지가 먼저 다 찼을 때 ➔ 목표 칼로리를 채울 원물(채소, 샐러드, 보충 식품) 추천!
-            if (!isCalorieFilled) {
-              if (food.category === 'veg' || allSynergyIds.has(food.id)) {
-                isGlowing = true;
-              }
-            }
+            if (!isProteinFilled && food.category === 'protein') isNeededMacro = true;
+            else if (isProteinFilled && !isCarbFilled && food.category === 'carb') isNeededMacro = true;
+            else if (isProteinFilled && isCarbFilled && !isFatFilled && food.category === 'fat') isNeededMacro = true;
+          } else if (!isCalorieFilled) {
+            if (food.category === 'veg' || food.category === 'carb') isNeededMacro = true;
+          }
+
+          if (isDirectSynergy || isNeededMacro) {
+            isGlowing = true;
           }
         }
 

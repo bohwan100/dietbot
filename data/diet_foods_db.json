@@ -32,7 +32,8 @@
       "protein_pork_tenderloin",
       "protein_tofu",
       "carb_brown_rice",
-      "fat_perilla_oil"
+      "fat_perilla_oil",
+      "protein_egg_whites"
     ],
     "market_product": "국내산 친환경 양배추 1통 (약 1.5kg)",
     "price": 3500,
@@ -81,47 +82,6 @@
     "market_badge": "🚀 로켓프레시"
   },
   {
-    "id": "veg_salad_mix",
-    "category": "veg",
-    "category_name": "신선 채소",
-    "name": "샐러드 믹스",
-    "icon": "🥗",
-    "portion": "100g (풍성한 1대접)",
-    "calories": 20,
-    "protein": 1.2,
-    "carbs": 3.8,
-    "fat": 0.2,
-    "fiber": 2.5,
-    "tag": "식이섬유 쿠션",
-    "detailed_benefit": {
-      "tagline": "식사 첫 입에 먹어 혈당 스파이크를 막는 위장 보호 방패",
-      "points": [
-        "풍부한 불용성·수용성 식이섬유가 위장 내부를 코팅하여 뒤이어 들어오는 탄수화물의 소화 흡수 속도를 지연",
-        "100g당 20kcal에 불과하여 칼로리 걱정 없이 위장 공간을 가득 채워 과식을 원천 차단",
-        "각종 파이토케미컬과 비타민, 미네랄이 신진대사 효소 기능을 활성화하고 장내 연동 운동 촉진",
-        "생채소의 아삭한 식감이 뇌에 씹는 만족감을 전달하여 다이어트 스트레스 완화"
-      ]
-    },
-    "storage": "세척 채소는 물기를 완전히 털어낸 후 키친타월을 깐 밀폐용기에 담아 냉장 보관 (5~7일 아삭함 유지).",
-    "storage_prep": {
-      "method": "밀폐용기 바닥에 키친타월을 깔고 물기를 뺀 채소를 담아 냉장 보관 (5~7일)",
-      "tip": "시들해진 채소는 먹기 전 찬물에 식초 한 방울 떨어뜨려 3분 담그면 삼투압으로 다시 아삭하게 부활"
-    },
-    "synergy_reason": "닭가슴살 및 올리브유와 함께 먹으면 '채소 ➔ 단백질 ➔ 탄수화물' 순서 식사가 완성되어 완벽한 혈당 방어가 이루어집니다.",
-    "synergy_ids": [
-      "protein_chicken_breast",
-      "protein_salmon",
-      "fat_olive_oil",
-      "carb_sweet_potato",
-      "veg_tomato"
-    ],
-    "market_product": "피그인더가든 타임핏 샐러드 100g 3팩",
-    "price": 5900,
-    "market_spec": "식이섬유 6g 세척 샐러드 3팩 (3회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
-  },
-  {
     "id": "veg_lettuce",
     "category": "veg",
     "category_name": "신선 채소",
@@ -153,7 +113,8 @@
       "protein_chicken_breast",
       "protein_eggs",
       "veg_tomato",
-      "fat_olive_oil"
+      "fat_olive_oil",
+      "veg_radicchio"
     ],
     "market_product": "국내산 신선 양상추 1통",
     "price": 2900,
@@ -202,46 +163,6 @@
     "market_badge": "🚀 로켓프레시"
   },
   {
-    "id": "veg_baby_greens",
-    "category": "veg",
-    "category_name": "신선 채소",
-    "name": "어린잎 채소",
-    "icon": "🌱",
-    "portion": "50g (풍성한 1줌)",
-    "calories": 12,
-    "protein": 1.0,
-    "carbs": 2.0,
-    "fat": 0.1,
-    "fiber": 1.5,
-    "tag": "새싹 미네랄 농축",
-    "detailed_benefit": {
-      "tagline": "싹을 틔운 지 20일 된 어린잎의 폭발적인 영양소 농축 슈퍼그린",
-      "points": [
-        "다 자란 성채 대비 비타민과 미네랄, 파이토케미컬 함량이 3~4배 이상 농축",
-        "조직이 매우 연하고 부드러워 턱관절 부담 없이 부드럽게 섭취 가능",
-        "비타민채, 적근대, 치커리 등 다양한 잎채소의 영양 스펙트럼을 한 번에 흡수",
-        "밥이나 스테이크 위에 살짝 얹기만 해도 플레이팅과 영양 완성"
-      ]
-    },
-    "storage": "물기를 털고 키친타월을 감싸 냉장 보관 (4~5일). 쉽게 숨이 죽으므로 빠르게 소비 권장.",
-    "storage_prep": {
-      "method": "숨이 잘 죽으므로 팩째 냉장 보관하고 개봉 후 3일 내 소비",
-      "tip": "찬물에 1분간 살짝 담갔다 건지면 연약한 어린잎이 파릇파릇하게 탄력을 되찾음"
-    },
-    "synergy_reason": "연어 필렛이나 소고기 우둔살 위에 얹어 발사믹 식초와 올리브유를 두르면 호텔식 카르파초 완성!",
-    "synergy_ids": [
-      "protein_salmon",
-      "protein_beef_round",
-      "fat_olive_oil",
-      "veg_tomato"
-    ],
-    "market_product": "신선 어린잎 채소 믹스 150g",
-    "price": 2900,
-    "market_spec": "세척 어린잎 150g (3회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
-  },
-  {
     "id": "veg_kale",
     "category": "veg",
     "category_name": "신선 채소",
@@ -268,12 +189,14 @@
       "method": "세척 후 물기를 털고 지퍼백에 밀폐 냉장 (7일)",
       "tip": "올리브유와 소금 한 꼬집을 바르고 에어프라이어 140도 5분 구우면 바삭바삭한 '케일칩' 천연 다이어트 과자 완성"
     },
-    "synergy_reason": "바나나, 사과, 두유와 함께 믹서기에 갈면 아침을 깨우는 영양 만점 케일 해독 스무디 완성!",
+    "synergy_reason": "케일 속 지용성 루테인과 비타민K는 올리브유나 아몬드의 지방과 결합할 때 생체 이용률이 극대화됩니다.",
     "synergy_ids": [
       "carb_banana",
       "protein_soymilk",
       "fat_almond",
-      "protein_chicken_breast"
+      "protein_chicken_breast",
+      "fat_olive_oil",
+      "protein_eggs"
     ],
     "market_product": "친환경 무농약 쌈케일 200g",
     "price": 2800,
@@ -308,12 +231,14 @@
       "method": "뿌리를 자르고 키친타월 감싸 비닐팩 냉장 보관 (5일)",
       "tip": "끓는 물에 소금 넣고 30초만 살짝 데쳐 찬물에 헹군 뒤 물기를 꼭 짜서 계란후라이와 함께 드시면 최고"
     },
-    "synergy_reason": "달걀 2알과 시금치를 볶으면 철분과 단백질이 결합된 최고의 헬스 브런치 오믈렛이 됩니다.",
+    "synergy_reason": "시금치의 식물성 철분은 파프리카의 비타민C와 만나 흡수율이 3배 증가하며, 비타민K는 들기름/올리브유와 만나 뼈로 완벽 합성됩니다.",
     "synergy_ids": [
       "protein_eggs",
       "protein_chicken_breast",
       "fat_olive_oil",
-      "carb_whole_bread"
+      "carb_whole_bread",
+      "fat_perilla_oil",
+      "veg_paprika"
     ],
     "market_product": "국내산 친환경 무농약 시금치 250g",
     "price": 3200,
@@ -359,47 +284,6 @@
     "price": 2400,
     "market_spec": "아삭한 청경채 300g (3회분)",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
-  },
-  {
-    "id": "veg_ssam",
-    "category": "veg",
-    "category_name": "신선 채소",
-    "name": "쌈채소",
-    "icon": "🥬",
-    "portion": "100g (약 10~15장)",
-    "calories": 18,
-    "protein": 1.5,
-    "carbs": 3.2,
-    "fat": 0.2,
-    "fiber": 2.2,
-    "tag": "포만감 200% 천연쌈",
-    "detailed_benefit": {
-      "tagline": "씹을수록 든든하고 고기 소화를 돕는 한국식 다이어트의 정수",
-      "points": [
-        "상추의 락투카리움(Lactucarium) 성분이 다이어트 중 발생하는 신경 흥분을 가라앉히고 스트레스 해소",
-        "깻잎의 풍부한 페릴케톤(Perillaketone) 향기 성분이 고기 비린내를 잡고 식중독 예방 및 장내 정화",
-        "치커리의 쌉싸름한 인티빈(Intybin) 성분이 담즙 분비를 촉진해 지방과 단백질의 원활한 소화 지원",
-        "고기 한 점에 쌈채소 2~3장을 겹쳐 싸 먹는 습관만으로도 한 끼 식사량을 30% 이상 자연스럽게 줄여줌"
-      ]
-    },
-    "storage": "줄기 부분이 아래로 향하도록 밀폐용기에 세워 담고, 젖은 키친타월을 바닥에 깔아 냉장 보관 (7~10일).",
-    "storage_prep": {
-      "method": "세척 후 물기를 털고 줄기가 아래로 가도록 밀폐용기에 세워서 냉장 보관 (7~10일)",
-      "tip": "고기 식사 시 쌈을 2장씩 겹쳐 크게 싸 먹으면 씹는 시간이 2배로 늘어나 뇌의 포만중추가 15분 만에 작동"
-    },
-    "synergy_reason": "발아현미밥과 소고기 우둔살/돼지 안심을 싸 먹으면 한국인 체질에 최적화된 저탄고단 클린 식단이 완성됩니다.",
-    "synergy_ids": [
-      "protein_beef_round",
-      "protein_pork_tenderloin",
-      "protein_tofu",
-      "carb_brown_rice",
-      "fat_perilla_oil"
-    ],
-    "market_product": "친환경 무농약 모둠 쌈채소 200g",
-    "price": 3200,
-    "market_spec": "상추/깻잎/치커리 모둠 200g",
-    "coupang_url": "https://link.coupang.com/a/bW6Hg2",
     "market_badge": "🚀 로켓프레시"
   },
   {
@@ -514,7 +398,9 @@
       "protein_beef_round",
       "protein_salmon",
       "fat_olive_oil",
-      "carb_pumpkin"
+      "carb_pumpkin",
+      "protein_beef_tenderloin",
+      "protein_cod_fillet"
     ],
     "market_product": "항공직송 신선 아스파라거스 250g",
     "price": 4900,
@@ -555,7 +441,14 @@
       "protein_chicken_breast",
       "fat_olive_oil",
       "carb_sweet_potato",
-      "protein_eggs"
+      "protein_eggs",
+      "veg_spinach",
+      "veg_cauliflower",
+      "veg_celery",
+      "protein_chicken_tenderloin",
+      "protein_pork_tenderloin",
+      "protein_squid",
+      "carb_chickpeas"
     ],
     "market_product": "국내산 신선 파프리카 혼합 2입",
     "price": 3500,
@@ -596,7 +489,10 @@
       "protein_chicken_breast",
       "fat_perilla_oil",
       "carb_sweet_potato",
-      "veg_tomato"
+      "veg_tomato",
+      "protein_squid",
+      "carb_chickpeas",
+      "veg_seaweed"
     ],
     "market_product": "국내산 백오이 3입",
     "price": 2900,
@@ -631,13 +527,24 @@
       "method": "꼭지를 즉시 제거하고 키친타월을 깐 밀폐용기에 냉장 보관 (7~10일)",
       "tip": "올리브유에 살짝 구워 먹으면 지용성 리코펜의 체내 흡수율이 생으로 먹을 때보다 최대 4배 이상 폭증"
     },
-    "synergy_reason": "올리브유나 아보카도와 곁들이면 리코펜의 생체 이용률이 4배 이상 치솟아 최강의 항산화 효과를 발휘합니다.",
+    "synergy_reason": "토마토의 지용성 리코펜은 올리브유·바질과 함께 섭취 시 체내 흡수율이 4.4배 증가하고 세포 산화를 강력 억제합니다.",
     "synergy_ids": [
       "fat_olive_oil",
       "fat_avocado",
       "protein_eggs",
       "protein_chicken_breast",
-      "carb_whole_bread"
+      "carb_whole_bread",
+      "veg_basil",
+      "veg_lettuce",
+      "veg_cucumber",
+      "protein_beef_tenderloin",
+      "protein_salmon",
+      "protein_shrimp",
+      "protein_light_tuna",
+      "protein_soft_tofu",
+      "veg_arugula",
+      "protein_egg_whites",
+      "veg_frillice"
     ],
     "market_product": "곰곰 GAP 인증 대추방울토마토 750g",
     "price": 6900,
@@ -672,12 +579,13 @@
       "method": "완숙 후 키친타월 깔아 냉장 보관 (7일)",
       "tip": "올리브유 1스푼에 계란 2알과 토마토를 깍둑썰기해 볶으면 3분 완성 다이어트 명품 요리 '토달볶' 완성"
     },
-    "synergy_reason": "달걀 2알과 올리브유의 궁합은 전 세계 헬스인들이 인정하는 최고의 아침 식단입니다.",
+    "synergy_reason": "완숙 토마토의 농축된 지용성 리코펜은 올리브유나 달걀과 가열 조리 시 생식 대비 체내 흡수율이 4배 이상 상승합니다.",
     "synergy_ids": [
       "protein_eggs",
       "fat_olive_oil",
       "carb_whole_bread",
-      "protein_chicken_breast"
+      "protein_chicken_breast",
+      "veg_basil"
     ],
     "market_product": "국내산 GAP 완숙 토마토 1kg",
     "price": 5900,
@@ -752,12 +660,14 @@
       "method": "흙당근 상태로 신문지 감싸 냉장 보관 (3주)",
       "tip": "채 썰어 올리브유 1스푼, 레몬즙, 홀그레인 머스터드에 버무려 냉장고에 1시간 두면 프랑스식 '당근 라페' 완성"
     },
-    "synergy_reason": "통밀빵에 올리브유에 절인 당근 라페와 닭가슴살을 넣으면 카페 부럽지 않은 당근 라페 샌드위치 완성!",
+    "synergy_reason": "당근의 지용성 베타카로틴(카로티노이드)은 올리브유·들기름 등 건강한 지방과 결합 시 체내 흡수율이 최대 600%까지 폭증합니다.",
     "synergy_ids": [
       "fat_olive_oil",
       "protein_chicken_breast",
       "carb_whole_bread",
-      "protein_eggs"
+      "protein_eggs",
+      "fat_perilla_oil",
+      "fat_avocado"
     ],
     "market_product": "국내산 제주 흙당근 1kg",
     "price": 4500,
@@ -797,7 +707,8 @@
       "protein_beef_round",
       "protein_pork_tenderloin",
       "protein_chicken_breast",
-      "fat_olive_oil"
+      "fat_olive_oil",
+      "veg_eggplant"
     ],
     "market_product": "국내산 신선 햇양파 1.5kg",
     "price": 3900,
@@ -837,7 +748,9 @@
       "protein_eggs",
       "protein_chicken_breast",
       "carb_brown_rice",
-      "fat_perilla_oil"
+      "fat_perilla_oil",
+      "protein_pork_tenderloin",
+      "veg_beansprout"
     ],
     "market_product": "국내산 흙대파 1단",
     "price": 2900,
@@ -1078,8 +991,42 @@
       "carb_pumpkin",
       "carb_brown_rice",
       "fat_avocado",
-      "veg_salad_mix",
-      "veg_tomato"
+      "veg_frillice",
+      "veg_tomato",
+      "veg_cabbage",
+      "veg_red_cabbage",
+      "veg_lettuce",
+      "veg_romaine",
+      "veg_kale",
+      "veg_spinach",
+      "veg_bokchoy",
+      "veg_broccoli",
+      "veg_cauliflower",
+      "veg_paprika",
+      "veg_cucumber",
+      "veg_ripe_tomato",
+      "veg_celery",
+      "veg_carrot",
+      "veg_onion",
+      "veg_green_onion",
+      "veg_king_oyster",
+      "veg_button_mushrooms",
+      "carb_boiled_potato",
+      "carb_whole_bread",
+      "carb_chickpeas",
+      "carb_apple",
+      "fat_olive_oil",
+      "veg_butterhead",
+      "veg_radicchio",
+      "veg_shiitake",
+      "veg_beet",
+      "veg_lettuce_korean",
+      "veg_perilla",
+      "veg_chicory",
+      "veg_chard",
+      "veg_mustard",
+      "veg_basil",
+      "veg_sprouts"
     ],
     "market_product": "하림 자연실록 냉동 닭가슴살 1kg (개별급속동결)",
     "price": 8900,
@@ -1119,8 +1066,12 @@
       "carb_sweet_potato",
       "carb_pumpkin",
       "fat_avocado",
-      "veg_salad_mix",
-      "veg_paprika"
+      "veg_frillice",
+      "veg_paprika",
+      "veg_baechu",
+      "veg_eggplant",
+      "veg_beansprout",
+      "veg_mustard"
     ],
     "market_product": "하림 무항생제 냉장 닭안심살 500g",
     "price": 6900,
@@ -1155,14 +1106,29 @@
       "method": "100g씩 랩 밀착 포장 후 밀폐용기 냉동 보관 (3개월 권장)",
       "tip": "조리 전 키친타월로 핏물을 가볍게 제거하고 센 불에서 겉면만 빠르게 굽거나 찹스테이크로 조리하면 질기지 않고 연함 유지"
     },
-    "synergy_reason": "발아현미밥과 샐러드 믹스를 곁들이면 소고기 속 헴철의 흡수율을 높이고 비타민C와 만나 영양 균형이 완성됩니다.",
+    "synergy_reason": "소고기의 동물성 단백질·철분은 깻잎·상추의 비타민C 및 양파의 퀘르세틴과 만나 혈전 방지와 근육 합성을 극대화합니다.",
     "synergy_ids": [
       "carb_brown_rice",
       "carb_sweet_potato",
       "fat_olive_oil",
-      "veg_salad_mix",
+      "veg_frillice",
       "veg_paprika",
-      "veg_ssam"
+      "veg_lettuce_korean",
+      "veg_perilla",
+      "veg_onion",
+      "veg_shiitake",
+      "veg_arugula",
+      "veg_bokchoy",
+      "veg_broccoli",
+      "veg_asparagus",
+      "veg_king_oyster",
+      "veg_oyster_mushrooms",
+      "veg_button_mushrooms",
+      "carb_pumpkin",
+      "carb_konjac_rice",
+      "veg_baechu",
+      "veg_beansprout",
+      "veg_chicory"
     ],
     "market_product": "호주산 청정우 우둔살 찹스테이크용 300g",
     "price": 9500,
@@ -1202,7 +1168,9 @@
       "veg_asparagus",
       "carb_whole_bread",
       "fat_olive_oil",
-      "veg_tomato"
+      "veg_tomato",
+      "veg_arugula",
+      "veg_perilla"
     ],
     "market_product": "호주산 안심 스테이크 250g",
     "price": 14900,
@@ -1237,13 +1205,19 @@
       "method": "1회분(100g)씩 랩핑 후 냉동실 보관 (3개월 권장)",
       "tip": "너무 오래 구우면 수분이 빠져 퍽퍽해지므로 중약불에서 겉면을 굽고 호일로 3분 레스팅하면 촉촉한 육즙 유지"
     },
-    "synergy_reason": "알리신 성분이 풍부한 마늘, 모둠 쌈채소와 함께 먹으면 비타민 B1 흡수율이 무려 10배 이상 치솟아 피로 회복 특효를 냅니다.",
+    "synergy_reason": "돼지고기의 비타민B1과 대파·양파의 알리신이 결합해 '알리티아민'을 합성하여 피로물질을 분해하고 흡수율을 10배 높입니다.",
     "synergy_ids": [
       "carb_sweet_potato",
       "carb_brown_rice",
       "fat_olive_oil",
-      "veg_ssam",
-      "veg_paprika"
+      "veg_lettuce_korean",
+      "veg_paprika",
+      "veg_onion",
+      "veg_green_onion",
+      "veg_mustard",
+      "veg_cabbage",
+      "carb_konjac_rice",
+      "veg_eggplant"
     ],
     "market_product": "국내산 한돈 무항생제 안심 400g",
     "price": 6500,
@@ -1285,7 +1259,24 @@
       "carb_banana",
       "fat_avocado",
       "veg_tomato",
-      "veg_paprika"
+      "veg_paprika",
+      "veg_red_cabbage",
+      "veg_lettuce",
+      "veg_romaine",
+      "veg_kale",
+      "veg_spinach",
+      "veg_cauliflower",
+      "veg_ripe_tomato",
+      "veg_carrot",
+      "veg_green_onion",
+      "veg_zucchini",
+      "veg_enoki",
+      "protein_light_tuna",
+      "protein_natto",
+      "carb_boiled_potato",
+      "fat_perilla_oil",
+      "veg_chard",
+      "veg_basil"
     ],
     "market_product": "곰곰 무항생제 신선 대란 10구",
     "price": 4200,
@@ -1320,13 +1311,22 @@
       "method": "100g 토막별 랩핑 후 냉동 보관 (최대 2개월)",
       "tip": "에어프라이어 180도 10분 조리 시 연어 자체 기름으로 튀겨져 겉바속촉 완성되며 레몬즙을 뿌리면 비린내 완전 제거"
     },
-    "synergy_reason": "아스파라거스나 샐러드 믹스와 조합하면 연어의 불포화지방이 채소의 지용성 비타민 흡수를 도와 영양 이용률이 극대화됩니다.",
+    "synergy_reason": "연어의 풍부한 오메가-3는 토마토의 항산화제와 만나 체내 산패를 방어하고, 치커리의 인티빈이 지방을 완벽 소화시킵니다.",
     "synergy_ids": [
       "carb_brown_rice",
       "carb_sweet_potato",
       "fat_olive_oil",
-      "veg_salad_mix",
-      "veg_cucumber"
+      "veg_frillice",
+      "veg_cucumber",
+      "veg_chicory",
+      "veg_radicchio",
+      "veg_arugula",
+      "veg_tomato",
+      "veg_asparagus",
+      "carb_pumpkin",
+      "fat_avocado",
+      "veg_butterhead",
+      "veg_sprouts"
     ],
     "market_product": "동원 프리미엄 생연어 필렛 200g",
     "price": 9800,
@@ -1366,7 +1366,7 @@
       "carb_pumpkin",
       "carb_brown_rice",
       "fat_olive_oil",
-      "veg_salad_mix",
+      "veg_frillice",
       "veg_asparagus"
     ],
     "market_product": "자연산 순살 대구살 필렛 400g (냉동)",
@@ -1404,7 +1404,7 @@
     },
     "synergy_reason": "샐러드용 채소 믹스, 올리브유와 함께 버무리면 레스토랑 스타일의 최고급 지중해 슈림프 샐러드가 됩니다.",
     "synergy_ids": [
-      "veg_salad_mix",
+      "veg_frillice",
       "fat_olive_oil",
       "carb_whole_bread",
       "veg_tomato",
@@ -1445,11 +1445,12 @@
     },
     "synergy_reason": "초고추장 대신 생들기름과 모둠 쌈채소에 싸 먹으면 나트륨 없이 감칠맛 폭발하는 한국식 건강 식단이 됩니다.",
     "synergy_ids": [
-      "veg_ssam",
+      "veg_lettuce_korean",
       "fat_perilla_oil",
       "carb_brown_rice",
       "veg_cucumber",
-      "veg_paprika"
+      "veg_paprika",
+      "veg_seaweed"
     ],
     "market_product": "국내산 손질 통오징어 4미 (냉동)",
     "price": 8900,
@@ -1487,7 +1488,7 @@
     "synergy_reason": "발아현미밥과 모둠 쌈채소, 계란후라이와 비벼 먹으면 5분 완성 다이어트 참치 비빔밥 완성!",
     "synergy_ids": [
       "carb_brown_rice",
-      "veg_ssam",
+      "veg_lettuce_korean",
       "protein_eggs",
       "fat_perilla_oil",
       "veg_tomato"
@@ -1530,8 +1531,17 @@
       "carb_oatmeal",
       "carb_brown_rice",
       "fat_perilla_oil",
-      "veg_salad_mix",
-      "veg_ssam"
+      "veg_frillice",
+      "veg_lettuce_korean",
+      "veg_cabbage",
+      "veg_bokchoy",
+      "veg_zucchini",
+      "veg_enoki",
+      "veg_oyster_mushrooms",
+      "carb_konjac_rice",
+      "veg_seaweed",
+      "veg_perilla",
+      "veg_chard"
     ],
     "market_product": "풀무원 국산콩 부침두부 300g",
     "price": 2800,
@@ -1571,7 +1581,7 @@
       "veg_tomato",
       "fat_olive_oil",
       "carb_banana",
-      "veg_salad_mix"
+      "veg_frillice"
     ],
     "market_product": "풀무원 국산콩 한끼 연두부 110g 4개입",
     "price": 3400,
@@ -1610,7 +1620,7 @@
     "synergy_ids": [
       "carb_brown_rice",
       "protein_eggs",
-      "veg_ssam",
+      "veg_lettuce_korean",
       "fat_perilla_oil"
     ],
     "market_product": "풀무원 국산콩 듬뿍 나또 8팩",
@@ -1652,7 +1662,11 @@
       "carb_banana",
       "carb_sweet_potato",
       "fat_almond",
-      "veg_salad_mix"
+      "veg_frillice",
+      "veg_kale",
+      "carb_blueberries",
+      "fat_walnut",
+      "fat_chia_seed"
     ],
     "market_product": "매일두유 99.9 무가당 고단백 190ml 16팩",
     "price": 11900,
@@ -1693,7 +1707,11 @@
       "carb_oatmeal",
       "carb_whole_bread",
       "fat_almond",
-      "carb_blueberries"
+      "carb_blueberries",
+      "carb_boiled_potato",
+      "carb_apple",
+      "fat_walnut",
+      "fat_chia_seed"
     ],
     "market_product": "요즘(YOZM) 플레인 그릭요거트 100g 2입",
     "price": 7900,
@@ -1733,8 +1751,14 @@
       "protein_chicken_breast",
       "protein_beef_round",
       "protein_pork_tenderloin",
-      "veg_salad_mix",
-      "fat_almond"
+      "veg_frillice",
+      "fat_almond",
+      "veg_broccoli",
+      "veg_paprika",
+      "veg_cucumber",
+      "protein_chicken_tenderloin",
+      "protein_salmon",
+      "protein_soymilk"
     ],
     "market_product": "곰곰 해남 꿀 밤고구마 1kg",
     "price": 6900,
@@ -1774,8 +1798,11 @@
       "protein_chicken_breast",
       "protein_beef_round",
       "protein_salmon",
-      "veg_salad_mix",
-      "fat_olive_oil"
+      "veg_frillice",
+      "fat_olive_oil",
+      "veg_asparagus",
+      "protein_chicken_tenderloin",
+      "protein_cod_fillet"
     ],
     "market_product": "국내산 친환경 미니 밤호박 1kg (2~3입)",
     "price": 5900,
@@ -1815,8 +1842,9 @@
       "protein_eggs",
       "protein_greek_yogurt",
       "protein_chicken_breast",
-      "veg_salad_mix",
-      "fat_olive_oil"
+      "veg_frillice",
+      "fat_olive_oil",
+      "veg_butterhead"
     ],
     "market_product": "곰곰 국내산 한끼 수미감자 1kg",
     "price": 4900,
@@ -1856,8 +1884,24 @@
       "protein_beef_round",
       "protein_pork_tenderloin",
       "protein_tofu",
-      "veg_ssam",
-      "fat_perilla_oil"
+      "veg_lettuce_korean",
+      "fat_perilla_oil",
+      "veg_cabbage",
+      "veg_green_onion",
+      "veg_zucchini",
+      "veg_king_oyster",
+      "veg_enoki",
+      "veg_oyster_mushrooms",
+      "protein_chicken_breast",
+      "protein_salmon",
+      "protein_cod_fillet",
+      "protein_squid",
+      "protein_light_tuna",
+      "protein_natto",
+      "veg_baechu",
+      "veg_shiitake",
+      "veg_mustard",
+      "veg_sprouts"
     ],
     "market_product": "햇반 발아현미밥 130g 6개입",
     "price": 7800,
@@ -1896,7 +1940,7 @@
     "synergy_ids": [
       "protein_beef_round",
       "protein_pork_tenderloin",
-      "veg_ssam",
+      "veg_lettuce_korean",
       "fat_perilla_oil",
       "protein_tofu"
     ],
@@ -1939,7 +1983,14 @@
       "protein_soymilk",
       "protein_greek_yogurt",
       "fat_almond",
-      "carb_banana"
+      "carb_banana",
+      "protein_tofu",
+      "carb_blueberries",
+      "carb_apple",
+      "fat_walnut",
+      "fat_peanut_butter",
+      "protein_egg_whites",
+      "fat_chia_seed"
     ],
     "market_product": "플라하반 오리지널 퀵오트밀 500g",
     "price": 6200,
@@ -1980,7 +2031,19 @@
       "protein_chicken_breast",
       "fat_avocado",
       "veg_tomato",
-      "veg_salad_mix"
+      "veg_frillice",
+      "veg_red_cabbage",
+      "veg_romaine",
+      "veg_spinach",
+      "veg_ripe_tomato",
+      "veg_carrot",
+      "veg_button_mushrooms",
+      "protein_beef_tenderloin",
+      "protein_shrimp",
+      "protein_greek_yogurt",
+      "carb_chickpeas",
+      "fat_peanut_butter",
+      "fat_olive_oil"
     ],
     "market_product": "삼립 로만밀 통밀식빵 420g",
     "price": 3400,
@@ -2021,7 +2084,11 @@
       "protein_soymilk",
       "protein_eggs",
       "fat_almond",
-      "carb_oatmeal"
+      "carb_oatmeal",
+      "veg_kale",
+      "protein_soft_tofu",
+      "fat_walnut",
+      "fat_peanut_butter"
     ],
     "market_product": "델몬트 고산지 바나나 1송이 (약 1kg)",
     "price": 3900,
@@ -2062,7 +2129,8 @@
       "carb_whole_bread",
       "veg_paprika",
       "veg_cucumber",
-      "protein_chicken_breast"
+      "protein_chicken_breast",
+      "veg_celery"
     ],
     "market_product": "이탈리아 유기농 삶은 병아리콩 캔 400g",
     "price": 2800,
@@ -2102,7 +2170,8 @@
       "protein_greek_yogurt",
       "protein_soymilk",
       "carb_oatmeal",
-      "fat_almond"
+      "fat_almond",
+      "fat_chia_seed"
     ],
     "market_product": "곰곰 캐나다산 냉동 와일드 블루베리 1kg",
     "price": 9900,
@@ -2142,7 +2211,10 @@
       "fat_peanut_butter",
       "protein_greek_yogurt",
       "carb_oatmeal",
-      "protein_chicken_breast"
+      "protein_chicken_breast",
+      "veg_radicchio",
+      "veg_beet",
+      "veg_chicory"
     ],
     "market_product": "국내산 GAP 세척 사과 1.5kg",
     "price": 9900,
@@ -2177,13 +2249,17 @@
       "method": "진갈색으로 익으면 냉장 보관. 반 개 보관 시 씨를 남겨두고 단면에 레몬즙을 발라 랩 밀착 냉장 (2일)",
       "tip": "포크로 으깨어 소금 한 꼬집, 후추를 넣고 통밀빵 위에 얹으면 최고급 다이어트 과카몰리 오픈 샌드위치 완성"
     },
-    "synergy_reason": "닭가슴살의 퍽퍽함을 크리미하게 감싸주며, 방울토마토의 리코펜 흡수를 폭발적으로 도와주는 최강의 궁합 식재료입니다.",
+    "synergy_reason": "아보카도의 단일불포화지방산(올레산)은 당근과 토마토의 지용성 카로티노이드 성분을 체내에 완벽히 유화·흡수시킵니다.",
     "synergy_ids": [
       "protein_chicken_breast",
       "protein_eggs",
       "carb_whole_bread",
       "veg_tomato",
-      "veg_salad_mix"
+      "veg_frillice",
+      "veg_carrot",
+      "protein_salmon",
+      "protein_chicken_tenderloin",
+      "protein_shrimp"
     ],
     "market_product": "멕시코산 항공직송 아보카도 3입",
     "price": 5900,
@@ -2224,7 +2300,10 @@
       "carb_oatmeal",
       "carb_banana",
       "carb_sweet_potato",
-      "veg_salad_mix"
+      "veg_frillice",
+      "veg_kale",
+      "protein_soymilk",
+      "carb_blueberries"
     ],
     "market_product": "곰곰 구운 아몬드 300g (지퍼백)",
     "price": 4900,
@@ -2264,7 +2343,8 @@
       "protein_greek_yogurt",
       "carb_banana",
       "carb_oatmeal",
-      "protein_soymilk"
+      "protein_soymilk",
+      "veg_beet"
     ],
     "market_product": "곰곰 구운 호두 500g",
     "price": 6900,
@@ -2304,7 +2384,8 @@
       "carb_banana",
       "carb_whole_bread",
       "carb_oatmeal",
-      "carb_apple"
+      "carb_apple",
+      "veg_celery"
     ],
     "market_product": "슈퍼넛츠 100% 천연 땅콩버터 크런치 460g",
     "price": 10500,
@@ -2339,13 +2420,45 @@
       "method": "어두운 유리병째 직사광선 없는 서늘한 찬장에 상온 보관 (개봉 후 3개월 권장)",
       "tip": "냉장고에 넣으면 하얗게 굳으므로 반드시 상온 보관하며, 발연점이 낮으므로 가열 요리보다 드레싱이나 마무리에 둘러 섭취 권장"
     },
-    "synergy_reason": "샐러드용 채소 믹스 및 방울토마토에 둘러 먹으면 토마토의 리코펜과 채소의 항산화 성분이 신체에 온전히 흡수됩니다.",
+    "synergy_reason": "당근(카로티노이드), 토마토(리코펜), 시금치(루테인) 등 지용성 항산화 비타민의 체내 흡수를 4~6배 증폭시키는 최고의 천연 용매 역할을 합니다.",
     "synergy_ids": [
-      "veg_salad_mix",
+      "veg_frillice",
       "veg_tomato",
       "protein_chicken_breast",
       "protein_beef_round",
-      "carb_whole_bread"
+      "carb_whole_bread",
+      "veg_carrot",
+      "veg_basil",
+      "veg_spinach",
+      "veg_chicory",
+      "veg_red_cabbage",
+      "veg_lettuce",
+      "veg_romaine",
+      "veg_kale",
+      "veg_broccoli",
+      "veg_cauliflower",
+      "veg_asparagus",
+      "veg_paprika",
+      "veg_ripe_tomato",
+      "veg_onion",
+      "veg_king_oyster",
+      "veg_button_mushrooms",
+      "protein_beef_tenderloin",
+      "protein_pork_tenderloin",
+      "protein_salmon",
+      "protein_cod_fillet",
+      "protein_shrimp",
+      "protein_soft_tofu",
+      "carb_pumpkin",
+      "carb_boiled_potato",
+      "carb_chickpeas",
+      "veg_butterhead",
+      "veg_arugula",
+      "veg_radicchio",
+      "veg_eggplant",
+      "protein_egg_whites",
+      "veg_chard",
+      "veg_sprouts"
     ],
     "market_product": "데체코 엑스트라 버진 올리브유 500ml",
     "price": 11500,
@@ -2380,13 +2493,30 @@
       "method": "갈색병에 담아 반드시 냉장고 안쪽에 보관 (개봉 후 1~2개월 이내 소비)",
       "tip": "열에 약하므로 절대 가열하지 말고, 현미밥 위에 계란후라이와 함께 1작은술 둘러 비벼 먹으면 천상의 고소함 제공"
     },
-    "synergy_reason": "발아현미밥과 두부에 살짝 둘러주면 고소한 풍미가 폭발하며 한국인 맞춤형 장수 항염 식단이 완성됩니다.",
+    "synergy_reason": "지용성 카로틴 흡수를 돕고, 식물성 오메가-3(ALA 60%)가 깻잎 및 채소의 지용성 비타민과 결합해 혈관 염증을 강력 제거합니다.",
     "synergy_ids": [
       "carb_brown_rice",
       "protein_tofu",
-      "veg_ssam",
+      "veg_lettuce_korean",
       "protein_eggs",
-      "veg_cucumber"
+      "veg_cucumber",
+      "veg_carrot",
+      "veg_perilla",
+      "veg_spinach",
+      "veg_shiitake",
+      "veg_cabbage",
+      "veg_bokchoy",
+      "veg_green_onion",
+      "veg_zucchini",
+      "veg_enoki",
+      "veg_oyster_mushrooms",
+      "protein_squid",
+      "protein_light_tuna",
+      "protein_natto",
+      "carb_konjac_rice",
+      "veg_baechu",
+      "veg_beansprout",
+      "veg_seaweed"
     ],
     "market_product": "오뚜기 국산 생들기름 160ml",
     "price": 8900,
@@ -2466,7 +2596,8 @@
       "protein_beef_tenderloin",
       "protein_salmon",
       "fat_olive_oil",
-      "veg_tomato"
+      "veg_tomato",
+      "protein_beef_round"
     ],
     "market_product": "국내산 무농약 신선 루꼴라 100g",
     "price": 3490,
@@ -2546,7 +2677,8 @@
       "protein_chicken_breast",
       "carb_apple",
       "fat_olive_oil",
-      "veg_lettuce"
+      "veg_lettuce",
+      "protein_salmon"
     ],
     "market_product": "국내산 신선 라디치오 1통 (약 200g)",
     "price": 3200,
@@ -2704,7 +2836,7 @@
     "synergy_reason": "비트의 질산염 성분은 사과의 유기산 및 샐러드 믹스와 갈아 마실 때 최고의 운동 전 부스터가 됨",
     "synergy_ids": [
       "carb_apple",
-      "veg_salad_mix",
+      "veg_frillice",
       "protein_chicken_breast",
       "fat_walnut"
     ],
@@ -2833,5 +2965,348 @@
     "market_spec": "유기농 인증 로켓배송",
     "coupang_url": "https://link.coupang.com/a/chiaseed_fresh",
     "market_badge": "로켓배송"
+  },
+  {
+    "id": "veg_lettuce_korean",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "상추",
+    "icon": "🥬",
+    "portion": "100g (약 10~15장)",
+    "calories": 14,
+    "protein": 1.3,
+    "carbs": 2.2,
+    "fat": 0.2,
+    "fiber": 1.8,
+    "tag": "락투카리움 숙면",
+    "detailed_benefit": {
+      "tagline": "밤마다 다이어트 불면증을 잠재우고 나트륨 붓기를 쏙 빼주는 천연 진정 채소",
+      "points": [
+        "줄기 속 하얀 즙에 든 '락투카리움' 성분이 신경을 안정시키고 멜라토닌 분비를 촉진해 숙면 유도",
+        "풍부한 칼륨이 체내 잔류 나트륨을 배출시켜 아침 얼굴 및 다리 붓기 완화",
+        "수분 함량 95%로 고기나 밥을 싸 먹을 때 위벽에 식이섬유 쿠션을 깔아 포만감 극대화",
+        "철분과 엽산이 풍부하여 저칼로리 식단 중 발생하기 쉬운 어지럼증과 빈혈 예방"
+      ]
+    },
+    "storage": "냉장 1~2주 (세워서 보관)",
+    "storage_prep": {
+      "method": "줄기 끝부분을 키친타월로 감싸 지퍼백에 줄기가 아래로 가도록 세워 냉장 보관",
+      "tip": "시들해졌을 때 50도 미지근한 물에 1분간 담그면 기포가 열리며 갓 딴 것처럼 아삭해짐"
+    },
+    "synergy_reason": "소고기나 돼지고기 단백질의 소화 흡수를 돕고, 락투카리움과 칼륨이 고기의 나트륨을 배출시켜 숙면을 돕습니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "protein_pork_tenderloin",
+      "protein_chicken_breast",
+      "carb_brown_rice",
+      "fat_perilla_oil",
+      "protein_squid",
+      "protein_light_tuna",
+      "protein_tofu",
+      "protein_natto",
+      "carb_konjac_rice"
+    ],
+    "market_product": "국내산 친환경 무농약 상추 200g",
+    "price": 2490,
+    "market_spec": "로켓프레시 당일수확 무농약",
+    "coupang_url": "https://link.coupang.com/a/sangchu_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_perilla",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "깻잎",
+    "icon": "🍃",
+    "portion": "50g (약 20장)",
+    "calories": 18,
+    "protein": 1.8,
+    "carbs": 2.6,
+    "fat": 0.1,
+    "fiber": 2.4,
+    "tag": "시금치 2배 철분",
+    "detailed_benefit": {
+      "tagline": "시금치의 2배에 달하는 식물성 철분의 제왕, 육류 소화와 잡내를 잡는 천연 허브",
+      "points": [
+        "100g당 철분이 시금치의 2배 이상 농축되어 다이어트성 빈혈과 피로 완벽 방어",
+        "강력한 항산화 성분인 '로즈마린산'이 체내 염증 수치를 낮추고 인슐린 저항성 개선",
+        "깻잎 특유의 정유 성분 '페릴라케톤'이 육류·생선의 비린내를 잡고 살균 작용으로 소화 지원",
+        "풍부한 칼슘과 비타민 A/C가 피부 노화를 막고 체지방 분해 효소 활성화"
+      ]
+    },
+    "storage": "냉장 2주 (물기 유지)",
+    "storage_prep": {
+      "method": "줄기 끝을 약간 잘라 물이 살짝 담긴 컵에 꽂고 비닐로 씌워 냉장 보관하면 2주간 생생",
+      "tip": "닭가슴살이나 소고기 우둔살과 함께 쌈으로 먹거나 잘게 채 썰어 샐러드에 넣으면 풍미 폭발"
+    },
+    "synergy_reason": "시금치 2배의 철분을 함유한 깻잎은 소고기 단백질과 결합하여 조혈 작용을 돕고, 페릴라케톤이 잡내를 잡고 소화를 지원합니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "protein_beef_tenderloin",
+      "protein_chicken_breast",
+      "fat_perilla_oil",
+      "protein_tofu"
+    ],
+    "market_product": "국내산 친환경 무농약 깻잎 30장 (약 60g)",
+    "price": 1980,
+    "market_spec": "로켓프레시 산지직송 무농약",
+    "coupang_url": "https://link.coupang.com/a/perilla_leaf_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_chicory",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "치커리",
+    "icon": "🌿",
+    "portion": "80g (1줌)",
+    "calories": 16,
+    "protein": 1.2,
+    "carbs": 3.0,
+    "fat": 0.2,
+    "fiber": 2.2,
+    "tag": "담즙분비 지방소화",
+    "detailed_benefit": {
+      "tagline": "쌉싸름한 인티빈 성분으로 담즙 분비를 촉진해 기름진 지방을 완벽 분해하는 디톡스 채소",
+      "points": [
+        "특유의 쓴맛을 내는 '인티빈' 성분이 소화액과 담즙 분비를 촉진해 단백질 및 지방 소화 효율 극대화",
+        "천연 수용성 식이섬유인 '이눌린'이 장내 유익균의 먹이가 되어 복부 팽만과 변비 해소",
+        "간 해독 대사를 촉진하여 운동 후 체내 젖산과 독소 배출 가속화",
+        "혈당 상승을 억제하여 탄수화물 흡수를 완만하게 조절"
+      ]
+    },
+    "storage": "냉장 10일 (밀폐 보관)",
+    "storage_prep": {
+      "method": "키친타월로 감싸 지퍼백에 밀봉 냉장 보관 (10일)",
+      "tip": "쓴맛이 강할 땐 찬 얼음물에 10분간 담가두면 쓴맛이 줄고 아삭한 식감만 남음"
+    },
+    "synergy_reason": "치커리의 쌉싸름한 인티빈 성분은 담즙 분비를 촉진하여 연어와 소고기의 고단백과 지방을 완벽하게 유화·소화시킵니다.",
+    "synergy_ids": [
+      "protein_salmon",
+      "protein_beef_round",
+      "fat_olive_oil",
+      "protein_chicken_breast",
+      "carb_apple"
+    ],
+    "market_product": "국내산 친환경 무농약 치커리 150g",
+    "price": 2200,
+    "market_spec": "로켓프레시 당일수확",
+    "coupang_url": "https://link.coupang.com/a/chicory_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_chard",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "적근대",
+    "icon": "🥬",
+    "portion": "80g (잎 6~8장)",
+    "calories": 15,
+    "protein": 1.4,
+    "carbs": 2.7,
+    "fat": 0.1,
+    "fiber": 1.6,
+    "tag": "붉은줄기 엽록소",
+    "detailed_benefit": {
+      "tagline": "붉은 줄기 속 베타카로틴과 철분의 보고, 혈액을 맑게 하고 골밀도를 채우는 슈퍼 채소",
+      "points": [
+        "붉은 줄기의 안토시아닌과 베타카로틴이 혈관 내 활성산소를 제거하고 노화 방지",
+        "비타민 K와 칼슘, 마그네슘이 풍부하여 다이어트 중 골밀도 감소 방어",
+        "이뇨 작용을 촉진하여 몸속 독소와 과도한 수분을 배출",
+        "부드럽고 달콤한 맛으로 샐러드나 쌈으로 육류와 곁들이기 최적"
+      ]
+    },
+    "storage": "냉장 1주 (신문지/키친타월)",
+    "storage_prep": {
+      "method": "씻지 않고 키친타월에 싸서 지퍼백 밀봉 냉장 보관",
+      "tip": "올리브유나 들기름을 살짝 두르고 닭가슴살과 곁들이면 지용성 카로틴 흡수 극대화"
+    },
+    "synergy_reason": "적근대의 지용성 카로틴과 칼슘은 올리브유 및 닭가슴살과 만나 흡수율이 크게 상승합니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "fat_olive_oil",
+      "protein_eggs",
+      "protein_tofu"
+    ],
+    "market_product": "국내산 친환경 무농약 적근대 150g",
+    "price": 2350,
+    "market_spec": "로켓프레시 친환경 무농약",
+    "coupang_url": "https://link.coupang.com/a/chard_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_mustard",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "겨자채",
+    "icon": "🌿",
+    "portion": "60g (잎 5~6장)",
+    "calories": 15,
+    "protein": 1.6,
+    "carbs": 2.5,
+    "fat": 0.2,
+    "fiber": 1.7,
+    "tag": "알싸한 시니그린",
+    "detailed_benefit": {
+      "tagline": "코끝 찡한 알싸함으로 육류의 느끼함을 잡고 면역 대사를 깨우는 천연 향신 채소",
+      "points": [
+        "알싸한 매운맛을 내는 '시니그린' 성분이 위액 분비를 촉진하고 어육류의 소화 지원",
+        "비타민 A와 C가 풍부하여 면역 세포를 활성화하고 유해 활성산소 억제",
+        "식욕을 돋우면서도 소화 대사를 촉진하여 체지방 산화 촉진",
+        "닭안심, 닭가슴살, 돼지고기 안심 쌈으로 먹으면 소스 없이도 환상적인 미각"
+      ]
+    },
+    "storage": "냉장 1주 (밀폐)",
+    "storage_prep": {
+      "method": "신선칸에 줄기가 아래로 가도록 밀폐 보관",
+      "tip": "기름기 적은 닭가슴살을 싸 먹으면 알싸한 향미가 소스를 완전히 대체함"
+    },
+    "synergy_reason": "겨자채의 시니그린은 닭가슴살과 돼지고기 안심의 단백질 소화 효소를 활성화합니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "protein_pork_tenderloin",
+      "protein_chicken_tenderloin",
+      "carb_brown_rice"
+    ],
+    "market_product": "국내산 친환경 무농약 겨자채 150g",
+    "price": 2400,
+    "market_spec": "로켓프레시 당일수확",
+    "coupang_url": "https://link.coupang.com/a/mustard_greens_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_basil",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "생바질",
+    "icon": "🌿",
+    "portion": "20g (약 15~20잎)",
+    "calories": 5,
+    "protein": 0.6,
+    "carbs": 0.5,
+    "fat": 0.1,
+    "fiber": 0.4,
+    "tag": "지중해 리코펜 시너지",
+    "detailed_benefit": {
+      "tagline": "지중해 식단의 꽃! 토마토와 올리브유의 리코펜을 폭발적으로 끌어올리는 천연 허브",
+      "points": [
+        "정유 성분인 '리날룰'과 '유제놀'이 신경을 안정시키고 스트레스성 과식 억제",
+        "토마토의 리코펜, 올리브유의 불포화지방과 결합하여 카프레제 황금 흡수율 구현",
+        "위장 경련을 완화하고 소화 효소 분비를 촉진하여 속 편한 소화 지원",
+        "샐러드나 닭가슴살 요리에 뜯어 넣는 것만으로 레스토랑 수준의 풍미 격상"
+      ]
+    },
+    "storage": "실온 물꽂이 (냉장 시 잎 검어짐)",
+    "storage_prep": {
+      "method": "줄기 끝을 자르고 물잔에 꽂아 실온 보관 (냉장고에 넣으면 냉해로 검게 변함)",
+      "tip": "방울토마토와 올리브유, 발사믹과 함께 곁들이면 지중해식 최상급 다이어트 샐러드 완성"
+    },
+    "synergy_reason": "생바질은 토마토(리코펜)와 올리브유(불포화지방)와 만났을 때 영양 흡수율과 지중해 풍미가 극대화됩니다.",
+    "synergy_ids": [
+      "veg_tomato",
+      "veg_ripe_tomato",
+      "fat_olive_oil",
+      "protein_chicken_breast",
+      "protein_eggs"
+    ],
+    "market_product": "국내산 신선 생바질 30g",
+    "price": 2890,
+    "market_spec": "로켓프레시 산지직송",
+    "coupang_url": "https://link.coupang.com/a/basil_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_frillice",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "프릴아이스",
+    "icon": "🥬",
+    "portion": "100g (1포기)",
+    "calories": 14,
+    "protein": 1.2,
+    "carbs": 2.4,
+    "fat": 0.1,
+    "fiber": 1.9,
+    "tag": "수분 96% 극강아삭",
+    "detailed_benefit": {
+      "tagline": "입안 가득 터지는 수분감과 극강의 아삭함, 유럽 프리미엄 수경재배 샐러드 채소",
+      "points": [
+        "일반 양상추보다 잎이 도톰하고 레이스 모양으로 씹을 때 경쾌한 아삭함과 포만감 제공",
+        "쓴맛이 전혀 없고 은은한 단맛이 돌아 드레싱 칼로리를 최소화 가능",
+        "풍부한 수분(96%)과 식이섬유가 배변 활동을 돕고 장 속 독소 배출",
+        "수경재배 무농약으로 씻지 않고 바로 뜯어 닭가슴살이나 연어와 섭취 가능"
+      ]
+    },
+    "storage": "냉장 2~3주 (뿌리 유지)",
+    "storage_prep": {
+      "method": "스펀지 뿌리를 자르지 않고 밀폐용기에 담아 냉장 보관 시 3주간 아삭함 유지",
+      "tip": "손으로 큼직하게 뜯어 닭가슴살, 방울토마토, 올리브유와 버무려 신선 샐러드로 즐기기"
+    },
+    "synergy_reason": "프릴아이스의 수분과 아삭함은 닭가슴살과 연어의 단백질 섭취 시 최상의 식감을 제공합니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "protein_salmon",
+      "fat_olive_oil",
+      "veg_tomato",
+      "protein_chicken_tenderloin",
+      "protein_beef_round",
+      "protein_cod_fillet",
+      "protein_shrimp",
+      "protein_tofu",
+      "protein_soft_tofu",
+      "protein_soymilk",
+      "carb_sweet_potato",
+      "carb_pumpkin",
+      "carb_boiled_potato",
+      "carb_whole_bread",
+      "fat_avocado",
+      "fat_almond",
+      "veg_beet"
+    ],
+    "market_product": "유럽형 프리미엄 수경재배 프릴아이스 200g",
+    "price": 3290,
+    "market_spec": "로켓프레시 친환경 무농약",
+    "coupang_url": "https://link.coupang.com/a/frillice_fresh",
+    "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_sprouts",
+    "category": "veg",
+    "category_name": "식이섬유 & 채소",
+    "name": "새싹채소",
+    "icon": "🌱",
+    "portion": "50g (풍성한 1줌)",
+    "calories": 12,
+    "protein": 1.5,
+    "carbs": 1.6,
+    "fat": 0.2,
+    "fiber": 1.2,
+    "tag": "설포라판 20배 농축",
+    "detailed_benefit": {
+      "tagline": "성숙한 채소 대비 영양소가 10~20배 농축된 생명의 씨앗, 간 해독과 세포 재생의 보고",
+      "points": [
+        "다 자란 채소보다 '설포라판'과 효소가 최대 20배 농축되어 체내 활성산소와 독소를 강력 제거",
+        "생체 비타민 A, C, E와 미네랄이 집약되어 저칼로리 식단 중 세포 노화 방어",
+        "소화 효소가 풍부해 연어나 닭가슴살 등 고단백 식사 후 더부룩함 원천 방지",
+        "비빔밥, 샐러드, 닭가슴살 토핑으로 올려 한 입만으로 고농축 파이토케미컬 섭취"
+      ]
+    },
+    "storage": "냉장 5일 (수분 제거)",
+    "storage_prep": {
+      "method": "바닥에 키친타월을 깔고 밀폐용기에 담아 냉장 보관",
+      "tip": "열에 약하므로 가열 조리하지 말고 생으로 샐러드나 닭가슴살 위에 토핑으로 얹기"
+    },
+    "synergy_reason": "새싹채소의 고농축 효소와 설포라판은 연어와 닭가슴살의 단백질 흡수를 극대화합니다.",
+    "synergy_ids": [
+      "protein_salmon",
+      "protein_chicken_breast",
+      "fat_olive_oil",
+      "carb_brown_rice"
+    ],
+    "market_product": "국내산 친환경 무농약 모둠 새싹채소 150g",
+    "price": 2190,
+    "market_spec": "로켓프레시 당일수확",
+    "coupang_url": "https://link.coupang.com/a/sprouts_fresh",
+    "market_badge": "로켓프레시"
   }
 ]
