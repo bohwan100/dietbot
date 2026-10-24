@@ -344,17 +344,22 @@
     .card-head {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       margin-bottom: 14px;
+      gap: 8px;
     }
     .card-title-wrap {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
+      flex: 1;
+      min-width: 0;
     }
     .food-icon-circle {
       width: 44px;
       height: 44px;
+      min-width: 44px;
+      flex-shrink: 0;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -367,23 +372,49 @@
       background: rgba(16, 185, 129, 0.2);
       border-color: rgba(52, 211, 153, 0.4);
     }
+    .card-title-text {
+      flex: 1;
+      min-width: 0;
+    }
     .food-name {
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: -0.3px;
+      line-height: 1.35;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .food-sub-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
     }
     .food-portion {
       font-size: 0.78rem;
       color: #94a3b8;
       font-weight: 600;
-      margin-top: 2px;
+    }
+    .food-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      padding: 1px 6px;
+      white-space: nowrap;
+      display: inline-block;
     }
 
     /* Selection Circle Indicator */
     .select-circle {
       width: 28px;
       height: 28px;
+      min-width: 28px;
+      flex-shrink: 0;
       border-radius: 50%;
       border: 1.5px solid rgba(255, 255, 255, 0.2);
       display: flex;
@@ -392,6 +423,7 @@
       font-size: 0.85rem;
       color: transparent;
       transition: all 0.2s;
+      margin-top: 2px;
     }
     .food-card:hover .select-circle {
       border-color: rgba(255, 255, 255, 0.4);
@@ -1034,12 +1066,12 @@
             <div class="card-head">
               <div class="card-title-wrap">
                 <div class="food-icon-circle">${food.icon}</div>
-                <div>
-                  <div style="display: flex; align-items: center; gap: 6px;">
-                    <div class="food-name">${food.name}</div>
-                    <span class="food-tag">${food.tag}</span>
+                <div class="card-title-text">
+                  <div class="food-name">${food.name}</div>
+                  <div class="food-sub-meta">
+                    <span class="food-portion">${food.portion}</span>
+                    ${food.tag ? `<span class="food-tag">#${food.tag}</span>` : ''}
                   </div>
-                  <div class="food-portion">${food.portion}</div>
                 </div>
               </div>
               <div class="select-circle">${isSelected ? '✓' : '+'}</div>
