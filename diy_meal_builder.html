@@ -1026,13 +1026,7 @@
               <div class="select-circle">${isSelected ? '✓' : '+'}</div>
             </div>
 
-            <!-- 💡 겉에 직관적인 1줄 요약 -->
-            <div class="food-summary-line" title="${summaryText}">
-              <span class="summary-bulb">💡</span>
-              <span class="summary-text">${summaryText}</span>
-            </div>
-
-            <div class="metric-grid">
+            <div class="metric-grid" style="margin-top: 14px;">
               <div class="metric-item p">
                 <span class="metric-lbl">단백질</span>
                 <span class="metric-num">${food.protein}g</span>
@@ -1053,7 +1047,7 @@
               🔥 ${food.calories} <span>kcal</span>
             </div>
             <button type="button" class="btn-quick-storage btn-storage" onclick="event.stopPropagation(); openStorageModal('${food.id}')">
-              ❄️ 보관법
+              💡 영양정보·보관법
             </button>
           </div>
         `;
