@@ -565,6 +565,25 @@
     .btn-action-secondary:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
 
     /* Modal for Food Storage Tips */
+    .recipe-filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .recipe-filter-btn.active, .recipe-filter-btn:hover {
+      background: #38bdf8;
+      color: #0b0f19;
+      border-color: #38bdf8;
+      font-weight: 900;
+    }
+
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -710,6 +729,9 @@
         </div>
       </a>
       <div class="nav-links" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <button type="button" onclick="openRecipeExplorerModal()" class="nav-btn" style="background: rgba(56, 189, 248, 0.15); border: 1.5px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 800; padding: 7px 13px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);">
+          📖 황금 레시피 50선
+        </button>
         <button type="button" onclick="openSurveyModal()" class="nav-btn" style="background: rgba(16, 185, 129, 0.18); border-color: #10b981; color: #34d399; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);">
           🎯 신체 스펙 입력 & AI 맞춤 식단
         </button>
@@ -2106,6 +2128,155 @@
       }
     }
 
+    
+    // ==========================================
+    // 📖 50대 검증 초간단 다이어트 황금 레시피 라이브러리
+    // ==========================================
+    const DIET_RECIPES_50 = [{"id": "recipe_01", "title": "🥑 아보카도 생연어 포케 보울", "category": "샐러드 & 웜보울", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 485, "protein": 34.5, "carbs": 42.0, "fat": 18.2, "food_ids": ["protein_salmon", "carb_brown_rice", "veg_cucumber", "veg_tomato", "fat_avocado", "fat_olive_oil"], "ingredients": "생연어 100g, 현미밥 100g, 아보카도 반 개(70g), 오이 반 개, 방울토마토 5알, 무순/깨 약간", "sauce": "양조간장 1T + 알룰로스 0.5T + 레몬즙 1T + 와사비 0.3t + 참기름 0.5t", "steps": ["생연어와 아보카도, 오이를 깍둑썰기하고 방울토마토는 반으로 자릅니다.", "볼에 따뜻한 현미밥을 깔고 손질한 연어, 아보카도, 채소를 빙 둘러 담습니다.", "분량의 간장 레몬 와사비 소스를 고루 섞어 연어 위에 쪼르륵 둘러줍니다."], "tip": "연어의 오메가-3와 아보카도의 단일불포화지방산이 만나 세포막을 유연하게 하고 혈관 염증을 강력 배출합니다."}, {"id": "recipe_02", "title": "🍗 닭가슴살 루꼴라 레몬 샐러드", "category": "샐러드 & 웜보울", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 395, "protein": 36.2, "carbs": 38.0, "fat": 9.5, "food_ids": ["protein_chicken_breast", "carb_sweet_potato", "veg_arugula", "veg_tomato", "fat_olive_oil"], "ingredients": "닭가슴살 100g, 찐고구마 100g, 루꼴라 30g, 방울토마토 6알, 올리브유 1T", "sauce": "지중해 레몬 드레싱 (올리브유 1T + 레몬즙 1T + 알룰로스 0.5T + 소금·후추)", "steps": ["닭가슴살과 찐고구마를 한 입 크기로 깍둑썰기합니다.", "루꼴라는 찬물에 씻어 물기를 털고 볼에 고구마, 닭가슴살, 토마토와 함께 담습니다.", "레몬즙과 올리브유를 섞은 상큼한 드레싱을 가볍게 둘러 버무립니다."], "tip": "루꼴라의 알싸한 풍미가 닭가슴살의 퍽퍽함을 잊게 하며, 올리브유가 토마토 리코펜 흡수를 4배 돕습니다."}, {"id": "recipe_03", "title": "🦆 훈제오리 양배추 웜샐러드", "category": "샐러드 & 웜보울", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 490, "protein": 31.0, "carbs": 44.5, "fat": 19.8, "food_ids": ["protein_duck", "carb_pumpkin", "veg_cabbage", "veg_carrot", "fat_peanut_butter"], "ingredients": "훈제오리 100g, 단호박 120g, 양배추 80g, 당근 30g, 땅콩버터 15g", "sauce": "단짠 피넛 소스 (땅콩버터 1T + 온수 1T + 간장 0.5T + 식초 1T + 알룰로스 1T)", "steps": ["달군 팬에 훈제오리를 굽다가 나오는 기름에 채 썬 양배추와 당근을 넣어 1분간 센 불에 볶습니다.", "단호박은 전자레인지에 2분 돌려 부드럽게 익힙니다.", "접시에 볶은 오리와 채소를 담고 부드럽게 갠 피넛소스를 곁들입니다."], "tip": "양배추의 비타민 U가 위벽을 감싸고 땅콩의 불포화지방이 당근의 지용성 베타카로틴 흡수를 끌어올립니다."}, {"id": "recipe_04", "title": "🧀 리코타 치즈 방울토마토 샐러드", "category": "샐러드 & 웜보울", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 360, "protein": 22.5, "carbs": 38.0, "fat": 12.0, "food_ids": ["protein_ricotta", "protein_eggs", "carb_whole_bread", "veg_tomato", "veg_romaine", "fat_olive_oil"], "ingredients": "리코타치즈 60g, 삶은 달걀 1알, 통밀빵 1쪽(40g), 방울토마토 8알, 로메인 40g", "sauce": "발사믹 글레이즈 or 발사믹 1T + 올리브유 0.5T + 소금 한 꼬집", "steps": ["로메인을 씻어 한 입 크기로 뜯고 방울토마토를 반으로 가릅니다.", "볼에 로메인, 토마토를 담고 리코타치즈를 숟가락으로 툭툭 떼어 올립니다.", "토스트한 통밀빵과 슬라이스한 달걀을 곁들이고 발사믹 드레싱을 뿌립니다."], "tip": "리코타치즈는 나트륨이 적고 유청 단백질이 풍부하여 치즈 중 다이어트에 가장 적합합니다."}, {"id": "recipe_05", "title": "🥩 소고기 부채살 버섯 웜샐러드", "category": "샐러드 & 웜보울", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 440, "protein": 38.0, "carbs": 32.0, "fat": 15.0, "food_ids": ["protein_beef_blade", "carb_pumpkin", "veg_button_mushrooms", "veg_radicchio", "fat_olive_oil"], "ingredients": "소고기 부채살 120g, 단호박 100g, 양송이버섯 4개, 라디치오/잎채소 40g, 올리브유 1t", "sauce": "홀그레인 발사믹 드레싱 (발사믹 1T + 홀그레인 머스터드 1t + 올리브유 0.5T)", "steps": ["팬을 달궈 부채살과 4등분한 양송이버섯을 앞뒤로 노릇하게 3분간 굽습니다.", "단호박은 얇게 썰어 고기 옆에서 함께 구워줍니다.", "접시에 잎채소를 깔고 구운 부채살과 버섯을 얹은 뒤 발사믹 드레싱을 둘러줍니다."], "tip": "버섯의 에르고티오네인 항산화 성분과 소고기의 크레아틴이 운동 후 근피로를 즉각 회복시킵니다."}, {"id": "recipe_06", "title": "🥣 그릭요거트 단호박 닭가슴살 보울", "category": "샐러드 & 웜보울", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 410, "protein": 42.0, "carbs": 45.0, "fat": 6.5, "food_ids": ["protein_greek_yogurt", "protein_chicken_tenderloin", "carb_pumpkin", "veg_cucumber", "fat_almond"], "ingredients": "무가당 그릭요거트 100g, 닭안심 100g, 단호박 120g, 오이 반 개, 아몬드 8알", "sauce": "요거트 렌치 믹스 (그릭요거트 + 레몬즙 1t + 다진마늘 0.2t + 소금·후추)", "steps": ["단호박은 전자레인지에 2분간 익히고 닭안심은 삶거나 에어프라이어에 데웁니다.", "볼에 그릭요거트, 레몬즙, 소금 후추를 섞어 렌치 소스를 만듭니다.", "한 입 크기로 썬 단호박, 닭안심, 오이를 넣고 아몬드를 으깨어 고소하게 비벼먹습니다."], "tip": "마요네즈 없이 그릭요거트만으로 고단백 크리미 샐러드를 완성하여 단백질 40g을 가볍게 채웁니다."}, {"id": "recipe_07", "title": "🦐 구운 새우 아스파라거스 샐러드", "category": "샐러드 & 웜보울", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 375, "protein": 30.5, "carbs": 42.0, "fat": 8.5, "food_ids": ["protein_shrimp", "carb_sweet_potato", "veg_asparagus", "veg_tomato", "fat_olive_oil"], "ingredients": "새우 8마리(100g), 아스파라거스 4대, 찐고구마 100g, 방울토마토 5알, 올리브유 1t", "sauce": "레몬 갈릭 드레싱 (올리브유 1T + 레몬즙 1T + 다진마늘 0.3t + 소금·후추)", "steps": ["아스파라거스는 3등분하고 팬에 올리브유를 둘러 새우와 함께 3분간 노릇하게 볶습니다.", "고구마는 깍둑썰기하고 방울토마토는 반으로 썹니다.", "모든 재료를 볼에 담고 상큼한 레몬 갈릭 드레싱을 버무립니다."], "tip": "아스파라거스의 아스파라긴산이 알코올 분해와 간 해독을 돕고 칼륨이 나트륨 부종을 뺍니다."}, {"id": "recipe_08", "title": "🌱 템페 케일 퀴노아 슈퍼보울", "category": "샐러드 & 웜보울", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 435, "protein": 28.0, "carbs": 48.0, "fat": 13.5, "food_ids": ["protein_tempeh", "carb_quinoa", "veg_kale", "veg_tomato", "fat_olive_oil"], "ingredients": "템페 100g, 익힌 퀴노아 100g, 케일 30g, 방울토마토 5알, 올리브유 1t", "sauce": "오리엔탈 드레싱 (간장 1T + 식초 1T + 알룰로스 0.5T + 들기름 0.5t)", "steps": ["템페를 한 입 크기 주사위 모양으로 썰어 팬에 올리브유를 두르고 바삭하게 3분간 굽습니다.", "케일은 잘게 채 썰고 방울토마토는 반으로 가릅니다.", "볼에 퀴노아, 케일, 구운 템페를 담고 오리엔탈 드레싱을 부어 비벼 먹습니다."], "tip": "발효 콩 템페는 장내 유익균 증식을 돕고 퀴노아의 필수 아미노산과 완벽한 식물성 시너지를 냅니다."}, {"id": "recipe_09", "title": "🐙 문어 숙회 미역 오이 샐러드", "category": "샐러드 & 웜보울", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 340, "protein": 32.0, "carbs": 38.0, "fat": 4.5, "food_ids": ["protein_octopus", "carb_boiled_potato", "veg_seaweed", "veg_cucumber", "fat_sesame_oil"], "ingredients": "자숙 문어 100g, 찐감자 1개(120g), 불린 미역 50g, 오이 반 개, 통깨 약간", "sauce": "초간장 소스 (양조간장 1T + 사과식초 1.5T + 알룰로스 1T + 참기름 0.3t)", "steps": ["문어와 불린 미역, 오이를 먹기 좋은 크기로 어슷썹니다.", "찐감자는 껍질을 벗겨 깍둑썰기합니다.", "볼에 재료를 모두 담고 새콤달콤한 초간장 소스를 둘러 가볍게 무쳐냅니다."], "tip": "문어의 풍부한 타우린이 간 기능을 촉진하고 미역의 알긴산이 체내 중금속과 중성지방을 흡착 배출합니다."}, {"id": "recipe_10", "title": "🍎 코티지치즈 사과 피칸 샐러드", "category": "샐러드 & 웜보울", "time": "3분", "difficulty": "초간단 ★☆☆", "calories": 365, "protein": 24.0, "carbs": 44.0, "fat": 10.5, "food_ids": ["protein_cottage_cheese", "protein_eggs", "carb_apple", "veg_romaine", "fat_pecan"], "ingredients": "코티지치즈 80g, 삶은 달걀 1알, 사과 반 개, 로메인 40g, 피칸 5알", "sauce": "레몬 시나몬 드레싱 (레몬즙 1T + 알룰로스 0.5T + 시나몬 가루 한 꼬집)", "steps": ["로메인을 씻어 볼에 깔고 사과는 얇게 슬라이스합니다.", "사과 위에 코티지치즈와 삶은 달걀을 얹고 피칸을 손으로 부수어 뿌립니다.", "레몬즙과 알룰로스, 은은한 시나몬을 섞은 소스를 뿌려 상큼달콤하게 즐깁니다."], "tip": "사과의 펙틴 식이섬유와 코티지치즈의 카제인 단백질이 장시간 혈당을 안정적으로 유지합니다."}, {"id": "recipe_11", "title": "🥩 소고기 안심 아스파라거스 찹스테이크", "category": "원팬 구이 & 볶음", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 420, "protein": 39.0, "carbs": 30.0, "fat": 14.0, "food_ids": ["protein_beef_tenderloin", "carb_pumpkin", "veg_asparagus", "veg_paprika", "fat_olive_oil"], "ingredients": "소고기 안심 120g, 단호박 100g, 아스파라거스 3대, 파프리카 반 개, 올리브유 1t", "sauce": "다이어트 스테이크 소스 (진간장 1T + 스테이크 소스 0.5T + 알룰로스 0.5T + 후추)", "steps": ["안심과 파프리카, 아스파라거스를 한 입 크기 큐브 모양으로 썹니다.", "달군 팬에 올리브유를 두르고 소고기를 센 불에 1분간 먼저 시어링합니다.", "채소와 단호박을 넣고 소스를 끼얹어 센 불에 1~2분간 빠르게 볶아냅니다."], "tip": "소고기 안심은 지방이 가장 적고 부드러우며 파프리카의 비타민 C가 육류의 철분 흡수율을 300% 높입니다."}, {"id": "recipe_12", "title": "🌱 닭안심 대파 굴소스 볶음", "category": "원팬 구이 & 볶음", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 380, "protein": 37.0, "carbs": 38.0, "fat": 7.0, "food_ids": ["protein_chicken_tenderloin", "carb_brown_rice", "veg_green_onion", "veg_king_oyster", "fat_sesame_oil"], "ingredients": "닭안심 100g, 현미밥 100g, 대파 1대(50g), 새송이버섯 1개, 참기름 0.5t", "sauce": "굴소스 0.8T + 진간장 0.5T + 다진마늘 0.5t + 알룰로스 0.5t + 후추", "steps": ["대파는 송송 썰고 새송이버섯과 닭안심은 결대로 길쭉하게 썹니다.", "팬에 대파를 먼저 볶아 파기름을 낸 뒤 닭안심과 버섯을 넣고 볶습니다.", "굴소스 양념장을 둘러 1분간 코팅하듯 볶고 불 끄기 전 참기름을 살짝 두릅니다."], "tip": "대파의 알리신 성분이 닭고기의 비타민 B1 흡수를 극대화하여 피로를 빠르게 해소합니다."}, {"id": "recipe_13", "title": "🐟 삼치 알룰로스 데리야끼 조림", "category": "원팬 구이 & 볶음", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 410, "protein": 36.0, "carbs": 35.0, "fat": 12.5, "food_ids": ["protein_spanish_mackerel", "carb_brown_rice", "veg_bokchoy", "veg_green_onion", "fat_perilla_oil"], "ingredients": "삼치 1토막(120g), 현미밥 100g, 청경채 2포기, 대파 약간, 들기름 0.5t", "sauce": "저당 데리야끼 (진간장 1.5T + 물 2T + 맛술 1T + 알룰로스 1.5T + 생강가루 톡톡)", "steps": ["팬에 삼치를 껍질부터 올려 앞뒤로 노릇하게 3분간 굽습니다.", "데리야끼 소스를 붓고 청경채를 함께 넣어 중약불에 국물을 끼얹으며 조립니다.", "소스가 자작하게 배어들면 밥 위에 청경채와 조린 삼치를 얹어 완성합니다."], "tip": "삼치는 고등어보다 지방이 적고 담백하며, 불포화 오메가-3와 DHA가 풍부해 두뇌 회전을 돕습니다."}, {"id": "recipe_14", "title": "🍆 돼지 안심 통마늘 가지 볶음", "category": "원팬 구이 & 볶음", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 390, "protein": 36.5, "carbs": 38.0, "fat": 9.0, "food_ids": ["protein_pork_tenderloin", "carb_barley_rice", "veg_eggplant", "veg_onion", "fat_olive_oil"], "ingredients": "돼지고기 안심 100g, 보리밥 100g, 가지 반 개, 양파 반 개, 통마늘 4알, 올리브유 1t", "sauce": "진간장 1T + 굴소스 0.5T + 알룰로스 0.5T + 물 2T + 후추", "steps": ["돼지안심과 가지는 어슷썰고 양파는 채 썹니다.", "팬에 올리브유와 편마늘을 볶다가 돼지고기를 넣고 핏기가 사라질 때까지 볶습니다.", "가지와 양파, 소스를 붓고 수분이 날아갈 때까지 센 불에 2분간 볶아냅니다."], "tip": "돼지고기 안심은 닭가슴살만큼 고단백 저지방이며, 가지의 안토시아닌이 활성산소를 억제합니다."}, {"id": "recipe_15", "title": "🧈 가자미 버터구이 & 파프리카", "category": "원팬 구이 & 볶음", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 370, "protein": 34.0, "carbs": 36.0, "fat": 8.0, "food_ids": ["protein_flounder", "carb_sweet_potato", "veg_paprika", "veg_broccoli", "fat_ghee"], "ingredients": "가자미 순살 120g, 찐고구마 100g, 파프리카 반 개, 브로콜리 3송이, 기버터 5g", "sauce": "허브솔트 약간 + 레몬즙 1T", "steps": ["가자미에 허브솔트를 살짝 뿌려 밑간합니다.", "팬에 기버터 5g을 녹이고 가자미와 파프리카, 브로콜리를 함께 올립니다.", "중불에서 앞뒤로 2~3분간 노릇하게 굽고 먹기 전 생레몬즙을 톡톡 뿌려줍니다."], "tip": "가자미는 지방이 1% 미만인 순수 단백질 흰살생선으로, 유당이 제거된 기버터로 굽는 최고의 맛 궁합입니다."}, {"id": "recipe_16", "title": "🍄 두부 버섯 들기름 구이", "category": "원팬 구이 & 볶음", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 360, "protein": 24.5, "carbs": 42.0, "fat": 10.5, "food_ids": ["protein_tofu", "carb_brown_rice", "veg_shiitake", "veg_enoki", "fat_perilla_oil"], "ingredients": "부침두부 반 모(150g), 현미밥 100g, 표고버섯 2개, 팽이버섯 반 봉, 들기름 1t", "sauce": "양념간장 (양조간장 1T + 물 1T + 알룰로스 0.5T + 다진파 1T + 통깨)", "steps": ["두부는 1cm 두께로 도톰하게 썰고 키친타월로 물기를 닦습니다.", "팬에 들기름을 두르고 두부와 손질한 표고, 팽이버섯을 올립니다.", "앞뒤로 노릇하게 3분간 부쳐낸 뒤 양념간장을 곁들여 현미밥과 함께 냅니다."], "tip": "들기름의 오메가-3 지방산이 두부의 이소플라본 흡수를 촉진하고 심혈관을 건강하게 보호합니다."}, {"id": "recipe_17", "title": "🐟 대구살 토마토 바질 파피요트", "category": "원팬 구이 & 볶음", "time": "5분 (전자레인지)", "difficulty": "초간단 ★☆☆", "calories": 350, "protein": 33.0, "carbs": 38.0, "fat": 6.5, "food_ids": ["protein_cod_fillet", "carb_boiled_potato", "veg_tomato", "veg_basil", "fat_olive_oil"], "ingredients": "대구살 120g, 찐감자 1개(120g), 방울토마토 6알, 생바질 5잎, 올리브유 1t", "sauce": "화이트와인(or 맛술) 1T + 올리브유 1T + 소금·통후추 + 레몬 슬라이스", "steps": ["종이호일을 넓게 펴고 가운데에 대구살, 반 자른 방울토마토, 찐감자를 올립니다.", "올리브유, 화이트와인, 소금, 후추, 생바질 잎을 얹은 뒤 사탕처럼 양끝을 말아 밀봉합니다.", "전자레인지에 넣고 4분간 돌리면 레스토랑급 촉촉한 흰살생선 찜이 완성됩니다."], "tip": "프랑스식 종이호일 찜 요리로 설거지가 0개이며, 수분과 비타민이 증발하지 않고 그대로 보존됩니다."}, {"id": "recipe_18", "title": "🥩 소고기 홍두깨살 숙주 볶음", "category": "원팬 구이 & 볶음", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 395, "protein": 38.5, "carbs": 35.0, "fat": 8.5, "food_ids": ["protein_beef_eye_round", "carb_brown_rice", "veg_beansprout", "veg_green_onion", "fat_sesame_oil"], "ingredients": "소고기 홍두깨살(얇게 썬 것) 100g, 현미밥 100g, 숙주나물 120g, 대파 약간, 참기름 0.5t", "sauce": "진간장 1T + 굴소스 0.5T + 다진마늘 0.5t + 알룰로스 0.5t + 후추", "steps": ["팬을 센 불로 달궈 소고기 홍두깨살을 1분간 재빠르게 볶습니다.", "씻은 숙주와 대파를 넣고 굴소스 양념장을 부어 1분간 아삭하게 센 불 볶음합니다.", "불을 끄고 참기름을 한 바퀴 둘러 밥과 함께 고단백 한 접시를 냅니다."], "tip": "숙주의 아스파라긴산과 홍두깨살의 L-카르니틴이 체지방 연소를 촉진하고 피로를 씻어냅니다."}, {"id": "recipe_19", "title": "🦑 오징어 브로콜리 마늘 볶음", "category": "원팬 구이 & 볶음", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 365, "protein": 34.0, "carbs": 40.0, "fat": 5.5, "food_ids": ["protein_squid", "carb_konjac_rice", "veg_broccoli", "veg_onion", "fat_olive_oil"], "ingredients": "오징어 몸통 100g, 곤약밥 150g, 브로콜리 5송이, 양파 반 개, 통마늘 4알, 올리브유 1t", "sauce": "진간장 1T + 맛술 1T + 고춧가루 0.5T + 알룰로스 0.5T", "steps": ["오징어는 먹기 좋게 링이나 칼집 모양으로 썰고 브로콜리는 작게 뗍니다.", "팬에 올리브유와 편마늘을 볶아 향을 낸 뒤 오징어와 양파를 볶습니다.", "브로콜리와 매콤달콤 양념장을 넣어 센 불에 1분간 수분 없이 볶아냅니다."], "tip": "오징어는 지방이 1g 미만인 초고단백 해산물이며, 브로콜리의 설포라판이 세포 노화를 방지합니다."}, {"id": "recipe_20", "title": "🐟 고등어 카레가루 에어프라이어 구이", "category": "원팬 구이 & 볶음", "time": "8분", "difficulty": "초간단 ★☆☆", "calories": 440, "protein": 33.0, "carbs": 40.0, "fat": 15.0, "food_ids": ["protein_mackerel", "carb_barley_rice", "veg_lettuce_korean", "fat_olive_oil"], "ingredients": "고등어 순살 반 토막(100g), 보리밥 100g, 상추 5장, 카레가루 1t", "sauce": "카레가루 1t 골고루 묻히기 + 생레몬즙", "steps": ["고등어 살에 키친타월로 물기를 닦고 카레가루 1티스푼을 앞뒤로 톡톡 묻힙니다.", "에어프라이어에 180도로 7~8분간 바삭하게 구워냅니다.", "상추에 따뜻한 보리밥과 바삭한 카레 고등어를 올려 레몬즙을 살짝 뿌려 쌈 싸먹습니다."], "tip": "카레의 강황(커큐민) 성분이 생선 비린내를 완벽히 잡고 고등어의 EPA/DHA 산화를 억제합니다."}, {"id": "recipe_21", "title": "🥩 소고기 우둔살 깻잎 쌈밥상", "category": "든든한 밥 & 덮밥", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 430, "protein": 38.0, "carbs": 45.0, "fat": 10.0, "food_ids": ["protein_beef_round", "carb_barley_rice", "veg_perilla", "veg_lettuce_korean", "fat_perilla_oil"], "ingredients": "소고기 우둔살 100g, 보리밥 120g, 깻잎 7장, 상추 5장, 들기름 1t", "sauce": "만능 들깨 쌈장 (된장 0.5T + 고추장 0.3T + 들기름 0.5T + 알룰로스 0.5t + 들깨가루)", "steps": ["팬에 들기름을 두르고 소고기 우둔살을 소금 후추 살짝 쳐서 2분간 구워냅니다.", "보리밥을 숟가락으로 동글동글하게 빚어 깻잎과 상추 위에 얹습니다.", "구운 고기와 들깨 쌈장을 살짝 올려 한 입 쌈으로 완성합니다."], "tip": "깻잎의 비타민 A/C와 철분이 소고기 단백질과 결합하여 혈액 생성을 촉진하고 부종을 뺍니다."}, {"id": "recipe_22", "title": "🍳 양배추 참치 달걀 덮밥", "category": "든든한 밥 & 덮밥", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 420, "protein": 35.0, "carbs": 44.0, "fat": 11.0, "food_ids": ["protein_light_tuna", "protein_eggs", "carb_brown_rice", "veg_cabbage", "fat_sesame_oil"], "ingredients": "기름 뺀 참치캔 1캔(100g), 달걀 1알, 양배추 100g, 현미밥 100g, 참기름 0.5t", "sauce": "진간장 1T + 굴소스 0.5T + 알룰로스 0.5T + 통깨", "steps": ["팬에 채 썬 양배추와 기름 뺀 참치를 넣고 센 불에 1분간 볶습니다.", "가운데 공간을 비우고 달걀 1알을 톡 깨 넣은 뒤 뚜껑 덮어 반숙으로 익힙니다.", "현미밥 위에 올리고 간장 굴소스와 참기름을 둘러 쓱쓱 비벼 먹습니다."], "tip": "다이어터들 사이에서 '살 빠지는 마법 덮밥'으로 검증된 초간단 5분 레시피입니다."}, {"id": "recipe_23", "title": "🥑 낫또 아보카도 현미 비빔밥", "category": "든든한 밥 & 덮밥", "time": "3분", "difficulty": "초간단 ★☆☆", "calories": 415, "protein": 22.0, "carbs": 48.0, "fat": 14.5, "food_ids": ["protein_natto", "protein_eggs", "carb_brown_rice", "veg_cucumber", "fat_avocado", "fat_sesame_oil"], "ingredients": "낫또 1팩(45g), 아보카도 반 개, 달걀노른자 1알, 현미밥 120g, 오이 약간, 조미김", "sauce": "낫또 동봉 간장·겨자 + 참기름 0.5t", "steps": ["낫또는 실이 끈끈하게 생길 때까지 젓가락으로 30회 이상 힘차게 젓습니다.", "따뜻한 현미밥 위에 슬라이스한 아보카도와 낫또를 소복이 담습니다.", "가운데에 달걀노른자를 얹고 김가루와 참기름을 떨어뜨려 비벼 먹습니다."], "tip": "낫토키나아제 효소가 혈전을 녹이고 혈류를 개선하며 아보카도의 식이섬유와 최상의 장 건강을 냅니다."}, {"id": "recipe_24", "title": "🦆 훈제오리 단호박 곤약 볶음밥", "category": "든든한 밥 & 덮밥", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 440, "protein": 30.0, "carbs": 46.0, "fat": 14.0, "food_ids": ["protein_duck", "carb_konjac_rice", "carb_pumpkin", "veg_green_onion", "veg_paprika"], "ingredients": "훈제오리 100g, 곤약밥 150g, 찐단호박 80g, 대파 반 대, 파프리카 약간", "sauce": "진간장 1T + 알룰로스 0.5t + 흑후추 넉넉히", "steps": ["팬에 훈제오리와 송송 썬 대파를 넣고 기름 없이 2분간 볶습니다.", "오리에서 기름이 나오면 곤약밥과 깍둑썬 단호박, 파프리카를 넣고 볶습니다.", "간장을 팬 가장자리에 둘러 불맛을 내며 고슬고슬하게 볶아냅니다."], "tip": "곤약밥으로 칼로리를 100kcal 이상 낮추면서도 단호박의 단맛과 오리의 훈연 향으로 만족감이 높습니다."}, {"id": "recipe_25", "title": "🍗 닭가슴살 청경채 마늘 덮밥", "category": "든든한 밥 & 덮밥", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 390, "protein": 37.0, "carbs": 42.0, "fat": 7.0, "food_ids": ["protein_chicken_breast", "carb_brown_rice", "veg_bokchoy", "veg_onion", "fat_olive_oil"], "ingredients": "닭가슴살 100g, 청경채 2포기, 양파 반 개, 현미밥 100g, 다진마늘 1T", "sauce": "굴소스 0.8T + 진간장 0.5T + 물 3T + 알룰로스 0.5t + 후추", "steps": ["달군 팬에 기름 1작은술과 다진마늘을 볶아 향을 내고 슬라이스한 닭가슴살을 볶습니다.", "양파와 4등분한 청경채를 넣고 소스를 부어 센 불에 1분간 자작하게 조립니다.", "현미밥 위에 촉촉한 닭가슴살 청경채 볶음을 얹어냅니다."], "tip": "청경채의 풍부한 수분과 비타민 C가 닭가슴살을 퍽퍽하지 않고 촉촉한 일품요리로 변신시킵니다."}, {"id": "recipe_26", "title": "🥣 연두부 들기름 보리비빔밥", "category": "든든한 밥 & 덮밥", "time": "3분", "difficulty": "초간단 ★☆☆", "calories": 370, "protein": 22.0, "carbs": 48.0, "fat": 9.5, "food_ids": ["protein_soft_tofu", "protein_eggs", "carb_barley_rice", "veg_perilla", "fat_perilla_oil"], "ingredients": "연두부 1팩(150g), 달걀후라이 1알, 보리밥 120g, 채 썬 깻잎 5장, 조미김", "sauce": "양조간장 1T + 들기름 1T + 통깨 1t", "steps": ["따뜻한 보리밥 위에 연두부를 숟가락으로 숭덩숭덩 떠서 올립니다.", "채 썬 깻잎과 반숙 달걀후라이를 얹고 김가루를 뿌립니다.", "향긋한 들기름과 간장을 둘러 연두부를 으깨가며 촉촉하게 비벼 먹습니다."], "tip": "불 없이도 3분 만에 완성되는 속 편한 고단백 식단으로, 아침 식사로 소화 흡수가 탁월합니다."}, {"id": "recipe_27", "title": "🐚 바지락 부추 곤약 덮밥", "category": "든든한 밥 & 덮밥", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 340, "protein": 28.0, "carbs": 42.0, "fat": 5.0, "food_ids": ["protein_clam", "carb_konjac_rice", "veg_green_onion", "fat_sesame_oil"], "ingredients": "바지락 살 100g, 곤약밥 150g, 부추(or 대파) 30g, 다진마늘 0.5T, 참기름 0.5t", "sauce": "진간장 1T + 맛술 1T + 고춧가루 0.5t + 알룰로스 0.5t", "steps": ["팬에 참기름을 두르고 다진마늘과 바지락 살을 센 불에 1분간 볶습니다.", "맛술과 간장 양념을 붓고 4cm로 썬 부추를 넣어 숨만 죽을 정도로 30초간 볶습니다.", "따뜻한 곤약밥 위에 올려 쫄깃하고 향긋하게 비벼 먹습니다."], "tip": "바지락의 풍부한 철분과 비타민 B12가 빈혈을 예방하고 부추의 알릴설파이드가 신진대사를 높입니다."}, {"id": "recipe_28", "title": "🥩 소고기 우둔살 양파 덮밥 (규동 스타일)", "category": "든든한 밥 & 덮밥", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 435, "protein": 39.0, "carbs": 46.0, "fat": 9.5, "food_ids": ["protein_beef_round", "protein_eggs", "carb_brown_rice", "veg_onion", "veg_green_onion"], "ingredients": "소고기 우둔살 얇은 슬라이스 100g, 양파 반 개, 달걀노른자 1알, 현미밥 110g", "sauce": "물 50ml + 진간장 1.5T + 맛술 1T + 알룰로스 1T + 생강가루 한 꼬집", "steps": ["작은 냄비에 물과 간장, 맛술, 알룰로스, 채 썬 양파를 넣고 2분간 끓입니다.", "양파가 투명해지면 얇게 썬 소고기 우둔살을 넣어 중불에 2분간 익힙니다.", "현미밥 위에 고기와 양파, 국물을 자작하게 붓고 달걀노른자와 파를 얹습니다."], "tip": "설탕 대신 알룰로스로 단맛을 낸 일본식 규동으로, 기름기 없는 우둔살로 단백질 39g을 채웁니다."}, {"id": "recipe_29", "title": "🦐 새우 스크램블 귀리 볶음밥", "category": "든든한 밥 & 덮밥", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 410, "protein": 33.5, "carbs": 44.0, "fat": 10.0, "food_ids": ["protein_shrimp", "protein_eggs", "carb_oat_rice", "veg_green_onion", "fat_olive_oil"], "ingredients": "새우 8마리(100g), 달걀 2알, 귀리밥 100g, 대파 송송 30g, 올리브유 1t", "sauce": "진간장 0.8T + 굴소스 0.5t + 소금·후추 톡톡", "steps": ["팬에 대파와 새우를 볶다가 익으면 한쪽으로 밀고 달걀물을 부어 부드러운 스크램블을 만듭니다.", "귀리밥을 넣고 굴소스와 간장으로 간을 맞춰 고슬고슬하게 볶습니다.", "통후추를 갈아 올려 고단백 볶음밥으로 완성합니다."], "tip": "귀리의 베타글루칸 식이섬유가 밥의 탄수화물 흡수를 지연시켜 식후 혈당 스파이크를 막아줍니다."}, {"id": "recipe_30", "title": "🦀 게살 달걀 난백 중화풍 덮밥", "category": "든든한 밥 & 덮밥", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 360, "protein": 34.0, "carbs": 40.0, "fat": 5.5, "food_ids": ["protein_crab", "protein_egg_whites", "carb_brown_rice", "veg_green_onion", "fat_sesame_oil"], "ingredients": "순살 게살 100g, 난백(달걀 흰자) 100ml, 대파 송송, 현미밥 100g, 참기름 0.5t", "sauce": "물 80ml + 치킨스톡 0.5t + 진간장 0.5T + 전분물 1T (걸쭉한 유산슬 소스)", "steps": ["팬에 파기름을 내고 찢은 게살과 난백을 부어 몽글몽글하게 볶아 밥 위에 얹습니다.", "팬에 물, 치킨스톡, 간장을 끓이다 전분물을 둘러 투명하고 걸쭉한 중화풍 소스를 만듭니다.", "게살 달걀밥 위에 소스를 부어 부드러운 게살스프 덮밥으로 즐깁니다."], "tip": "기름기가 거의 없고 난백과 게살의 순수 단백질로만 구성되어 야식으로 먹어도 붓지 않습니다."}, {"id": "recipe_31", "title": "🍝 갈릭 올리브유 새우 통밀파스타", "category": "다이어트 면 & 파스타", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 445, "protein": 32.0, "carbs": 52.0, "fat": 12.0, "food_ids": ["protein_shrimp", "carb_whole_pasta", "veg_tomato", "veg_asparagus", "fat_olive_oil"], "ingredients": "새우 8마리, 통밀파스타 60g, 마늘 4알, 방울토마토 4알, 올리브유 1T, 페페론치노", "sauce": "올리브유 1T + 면수 3T + 허브솔트 + 페페론치노 2개", "steps": ["끓는 물에 소금을 넣고 통밀파스타를 6분간 삶습니다 (면수 3큰술 보관).", "팬에 올리브유와 편마늘, 페페론치노를 볶다가 새우와 방울토마토를 넣어 익힙니다.", "삶은 면과 면수를 넣고 센 불에 1분간 유화(만티카레)시켜 소스가 면에 착 감기게 완성합니다."], "tip": "통밀파스타는 GI 지수가 낮아 혈당을 천천히 올리며 올리브유와 면수가 만나 건강한 소스가 됩니다."}, {"id": "recipe_32", "title": "🥢 메밀면 들기름 막국수", "category": "다이어트 면 & 파스타", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 380, "protein": 21.0, "carbs": 54.0, "fat": 9.5, "food_ids": ["protein_eggs", "carb_buckwheat_noodles", "veg_cucumber", "fat_perilla_oil"], "ingredients": "메밀면 80g, 삶은 달걀 1알, 오이 반 개 채썬 것, 김가루 넉넉히, 들기름 1T", "sauce": "양조간장 1.5T + 알룰로스 1T + 식초 0.5T + 들기름 1T + 통깨 갈아서 1T", "steps": ["끓는 물에 메밀면을 3~4분간 삶은 뒤 찬물에 헹궈 전분기를 씻고 물기를 짭니다.", "볼에 면과 간장, 알룰로스, 고소한 들기름을 넣고 골고루 비벼줍니다.", "채 썬 오이와 삶은 달걀, 듬뿍 부순 김가루와 깨소금을 얹어 완성합니다."], "tip": "메밀의 루틴 성분이 모세혈관을 튼튼하게 하고 들기름의 오메가-3와 함께 콜레스테롤 수치를 낮춥니다."}, {"id": "recipe_33", "title": "🐚 골뱅이 깻잎 통밀 비빔파스타", "category": "다이어트 면 & 파스타", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 420, "protein": 33.0, "carbs": 55.0, "fat": 7.0, "food_ids": ["protein_sea_snail", "carb_whole_pasta", "veg_perilla", "veg_cucumber", "fat_sesame_oil"], "ingredients": "골뱅이 순살 100g, 통밀파스타 60g, 깻잎 6장, 오이 반 개, 참기름 0.5t", "sauce": "고추장 1T + 고춧가루 0.5T + 식초 1.5T + 알룰로스 1.5T + 다진마늘 0.3t", "steps": ["통밀면을 삶아 찬물에 헹궈 차갑고 쫄깃하게 준비합니다.", "골뱅이는 반으로 자르고 깻잎과 오이는 얇게 채 썹니다.", "새콤달콤 비빔장에 통밀면과 골뱅이, 채소를 넣고 오른손 왼손 맛있게 비벼냅니다."], "tip": "골뱅이는 100g당 단백질이 20g에 달하는 고단백 식품으로, 비빔면의 훌륭한 다이어트 대체제입니다."}, {"id": "recipe_34", "title": "🍅 토마토 바질 닭안심 통밀파스타", "category": "다이어트 면 & 파스타", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 435, "protein": 36.5, "carbs": 50.0, "fat": 8.0, "food_ids": ["protein_chicken_tenderloin", "carb_whole_pasta", "veg_tomato", "veg_basil", "fat_olive_oil"], "ingredients": "닭안심 100g, 통밀파스타 60g, 방울토마토 8알(or 토마토퓨레 4T), 생바질 5잎, 올리브유 1t", "sauce": "다진마늘 1t + 토마토 퓨레 + 면수 3T + 오레가노/소금/후추", "steps": ["통밀파스타를 삶는 동안 팬에 올리브유와 마늘, 한 입 크기 닭안심을 볶습니다.", "으깬 방울토마토와 토마토퓨레, 면수를 넣고 2분간 자작하게 소스를 끓입니다.", "삶은 면과 생바질을 넣고 소스가 스며들도록 버무려 이탈리아 현지 맛을 냅니다."], "tip": "토마토를 올리브유에 가열 조리하면 강력한 항암 성분인 리코펜의 흡수율이 최대 5배까지 상승합니다."}, {"id": "recipe_35", "title": "🦑 오징어 미나리 메밀 비빔면", "category": "다이어트 면 & 파스타", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 385, "protein": 31.0, "carbs": 53.0, "fat": 5.0, "food_ids": ["protein_squid", "carb_buckwheat_noodles", "veg_cucumber", "fat_sesame_oil"], "ingredients": "오징어 100g, 메밀면 80g, 오이 반 개, 미나리(or 깻잎) 30g, 참기름 0.5t", "sauce": "고추장 1T + 사과식초 1.5T + 알룰로스 1.5T + 다진마늘 0.3t", "steps": ["오징어는 칼집 내어 끓는 물에 1분간 살짝 데친 뒤 찬물에 헹굽니다.", "메밀면을 삶아 찬물에 헹궈 물기를 뺍니다.", "볼에 메밀면, 데친 오징어, 채소를 넣고 새콤한 비빔양념장에 버무려 냅니다."], "tip": "오징어의 타우린과 메밀의 칼륨이 결합하여 붓기를 빠르게 배출하는 다이어트 면요리입니다."}, {"id": "recipe_36", "title": "🐚 바지락 봉골레 통밀파스타", "category": "다이어트 면 & 파스타", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 415, "protein": 29.0, "carbs": 54.0, "fat": 9.0, "food_ids": ["protein_clam", "carb_whole_pasta", "veg_green_onion", "fat_olive_oil"], "ingredients": "바지락 살 120g, 통밀파스타 60g, 마늘 4알, 올리브유 1T, 페페론치노 2개, 화이트와인 2T", "sauce": "바지락 육수 + 올리브유 1T + 면수 + 후추", "steps": ["통밀면을 삶고, 팬에 올리브유와 편마늘, 페페론치노를 볶아 향을 냅니다.", "바지락 살과 화이트와인을 넣고 뚜껑 덮어 1분간 익혀 조개 감칠맛 육수를 냅니다.", "삶은 통밀면을 넣고 국물이 자작하게 졸아들 때까지 1분간 유화시킵니다."], "tip": "조개에서 나오는 천연 호박산(Succinic acid)으로 조미료 없이도 깊고 감칠맛 나는 파스타가 완성됩니다."}, {"id": "recipe_37", "title": "🍄 버섯 듬뿍 들깨 메밀 온면", "category": "다이어트 면 & 파스타", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 395, "protein": 22.0, "carbs": 56.0, "fat": 8.5, "food_ids": ["protein_eggs", "carb_buckwheat_noodles", "veg_shiitake", "veg_enoki", "fat_perilla_oil"], "ingredients": "메밀면 80g, 삶은 달걀 1알, 표고버섯 1개, 팽이버섯 반 봉, 들깨가루 1.5T", "sauce": "물 400ml + 멸치다시마 육수티백 + 국간장 1T + 들깨가루 1.5T + 들기름 0.5t", "steps": ["냄비에 물과 육수티백, 채 썬 표고버섯을 넣고 3분간 끓입니다.", "국간장으로 간하고 들깨가루를 듬뿍 풀어 구수한 들깨 육수를 만듭니다.", "삶은 메밀면 위에 뜨거운 들깨버섯 육수를 붓고 달걀을 얹어 따뜻하게 호로록 즐깁니다."], "tip": "들깨의 풍부한 불포화지방산이 위벽을 편안하게 감싸주며 추운 날 속을 따뜻하게 데워줍니다."}, {"id": "recipe_38", "title": "🥑 통호밀빵 아보카도 달걀 오픈토스트", "category": "샌드위치 & 랩", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 380, "protein": 19.5, "carbs": 36.0, "fat": 16.0, "food_ids": ["protein_eggs", "carb_rye_bread", "fat_avocado", "veg_tomato"], "ingredients": "통호밀빵 1쪽(50g), 달걀 2알, 아보카도 반 개(60g), 방울토마토 2알, 크러쉬드 페퍼", "sauce": "소금 한 꼬집 + 레몬즙 약간 + 올리브유 0.3t", "steps": ["통호밀빵을 마른 팬이나 토스터기에 바삭하게 굽습니다.", "아보카도를 포크로 으깨어 레몬즙, 소금을 섞은 뒤 구운 빵 위에 도톰하게 펴 바릅니다.", "반숙 달걀후라이를 올리고 레드페퍼를 톡톡 뿌려 브런치 카페 스타일로 즐깁니다."], "tip": "통호밀의 복합 탄수화물과 아보카도의 건강한 지방이 공복 혈당을 급상승하지 않게 꽉 잡아줍니다."}, {"id": "recipe_39", "title": "🥪 닭가슴살 로메인 통밀 샌드위치", "category": "샌드위치 & 랩", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 395, "protein": 36.0, "carbs": 44.0, "fat": 7.5, "food_ids": ["protein_chicken_breast", "carb_whole_bread", "veg_romaine", "veg_tomato", "fat_olive_oil"], "ingredients": "슬라이스 닭가슴살 100g, 통밀식빵 2쪽, 로메인 4장, 토마토 슬라이스 2장", "sauce": "무가당 그릭요거트 1T + 홀그레인 머스터드 1t + 알룰로스 0.3t", "steps": ["구운 통밀식빵 안쪽에 요거트 머스터드 소스를 얇게 펴 바릅니다.", "로메인, 토마토, 촉촉한 닭가슴살을 차곡차곡 쌓아 올립니다.", "나머지 식빵으로 덮고 랩으로 단단히 말아 반으로 썰어냅니다."], "tip": "마요네즈 대신 그릭요거트와 홀그레인을 활용해 지방 15g을 줄이고 담백한 맛을 살렸습니다."}, {"id": "recipe_40", "title": "🌯 참치캔 치즈 양상추 랩", "category": "샌드위치 & 랩", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 350, "protein": 34.0, "carbs": 26.0, "fat": 11.0, "food_ids": ["protein_light_tuna", "protein_cottage_cheese", "carb_whole_bread", "veg_lettuce", "veg_paprika"], "ingredients": "기름 뺀 참치캔 1캔(100g), 코티지치즈 30g, 양상추 큰 잎 4장, 파프리카 채 약간", "sauce": "스리라차 1T + 알룰로스 0.5T + 레몬즙 0.5T", "steps": ["기름을 꼭 짠 참치에 코티지치즈와 스리라차 소스를 섞어 매콤 참치 마요풍 속재료를 만듭니다.", "깨끗이 씻은 양상추 잎을 2장 겹쳐 넓게 펼칩니다.", "참치와 채 썬 파프리카를 올리고 돌돌 말아 신선하고 아삭하게 베어 뭅니다."], "tip": "밀가루 또띠아 대신 아삭한 양상추로 감싸 탄수화물 부담 없이 무한 흡입할 수 있는 랩입니다."}, {"id": "recipe_41", "title": "🍳 양배추 달걀 오꼬노미야끼풍 오믈렛", "category": "샌드위치 & 랩", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 340, "protein": 26.0, "carbs": 24.0, "fat": 13.0, "food_ids": ["protein_eggs", "protein_egg_whites", "veg_cabbage", "veg_green_onion", "fat_olive_oil"], "ingredients": "달걀 2알 + 난백 50ml, 양배추 채 120g, 대파 약간, 가쓰오부시 약간, 올리브유 1t", "sauce": "돈까스소스(or 우스터) 0.5T + 스리라차 0.5T + 파슬리", "steps": ["볼에 채 썬 양배추와 달걀 2알, 난백, 소금 한 꼬집을 넣고 고루 섞습니다.", "팬에 올리브유를 두르고 양배추 반죽을 도톰하게 올려 뚜껑 덮고 중약불에 3분간 익힙니다.", "뒤집어 2분 더 익힌 뒤 접시에 담고 소스와 가쓰오부시를 올려 오꼬노미야끼 느낌으로 즐깁니다."], "tip": "밀가루가 1g도 들어가지 않아 속이 더부룩하지 않고, 양배추 식이섬유로 포만감이 4시간 유지됩니다."}, {"id": "recipe_42", "title": "🥜 땅콩버터 바나나 통호밀 토스트", "category": "샌드위치 & 랩", "time": "3분", "difficulty": "초간단 ★☆☆", "calories": 365, "protein": 14.5, "carbs": 54.0, "fat": 11.5, "food_ids": ["carb_rye_bread", "carb_banana", "fat_peanut_butter", "fat_chia_seed"], "ingredients": "통호밀빵 1쪽(50g), 무첨가 땅콩버터 1T(15g), 바나나 1개, 치아씨드 0.5t, 시나몬가루", "sauce": "무첨가 100% 땅콩버터 1T 펴바르기", "steps": ["통호밀빵을 토스터기에 노릇하게 굽습니다.", "따뜻한 빵 위에 100% 땅콩버터를 골고루 펴 바릅니다.", "동글동글 썬 바나나를 촘촘히 얹고 시나몬 파우더와 치아씨드를 솔솔 뿌립니다."], "tip": "운동 1시간 전 최고의 부스터 식단으로, 지속성 에너지와 칼륨이 근경련을 방지합니다."}, {"id": "recipe_43", "title": "🦆 훈제오리 깻잎 롤샌드위치", "category": "샌드위치 & 랩", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 390, "protein": 28.0, "carbs": 38.0, "fat": 13.0, "food_ids": ["protein_duck", "carb_whole_bread", "veg_perilla", "veg_cucumber"], "ingredients": "훈제오리 80g, 통밀식빵 2쪽, 깻잎 6장, 오이 채 약간, 쌈무 2장", "sauce": "홀그레인 머스터드 1t + 알룰로스 0.5t", "steps": ["훈제오리를 팬에 2분간 노릇하게 구워 키친타월로 기름기를 뺍니다.", "밀대로 납작하게 민 통밀식빵 위에 머스터드를 바르고 깻잎과 쌈무를 깝니다.", "구운 훈제오리와 오이를 넣고 김밥처럼 돌돌 말아 랩핑 후 먹기 좋게 썹니다."], "tip": "깻잎의 페릴케톤 향이 훈제오리의 잡내를 완벽히 잡고 도시락 메뉴로도 최고입니다."}, {"id": "recipe_44", "title": "🫐 그릭요거트 블루베리 오픈토스트", "category": "샌드위치 & 랩", "time": "3분", "difficulty": "초간단 ★☆☆", "calories": 320, "protein": 18.0, "carbs": 46.0, "fat": 6.0, "food_ids": ["protein_greek_yogurt", "carb_whole_bread", "carb_blueberries", "fat_walnut"], "ingredients": "통밀식빵 1쪽, 무가당 그릭요거트 80g, 생블루베리 40g, 호두 2알, 알룰로스 0.5T", "sauce": "알룰로스 드리즐", "steps": ["바삭하게 구운 통밀식빵 위에 꾸덕한 그릭요거트를 크림치즈처럼 듬뿍 바릅니다.", "싱싱한 블루베리를 얹고 호두를 잘게 부수어 올립니다.", "달콤한 알룰로스를 가볍게 지그재그로 뿌려 디저트처럼 즐깁니다."], "tip": "블루베리의 안토시아닌과 그릭요거트의 단백질이 만나 항산화 효과와 든든한 포만감을 동시에 선사합니다."}, {"id": "recipe_45", "title": "🥣 오트밀 참치 계란죽 (전자레인지 3분)", "category": "간편 국 & 죽 & 수프", "time": "3분 (전자레인지)", "difficulty": "초간단 ★☆☆", "calories": 360, "protein": 32.0, "carbs": 38.0, "fat": 8.0, "food_ids": ["protein_light_tuna", "protein_eggs", "carb_oatmeal", "fat_sesame_oil", "veg_green_onion"], "ingredients": "퀵오트밀 40g, 기름 뺀 참치캔 반 캔(50g), 달걀 1알, 물 200ml, 참기름 0.5t, 통깨", "sauce": "참치액(or 국간장) 0.5T + 소금 한 꼬집", "steps": ["전자레인지용 볼에 오트밀 40g과 물 200ml, 참치액 0.5T를 넣고 가볍게 섞습니다.", "기름 뺀 참치를 얹고 달걀 1알을 풀어 넣은 뒤 노른자를 포크로 콕 찌릅니다.", "전자레인지에 2분 30초 돌린 뒤 꺼내어 참기름과 김가루, 깨를 올려 섞어 먹습니다."], "tip": "불 없이 전자레인지로 3분 만에 완성되는 자취생 다이어트 최고의 속 편한 아침 죽입니다."}, {"id": "recipe_46", "title": "🍄 닭가슴살 버섯 들깨탕", "category": "간편 국 & 죽 & 수프", "time": "7분", "difficulty": "초간단 ★☆☆", "calories": 385, "protein": 37.0, "carbs": 35.0, "fat": 10.5, "food_ids": ["protein_chicken_breast", "carb_brown_rice", "veg_shiitake", "veg_enoki", "fat_perilla_oil"], "ingredients": "닭가슴살 100g, 현미밥 80g, 표고버섯 1개, 팽이버섯 반 봉, 들깨가루 2T, 대파", "sauce": "물 350ml + 국간장 1T + 다진마늘 0.5t + 들깨가루 2T", "steps": ["냄비에 물과 국간장, 슬라이스한 닭가슴살과 표고버섯을 넣고 4분간 끓입니다.", "팽이버섯과 대파를 넣고 들깨가루 2큰술을 듬뿍 풀어 약불에 1분간 걸쭉하게 끓입니다.", "고소하고 진한 들깨 국물에 현미밥을 말아 보양식처럼 든든하게 먹습니다."], "tip": "들깨의 리놀렌산이 혈관을 맑게 하고 버섯의 베타글루칸이 면역력을 증강시키는 힐링 식단입니다."}, {"id": "recipe_47", "title": "🍳 연두부 달걀 계란국 (초간단 고단백)", "category": "간편 국 & 죽 & 수프", "time": "4분", "difficulty": "초간단 ★☆☆", "calories": 310, "protein": 25.0, "carbs": 35.0, "fat": 6.5, "food_ids": ["protein_soft_tofu", "protein_eggs", "carb_brown_rice", "veg_green_onion", "fat_sesame_oil"], "ingredients": "연두부 1팩(150g), 달걀 2알, 대파 반 대, 현미밥 90g, 참기름 0.3t", "sauce": "물 350ml + 멸치액젓(or 참치액) 1T + 후추 톡톡", "steps": ["냄비에 물 350ml와 액젓 1큰술을 넣고 센 불에 팔팔 끓입니다.", "연두부를 숟가락으로 큼직하게 떠 넣고, 푼 달걀물을 원을 그리며 둘러 넣습니다.", "송송 썬 대파와 후추를 넣고 불을 끈 뒤 밥과 함께 부드럽게 들이킵니다."], "tip": "위에 부담이 전혀 없고 소화가 빨라 야근 후 늦은 저녁이나 단기 체중 감량에 최고입니다."}, {"id": "recipe_48", "title": "🎃 단호박 두유 크림스프", "category": "간편 국 & 죽 & 수프", "time": "5분", "difficulty": "초간단 ★☆☆", "calories": 330, "protein": 18.0, "carbs": 48.0, "fat": 5.5, "food_ids": ["protein_soymilk", "protein_egg_whites", "carb_pumpkin", "fat_almond"], "ingredients": "단호박 150g, 무첨가 두유 1팩(190ml), 난백 50ml, 슬라이스 아몬드 약간", "sauce": "소금 한 꼬집 + 알룰로스 0.5T (생략 가능)", "steps": ["단호박은 껍질을 벗겨 깍둑썰기한 뒤 전자레인지에 3분간 돌려 푹 익힙니다.", "믹서기나 볼에 익은 단호박과 따뜻한 두유를 넣고 블렌더나 포크로 곱게 으깹니다.", "냄비에 부어 난백을 넣고 약불에 저어가며 1분간 데운 뒤 그릇에 담고 아몬드를 띄웁니다."], "tip": "우유나 생크림 없이 무첨가 두유만으로 깊고 달콤한 크림스프 맛을 재현한 비건/다이어트 스프입니다."}, {"id": "recipe_49", "title": "🥩 오트밀 쇠고기 미역죽", "category": "간편 국 & 죽 & 수프", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 385, "protein": 33.0, "carbs": 40.0, "fat": 9.5, "food_ids": ["protein_beef_round", "carb_oatmeal", "veg_seaweed", "fat_sesame_oil"], "ingredients": "소고기 우둔살(다짐육 or 얇은 슬라이스) 80g, 롤드오트밀 40g, 자른 불린 미역 40g, 참기름 1t", "sauce": "물 350ml + 국간장 1T + 다진마늘 0.3t + 소금 약간", "steps": ["냄비에 참기름을 두르고 다진 소고기와 미역, 다진마늘을 2분간 달달 볶습니다.", "물 350ml와 국간장을 붓고 끓어오르면 오트밀 40g을 넣습니다.", "중약불에서 2~3분간 저어주며 걸쭉한 미역죽 농도로 완성합니다."], "tip": "미역의 풍부한 칼슘과 요오드가 산후조리 및 다이어트 시 부족해지기 쉬운 미네랄을 완벽 보충합니다."}, {"id": "recipe_50", "title": "🍅 토마토 달걀 볶음탕 (다이어트 샥슈카)", "category": "간편 국 & 죽 & 수프", "time": "6분", "difficulty": "초간단 ★☆☆", "calories": 360, "protein": 24.0, "carbs": 38.0, "fat": 11.5, "food_ids": ["protein_eggs", "carb_whole_bread", "veg_tomato", "veg_onion", "fat_olive_oil"], "ingredients": "달걀 2알, 완숙 토마토 1개(150g), 양파 반 개, 통밀빵 1쪽, 올리브유 1t", "sauce": "진간장 0.5T + 굴소스 0.3t + 알룰로스 0.5t + 물 3T + 후추", "steps": ["팬에 올리브유를 두르고 다진 양파와 깍둑썬 토마토를 볶아 즙이 나오게 2분간 끓입니다.", "간장과 알룰로스로 간을 맞춘 뒤 토마토 소스 위에 달걀 2알을 톡 깨 넣습니다.", "뚜껑 덮고 약불에 2분간 반숙으로 익힌 뒤 구운 통밀빵을 찍어 먹습니다."], "tip": "에그인헬(샥슈카)을 5분 원팬으로 단순화한 레시피로, 토마토의 리코펜과 달걀의 완전 단백질이 만난 최고의 미각 조합입니다."}];
+
+    let currentRecipeCategory = 'all';
+
+    function openRecipeExplorerModal() {
+      const modal = document.getElementById('recipe-explorer-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        renderRecipeExplorerCards();
+      }
+    }
+
+    function closeRecipeExplorerModal() {
+      const modal = document.getElementById('recipe-explorer-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleExplorerOverlay(event) {
+      if (event.target.id === 'recipe-explorer-modal') {
+        closeRecipeExplorerModal();
+      }
+    }
+
+    function setRecipeCategoryFilter(cat, btn) {
+      currentRecipeCategory = cat;
+      document.querySelectorAll('.recipe-filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderRecipeExplorerCards();
+    }
+
+    function filterRecipesList() {
+      renderRecipeExplorerCards();
+    }
+
+    function renderRecipeExplorerCards() {
+      const container = document.getElementById('recipe-cards-grid');
+      if (!container) return;
+
+      const keyword = (document.getElementById('recipe-search-input')?.value || '').trim().toLowerCase();
+
+      let filtered = DIET_RECIPES_50;
+      if (currentRecipeCategory !== 'all') {
+        filtered = filtered.filter(r => r.category === currentRecipeCategory);
+      }
+
+      if (keyword) {
+        filtered = filtered.filter(r => 
+          r.title.toLowerCase().includes(keyword) || 
+          r.ingredients.toLowerCase().includes(keyword) ||
+          r.category.toLowerCase().includes(keyword)
+        );
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: #94a3b8;">
+            <div style="font-size: 2.4rem; margin-bottom: 8px;">🔍</div>
+            <div style="font-size: 1rem; font-weight: 800; color: #fff;">검색 결과가 없습니다</div>
+            <div style="font-size: 0.84rem; margin-top: 4px;">다른 키워드로 검색해보시거나 카테고리 필터를 변경해보세요.</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(rec => {
+        const itemPills = rec.food_ids.map(fid => {
+          const f = foodsData.find(x => x.id === fid);
+          return f ? `<span style="background: rgba(255,255,255,0.06); padding: 2px 7px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; color: #cbd5e1;">${f.icon} ${f.name}</span>` : '';
+        }).join('');
+
+        return `
+          <div style="background: rgba(18, 24, 38, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.2s;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                <span style="font-size: 0.72rem; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 2px 7px; border-radius: 6px; font-weight: 800;">${rec.category}</span>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 700;">⏱️ ${rec.time}</span>
+              </div>
+              <div style="font-size: 1.05rem; font-weight: 900; color: #fff; margin-bottom: 4px;">${rec.title}</div>
+              <div style="font-size: 0.78rem; font-weight: 700; color: #34d399; margin-bottom: 8px;">
+                ${rec.calories} kcal · 단 ${rec.protein}g · 탄 ${rec.carbs}g · 지 ${rec.fat}g
+              </div>
+              <div style="font-size: 0.76rem; color: #94a3b8; line-height: 1.4; margin-bottom: 10px; background: rgba(0,0,0,0.25); padding: 8px; border-radius: 8px;">
+                🛒 <strong>재료</strong>: ${rec.ingredients}
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;">
+                ${itemPills}
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 6px;">
+              <button type="button" onclick="openRecipeDetailById('${rec.id}')" style="flex: 1; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1.5px solid rgba(56, 189, 248, 0.35); font-weight: 800; font-size: 0.82rem; padding: 9px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <span>📖</span> <span>조리법</span>
+              </button>
+              <button type="button" onclick="applyRecipeToBuilder('${rec.id}')" style="flex: 1.3; background: #10b981; color: #0b0f19; font-weight: 900; font-size: 0.84rem; padding: 9px; border: none; border-radius: 8px; cursor: pointer;">
+                ✅ 이 식단 담기
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openRecipeDetailById(id) {
+      const rec = DIET_RECIPES_50.find(r => r.id === id);
+      if (!rec) return;
+
+      const formattedRecipe = {
+        title: rec.title,
+        time: rec.time,
+        difficulty: rec.difficulty,
+        calText: `${rec.calories} kcal · 단 ${rec.protein}g · 탄 ${rec.carbs}g · 지 ${rec.fat}g`,
+        ingredientsSummary: rec.ingredients,
+        dressingRecipe: rec.sauce,
+        steps: rec.steps.map((st, i) => ({
+          num: i + 1,
+          title: st.includes(']') ? st.split(']')[0].replace('[', '') : `단계 ${i+1}`,
+          desc: st.includes(']') ? st.split(']')[1].trim() : st
+        })),
+        chefTip: rec.tip
+      };
+
+      renderRecipeContent(formattedRecipe);
+      document.getElementById('recipe-detail-modal').style.display = 'flex';
+    }
+
+    function applyRecipeToBuilder(id) {
+      const rec = DIET_RECIPES_50.find(r => r.id === id);
+      if (!rec) return;
+
+      selectedFoodIds.clear();
+      rec.food_ids.forEach(fid => selectedFoodIds.add(fid));
+
+      renderFoodCards();
+      updateMacroGauges();
+      updateGuideInstruction();
+
+      closeRecipeExplorerModal();
+      closeAiMealModal();
+
+      const banner = document.getElementById('guide-instruction');
+      if (banner) {
+        banner.innerHTML = `🎉 <strong>[${rec.title}]</strong> 식재료가 트레이에 담겼습니다! 아래에서 자유롭게 재료를 조절하거나 장바구니에 담아보세요.`;
+      }
+    }
+
     // 전역 브라우저 바인딩 (인라인 핸들러 100% 호환)
     window.DRESSINGS = DRESSINGS;
     window.getBestDressingForFoods = getBestDressingForFoods;
@@ -2125,6 +2296,16 @@
     window.renderRecipeContent = renderRecipeContent;
     window.closeRecipeModal = closeRecipeModal;
     window.handleRecipeModalOverlay = handleRecipeModalOverlay;
+    window.DIET_RECIPES_50 = DIET_RECIPES_50;
+    window.openRecipeExplorerModal = openRecipeExplorerModal;
+    window.closeRecipeExplorerModal = closeRecipeExplorerModal;
+    window.handleExplorerOverlay = handleExplorerOverlay;
+    window.setRecipeCategoryFilter = setRecipeCategoryFilter;
+    window.filterRecipesList = filterRecipesList;
+    window.renderRecipeExplorerCards = renderRecipeExplorerCards;
+    window.openRecipeDetailById = openRecipeDetailById;
+    window.applyRecipeToBuilder = applyRecipeToBuilder;
+
 
 
     function loadSavedUserProfile() {
@@ -2373,6 +2554,16 @@
         <!-- Dynamically filled by JS -->
       </div>
 
+      <!-- 50대 전체 레시피 둘러보기 배너 -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1.5px dashed rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="font-size: 0.86rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+          <span>📖</span> <span>다른 초간단 다이어트 요리도 둘러보시겠어요?</span>
+        </div>
+        <button type="button" onclick="closeAiMealModal(); openRecipeExplorerModal();" style="background: rgba(56, 189, 248, 0.2); color: #e0f2fe; border: 1px solid rgba(56, 189, 248, 0.5); padding: 7px 13px; border-radius: 8px; font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: all 0.2s;">
+          황금 레시피 50선 전체보기 ➔
+        </button>
+      </div>
+
       <!-- 모달 하단 버튼: 직접 선택하기 vs 다른 조합 -->
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
         <button type="button" onclick="switchToManualMode()" style="flex: 1; background: rgba(255, 255, 255, 0.08); color: #e2e8f0; border: 1.5px solid rgba(255, 255, 255, 0.18); padding: 13px; border-radius: 12px; font-weight: 800; font-size: 0.92rem; cursor: pointer; transition: all 0.2s;">
@@ -2385,6 +2576,49 @@
     </div>
   </div>
 
+
+  
+  <!-- 📖 5분 다이어트 황금 레시피 50선 탐색 모달 (50 Recipes Explorer Modal) -->
+  <div id="recipe-explorer-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 9999;" onclick="handleExplorerOverlay(event)">
+    <div class="modal-card" style="max-width: 860px; max-height: 90vh; overflow-y: auto; padding: 26px 22px; border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 50px rgba(56, 189, 248, 0.25);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.8rem;">📖</span>
+            <h2 style="font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0;">5분 다이어트 황금 레시피 50선</h2>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.84rem; margin: 4px 0 0 0;">
+            111종 클린 원재료와 특급 드레싱으로 완성하는 3~7분 컷 초간단 검증 레시피 라이브러리
+          </p>
+        </div>
+        <button type="button" onclick="closeRecipeExplorerModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
+      </div>
+
+      <!-- 검색 & 카테고리 필터 바 -->
+      <div style="margin-bottom: 16px;">
+        <input type="text" id="recipe-search-input" oninput="filterRecipesList()" placeholder="🔍 레시피명 또는 재료 검색 (예: 연어, 참치, 양배추, 파스타, 오트밀...)" style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 11px 16px; color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px;">
+        
+        <div id="recipe-cat-filters" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
+          <button type="button" class="recipe-filter-btn active" onclick="setRecipeCategoryFilter('all', this)">전체 (50)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('샐러드 & 웜보울', this)">🥗 샐러드·보울 (10)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('원팬 구이 & 볶음', this)">🥩 원팬 구이·볶음 (10)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('든든한 밥 & 덮밥', this)">🍚 밥·덮밥 (10)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('다이어트 면 & 파스타', this)">🍝 면·파스타 (7)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('샌드위치 & 랩', this)">🥪 샌드위치·랩 (7)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('간편 국 & 죽 & 수프', this)">🥣 간편 국·죽 (6)</button>
+        </div>
+      </div>
+
+      <!-- 레시피 카드 그리드 -->
+      <div id="recipe-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 12px; margin-bottom: 20px;">
+        <!-- Filled by JS -->
+      </div>
+
+      <button type="button" onclick="closeRecipeExplorerModal()" style="width: 100%; background: rgba(255, 255, 255, 0.08); color: #cbd5e1; font-weight: 800; font-size: 0.95rem; padding: 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; cursor: pointer;">
+        닫기
+      </button>
+    </div>
+  </div>
 
   <!-- 📖 직관적이고 깔끔한 초간단 5분 레시피 모달 (Recipe Detail Modal) -->
   <div id="recipe-detail-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 10000;" onclick="handleRecipeModalOverlay(event)">
