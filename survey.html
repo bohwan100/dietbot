@@ -812,42 +812,19 @@
       const gateCard = document.getElementById('token-gate-card');
       const statusArea = document.getElementById('token-status-area');
 
-      // A. 관리자 직접 입력 모드
-      if (isAdminMode) {
+      // A. 관리자 직접 입력 또는 일반 다이어트 설문 접속 (토큰 없이도 즉시 설문 개방)
+      if (isAdminMode || !currentToken) {
         if (loadingEl) loadingEl.style.display = 'none';
         if (formEl) formEl.style.display = 'block';
         if (statusArea) {
           statusArea.innerHTML = `
             <div class="token-badge admin">
-              <span>👑</span>
-              <span><strong>[관리자 직접 등록 모드]</strong> 1회용 제한 없이 신규 다이어트 사이트를 생성합니다.</span>
+              <span>🥗</span>
+              <span><strong>[다이어트 챌린지 1:1 맞춤 설문]</strong> 8가지 질문에 답변하시면 나만의 클린 원물 식단이 100% 자동 생성됩니다.</span>
             </div>
           `;
         }
         triggerLiveCalc();
-        return;
-      }
-
-      // B. 토큰 없을 때
-      if (!currentToken) {
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (formEl) formEl.style.display = 'none';
-        if (gateCard) {
-          gateCard.style.display = 'block';
-          gateCard.innerHTML = `
-            <div class="gate-icon">🔒</div>
-            <h2 class="gate-title">비공개 1:1 맞춤 식단 설문지입니다</h2>
-            <p class="gate-desc">
-              다이어트봇 맞춤 식단 설계는 <strong>1회용 전용 초대 링크</strong>를 발급받으신 분만 신청하실 수 있습니다.<br>
-              전달받으신 초대 링크를 확인해 주세요!
-            </p>
-            <div style="margin-top: 20px;">
-              <button type="button" onclick="promptAdminMode()" style="background: transparent; border: none; color: #94a3b8; font-size: 0.85rem; cursor: pointer; text-decoration: underline;">
-                관리자 직접 입력 전환
-              </button>
-            </div>
-          `;
-        }
         return;
       }
 
@@ -1025,9 +1002,7 @@
     function copyPortalLink() {
       if (generatedPortalUrl) {
         navigator.clipboard.writeText(generatedPortalUrl).then(() => {
-          alert('📋 맞춤 다이어트 포털 링크가 클립보드에 복사되었습니다!
-
-' + generatedPortalUrl);
+          alert('📋 맞춤 다이어트 포털 링크가 클립보드에 복사되었습니다!\n\n' + generatedPortalUrl);
         });
       }
     }
