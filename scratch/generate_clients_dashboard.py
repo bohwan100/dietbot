@@ -106,7 +106,7 @@ html_content = f"""<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>👥 집밥봇 회원/고객 관리 매니저</title>
+  <title>🥗 다이어트봇 회원/고객 관리 매니저</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -509,10 +509,10 @@ html_content = f"""<!DOCTYPE html>
   <div class="container">
     <header>
       <div class="brand-title">
-        <div class="brand-icon">👥</div>
+        <div class="brand-icon">🥗</div>
         <div>
-          <h1>집밥봇 고객 & 회원 통합 관리 매니저</h1>
-          <div class="header-desc">개인 맞춤 30일 식단, 장바구니, 보관 가이드 고객 목록 및 관리</div>
+          <h1>🥗 다이어트봇 고객 & 회원 전용 관리 매니저</h1>
+          <div class="header-desc">다이어트·체중 감량 30일/60일 맞춤 식단 & 로켓프레시 장바구니 전용 관리</div>
           <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
             <span style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); color: #34d399; font-size: 0.78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px;">
               <span style="width: 7px; height: 7px; background: #34d399; border-radius: 50%;"></span>
@@ -522,9 +522,10 @@ html_content = f"""<!DOCTYPE html>
         </div>
       </div>
       <div class="header-actions">
+        <a href="http://localhost:8080/clients.html" target="_blank" class="btn btn-ghost" style="border-color: rgba(249, 115, 22, 0.5); color: #fb923c; background: rgba(249, 115, 22, 0.1);">👥 기존 집밥봇 관리자 (8080)</a>
         <button type="button" onclick="triggerManualGitSync(this)" class="btn btn-ghost" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">☁️ GitHub 영구 저장 (Sync)</button>
-        <a href="survey.html" class="btn btn-orange">➕ 신규 고객 등록 (설문)</a>
-        <a href="index.html" class="btn btn-ghost">🏠 포털 홈</a>
+        <a href="survey.html" class="btn btn-orange">➕ 신규 다이어트 고객 (설문)</a>
+        <a href="index.html" class="btn btn-ghost">🏠 다이어트봇 홈</a>
       </div>
     </header>
 
