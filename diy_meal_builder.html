@@ -558,6 +558,67 @@
       align-items: center;
       margin-bottom: 16px;
     }
+
+    .food-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .food-summary-line {
+      margin: 10px 0 12px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 7px 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.77rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+      transition: all 0.2s;
+    }
+    .food-card:hover .food-summary-line {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f1f5f9;
+    }
+    .food-card.selected .food-summary-line {
+      background: rgba(16, 185, 129, 0.09);
+      border-color: rgba(52, 211, 153, 0.25);
+      color: #ecfdf5;
+    }
+    .food-card.glowing .food-summary-line {
+      background: rgba(245, 158, 11, 0.09);
+      border-color: rgba(251, 191, 36, 0.25);
+      color: #fef3c7;
+    }
+    .summary-bulb {
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+    .summary-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+    .nutrition-bullet-item {
+      margin-bottom: 7px;
+      line-height: 1.55;
+      font-size: 0.83rem;
+      color: #e2e8f0;
+    }
+    .nutrition-bullet-item:last-child {
+      margin-bottom: 0;
+    }
+
   </style>
 </head>
 <body>
@@ -697,33 +758,81 @@
     </div>
   </aside>
 
-  <!-- Storage Info Modal -->
-  <div id="storage-modal" class="modal-overlay">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span id="modal-food-icon" style="font-size: 1.8rem;">🍗</span>
+  <!-- Storage & Detailed Nutrition Modal -->
+  <div id="storage-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+    <div class="modal-card" style="max-width: 520px; max-height: 88vh; overflow-y: auto; padding: 24px;">
+      <div class="modal-header" style="margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span id="modal-food-icon" style="font-size: 2.2rem; background: rgba(255,255,255,0.06); border-radius: 14px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.12);">🍗</span>
           <div>
-            <h3 id="modal-food-name" style="color: #fff; font-size: 1.15rem; font-weight: 800;">식품명</h3>
-            <span id="modal-food-portion" style="color: #94a3b8; font-size: 0.8rem;">기준량</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <h3 id="modal-food-name" style="color: #fff; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.4px;">식품명</h3>
+              <span id="modal-food-category" style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.3);">카테고리</span>
+            </div>
+            <span id="modal-food-portion" style="color: #94a3b8; font-size: 0.82rem; font-weight: 600;">1회 섭취 기준: 100g</span>
           </div>
         </div>
-        <button type="button" onclick="closeStorageModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
+        <button type="button" onclick="closeStorageModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 2px 8px; border-radius: 6px; line-height: 1;">&times;</button>
       </div>
 
-      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
-        <div style="font-size: 0.8rem; font-weight: 800; color: #34d399; margin-bottom: 4px;">💡 핵심 영양 효과</div>
-        <div id="modal-food-benefit" style="font-size: 0.88rem; color: #e2e8f0; line-height: 1.4;">영양 정보</div>
+      <!-- Quick Macro Specs Banner -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 10px; text-align: center;">
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">열량</div>
+          <div id="modal-cal" style="font-size: 0.95rem; font-weight: 800; color: #f59e0b;">115 kcal</div>
+        </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">단백질</div>
+          <div id="modal-p" style="font-size: 0.95rem; font-weight: 800; color: #38bdf8;">23.0g</div>
+        </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">탄수화물</div>
+          <div id="modal-c" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24;">0.0g</div>
+        </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">지방</div>
+          <div id="modal-f" style="font-size: 0.95rem; font-weight: 800; color: #f43f5e;">1.5g</div>
+        </div>
       </div>
 
-      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px; margin-bottom: 20px;">
-        <div style="font-size: 0.8rem; font-weight: 800; color: #fbbf24; margin-bottom: 6px;">❄️ 신선 200% 보관 & 소분 꿀팁</div>
-        <div id="modal-food-storage" style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.5;">보관 방법</div>
+      <!-- Detailed Nutrition Breakdown (핵심 영양 효과) -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
+          <div style="font-size: 0.88rem; font-weight: 900; color: #34d399; display: flex; align-items: center; gap: 6px;">
+            <span>🧬</span> <span>핵심 영양 효과 & 다이어트 기전</span>
+          </div>
+          <span id="modal-tagline" style="font-size: 0.72rem; color: #a7f3d0; background: rgba(52, 211, 153, 0.18); border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 8px; border-radius: 999px; font-weight: 800;">체지방 컷팅 1위</span>
+        </div>
+        <ul id="modal-nutrition-bullets" style="margin: 0; padding-left: 20px;">
+          <!-- dynamically populated bullets -->
+        </ul>
       </div>
 
-      <button type="button" onclick="closeStorageModal()" style="width: 100%; background: #10b981; color: #0b0f19; border: none; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer;">
-        확인
-      </button>
+      <!-- Fresh Storage & Prep Guide (보관법 & 소분 꿀팁) -->
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(251, 191, 36, 0.25); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
+        <div style="font-size: 0.88rem; font-weight: 900; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          <span>❄️</span> <span>신선 200% 보관법 & 소분 꿀팁</span>
+        </div>
+        <div id="modal-storage-method" style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 8px;"></div>
+        <div id="modal-storage-tip" style="font-size: 0.81rem; color: #fde68a; background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 8px 12px; border-radius: 0 8px 8px 0; line-height: 1.45;"></div>
+      </div>
+
+      <!-- Recommended Synergy Note -->
+      <div id="modal-synergy-box" style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(129, 140, 248, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #a5b4fc; margin-bottom: 5px; display: flex; align-items: center; gap: 5px;">
+          <span>✨</span> <span>추천 궁합 식재료 시너지</span>
+        </div>
+        <div id="modal-synergy-text" style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5;"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" id="modal-select-btn" onclick="toggleFoodFromModal()" style="flex: 1; background: #10b981; color: #0b0f19; border: none; padding: 12px; border-radius: 10px; font-weight: 900; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;">
+          + 이 식재료 담기
+        </button>
+        <button type="button" onclick="closeStorageModal()" style="background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">
+          닫기
+        </button>
+      </div>
     </div>
   </div>
 
@@ -827,6 +936,8 @@
           toggleFoodSelect(food.id);
         };
 
+        const summaryText = food.one_line_summary || food.benefit || '';
+
         card.innerHTML = `
           <span class="selected-tag-badge">✓ 담김</span>
           <span class="synergy-badge">✨ 추천 궁합</span>
@@ -836,11 +947,20 @@
               <div class="card-title-wrap">
                 <div class="food-icon-circle">${food.icon}</div>
                 <div>
-                  <div class="food-name">${food.name}</div>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <div class="food-name">${food.name}</div>
+                    <span class="food-tag">${food.tag}</span>
+                  </div>
                   <div class="food-portion">${food.portion}</div>
                 </div>
               </div>
               <div class="select-circle">${isSelected ? '✓' : '+'}</div>
+            </div>
+
+            <!-- 💡 겉에 직관적인 1줄 요약 -->
+            <div class="food-summary-line" title="${summaryText}">
+              <span class="summary-bulb">💡</span>
+              <span class="summary-text">${summaryText}</span>
             </div>
 
             <div class="metric-grid">
@@ -863,7 +983,7 @@
             <div class="calorie-pill">
               🔥 ${food.calories} <span>kcal</span>
             </div>
-            <button type="button" class="btn-quick-storage" onclick="openStorageModal('${food.id}')">
+            <button type="button" class="btn-quick-storage btn-storage" onclick="event.stopPropagation(); openStorageModal('${food.id}')">
               ❄️ 보관법
             </button>
           </div>
@@ -1031,26 +1151,97 @@
       renderFoodCards();
     }
 
+    let currentModalFoodId = null;
+
+    function handleModalOverlayClick(event) {
+      if (event.target.id === 'storage-modal') {
+        closeStorageModal();
+      }
+    }
+
     function openStorageModal(id) {
       const food = foodsData.find(x => x.id === id);
       if (!food) return;
 
+      currentModalFoodId = id;
+
       document.getElementById('modal-food-icon').innerText = food.icon;
       document.getElementById('modal-food-name').innerText = food.name;
+      document.getElementById('modal-food-category').innerText = food.category_name || '원재료';
       document.getElementById('modal-food-portion').innerText = `1회 섭취 기준: ${food.portion}`;
-      document.getElementById('modal-food-benefit').innerText = food.benefit;
-      document.getElementById('modal-food-storage').innerText = food.storage;
+
+      // Macro Strip
+      document.getElementById('modal-cal').innerText = `${food.calories} kcal`;
+      document.getElementById('modal-p').innerText = `${food.protein}g`;
+      document.getElementById('modal-c').innerText = `${food.carbs}g`;
+      document.getElementById('modal-f').innerText = `${food.fat}g`;
+
+      // Detailed Nutrition
+      const det = food.detailed_benefit || {};
+      document.getElementById('modal-tagline').innerText = det.tagline || food.tag || '핵심 영양 효과';
+      
+      const bulletContainer = document.getElementById('modal-nutrition-bullets');
+      bulletContainer.innerHTML = '';
+      const points = (det.points && det.points.length > 0) ? det.points : [food.benefit || '영양 성분이 균형 있게 포함되어 있습니다.'];
+      points.forEach(pt => {
+        const li = document.createElement('li');
+        li.className = 'nutrition-bullet-item';
+        li.innerText = pt;
+        bulletContainer.appendChild(li);
+      });
+
+      // Storage Guide
+      const sp = food.storage_prep || {};
+      document.getElementById('modal-storage-method').innerText = sp.method || food.storage || '냉장 또는 냉동 밀폐 보관';
+      document.getElementById('modal-storage-tip').innerText = `💡 조리 & 섭취 꿀팁: ${sp.tip || '먹기 전날 냉장 해동하여 조리하시면 본연의 맛과 영양이 유지됩니다.'}`;
+
+      // Synergy Note
+      const synBox = document.getElementById('modal-synergy-box');
+      const synText = document.getElementById('modal-synergy-text');
+      if (food.synergy_reason) {
+        synBox.style.display = 'block';
+        synText.innerText = food.synergy_reason;
+      } else {
+        synBox.style.display = 'none';
+      }
+
+      // Update modal select button state
+      updateModalSelectBtn();
 
       document.getElementById('storage-modal').style.display = 'flex';
     }
 
-        function confirmSaveMeal() {
-      closeCompleteModal();
-      saveCustomMeal();
+    function updateModalSelectBtn() {
+      const btn = document.getElementById('modal-select-btn');
+      if (!btn || !currentModalFoodId) return;
+      const isSelected = selectedFoodIds.has(currentModalFoodId);
+      if (isSelected) {
+        btn.style.background = 'rgba(239, 68, 68, 0.15)';
+        btn.style.color = '#f87171';
+        btn.style.border = '1.2px solid rgba(239, 68, 68, 0.4)';
+        btn.innerText = '✕ 식단에서 빼기';
+      } else {
+        btn.style.background = '#10b981';
+        btn.style.color = '#0b0f19';
+        btn.style.border = 'none';
+        btn.innerText = '+ 이 식재료 담기';
+      }
+    }
+
+    function toggleFoodFromModal() {
+      if (!currentModalFoodId) return;
+      toggleFoodSelect(currentModalFoodId);
+      updateModalSelectBtn();
     }
 
     function closeStorageModal() {
       document.getElementById('storage-modal').style.display = 'none';
+      currentModalFoodId = null;
+    }
+
+    function confirmSaveMeal() {
+      closeCompleteModal();
+      saveCustomMeal();
     }
 
     function saveCustomMeal() {
