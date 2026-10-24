@@ -932,25 +932,46 @@
         }
       });
 
-      // 2. 현재 부족한 영양소 카테고리 파악
+      // 2. 현재 부족한 영양소 파악 (사용자 규칙: 탄·단·지 우선 채우기 ➔ 다 찬 후 칼로리 채우기)
       const currentTotals = calculateCurrentTotals();
-      const hasProtein = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'protein');
-      const hasCarb = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'carb');
-      const hasFat = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'fat');
-      const isComplete = (hasProtein && hasCarb && hasFat) || (currentTotals.p >= 25 && currentTotals.c >= 30 && currentTotals.f >= 7 && currentTotals.cal >= 330);
+      const isProteinFilled = currentTotals.p >= 20; // 단백질 권장 기준 (최소 20g 이상)
+      const isCarbFilled = currentTotals.c >= 25;    // 탄수화물 권장 기준 (최소 25g 이상)
+      const isFatFilled = currentTotals.f >= 7;      // 건강한 지방 권장 기준 (최소 7g 이상)
+      const isMacroFilled = isProteinFilled && isCarbFilled && isFatFilled;
+
+      const isCalorieFilled = currentTotals.cal >= 380; // 목표 칼로리 (380~450 kcal)
+      const isComplete = isMacroFilled && isCalorieFilled;
 
       foodsData.forEach(food => {
         const isSelected = selectedFoodIds.has(food.id);
 
-        // ✨ 황금빛 추천 궁합 판별
+        // ✨ 황금빛 추천 궁합 판별:
+        // [1순위] 탄·단·지가 먼저 다 차는 것이 최우선!
+        // [2순위] 탄·단·지가 다 찬 후 나머지 칼로리를 채우도록 추천!
         let isGlowing = false;
         if (selectedFoodIds.size > 0 && !isSelected) {
-          if (!hasCarb && (food.category === 'carb' || allSynergyIds.has(food.id))) {
-            isGlowing = true;
-          } else if (hasCarb && !hasFat && (food.category === 'fat' || food.category === 'veg' || allSynergyIds.has(food.id))) {
-            isGlowing = true;
-          } else if (allSynergyIds.has(food.id)) {
-            isGlowing = true;
+          if (!isMacroFilled) {
+            // 1순위: 아직 탄·단·지가 부족할 때 ➔ 부족한 영양소만 골라서 집중 추천
+            if (!isProteinFilled) {
+              if (food.category === 'protein' || (food.protein >= 10 && allSynergyIds.has(food.id))) {
+                isGlowing = true;
+              }
+            } else if (!isCarbFilled) {
+              if (food.category === 'carb' && (allSynergyIds.has(food.id) || selectedFoodIds.size === 1)) {
+                isGlowing = true;
+              }
+            } else if (!isFatFilled) {
+              if (food.category === 'fat' && (allSynergyIds.has(food.id) || selectedFoodIds.size >= 2)) {
+                isGlowing = true;
+              }
+            }
+          } else {
+            // 2순위: 탄·단·지가 먼저 다 찼을 때 ➔ 목표 칼로리를 채울 원물(채소, 샐러드, 보충 식품) 추천!
+            if (!isCalorieFilled) {
+              if (food.category === 'veg' || allSynergyIds.has(food.id)) {
+                isGlowing = true;
+              }
+            }
           }
         }
 
@@ -1119,40 +1140,49 @@
 
     function updateGuideInstruction() {
       const totals = calculateCurrentTotals();
-      const hasProtein = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'protein');
-      const hasCarb = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'carb');
-      const hasFat = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'fat');
+      const isProteinFilled = totals.p >= 20;
+      const isCarbFilled = totals.c >= 25;
+      const isFatFilled = totals.f >= 7;
+      const isMacroFilled = isProteinFilled && isCarbFilled && isFatFilled;
+      const isCalorieFilled = totals.cal >= 380;
+      const isComplete = isMacroFilled && isCalorieFilled;
 
       const banner = document.getElementById('guide-instruction');
       const saveBtn = document.getElementById('btn-save-meal');
-      const isComplete = (hasProtein && hasCarb && hasFat) || (totals.p >= 25 && totals.c >= 30 && totals.f >= 7 && totals.cal >= 330);
 
       if (selectedFoodIds.size === 0) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `👉 1단계: 메인이 될 <strong>[단백질 원재료]</strong>를 골라보세요! (예: 닭가슴살, 소우둔살)`;
+        banner.innerHTML = `👉 <strong>[1순위 단백질]</strong> 식단의 기둥이 될 단백질 원재료를 먼저 골라보세요! (예: 닭가슴살, 소고기 우둔살)`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
-      } else if (hasProtein && !hasCarb) {
+      } else if (!isProteinFilled) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `🍗 <strong>단백질(${totals.p}g) 확보 완료!</strong> ➔ 소거법으로 추천된 <strong>[황금빛 복합 탄수화물 ✨]</strong> 중 1개를 골라보세요!`;
+        banner.innerHTML = `🍗 <strong>단백질 보충 필요 (${totals.p}g / 목표 25~35g)</strong>: 단백질을 먼저 든든하게 채워주세요!`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
-      } else if (hasProtein && hasCarb && !hasFat) {
+      } else if (!isCarbFilled) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `🍠 <strong>탄수화물(${totals.c}g) 추가 완료!</strong> ➔ 마지막으로 <strong>[건강한 지방/식이섬유 ✨]</strong>를 더해 황금 비율을 완성하세요!`;
+        banner.innerHTML = `🍠 <strong>단백질(${totals.p}g) 충족!</strong> ➔ 2순위로 <strong>[황금빛 복합 탄수화물 ✨]</strong>을 골라 탄수화물을 채워보세요!`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
-      } else if (isComplete) {
-        banner.innerHTML = `🎉 <strong>완벽합니다! 모든 필수 영양소가 100% 채워져 황금 식단이 완성되었습니다!</strong> (총 ${totals.cal}kcal)`;
+      } else if (!isFatFilled) {
+        hasShownCompletionModal = false;
+        banner.innerHTML = `🥑 <strong>단·탄 충족!</strong> ➔ 3순위로 <strong>[건강한 불포화지방 ✨]</strong>을 더해 3대 영양(탄·단·지)을 먼저 완성하세요!`;
+        saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else if (!isCalorieFilled) {
+        // 탄단지는 다 찼고 칼로리를 채우는 단계!
+        hasShownCompletionModal = false;
+        banner.innerHTML = `🥗 <strong>탄·단·지 100% 충족 완료!</strong> ➔ 이제 목표 칼로리(450 kcal)에 맞춰 <strong>[식이섬유 채소 & 샐러드 ✨]</strong>를 채워보세요! (현재 ${totals.cal} kcal)`;
+        saveBtn.style.background = 'rgba(16, 185, 129, 0.4)';
+      } else {
+        // 탄단지도 다 차고 칼로리도 충분히 충족!
+        banner.innerHTML = `🎉 <strong>완벽합니다! 탄·단·지와 목표 칼로리가 100% 충족된 황금 식단입니다!</strong> (총 ${totals.cal}kcal)`;
         saveBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
         saveBtn.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.8)';
 
-        // ✨ 모든 영양소가 완성되었을 때 자동으로 축하 완료 팝업 모달 띄우기!
         if (!hasShownCompletionModal) {
           hasShownCompletionModal = true;
           setTimeout(() => {
             showMealCompleteModal(totals);
           }, 400);
         }
-      } else {
-        banner.innerHTML = `✨ <strong>빛나는 추천 궁합 재료</strong>를 추가해 목표 영양 매크로를 100% 채워보세요!`;
       }
     }
 
