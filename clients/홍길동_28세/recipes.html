@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🍳 홍길동님 전용 30끼 황금 레시피 | 다이어트봇">
+  <meta property="og:description" content="홍길동님 맞춤 클린 원물 식단 (닭가슴살, 샐러드, 고단백 두유) 10분 컷 초간단 집밥 레시피">
+  <meta property="og:image" content="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="icon" type="image/png" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="apple-touch-icon" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <title>🍳 홍길동님 전용 30끼 황금 레시피 | 다이어트봇</title>
+  <script>
+    (function() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('kakaotalk') !== -1) {
+        if (/android/i.test(ua)) {
+          location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        }
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #f97316;
+      --primary-hover: #ea580c;
+      --accent: #38bdf8;
+      --success: #10b981;
+      --bg: #090d16;
+      --card-bg: rgba(26, 34, 53, 0.85);
+      --card-border: rgba(59, 130, 246, 0.2);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #090d16 60%, #030712 100%);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 20px 100px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+      padding: 35px 25px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge-top {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(249, 115, 22, 0.15);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fdba74, #f97316, #fb7185);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+    }
+
+    .cuisine-filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .btn-filter {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-filter:hover, .btn-filter.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn-cart-page {
+      background: #0073e9;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-cart-page:hover { background: #005bb5; }
+
+    /* Clean Segmented Mode Selector */
+    .view-mode-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .view-mode-tabs {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+    }
+    .view-mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 9px 18px;
+      border-radius: 9px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .view-mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+    }
+    .view-mode-btn:hover:not(.active) {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Week Timeline Bar */
+    .week-timeline-bar {
+      background: rgba(18, 24, 38, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+    }
+    .week-chips {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .week-chip {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .week-chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .week-chip.active {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      border-color: #f97316;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+    }
+    .week-summary-pill {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.5;
+    }
+    .week-summary-pill strong {
+      color: #38bdf8;
+    }
+
+    /* Cook Check Button */
+    .btn-cook-check {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      word-break: keep-all;
+      transition: all 0.2s;
+    }
+    .btn-cook-check:hover {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: #10b981;
+      color: #34d399;
+    }
+    .btn-cook-check.cooked {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #34d399;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+    }
+
+    .recipe-card.is-cooked {
+      border-color: rgba(16, 185, 129, 0.4) !important;
+      background: rgba(16, 26, 28, 0.85);
+    }
+    .recipe-card.is-cooked .recipe-title {
+      color: #94a3b8;
+      text-decoration: line-through;
+      text-decoration-color: #10b981;
+      text-decoration-thickness: 2px;
+    }
+
+    /* Cooked Toast Banner */
+    .cooked-toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: #ffffff;
+      padding: 13px 24px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.4);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      z-index: 99999;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .cooked-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 22px;
+    }
+
+    .recipe-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: 0 15px 30px rgba(249, 115, 22, 0.15);
+    }
+
+    .highlight-recipe-card {
+      border-color: #f97316 !important;
+      box-shadow: 0 0 35px rgba(249, 115, 22, 0.75) !important;
+      transform: translateY(-6px) scale(1.02);
+      transition: all 0.4s ease;
+      animation: pulseHighlight 2s ease infinite;
+    }
+    @keyframes pulseHighlight {
+      0%, 100% { box-shadow: 0 0 25px rgba(249, 115, 22, 0.5); }
+      50% { box-shadow: 0 0 45px rgba(249, 115, 22, 0.85); }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .day-badge {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .cuisine-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .recipe-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .nutrition-box {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+
+    .nutrition-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .cal-val { color: #fdba74; font-size: 1rem; }
+
+    .macro-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .macro-item strong { display: block; font-size: 0.85rem; color: #fff; }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ingredient-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .ing-tag {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #bae6fd;
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .ing-tag:hover {
+      background: rgba(249, 115, 22, 0.22);
+      border-color: rgba(249, 115, 22, 0.6);
+      color: #fdba74;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+    }
+
+    .recipe-steps {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+      padding-left: 18px;
+    }
+    .recipe-steps li { margin-bottom: 5px; }
+
+    .golden-tip {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid #f59e0b;
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      color: #fef3c7;
+      margin-bottom: 14px;
+    }
+    .golden-tip strong { color: #fcd34d; }
+
+    .waste-tag {
+      font-size: 0.78rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px dashed rgba(16, 185, 129, 0.4);
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 250px;
+    }
+    .search-box input {
+      width: 100%;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 9px 14px 9px 36px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-box input:focus { border-color: var(--primary); }
+    .search-box span {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    /* Top Global Sticky Navigation Bar */
+    .top-nav {
+      background: rgba(11, 15, 25, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+      margin-bottom: 24px;
+    }
+    .top-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .nav-brand-badge {
+      background: rgba(249, 115, 22, 0.15);
+      color: #fb923c;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .nav-btn {
+      padding: 8px 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .nav-btn.recipe:hover:not(.active) {
+      border-color: rgba(249, 115, 22, 0.5);
+      color: #fb923c;
+      background: rgba(249, 115, 22, 0.1);
+    }
+    .nav-btn.cart:hover:not(.active) {
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .nav-btn.storage:hover:not(.active) {
+      border-color: rgba(52, 211, 153, 0.5);
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+    }
+    /* 3대 핵심 서비스 버튼 활성화 (주황색, 파란색, 초록색) */
+    .nav-btn.orange.active, .nav-btn.recipe.active {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45);
+    }
+    .nav-btn.orange.active:hover, .nav-btn.recipe.active:hover {
+      background: linear-gradient(135deg, #ea580c, #c2410c);
+      transform: translateY(-1px);
+    }
+    .nav-btn.blue.active, .nav-btn.cart.active, .nav-btn.cyan.active {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.45);
+    }
+    .nav-btn.blue.active:hover, .nav-btn.cart.active:hover, .nav-btn.cyan.active:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      transform: translateY(-1px);
+    }
+    .nav-btn.green.active, .nav-btn.storage.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+    }
+    .nav-btn.green.active:hover, .nav-btn.storage.active:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+  
+    
+    /* Clean & Intuitive Step List Styling */
+    .recipe-steps {
+      list-style: none;
+      counter-reset: step-counter;
+      margin-bottom: 18px;
+      padding-left: 0;
+    }
+    .recipe-steps li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+    .recipe-steps li::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 20px;
+      height: 20px;
+      background: rgba(249, 115, 22, 0.2);
+      color: #fb923c;
+      border: 1px solid rgba(249, 115, 22, 0.45);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+</style>
+</head>
+<body>
+
+  <!-- Top Global Navigation Bar -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span>🤖 다이어트봇</span>
+        <span class="nav-brand-badge">30일 레시피</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn">🏠 홈</a>
+        <a href="recipes.html" class="nav-btn recipe orange active">🍳 30일 레시피</a>
+        <a href="cart.html" class="nav-btn cart">🛒 장바구니 매니저</a>
+        <a href="storage.html" class="nav-btn storage">❄️ 재료별 보관방법</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <header>
+      <div class="badge-top">🍱 홍길동님 전용 30끼 식단 (한식 30끼 · 1명 정량)</div>
+      <p>1명 정량 조리 (1인분) | 목표: 다이어트 챌린지 | 칼로리 & 탄·단·지 정밀 계산</p>
+
+      <!-- Coupang Partners Status & FTC Notice -->
+      <div style="margin-top: 18px; padding: 12px 18px; background: linear-gradient(135deg, rgba(234, 88, 12, 0.12), rgba(56, 189, 248, 0.08)); border: 1px solid rgba(249, 115, 22, 0.35); border-radius: 12px; font-size: 0.8rem; color: #cbd5e1; text-align: left; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <span style="background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; font-weight: 800; padding: 3px 9px; border-radius: 6px; font-size: 0.75rem;">🔗 쿠팡 파트너스 연동</span>
+          <span style="font-family: monospace; color: #38bdf8; font-weight: 700;">AF9148506</span>
+        </div>
+        <div style="font-size: 0.75rem; color: #94a3b8;">
+          ※ 본 페이지는 쿠팡 파트너스 활동의 일환으로 일정액의 수수료를 제공받을 수 있습니다.
+        </div>
+      </div>
+    </header>
+
+    <!-- View Mode Segmented Controls -->
+    <div class="view-mode-bar">
+      <div class="view-mode-tabs">
+        <button type="button" class="view-mode-btn active" id="btn-mode-timeline" onclick="setViewMode('timeline')">
+          📅 7일 챌린지 로드맵 (주차별)
+        </button>
+        <button type="button" class="view-mode-btn" id="btn-mode-all" onclick="setViewMode('all')">
+          🍽️ 전체 요리 일람 (30종)
+        </button>
+      </div>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="recipe-search" placeholder="요리명 또는 재료 검색 (예: 두루치기, 양파)" onkeyup="searchRecipe()">
+      </div>
+    </div>
+
+    <!-- Week Timeline Bar (Default in Timeline Mode) -->
+    <div class="week-timeline-bar" id="week-timeline-bar">
+      <div class="week-chips">
+        <button type="button" class="week-chip active" id="btn-week-1" onclick="selectWeek(1)">🔥 1주차 (Day 1~7)</button>
+        <button type="button" class="week-chip" id="btn-week-2" onclick="selectWeek(2)">⚡ 2주차 (Day 8~14)</button>
+        <button type="button" class="week-chip" id="btn-week-3" onclick="selectWeek(3)">🌿 3주차 (Day 15~21)</button>
+        <button type="button" class="week-chip" id="btn-week-4" onclick="selectWeek(4)">👑 4주차 (Day 22~30)</button>
+      </div>
+      <div class="week-summary-pill" id="week-summary-pill">
+        💡 <strong>1주차 소진 플랜</strong>: 1주차 장보기 재료로 7일간 냉장고 잔여 식재료 0g 전량 소진! (월~일 순차 조리 추천)
+      </div>
+    </div>
+
+    <!-- Navigation & Category Filters (Shown in All Dishes mode, build_client.py compatible) -->
+    <div class="nav-bar" id="category-filter-nav" style="display: none;">
+      <div class="cuisine-filters">
+        <button class="btn-filter active" onclick="filterCuisine('all', this)">전체 (30끼)</button>
+        <button class="btn-filter" onclick="filterCuisine('한식', this)">🇰🇷 한식 (30끼)</button>
+      </div>
+      <a href="cart.html" class="btn-cart-page">🛒 장바구니 매니저로 이동</a>
+    </div>
+
+    <!-- Recipe Cards Grid -->
+    <div class="recipe-grid" id="recipe-container">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </div>
+
+  <script>
+    const recipes = [
+  {
+    "day": 1,
+    "title": "구수한 들깨 애호박 감자 수제비 (1인분)",
+    "base_title": "구수한 들깨 애호박 감자 수제비",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "520.0",
+    "carb": "85",
+    "prot": "18",
+    "fat": "12",
+    "cost": 4040,
+    "cost_formatted": "4,040원",
+    "ingredients": [
+      "감자수제비 180g",
+      "감자 1개",
+      "애호박 0.5개",
+      "청정원 들깨가루 2T",
+      "국간장 1T",
+      "대파 0.5대",
+      "통마늘 2알"
+    ],
+    "waste": "누적 3% 식단 소진 | 감자수제비 180g 소진 (누적 180/180g, 100% 완판 소진!), 감자 1개 소진 (누적 1/8개, 12%), 애호박 0.5개 소진 (누적 0.5/2.8개, 18%)",
+    "steps": [
+      "냄비에 물 500ml와 나박 썬 감자를 넣고 먼저 끓입니다.",
+      "물이 끓으면 감자수제비와 반달 썬 애호박, 다진 마늘, 국간장 1T를 넣습니다.",
+      "수제비가 둥둥 떠오르면 들깨가루 2T를 듬뿍 넣고 잘 저어 1분간 끓입니다.",
+      "대파를 올리고 한소끔 끓여 걸쭉하고 구수하게 담아냅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 들깨가루는 처음부터 넣지 말고 수제비가 다 익은 마지막에 풀어 넣어야 텁텁하지 않고 고소한 향이 살아납니다."
+  },
+  {
+    "day": 2,
+    "title": "만능간장 가지밥 + 부추양념장 (1인분)",
+    "base_title": "만능간장 가지밥 + 부추양념장",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "520.0",
+    "carb": "72",
+    "prot": "24",
+    "fat": "14",
+    "cost": 3840,
+    "cost_formatted": "3,840원",
+    "ingredients": [
+      "신선 가지 1.5개",
+      "돼지 앞다리살 100g",
+      "대파 1대",
+      "진간장 2T",
+      "고춧가루 0.5T",
+      "참기름 1T"
+    ],
+    "waste": "누적 7% 식단 소진 | 신선 가지 1.5개 소진 (누적 1.5/1.5개, 100% 완판 소진!), 돼지 앞다리살 100g 소진 (누적 100/690g, 14%), 대파 1대 소진 (누적 1/15.5대, 6%)",
+    "steps": [
+      "가지를 반달 모양으로 도톰하게 썰고 대파를 송송 썹니다.",
+      "팬에 식용유를 두르고 대파와 돼지고기를 볶아 파기름을 냅니다.",
+      "가지를 넣고 숨이 죽을 때까지 볶다가 진간장 2T를 둘러 불향을 입힙니다.",
+      "밥 위에 가지 볶음을 듬뿍 얹고 고춧가루와 참기름을 두른 양념장을 곁들여 쓱쓱 비벼 먹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 파기름에 간장을 살짝 태워 가지에 코팅해야 가지 특유의 풋내가 사라지고 감칠맛 폭탄 가지밥이 완성됩니다."
+  },
+  {
+    "day": 3,
+    "title": "불맛 제육볶음 + 계란파국 (1인분)",
+    "base_title": "불맛 제육볶음 + 계란파국",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "640.0",
+    "carb": "62",
+    "prot": "42",
+    "fat": "24",
+    "cost": 4030,
+    "cost_formatted": "4,030원",
+    "ingredients": [
+      "돼지 앞다리살 150g",
+      "대파 1대",
+      "양파 0.5개",
+      "계란 1알",
+      "고추장 1T",
+      "진간장 1T",
+      "고춧가루 1.5T",
+      "설탕 1T",
+      "통마늘 3알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 10% 식단 소진 | 돼지 앞다리살 150g 소진 (누적 250/690g, 36%), 대파 1대 소진 (누적 2/15.5대, 13%), 양파 0.5개 소진 (누적 0.5/5.6개, 9%)",
+    "steps": [
+      "팬을 강불로 달군 뒤 기름 없이 고기부터 넣고 설탕 1T를 솔솔 뿌려 고기 기름에 설탕을 카라멜라이징하듯 센 불에서 바짝 구워 불향을 입힙니다.",
+      "고기가 노릇해지면 팬 가장자리에 진간장 1T를 둘러 태우듯 불향을 더하고, 다진 마늘과 고춧가루 1.5T, 고추장 1T, 순후추를 넣고 약불에서 고추기름을 내며 볶습니다.",
+      "채 썬 양파와 어슷 썬 대파를 넣고 센 불에서 딱 1분 30초간 빠르게 볶아 아삭함을 살리고 참기름 1t를 둘러 완성합니다.",
+      "[계란파국] 냄비에 물 250ml와 간장 0.5t, 대파를 넣고 끓이다가 푼 계란 1알을 둘러 20초 후 불을 끄고 제육볶음과 함께 냅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 셰프의 비법대로 고기 구울 때 설탕 1T를 먼저 넣어 카라멜 코팅을 입히고, 간장을 팬 가장자리에 태우듯 둘러야 기사식당 특유의 깊은 불맛 제육이 완성됩니다."
+  },
+  {
+    "day": 4,
+    "title": "갈아만든 배 제육볶음 (1인분)",
+    "base_title": "갈아만든 배 제육볶음",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "650.0",
+    "carb": "66",
+    "prot": "42",
+    "fat": "24",
+    "cost": 4120,
+    "cost_formatted": "4,120원",
+    "ingredients": [
+      "돼지 앞다리살 150g",
+      "갈아만든 배 0.5캔",
+      "대파 1대",
+      "양파 0.5개",
+      "고추장 1.5T",
+      "진간장 1.5T",
+      "설탕 1T",
+      "식초 1T",
+      "참기름 1t",
+      "통마늘 4알",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 13% 식단 소진 | 돼지 앞다리살 150g 소진 (누적 400/690g, 58%), 대파 1대 소진 (누적 3/15.5대, 19%), 양파 0.5개 소진 (누적 1/5.6개, 18%)",
+    "steps": [
+      "밀폐용기에 고추장 1.5T, 진간장 1.5T, 설탕 1T, 갈아만든 배 50ml, 다진 마늘 1T, 식초 1T, 순후추를 넣고 잘 섞어 양념장을 만듭니다.",
+      "돼지 앞다리살을 양념에 넣고 조물조물 버무려 10분간 재웁니다.",
+      "양파와 대파를 굵직하게 채 썰어 둡니다.",
+      "달군 팬에 기름을 살짝 두르고 재워둔 고기를 센 불에서 바싹 볶다가 채소를 넣고 센 불에서 2분간 수분을 날리며 조려 참기름으로 마무리합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 편스토랑 류수영 비법! 갈아만든 배의 천연 연육 작용과 식초 1T가 고기 육질을 마법처럼 부드럽게 만들고 양념의 감칠맛을 배가시킵니다."
+  },
+  {
+    "day": 5,
+    "title": "돼지고기 김치찌개 (1인분)",
+    "base_title": "돼지고기 김치찌개",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "580.0",
+    "carb": "42",
+    "prot": "38",
+    "fat": "20",
+    "cost": 4720,
+    "cost_formatted": "4,720원",
+    "ingredients": [
+      "돼지 앞다리살 140g",
+      "종가집 묵은지 150g",
+      "찌개용 두부 0.5모",
+      "대파 0.5대",
+      "된장 0.3t",
+      "고춧가루 1T",
+      "진간장 1T",
+      "통마늘 3알",
+      "꽃소금 0.3t"
+    ],
+    "waste": "누적 17% 식단 소진 | 돼지 앞다리살 140g 소진 (누적 540/690g, 78%), 찌개용 두부 0.5모 소진 (누적 0.5/1모, 50%), 종가집 묵은지 150g 소진 (누적 150/300g, 50%)",
+    "steps": [
+      "냄비에 물 400ml와 돼지고기를 넣고 된장 0.3t를 살짝 풀어 센 불에서 5분간 팔팔 끓여 고기 육수를 우려냅니다.",
+      "육수가 뽀얗게 우러나면 썰어둔 묵은지 150g과 고춧가루 1T, 진간장 1T, 다진 마늘을 넣고 중불에서 10분간 푹 끓입니다.",
+      "국물 간을 보고 부족하면 꽃소금 한 꼬집을 넣고, 두부 1/2모와 어슷 썬 대파를 넣고 중약불에서 5분간 뭉근하게 졸여냅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 정통 비법대로 맹물에 돼지고기와 된장 0.3t를 먼저 넣고 끓여 고기 육수를 낸 뒤 김치를 넣어야 고기 속까지 간이 쏙 배고 국물이 진해집니다."
+  },
+  {
+    "day": 6,
+    "title": "칼칼한 돼지고기 고추장찌개 (1인분)",
+    "base_title": "칼칼한 돼지고기 고추장찌개",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "620.0",
+    "carb": "45",
+    "prot": "38",
+    "fat": "28",
+    "cost": 5510,
+    "cost_formatted": "5,510원",
+    "ingredients": [
+      "돼지 앞다리살 150g",
+      "감자 1개",
+      "애호박 0.5개",
+      "풀무원 두부 0.5모",
+      "양파 0.5개",
+      "대파 0.5대",
+      "고추장 2T",
+      "고춧가루 1T",
+      "진간장 1T"
+    ],
+    "waste": "누적 20% 식단 소진 | 돼지 앞다리살 150g 소진 (누적 690/690g, 100% 완판 소진!), 풀무원 두부 0.5모 소진 (누적 0.5/1.5모, 33%), 감자 1개 소진 (누적 2/8개, 25%)",
+    "steps": [
+      "냄비에 돼지고기와 고추장 2T, 고춧가루 1T를 넣고 약불에서 고기 기름과 함께 달달 볶습니다.",
+      "물 450ml를 붓고 깍둑 썬 감자와 양파를 넣어 센 불에서 끓입니다.",
+      "감자가 익으면 애호박과 두부, 진간장 1T를 넣고 5분간 뭉근하게 끓입니다.",
+      "대파를 넣고 1분간 한소끔 끓여 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 고추장을 고기와 함께 먼저 볶아 고추기름을 내야 텁텁하지 않고 캠핑장에서 먹는 진하고 칼칼한 찌개 맛이 납니다."
+  },
+  {
+    "day": 7,
+    "title": "매콤 단짠 두부조림 + 계란국 (1인분)",
+    "base_title": "매콤 단짠 두부조림 + 계란국",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "480.0",
+    "carb": "35",
+    "prot": "32",
+    "fat": "20",
+    "cost": 3450,
+    "cost_formatted": "3,450원",
+    "ingredients": [
+      "풀무원 두부 1모",
+      "계란 2알",
+      "양파 0.5개",
+      "대파 0.5대",
+      "진간장 2T",
+      "고춧가루 1T",
+      "설탕 0.8T",
+      "통마늘 2알"
+    ],
+    "waste": "누적 23% 식단 소진 | 풀무원 두부 1모 소진 (누적 1.5/1.5모, 100% 완판 소진!), 계란 2알 소진 (누적 2/17알, 12%), 양파 0.5개 소진 (누적 1.5/5.6개, 27%)",
+    "steps": [
+      "두부를 도톰하게 썰어 키친타월로 물기를 닦고 기름 두른 팬에서 앞뒤로 노릇하게 부칩니다.",
+      "물 100ml, 진간장 2T, 고춧가루 1T, 설탕 0.8T, 다진 마늘을 섞어 양념장을 만듭니다.",
+      "부친 두부 위에 채 썬 양파와 양념장을 붓고 중약불에서 5분간 자작하게 조립니다.",
+      "냄비에 물 300ml, 국간장 조금, 계란 2알을 풀어 끓인 부드러운 계란국과 함께 곁들입니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 두부를 노릇하게 먼저 지져 겉면을 단단하게 만들어야 양념을 부어 조려도 부서지지 않고 쫀득한 식감이 유지됩니다."
+  },
+  {
+    "day": 8,
+    "title": "닭가슴살 깍둑 비빔밥 + 된장국 (1인분)",
+    "base_title": "닭가슴살 깍둑 비빔밥 + 된장국",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "540.0",
+    "carb": "68",
+    "prot": "45",
+    "fat": "12",
+    "cost": 2790,
+    "cost_formatted": "2,790원",
+    "ingredients": [
+      "닭가슴살 150g",
+      "계란 1알",
+      "애호박 0.3개",
+      "된장 1T",
+      "고추장 1T",
+      "참기름 1t"
+    ],
+    "waste": "누적 27% 식단 소진 | 닭가슴살 150g 소진 (누적 150/150g, 100% 완판 소진!), 계란 1알 소진 (누적 3/17알, 18%), 애호박 0.3개 소진 (누적 0.8/2.8개, 29%)",
+    "steps": [
+      "닭가슴살을 깍둑썰어 팬에서 소금, 후추를 치며 노릇하게 굽습니다.",
+      "애호박을 채 썰어 살짝 볶아냅니다.",
+      "밥 위에 구운 닭가슴살, 애호박, 계란 후라이를 올리고 고추장, 참기름을 얹습니다.",
+      "물 300ml에 된장 1T와 송송 썬 대파를 넣고 끓여 구수한 된장국을 함께 냅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 닭가슴살을 깍둑썰어 센 불에 짧게 구워야 육즙이 빠져나가지 않고 촉촉한 닭고기 비빔밥이 됩니다."
+  },
+  {
+    "day": 9,
+    "title": "얼큰 순두부 열라면 국밥 (1인분)",
+    "base_title": "얼큰 순두부 열라면 국밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "530.0",
+    "carb": "65",
+    "prot": "26",
+    "fat": "16",
+    "cost": 2910,
+    "cost_formatted": "2,910원",
+    "ingredients": [
+      "순두부 1봉",
+      "열라면 1봉",
+      "계란 1알",
+      "대파 0.5대",
+      "고춧가루 0.5T"
+    ],
+    "waste": "누적 30% 식단 소진 | 순두부 1봉 소진 (누적 1/4봉, 25%), 열라면 1봉 소진 (누적 1/1봉, 100% 완판 소진!), 계란 1알 소진 (누적 4/17알, 24%)",
+    "steps": [
+      "냄비에 물 350ml(순두부 수분을 감안해 적게)와 라면 분말스프를 넣고 끓입니다.",
+      "물이 끓으면 라면 면발과 순두부를 숟가락으로 툭툭 떼어 넣습니다.",
+      "면이 80% 익으면 계란 1알을 깨 넣고 쫑쫑 썬 대파와 고춧가루를 올립니다.",
+      "불을 끄고 밥 1공기를 곁들여 얼큰한 국밥처럼 말아 먹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 순두부 자체에서 수분이 많이 나오므로 물을 평소보다 150ml 적게 잡아야 국물이 싱거워지지 않고 진한 얼큰함을 즐길 수 있습니다."
+  },
+  {
+    "day": 10,
+    "title": "달큰 애호박 채전 + 간장 비빔국수 (1인분)",
+    "base_title": "달큰 애호박 채전 + 간장 비빔국수",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "510.0",
+    "carb": "82",
+    "prot": "15",
+    "fat": "14",
+    "cost": 2900,
+    "cost_formatted": "2,900원",
+    "ingredients": [
+      "애호박 1개",
+      "중면 100g",
+      "감자전분 2T",
+      "진간장 2T",
+      "설탕 1T",
+      "참기름 1T"
+    ],
+    "waste": "누적 33% 식단 소진 | 애호박 1개 소진 (누적 1.8/2.8개, 64%)",
+    "steps": [
+      "애호박 1개를 곱게 채 썰어 전분 2T와 소금 한 꼬집을 버무립니다.",
+      "기름 두른 팬에 애호박채를 얇게 펴서 센 불에 앞뒤로 바삭노릇하게 부쳐냅니다.",
+      "삶은 소면에 진간장 2T, 설탕 1T, 참기름 1T를 넣고 조물조물 비빕니다.",
+      "달콤짭조름한 간장국수에 달큰하고 바삭한 애호박채전을 곁들입니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 애호박에 전분을 얇게 입혀 부쳐내면 애호박 본연의 단맛이 극대화되고 가장자리가 바삭바삭해져 간장국수와 찰떡궁합입니다."
+  },
+  {
+    "day": 11,
+    "title": "버섯 들깨 순두부 백탕 (1인분)",
+    "base_title": "버섯 들깨 순두부 백탕",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "460.0",
+    "carb": "28",
+    "prot": "24",
+    "fat": "18",
+    "cost": 4120,
+    "cost_formatted": "4,120원",
+    "ingredients": [
+      "순두부 1봉",
+      "새송이버섯 1개",
+      "팽이버섯 1봉",
+      "청정원 들깨가루 2.5T",
+      "국간장 1T",
+      "대파 0.5대",
+      "통마늘 2알"
+    ],
+    "waste": "누적 37% 식단 소진 | 순두부 1봉 소진 (누적 2/4봉, 50%), 새송이버섯 1개 소진 (누적 1/2개, 50%), 팽이버섯 1봉 소진 (누적 1/4.5봉, 22%)",
+    "steps": [
+      "냄비에 물 350ml와 나박 썬 새송이버섯, 다진 마늘, 국간장 1T를 넣고 끓입니다.",
+      "물이 끓으면 순두부와 팽이버섯을 넣고 2분간 끓입니다.",
+      "들깨가루 2.5T를 듬뿍 넣고 부드럽게 저어 1분간 한소끔 끓입니다.",
+      "대파를 올리고 담백하고 고소하게 담아냅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 고춧가루 없이 맑은 국간장과 들깨가루만으로 끓여내면 위장에 부담 없이 속이 편안하고 고소한 프리미엄 들깨 순두부탕이 완성됩니다."
+  },
+  {
+    "day": 12,
+    "title": "으깬스팸 불맛 순두부찌개 (1인분)",
+    "base_title": "으깬스팸 불맛 순두부찌개",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "590.0",
+    "carb": "32",
+    "prot": "35",
+    "fat": "28",
+    "cost": 7930,
+    "cost_formatted": "7,930원",
+    "ingredients": [
+      "순두부 1봉",
+      "스팸 클래식 100g",
+      "대파 1대",
+      "양파 0.3개",
+      "계란 1알",
+      "고춧가루 2T",
+      "진간장 1T",
+      "굴소스 1t",
+      "통마늘 3알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 40% 식단 소진 | 순두부 1봉 소진 (누적 3/4봉, 75%), 대파 1대 소진 (누적 4/15.5대, 26%), 양파 0.3개 소진 (누적 1.8/5.6개, 32%)",
+    "steps": [
+      "비닐백에 스팸 100g을 넣고 손으로 곱게 으깨고, 대파와 양파는 잘게 다집니다.",
+      "냄비에 식용유 1T와 으깬 스팸, 다진 대파, 양파를 넣고 중불에서 스팸이 노릇노릇 갈색이 될 때까지 충분히 볶습니다.",
+      "약불로 줄이고 고춧가루 2T, 진간장 1T, 굴소스 1t, 다진 마늘, 순후추를 넣고 볶아 진한 스팸 고추기름을 냅니다.",
+      "물 250ml를 붓고 끓어오르면 순두부를 큼직하게 떠 넣고 3분간 끓인 뒤, 계란 1알과 참기름을 얹어 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 스팸을 곱게 으깨 바싹 볶아 기름을 낸 뒤 고춧가루와 굴소스 1t로 고추기름을 내면 전문점 해물 순두부찌개보다 국물이 진하고 깊어집니다."
+  },
+  {
+    "day": 13,
+    "title": "대패 콩나물 불고기 (콩불) (1인분)",
+    "base_title": "대패 콩나물 불고기 (콩불)",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "610.0",
+    "carb": "48",
+    "prot": "38",
+    "fat": "24",
+    "cost": 5000,
+    "cost_formatted": "5,000원",
+    "ingredients": [
+      "소 우삼겹 150g",
+      "신선 콩나물 200g",
+      "대파 1대",
+      "양파 0.5개",
+      "고추장 1.5T",
+      "진간장 1.5T",
+      "고춧가루 1.5T",
+      "설탕 1T",
+      "통마늘 3알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 43% 식단 소진 | 소 우삼겹 150g 소진 (누적 150/1320g, 11%), 신선 콩나물 200g 소진 (누적 200/350g, 57%), 대파 1대 소진 (누적 5/15.5대, 32%)",
+    "steps": [
+      "고추장 1.5T, 진간장 1.5T, 고춧가루 1.5T, 설탕 1T, 다진 마늘 1T, 순후추를 섞어 만능 콩불 소스를 만듭니다.",
+      "넓은 팬 바닥에 씻은 콩나물 200g을 수북하게 깔고, 그 위에 채 썬 양파와 대파를 올린 뒤 우삼겹을 넓게 덮습니다.",
+      "고기 위에 양념장을 듬뿍 얹고 뚜껑을 덮어 중강불을 켭니다 (물 없이 콩나물 자체 채수로 조리).",
+      "채수가 나와 콩나물 숨이 죽으면 주걱 2개로 고기와 콩나물을 빠르게 뒤섞으며 강불에서 2분간 양념을 졸이고 참기름 1t를 둘러 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 고추장, 간장, 고춧가루, 설탕을 1:1:1:1로 맞추고 물을 한 방울도 넣지 않아야 콩나물 자체 채수로 짜지 않고 아삭아삭한 원조 콩불이 완성됩니다."
+  },
+  {
+    "day": 14,
+    "title": "우삼겹 된장찌개 + 콩나물무침 (1인분)",
+    "base_title": "우삼겹 된장찌개 + 콩나물무침",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "570.0",
+    "carb": "40",
+    "prot": "36",
+    "fat": "22",
+    "cost": 4860,
+    "cost_formatted": "4,860원",
+    "ingredients": [
+      "소 우삼겹 130g",
+      "찌개용 두부 0.5모",
+      "인큐 애호박 0.3개",
+      "신선 콩나물 150g",
+      "양파 0.3개",
+      "대파 0.5대",
+      "재래된장 1.5T",
+      "고추장 0.5T",
+      "통마늘 3알",
+      "참기름 1t",
+      "꽃소금 0.3t"
+    ],
+    "waste": "누적 47% 식단 소진 | 소 우삼겹 130g 소진 (누적 280/1320g, 21%), 찌개용 두부 0.5모 소진 (누적 1/1모, 100% 완판 소진!), 인큐 애호박 0.3개 소진 (누적 0.3/0.3개, 100% 완판 소진!)",
+    "steps": [
+      "냄비에 기름 없이 우삼겹을 넣고 중불에서 고기가 노릇노릇하고 기름이 흥건히 배어 나올 때까지 바짝 볶습니다.",
+      "나온 소기름에 된장 1.5T와 고추장 0.5T를 넣고 기름에 30초간 살짝 볶아 구수한 장 향을 끌어올립니다.",
+      "물 400ml를 붓고 깍둑 썬 애호박과 양파를 넣고 센 불에서 끓이다가 두부 1/2모와 다진 마늘, 대파를 넣고 3분간 더 끓여냅니다.",
+      "[콩나물무침] 콩나물 150g을 끓는 물에 꽃소금 한 꼬집을 넣고 3분 데쳐 찬물에 헹군 뒤 참기름, 다진 파, 꽃소금으로 조물조물 무쳐 곁들입니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 우삼겹을 먼저 볶아 기름을 낸 뒤 된장과 고추장을 기름에 30초 볶아 물을 부어야 고깃집 특유의 구수하고 진한 차돌 된장찌개가 완성됩니다."
+  },
+  {
+    "day": 15,
+    "title": "우삼겹 숙주볶음 (1인분)",
+    "base_title": "우삼겹 숙주볶음",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "570.0",
+    "carb": "25",
+    "prot": "36",
+    "fat": "28",
+    "cost": 3970,
+    "cost_formatted": "3,970원",
+    "ingredients": [
+      "소 우삼겹 150g",
+      "신선 숙주나물 200g",
+      "대파 0.5대",
+      "굴소스 1T",
+      "진간장 1T",
+      "미림 맛술 1T",
+      "설탕 0.5t",
+      "통마늘 3알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 50% 식단 소진 | 소 우삼겹 150g 소진 (누적 430/1320g, 33%), 신선 숙주나물 200g 소진 (누적 200/200g, 100% 완판 소진!), 대파 0.5대 소진 (누적 5.5/15.5대, 35%)",
+    "steps": [
+      "팬을 강불로 달군 뒤 기름 없이 우삼겹을 넣고 핏기가 가실 때까지만 빠르게 구워 그릇에 덜어냅니다.",
+      "팬에 남은 고소한 소기름에 다진 마늘과 편 썬 대파를 넣고 노릇하게 향을 올립니다.",
+      "굴소스 1T, 진간장 1T, 미림 맛술 1T, 설탕 0.5t를 팬에 넣고 바글바글 끓여 불향을 냅니다.",
+      "구워둔 고기와 물기 뺀 숙주나물, 순후추를 몽땅 넣고, 강불에서 딱 50초만 빠르게 볶은 뒤 참기름을 둘러 불을 끕니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 우삼겹을 먼저 구워 건져내고, 소기름에 굴소스·간장·미림을 끓여 불향을 낸 뒤 숙주는 딱 50초만 볶아야 물이 생기지 않고 아삭아삭한 식감이 살아납니다."
+  },
+  {
+    "day": 16,
+    "title": "소불고기 버섯 전골 (1인분)",
+    "base_title": "소불고기 버섯 전골",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "620.0",
+    "carb": "45",
+    "prot": "44",
+    "fat": "24",
+    "cost": 5380,
+    "cost_formatted": "5,380원",
+    "ingredients": [
+      "소 우삼겹 140g",
+      "생표고버섯 2개",
+      "팽이버섯 0.5봉",
+      "양파 0.5개",
+      "대파 0.5대",
+      "진간장 2T",
+      "미림 맛술 1T",
+      "설탕 1T",
+      "통마늘 3알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 53% 식단 소진 | 소 우삼겹 140g 소진 (누적 570/1320g, 43%), 생표고버섯 2개 소진 (누적 2/2개, 100% 완판 소진!), 팽이버섯 0.5봉 소진 (누적 1.5/4.5봉, 33%)",
+    "steps": [
+      "진간장 2T, 미림 1T, 설탕 1T, 다진 마늘 1T, 참기름 1t, 순후추로 불고기 양념을 만들어 우삼겹에 조물조물 버무립니다.",
+      "냄비 바닥에 채 썬 양파와 대파, 표고버섯, 팽이버섯을 가지런히 둘러 담습니다.",
+      "가운데에 양념한 소불고기를 소복이 올리고 물 300ml를 붓습니다.",
+      "센 불에서 보글보글 끓여 버섯 향과 달큰한 소고기 육수가 진하게 어우러지면 밥과 함께 즐깁니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 진간장과 미림, 설탕, 마늘로 소고기를 먼저 재워두어야 전골 국물이 우러나도 고기가 퍽퍽하지 않고 야들야들하며 달큰한 감칠맛 국물이 완성됩니다."
+  },
+  {
+    "day": 17,
+    "title": "맑은 소고기 뭇국 + 계란말이 (1인분)",
+    "base_title": "맑은 소고기 뭇국 + 계란말이",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "560.0",
+    "carb": "30",
+    "prot": "44",
+    "fat": "26",
+    "cost": 3690,
+    "cost_formatted": "3,690원",
+    "ingredients": [
+      "소 우삼겹 120g",
+      "신선 무 150g",
+      "계란 3알",
+      "대파 0.5대",
+      "통마늘 2알",
+      "국간장 1T",
+      "참기름 1t",
+      "꽃소금 0.3t"
+    ],
+    "waste": "누적 57% 식단 소진 | 소 우삼겹 120g 소진 (누적 690/1320g, 52%), 신선 무 150g 소진 (누적 150/150g, 100% 완판 소진!), 계란 3알 소진 (누적 7/17알, 41%)",
+    "steps": [
+      "냄비에 참기름 1t를 두르고 나박 썬 무와 소고기를 다진 마늘과 함께 달달 볶습니다.",
+      "고기 겉면이 익으면 물 500ml를 붓고 센 불에서 끓이다가 떠오르는 거품을 걷어냅니다.",
+      "국간장 1T와 소금 한 꼬집으로 간을 맞추고 송송 썬 대파를 넣어 뭇국을 완성합니다.",
+      "팬에 계란 3알을 풀어 소금 한 꼬집을 넣고 돌돌 말아 도톰한 계란말이를 만들어 뭇국과 곁들입니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 소고기와 무를 참기름에 달달 볶다가 물을 부어야 깊은 육수 맛이 우러나고, 맑은 국간장으로 간해야 국물이 탁해지지 않습니다."
+  },
+  {
+    "day": 18,
+    "title": "단짠 궁중 소불고기 떡볶이 (1인분)",
+    "base_title": "단짠 궁중 소불고기 떡볶이",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "610.0",
+    "carb": "78",
+    "prot": "32",
+    "fat": "16",
+    "cost": 4350,
+    "cost_formatted": "4,350원",
+    "ingredients": [
+      "소 우삼겹 120g",
+      "쌀 떡볶이떡 180g",
+      "양파 0.5개",
+      "팽이버섯 1봉",
+      "당근 0.3개",
+      "진간장 2T",
+      "설탕 1T",
+      "참기름 1t"
+    ],
+    "waste": "누적 60% 식단 소진 | 소 우삼겹 120g 소진 (누적 810/1320g, 61%), 쌀 떡볶이떡 180g 소진 (누적 180/180g, 100% 완판 소진!), 양파 0.5개 소진 (누적 2.3/5.6개, 41%)",
+    "steps": [
+      "떡볶이떡은 따뜻한 물에 5분간 담가 부드럽게 불립니다.",
+      "팬에 우삼겹과 양파, 채 썬 당근을 넣고 볶아 고기 기름을 냅니다.",
+      "물 100ml와 떡, 진간장 2T, 설탕 1T를 넣고 중불에서 3분간 자작하게 조립니다.",
+      "팽이버섯을 넣고 1분간 더 볶은 뒤 참기름을 둘러 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 소고기 기름과 진간장, 설탕의 단짠 조합이 떡에 깊이 배어 아이부터 어른까지 누구나 좋아하는 정통 궁중 떡볶이가 됩니다."
+  },
+  {
+    "day": 19,
+    "title": "불맛 우삼겹 비빔국수 (1인분)",
+    "base_title": "불맛 우삼겹 비빔국수",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "640.0",
+    "carb": "82",
+    "prot": "32",
+    "fat": "20",
+    "cost": 3440,
+    "cost_formatted": "3,440원",
+    "ingredients": [
+      "소 우삼겹 130g",
+      "중면 100g",
+      "콩나물 80g",
+      "계란 1알",
+      "고추장 1.5T",
+      "식초 1.5T",
+      "설탕 1T",
+      "참기름 1T"
+    ],
+    "waste": "누적 63% 식단 소진 | 소 우삼겹 130g 소진 (누적 940/1320g, 71%), 콩나물 80g 소진 (누적 80/180g, 44%), 계란 1알 소진 (누적 8/17알, 47%)",
+    "steps": [
+      "끓는 물에 소면과 콩나물을 삶아 찬물에 헹궈 물기를 꽉 짭니다.",
+      "고추장 1.5T, 식초 1.5T, 설탕 1T, 참기름 1T를 섞어 황금 비빔장을 만듭니다.",
+      "팬에서 우삼겹 130g을 센 불에 바싹 구워 고소하게 기름을 뺍니다.",
+      "비빔장에 소면과 콩나물을 버무려 그릇에 담고 구운 우삼겹과 삶은 계란을 올립니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 아삭한 콩나물을 소면과 함께 삶아 헹궈내면 식감이 2배로 풍성해지고, 바싹 구운 우삼겹의 고소함이 새콤달콤 비빔면과 완벽히 어우러집니다."
+  },
+  {
+    "day": 20,
+    "title": "소고기 모둠버섯 솥밥 (1인분)",
+    "base_title": "소고기 모둠버섯 솥밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "580.0",
+    "carb": "70",
+    "prot": "35",
+    "fat": "18",
+    "cost": 3770,
+    "cost_formatted": "3,770원",
+    "ingredients": [
+      "소 우삼겹 120g",
+      "새송이버섯 1개",
+      "팽이버섯 1봉",
+      "대파 0.5대",
+      "진간장 1.5T",
+      "버터 15g"
+    ],
+    "waste": "누적 67% 식단 소진 | 소 우삼겹 120g 소진 (누적 1060/1320g, 80%), 새송이버섯 1개 소진 (누적 2/2개, 100% 완판 소진!), 팽이버섯 1봉 소진 (누적 2.5/4.5봉, 56%)",
+    "steps": [
+      "새송이버섯을 깍둑썰고 팽이버섯 밑동을 잘라 준비합니다.",
+      "팬에 버터 15g을 녹이고 우삼겹과 버섯을 센 불에서 노릇하게 볶습니다.",
+      "진간장 1.5T를 둘러 버섯과 고기에 감칠맛을 입힙니다.",
+      "따뜻한 밥 위에 버섯 소고기 볶음과 쫑쫑 썬 대파를 듬뿍 올려 비벼 먹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 버터에 버섯과 우삼겹을 구워 간장으로 코팅하면 전문 솥밥집 특유의 버터 풍미와 고소함이 밥알에 쏙쏙 배어듭니다."
+  },
+  {
+    "day": 21,
+    "title": "얼큰 차돌 순두부찌개 (1인분)",
+    "base_title": "얼큰 차돌 순두부찌개",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "560.0",
+    "carb": "28",
+    "prot": "36",
+    "fat": "24",
+    "cost": 4560,
+    "cost_formatted": "4,560원",
+    "ingredients": [
+      "소 우삼겹 120g",
+      "순두부 1봉",
+      "계란 1알",
+      "대파 0.5대",
+      "고춧가루 1.5T",
+      "진간장 1T",
+      "참기름 1t",
+      "통마늘 2알"
+    ],
+    "waste": "누적 70% 식단 소진 | 소 우삼겹 120g 소진 (누적 1180/1320g, 89%), 순두부 1봉 소진 (누적 4/4봉, 100% 완판 소진!), 계란 1알 소진 (누적 9/17알, 53%)",
+    "steps": [
+      "냄비에 참기름 1t를 두르고 우삼겹과 다진 마늘, 고춧가루 1.5T를 약불에서 볶아 고추기름을 냅니다.",
+      "물 300ml와 진간장 1T를 넣고 센 불에서 바글바글 끓입니다.",
+      "순두부를 숟가락으로 크게 떼어 넣고 2분간 끓입니다.",
+      "계란 1알을 톡 깨 넣고 대파를 올려 30초 후 불을 끄고 얼큰하게 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 우삼겹 자체의 기름과 참기름에 고춧가루를 약불로 볶아 진한 고추기름을 내면 굴소스나 해물 없이도 깊고 진한 전문점 순두부 국물이 완성됩니다."
+  },
+  {
+    "day": 22,
+    "title": "뚝배기 소불고기 뚝불 (1인분)",
+    "base_title": "뚝배기 소불고기 뚝불",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "620.0",
+    "carb": "62",
+    "prot": "38",
+    "fat": "20",
+    "cost": 3980,
+    "cost_formatted": "3,980원",
+    "ingredients": [
+      "소 우삼겹 140g",
+      "오뚜기 당면 40g",
+      "양파 0.5개",
+      "팽이버섯 1봉",
+      "대파 0.5대",
+      "진간장 2T",
+      "설탕 1T",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 73% 식단 소진 | 소 우삼겹 140g 소진 (누적 1320/1320g, 100% 완판 소진!), 오뚜기 당면 40g 소진 (누적 40/40g, 100% 완판 소진!), 양파 0.5개 소진 (누적 2.8/5.6개, 50%)",
+    "steps": [
+      "당면을 따뜻한 물에 15분간 불립니다.",
+      "냄비에 물 250ml, 진간장 2T, 설탕 1T, 다진 마늘, 순후추를 넣고 끓입니다.",
+      "국물이 끓으면 우삼겹과 채 썬 양파, 불린 당면, 팽이버섯을 넣고 4분간 끓입니다.",
+      "대파를 올리고 참기름을 둘러 국물과 함께 밥에 쓱쓱 비벼 먹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 당면이 달착지근한 불고기 육수를 흠뻑 머금어 밥과 함께 먹으면 기사식당 뚝배기 불고기 맛을 그대로 재현합니다."
+  },
+  {
+    "day": 23,
+    "title": "춘천 닭갈비 덮밥 (1인분)",
+    "base_title": "춘천 닭갈비 덮밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "640.0",
+    "carb": "72",
+    "prot": "42",
+    "fat": "19",
+    "cost": 5100,
+    "cost_formatted": "5,100원",
+    "ingredients": [
+      "닭다리 순살 180g",
+      "양배추 100g",
+      "감자 1개",
+      "대파 0.5대",
+      "고추장 1.5T",
+      "진간장 1.5T",
+      "고춧가루 1.5T",
+      "카레가루 0.5T",
+      "설탕 1T",
+      "통마늘 3알",
+      "참기름 1t"
+    ],
+    "waste": "누적 77% 식단 소진 | 닭다리 순살 180g 소진 (누적 180/560g, 32%), 양배추 100g 소진 (누적 100/100g, 100% 완판 소진!), 감자 1개 소진 (누적 3/8개, 38%)",
+    "steps": [
+      "고추장 1.5T, 진간장 1.5T, 고춧가루 1.5T, 설탕 1T, 다진 마늘 1T에 카레가루 0.5T를 섞어 비법 양념을 만듭니다.",
+      "한입 크기로 썬 닭다리살에 양념장의 2/3를 버무려 10분간 재웁니다.",
+      "달군 팬에 식용유를 두르고 양념한 닭고기와 얇게 썬 감자를 넣어 중불에서 볶다가 물 50ml를 부어가며 타지 않게 속까지 익힙니다.",
+      "닭이 85% 익으면 큼직하게 썬 양배추, 대파와 남은 양념을 넣고 강불에서 2분간 빠르게 볶고 참기름을 둘러 밥 위에 얹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 닭갈비 양념에 카레가루 0.5T가 들어가야 춘천 원조집 특유의 닭 비린내 없는 중독적인 매콤달콤한 맛이 완성됩니다."
+  },
+  {
+    "day": 24,
+    "title": "안동식 순살 찜닭 (1인분)",
+    "base_title": "안동식 순살 찜닭",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "680.0",
+    "carb": "82",
+    "prot": "45",
+    "fat": "20",
+    "cost": 5160,
+    "cost_formatted": "5,160원",
+    "ingredients": [
+      "닭다리 순살 180g",
+      "감자 1개",
+      "대파 0.5대",
+      "중국당면 50g",
+      "페페론치노 3개",
+      "진간장 2.5T",
+      "미림 맛술 1T",
+      "설탕 1.5T",
+      "굴소스 1t",
+      "통마늘 4알",
+      "참기름 1t",
+      "순후추 0.2t"
+    ],
+    "waste": "누적 80% 식단 소진 | 닭다리 순살 180g 소진 (누적 360/560g, 64%), 감자 1개 소진 (누적 4/8개, 50%), 대파 0.5대 소진 (누적 6/15.5대, 39%)",
+    "steps": [
+      "닭다리살을 큼직하게 썰어 끓는 물에 1분간 살짝 데쳐 불순물을 씻어냅니다.",
+      "냄비에 닭고기, 큼직하게 썬 감자, 물 350ml, 진간장 2.5T, 미림 1T, 설탕 1.5T, 굴소스 1t, 다진 마늘, 으깬 페페론치노를 넣고 센 불에서 끓입니다.",
+      "감자가 익을 때까지 중약불에서 12분간 졸여 진한 갈색 간장 양념이 배어들게 합니다.",
+      "불린 중국당면과 대파, 순후추를 넣고 강불에서 국물이 촉촉하게 졸아들 때까지 2분간 볶아내고 참기름을 두릅니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 진간장과 설탕에 굴소스 1t와 페페론치노를 넣어 칼칼함을 더해야 안동 구시장 원조 찜닭집의 짙은 색감과 매콤달콤한 감칠맛이 완성됩니다."
+  },
+  {
+    "day": 25,
+    "title": "매콤 순살 닭볶음탕 (1인분)",
+    "base_title": "매콤 순살 닭볶음탕",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "680.0",
+    "carb": "58",
+    "prot": "52",
+    "fat": "22",
+    "cost": 5460,
+    "cost_formatted": "5,460원",
+    "ingredients": [
+      "닭다리 순살 200g",
+      "감자 1개",
+      "당근 0.5개",
+      "양파 0.5개",
+      "대파 0.5대",
+      "고추장 1.5T",
+      "진간장 1.5T",
+      "고춧가루 1T",
+      "설탕 1T",
+      "통마늘 3알"
+    ],
+    "waste": "누적 83% 식단 소진 | 닭다리 순살 200g 소진 (누적 560/560g, 100% 완판 소진!), 감자 1개 소진 (누적 5/8개, 62%), 당근 0.5개 소진 (누적 0.5/0.8개, 62%)",
+    "steps": [
+      "닭다리살을 한입 크기로 썰고 감자와 당근을 도톰하게 깍둑썹니다.",
+      "냄비에 닭고기, 감자, 당근과 물 300ml, 고추장 1.5T, 진간장 1.5T, 고춧가루 1T, 설탕 1T, 다진 마늘을 넣고 센 불에서 끓입니다.",
+      "끓어오르면 중불로 줄여 15분간 국물이 걸쭉해질 때까지 푹 졸입니다.",
+      "대파와 양파를 넣고 2분간 더 끓여 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 감자가 익으면서 나오는 전분으로 자연스럽게 걸쭉해지므로 물을 처음부터 너무 많이 잡지 않는 것이 비법입니다."
+  },
+  {
+    "day": 26,
+    "title": "감자 스팸 짜글이 덮밥 (1인분)",
+    "base_title": "감자 스팸 짜글이 덮밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "620.0",
+    "carb": "75",
+    "prot": "28",
+    "fat": "22",
+    "cost": 6690,
+    "cost_formatted": "6,690원",
+    "ingredients": [
+      "스팸 클래식 100g",
+      "감자 1개",
+      "양파 0.5개",
+      "대파 0.5대",
+      "고추장 1T",
+      "된장 0.3T",
+      "고춧가루 1.5T",
+      "진간장 1.5T",
+      "설탕 0.5T",
+      "통마늘 3알"
+    ],
+    "waste": "누적 87% 식단 소진 | 감자 1개 소진 (누적 6/8개, 75%), 양파 0.5개 소진 (누적 3.3/5.6개, 59%), 대파 0.5대 소진 (누적 6.5/15.5대, 42%)",
+    "steps": [
+      "스팸 100g을 위생 비닐에 넣고 손이나 칼등으로 알갱이가 잘게 씹히도록 완전히 으깹니다.",
+      "감자와 양파는 0.7cm 두께로 채 썰어 냄비 바닥에 고르게 깝니다.",
+      "으깬 스팸을 채소 위에 수북이 얹고 고추장 1T, 된장 0.3T, 고춧가루 1.5T, 진간장 1.5T, 설탕 0.5T, 다진 마늘 1T를 넣습니다.",
+      "물 300ml를 붓고 센 불에서 끓이다가 끓어오르면 중약불로 줄여 감자가 완전히 으스러질 정도로 부드러워질 때까지 10분간 자작하게 조려 밥 위에 얹어 비벼 먹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 셰프의 특급 비법! 스팸을 으깨 넣어야 고기 기름과 짠맛이 국물에 녹아들어 감자가 포슬포슬하게 익으면서 밥에 쓱쓱 비벼 먹기 환상적인 농도가 됩니다."
+  },
+  {
+    "day": 27,
+    "title": "철판 스팸 김치볶음밥 + 반숙 후라이 (1인분)",
+    "base_title": "철판 스팸 김치볶음밥 + 반숙 후라이",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "620.0",
+    "carb": "75",
+    "prot": "28",
+    "fat": "22",
+    "cost": 3710,
+    "cost_formatted": "3,710원",
+    "ingredients": [
+      "종가집 묵은지 150g",
+      "스팸 클래식 0.5캔",
+      "계란 1알",
+      "대파 0.5대",
+      "진간장 1T",
+      "고춧가루 0.5T",
+      "설탕 0.5t",
+      "참기름 1t"
+    ],
+    "waste": "누적 90% 식단 소진 | 종가집 묵은지 150g 소진 (누적 300/300g, 100% 완판 소진!), 계란 1알 소진 (누적 10/17알, 59%), 대파 0.5대 소진 (누적 7/15.5대, 45%)",
+    "steps": [
+      "스팸을 잘게 깍둑썰고 대파를 송송 썹니다.",
+      "팬에 식용유 없이 스팸을 바싹 볶아 기름을 내고, 대파와 다진 김치를 넣고 볶습니다.",
+      "설탕 0.5t와 고춧가루 0.5T를 넣고 볶다가 밥 1공기를 넣고 센 불에 볶습니다.",
+      "팬 한구석에 간장 1T를 눌어붙게 태운 뒤 밥과 섞고 반숙 후라이를 얹습니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 스팸 자체의 기름으로 김치를 볶고, 간장을 팬 가장자리에 태우듯 불향을 입혀야 분식집 철판 볶음밥 맛이 납니다."
+  },
+  {
+    "day": 28,
+    "title": "바삭 감자채전 + 5색 나물비빔밥 (1인분)",
+    "base_title": "바삭 감자채전 + 5색 나물비빔밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "580.0",
+    "carb": "85",
+    "prot": "20",
+    "fat": "18",
+    "cost": 3650,
+    "cost_formatted": "3,650원",
+    "ingredients": [
+      "감자 2개",
+      "콩나물 100g",
+      "애호박 0.5개",
+      "계란 1알",
+      "고추장 1.5T",
+      "참기름 1T",
+      "꽃소금 0.5t"
+    ],
+    "waste": "누적 93% 식단 소진 | 감자 2개 소진 (누적 8/8개, 100% 완판 소진!), 콩나물 100g 소진 (누적 180/180g, 100% 완판 소진!), 애호박 0.5개 소진 (누적 2.3/2.8개, 82%)",
+    "steps": [
+      "감자를 얇게 채 썰어 물에 헹구지 않고 소금 한 꼬집을 버무립니다.",
+      "팬에 기름을 넉넉히 두르고 감자채를 얇게 펼쳐 중약불에서 앞뒤로 바삭바삭하게 부쳐냅니다.",
+      "콩나물과 채 썬 애호박을 살짝 데쳐 소금, 참기름에 무칩니다.",
+      "따뜻한 밥 위에 나물과 반숙 계란, 고추장, 참기름을 넣고 비벼 바삭한 감자채전과 함께 즐깁니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 감자를 물에 헹구지 않아야 전분기 덕분에 밀가루 없이도 바삭하게 서로 엉겨 붙어 감자튀김처럼 바삭한 전이 됩니다."
+  },
+  {
+    "day": 29,
+    "title": "단짠 스팸마요 덮밥 + 뚝배기 계란찜 (1인분)",
+    "base_title": "단짠 스팸마요 덮밥 + 뚝배기 계란찜",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "680.0",
+    "carb": "72",
+    "prot": "32",
+    "fat": "28",
+    "cost": 2950,
+    "cost_formatted": "2,950원",
+    "ingredients": [
+      "스팸 클래식 0.5캔",
+      "계란 3알",
+      "마요네즈 1.5T",
+      "진간장 1.5T",
+      "설탕 1T",
+      "대파 0.5대"
+    ],
+    "waste": "누적 97% 식단 소진 | 계란 3알 소진 (누적 13/17알, 76%), 대파 0.5대 소진 (누적 7.5/15.5대, 48%)",
+    "steps": [
+      "스팸을 깍둑썰어 노릇하게 굽고, 간장 1.5T와 설탕 1T를 넣고 1분간 조려 단짠 스팸 조림을 만듭니다.",
+      "계란 1알을 몽글하게 스크램블하여 따뜻한 밥 위에 올립니다.",
+      "밥 위에 스팸 조림을 얹고 마요네즈를 격자로 예쁘게 뿌립니다.",
+      "계란 2알에 물 100ml, 소금 한 꼬집을 넣고 전자레인지에 3분간 돌려 촉촉한 계란찜을 곁들입니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 구운 스팸을 간장·설탕에 살짝 조려내야 마요네즈의 고소함과 단짠의 조화가 완벽히 살아납니다."
+  },
+  {
+    "day": 30,
+    "title": "노릇 대파 삼겹살 덮밥 (1인분)",
+    "base_title": "노릇 대파 삼겹살 덮밥",
+    "cuisine": "한식",
+    "flag": "🇰🇷 한식",
+    "cal": "690.0",
+    "carb": "68",
+    "prot": "38",
+    "fat": "30",
+    "cost": 5040,
+    "cost_formatted": "5,040원",
+    "ingredients": [
+      "한돈 통삼겹 160g",
+      "대파 1대",
+      "통마늘 4알",
+      "계란 1알",
+      "진간장 1.5T",
+      "미림 맛술 1T",
+      "설탕 0.8T",
+      "참기름 1t"
+    ],
+    "waste": "누적 100% 식단 소진 | 한돈 통삼겹 160g 소진 (누적 160/160g, 100% 완판 소진!), 대파 1대 소진 (누적 8.5/15.5대, 55%), 통마늘 4알 소진 (누적 4/52알, 8%)",
+    "steps": [
+      "삼겹살을 한입 크기로 썰어 달군 팬에서 편마늘과 함께 노릇하게 굽습니다.",
+      "삼겹살 기름이 나오면 큼직하게 썬 대파를 넣고 센 불에서 대파 향을 입힙니다.",
+      "간장 1.5T, 미림 1T, 설탕 0.8T를 넣고 센 불에서 윤기 나게 1분간 조려 코팅합니다.",
+      "따뜻한 밥 위에 고기와 파를 얹고 계란 노른자를 올려 완성합니다."
+    ],
+    "tip": "★자취생 초간단 꿀팁: 설탕과 간장을 삼겹살 기름에 태우듯 조려야 겉면이 캐러멜라이징되어 덮밥 전문점 수준의 풍미가 터집니다."
+  }
+];
+
+    let currentViewMode = 'timeline'; // 'timeline' or 'all'
+    let currentWeek = 1;
+    let currentCuisineFilter = 'all';
+
+    const weekSummaries = {
+      1: "💡 <strong>1주차 스타터 플랜</strong>: 1주차 장보기 재료로 7일간 냉장고 잔여 식재료 0g 전량 소진! (월~일 순서대로 차근차근 따라 해보세요)",
+      2: "💡 <strong>2주차 신선 보충</strong>: 1주차 냉동/팬트리 베이스에 신선 식재료를 보강하여 알뜰하게 소진!",
+      3: "💡 <strong>3주차 영양 밸런스</strong>: 절반 완주 성공! 외식비 대비 누적 식비 절약 돌파 🎉",
+      4: "💡 <strong>4주차 피날레 냉파</strong>: 냉장고 속 잔여 양념과 식재료 100% 털어먹기 완결판!"
+    };
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      document.getElementById('btn-mode-timeline').classList.toggle('active', mode === 'timeline');
+      document.getElementById('btn-mode-all').classList.toggle('active', mode === 'all');
+      
+      const timelineBar = document.getElementById('week-timeline-bar');
+      const categoryNav = document.getElementById('category-filter-nav');
+      
+      if (mode === 'timeline') {
+        if (timelineBar) timelineBar.style.display = 'block';
+        if (categoryNav) categoryNav.style.display = 'none';
+      } else {
+        if (timelineBar) timelineBar.style.display = 'none';
+        if (categoryNav) categoryNav.style.display = 'flex';
+      }
+      
+      renderRecipes();
+    }
+
+    function selectWeek(weekNum) {
+      currentWeek = weekNum;
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`btn-week-${i}`);
+        if (btn) btn.classList.toggle('active', i === weekNum);
+      }
+      const summaryEl = document.getElementById('week-summary-pill');
+      if (summaryEl && weekSummaries[weekNum]) {
+        summaryEl.innerHTML = weekSummaries[weekNum];
+      }
+      renderRecipes();
+    }
+
+    function toggleCooked(day, ev) {
+      if (ev) ev.stopPropagation();
+      const key = `zipbab_cooked_day_${day}`;
+      const now = localStorage.getItem(key) === 'true';
+      const next = !now;
+      try {
+        localStorage.setItem(key, next ? 'true' : 'false');
+      } catch (e) {}
+
+      const card = document.getElementById(`day-${day}`);
+      const btn = card ? card.querySelector('.btn-cook-check') : null;
+
+      if (next) {
+        if (btn) {
+          btn.classList.add('cooked');
+          btn.innerHTML = '✅ 임무완수!';
+        }
+        if (card) card.classList.add('is-cooked');
+
+        const r = recipes.find(x => x.day === day);
+        const costStr = (r && r.cost_formatted) || (r && r.cost ? (Number(r.cost).toLocaleString() + '원') : '');
+        const costMsg = costStr ? ` 이번 한 끼 재료 원가 <strong>${costStr}</strong> 사용 💰` : ' 이번 한 끼 알뜰 집밥 성공 💰';
+        showCookedToast(`🎉 Day ${day} 임무완수!${costMsg}`);
+      } else {
+        if (btn) {
+          btn.classList.remove('cooked');
+          btn.innerHTML = '✔ 임무완수';
+        }
+        if (card) card.classList.remove('is-cooked');
+      }
+    }
+
+    function showCookedToast(msg) {
+      let toast = document.getElementById('cooked-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cooked-toast';
+        toast.className = 'cooked-toast';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      clearTimeout(window.__cookedToastTimer);
+      window.__cookedToastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
+    function renderRecipes(cuisineFilter = null, searchQuery = null) {
+      const container = document.getElementById('recipe-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (cuisineFilter !== null) currentCuisineFilter = cuisineFilter;
+      const searchInput = document.getElementById('recipe-search');
+      const q = (searchQuery !== null ? searchQuery : (searchInput ? searchInput.value : '')).toLowerCase().trim();
+
+      const dayNames = ['월', '화', '수', '목', '금', '토', '일'];
+
+      const filtered = recipes.filter(r => {
+        // 검색어가 있으면 전체 중에서 검색
+        if (q) {
+          return r.title.toLowerCase().includes(q) || 
+                 r.ingredients.some(i => i.toLowerCase().includes(q)) ||
+                 r.steps.some(s => s.toLowerCase().includes(q));
+        }
+
+        // 1. 주차별 타임라인 모드
+        if (currentViewMode === 'timeline') {
+          if (currentWeek === 1) return r.day >= 1 && r.day <= 7;
+          if (currentWeek === 2) return r.day >= 8 && r.day <= 14;
+          if (currentWeek === 3) return r.day >= 15 && r.day <= 21;
+          if (currentWeek === 4) return r.day >= 22 && r.day <= 30;
+          return true;
+        }
+
+        // 2. 전체 요리 일람 모드
+        if (currentCuisineFilter === 'all') return true;
+        return r.cuisine === currentCuisineFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #94a3b8;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 8px;">검색 결과가 없습니다 😢</h3>
+          <p>다른 요리명이나 식재료를 검색해 보세요.</p>
+        </div>`;
+        return;
+      }
+
+      filtered.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card';
+        card.id = `day-${r.day}`;
+
+        const dayOfWeek = dayNames[(r.day - 1) % 7];
+        const isCooked = localStorage.getItem(`zipbab_cooked_day_${r.day}`) === 'true';
+        if (isCooked) card.classList.add('is-cooked');
+
+        card.innerHTML = `
+          <div>
+            <div class="card-header">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span class="day-badge">Day ${r.day} (${dayOfWeek}요일)</span>
+                <span class="cuisine-tag">${r.flag}</span>
+                ${r.cost_formatted ? `<span class="cost-tag" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;" title="해당 요리 재료 정량 원가">💰 재료 원가 ${r.cost_formatted}</span>` : ''}
+              </div>
+              <button type="button" class="btn-cook-check ${isCooked ? 'cooked' : ''}" onclick="toggleCooked(${r.day}, event)" title="오늘 집밥 임무완수 체크">
+                ${isCooked ? '✅ 임무완수!' : '✔ 임무완수'}
+              </button>
+            </div>
+            <h2 class="recipe-title">${r.title}</h2>
+
+            <!-- Nutrition -->
+            <div class="nutrition-box">
+              <div class="nutrition-header">
+                <span>1명 정량 조리 (1인분) 기준</span>
+                <span class="cal-val">${r.cal} kcal</span>
+              </div>
+              <div class="macro-row">
+                <div class="macro-item">탄수화물<strong>${r.carb}g</strong></div>
+                <div class="macro-item">단백질<strong>${r.prot}g</strong></div>
+                <div class="macro-item">지방<strong>${r.fat}g</strong></div>
+              </div>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="section-title">🥩 1명 정량 식재료</div>
+            <div class="ingredient-tags">
+              ${r.ingredients.map(i => {
+                const safe = i.replace(/"/g, '&quot;');
+                return `<span class="ing-tag" onclick="openIngredientLink('${safe}')" title="쿠팡 파트너스 추천 페이지 열기">${i}</span>`;
+              }).join('')}
+            </div>
+
+            <!-- Steps -->
+            <div class="section-title">🍳 10분 컷 조리 순서</div>
+            <ol class="recipe-steps">
+              ${r.steps.map(s => `<li>${s}</li>`).join('')}
+            </ol>
+          </div>
+
+          <div>
+            <!-- Zero Waste Tracker -->
+            <div class="waste-tag">
+              <span>♻️</span> <strong>식재료 100% 소진 트래커:</strong> ${r.waste}
+            </div>
+            <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+              <a href="cart.html" style="font-size: 0.8rem; color: #f97316; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;" title="해당 요리 식재료 장바구니 매니저로 이동">
+                장바구니 매니저에서 재료 담기 →
+              </a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function searchRecipe() {
+      const query = document.getElementById('recipe-search').value.trim();
+      // 검색 중일 때는 전체 보기 모드로 유연하게 렌더링
+      if (query && currentViewMode === 'timeline') {
+        const timelineBar = document.getElementById('week-timeline-bar');
+        if (timelineBar) timelineBar.style.display = 'none';
+      } else if (!query && currentViewMode === 'timeline') {
+        const timelineBar = document.getElementById('week-timeline-bar');
+        if (timelineBar) timelineBar.style.display = 'block';
+      }
+      renderRecipes(currentCuisineFilter, query);
+    }
+
+    function initFilters() {
+      const filterContainer = document.querySelector('.cuisine-filters');
+      if (!filterContainer) return;
+      const cuisines = {};
+      recipes.forEach(r => {
+        cuisines[r.cuisine] = (cuisines[r.cuisine] || 0) + 1;
+      });
+      const flagMap = {'한식': '🇰🇷', '일식': '🇯🇵', '중식': '🇨🇳', '양식': '🇪🇺', '동남아': '🥢'};
+      let html = `<button class="btn-filter active" onclick="filterCuisine('all', this)">전체 (${recipes.length}끼)</button>`;
+      for (const [c, count] of Object.entries(cuisines)) {
+        const flag = flagMap[c] || '🍽️';
+        html += `<button class="btn-filter" onclick="filterCuisine('${c}', this)">${flag} ${c} (${count}끼)</button>`;
+      }
+      filterContainer.innerHTML = html;
+    }
+
+    function filterCuisine(cuisine, btn) {
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const found = Array.from(document.querySelectorAll('.btn-filter')).find(b => b.innerText.includes(cuisine));
+        if (found) found.classList.add('active');
+      }
+      currentCuisineFilter = cuisine;
+      const searchVal = document.getElementById('recipe-search').value;
+      renderRecipes(cuisine, searchVal);
+    }
+
+    function checkUrlTarget() {
+      const params = new URLSearchParams(window.location.search);
+      const dayParam = params.get('day');
+      const hash = window.location.hash;
+      let targetId = null;
+      if (dayParam) {
+        targetId = `day-${dayParam}`;
+      } else if (hash && hash.startsWith('#day-')) {
+        targetId = hash.substring(1);
+      }
+
+      if (targetId) {
+        setTimeout(() => {
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetEl.classList.add('highlight-recipe-card');
+            setTimeout(() => {
+              targetEl.classList.remove('highlight-recipe-card');
+            }, 3500);
+          }
+        }, 200);
+      }
+    }
+
+    // Coupang Partners Tracking & Affiliate Links
+    let partnersLinks = {};
+    fetch('/api/partners/links')
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .catch(() => fetch('data/partners_links_cache.json').then(r => r.json()))
+      .then(data => { partnersLinks = data || {}; })
+      .catch(e => console.warn('Partners links load warning:', e));
+
+    function safeOpenUrl(url) {
+      if (!url) return;
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        try { document.body.removeChild(a); } catch (e) {}
+      }, 300);
+    }
+
+    function openIngredientLink(raw) {
+      let clean = raw.replace(/\[[^\]]+\]/g, '')
+                     .replace(/\([^)]*\)/g, '')
+                     .replace(/[\d\.]+\s*(?:g|kg|ml|T|t|장|개|캔|모|봉|판|알|줌|단|쪽|줄|공기)/g, '')
+                     .replace(/[\d\.\/]+/g, '')
+                     .replace(/약간|조금|적당량|약|송송|한 꼬집|한 방울|톡톡/g, '')
+                     .trim();
+      if (!clean) clean = raw;
+
+      // Check cache for query match
+      let foundUrl = null;
+      for (const [k, v] of Object.entries(partnersLinks)) {
+        if (clean.includes(k) || k.includes(clean)) {
+          foundUrl = v.shortenUrl;
+          break;
+        }
+      }
+
+      if (foundUrl) {
+        safeOpenUrl(foundUrl);
+        return;
+      }
+
+      // 모바일 또는 웹 배포 환경에서는 즉시 검색창 열기 (카카오톡 탈출 지원)
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile || (!window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1'))) {
+        safeOpenUrl(`https://www.coupang.com/np/search?q=${encodeURIComponent(clean)}&channel=user`);
+        return;
+      }
+
+      // PC 로컬 백엔드 구동 시 동적 파트너스 딥링크 생성 시도
+      fetch('/api/partners/deeplink', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: clean })
+      }).then(r => r.json()).then(res => {
+        if (res.shortenUrl) {
+          window.open(res.shortenUrl, '_blank');
+        } else {
+          window.open(`https://www.coupang.com/np/search?q=${encodeURIComponent(clean)}&channel=user`, '_blank');
+        }
+      }).catch(() => {
+        window.open(`https://www.coupang.com/np/search?q=${encodeURIComponent(clean)}&channel=user`, '_blank');
+      });
+    }
+    window.openIngredientLink = openIngredientLink;
+
+    renderRecipes();
+    initFilters();
+    checkUrlTarget();
+    window.addEventListener('hashchange', checkUrlTarget);
+  </script>
+  <div id="cooked-toast" class="cooked-toast"></div>
+</body>
+</html>

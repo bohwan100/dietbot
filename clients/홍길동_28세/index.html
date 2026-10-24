@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="홍길동님 1명 맞춤 식단 & 스마트 장보기 포털 | 다이어트봇">
+  <meta property="og:description" content="홍길동님을 위한 다이어트 챌린지 맞춤 식단과 쿠팡 1초 원클릭 스마트 장바구니">
+  <meta property="og:image" content="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="icon" type="image/png" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="apple-touch-icon" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <title>홍길동님 맞춤 30일 식단 & 스마트 장보기 포털 | 다이어트봇</title>
+  <script>
+    (function() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('kakaotalk') !== -1) {
+        if (/android/i.test(ua)) {
+          location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        }
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card-bg: rgba(18, 24, 38, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --orange: #f97316;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
+      color: var(--text);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-icon {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 2px 8px rgba(249, 115, 22, 0.4));
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff 60%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-tag {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #34d399;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #34d399;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #e2e8f0 70%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero h1 span.accent {
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+
+    /* Quick Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 18px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    .stat-pill strong { color: #fff; }
+    .stat-pill .num { color: #34d399; font-weight: 700; }
+
+    /* The 3 Core Action Cards (Main Buttons) */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .core-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 36px 28px;
+      backdrop-filter: blur(16px);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .core-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      opacity: 0.8;
+      transition: height 0.3s;
+    }
+    .core-card.recipe::before { background: linear-gradient(90deg, #f97316, #fb923c); }
+    .core-card.cart::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    .core-card.storage::before { background: linear-gradient(90deg, #10b981, #34d399); }
+
+    .core-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .core-card.recipe:hover { border-color: rgba(249, 115, 22, 0.4); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15); }
+    .core-card.cart:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15); }
+    .core-card.storage:hover { border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 20px 40px rgba(52, 211, 153, 0.15); }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .core-card.recipe .card-badge { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+    .core-card.cart .card-badge { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .core-card.storage .card-badge { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+    .core-card:hover .card-icon {
+      transform: scale(1.15) rotate(3deg);
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .card-feature-list {
+      list-style: none;
+      margin-bottom: 30px;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+    .card-feature-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-feature-list li span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+    .core-card.recipe .card-feature-list li span.dot { background: #f97316; }
+    .core-card.cart .card-feature-list li span.dot { background: #38bdf8; }
+    .core-card.storage .card-feature-list li span.dot { background: #34d399; }
+
+    /* Action Buttons Inside Cards */
+    .btn-card-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .core-card.recipe .btn-card-action {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+    }
+    .core-card.cart .btn-card-action {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+    }
+    .core-card.storage .btn-card-action {
+      background: linear-gradient(135deg, #059669, #047857);
+    }
+
+    .core-card:hover .btn-card-action {
+      filter: brightness(1.15);
+      gap: 14px;
+    }
+
+    /* Timeline & Strategy Section */
+    .strategy-section {
+      background: rgba(18, 24, 38, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px 30px;
+      margin-bottom: 60px;
+    }
+    .strategy-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .strategy-header h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .strategy-col {
+      background: rgba(11, 15, 25, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .col-week {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .col-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .col-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Today Quest Banner */
+    .today-quest-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(56, 189, 248, 0.1) 100%);
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      border-radius: 16px;
+      padding: 14px 22px;
+      margin-bottom: 35px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .today-quest-banner:hover {
+      transform: translateY(-2px);
+      border-color: #f97316;
+      box-shadow: 0 8px 26px rgba(249, 115, 22, 0.25);
+    }
+    .today-quest-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .quest-badge {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      letter-spacing: -0.3px;
+    }
+    .quest-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .today-quest-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+    .quest-arrow {
+      color: #f97316;
+      font-size: 1.2rem;
+      font-weight: 800;
+      transition: transform 0.2s;
+    }
+    .today-quest-banner:hover .quest-arrow {
+      transform: translateX(4px);
+    }
+    @media (max-width: 640px) {
+      .today-quest-banner { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
+      .today-quest-right { font-size: 0.8rem; }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 992px) {
+      .action-grid { grid-template-columns: 1fr; gap: 20px; }
+      .strategy-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero h1 { font-size: 2.3rem; }
+    }
+    @media (max-width: 576px) {
+      .strategy-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Program Guide CTA - Simple Red Button */
+    .guide-cta-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 16px 0 28px;
+    }
+    .btn-guide-must-read {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      padding: 13px 32px;
+      border-radius: 9999px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      border: 1.5px solid rgba(254, 202, 202, 0.45);
+      box-shadow: 0 4px 18px rgba(239, 68, 68, 0.42);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: -0.3px;
+    }
+    .btn-guide-must-read:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(239, 68, 68, 0.6);
+    }
+    .btn-guide-must-read:active {
+      transform: translateY(0);
+    }
+    .btn-guide-pulse {
+      font-size: 1.2rem;
+      animation: pulse-alert 1.8s infinite;
+    }
+    @keyframes pulse-alert {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+    .btn-guide-arrow {
+      font-size: 1.15rem;
+      transition: transform 0.2s ease;
+    }
+    .btn-guide-must-read:hover .btn-guide-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Guide Modal Styling */
+    .guide-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .guide-modal-content {
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 600px;
+      padding: 32px 28px;
+      color: #f8fafc;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      animation: guidePop 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @keyframes guidePop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .guide-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+    }
+    .guide-modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #94a3b8;
+      font-size: 1.2rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .btn-close-modal:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+    .guide-detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .guide-detail-item {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+    .guide-detail-item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guide-detail-item-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    .btn-modal-confirm {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-modal-confirm:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Nav -->
+  <header class="top-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">🤖</span>
+        <div class="brand-text">
+          <span class="brand-name">다이어트봇 DietBot</span>
+          <span class="brand-tag">홍길동님 1명 맞춤 포털 | 클린 원물 식단 (닭가슴살, 샐러드, 고단백 두유)</span>
+        </div>
+      </a>
+      <div class="nav-status">
+        <span class="pulse-dot"></span>
+        <span>4주 분할 장보기 가동 중</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 🥗 1:1 맞춤 다이어트 대사량 & 황금 매크로 분석 리포트 -->
+    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #10b981; border-radius: 20px; padding: 24px 28px; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.8rem;">🥗</span>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #34d399;">홍길동님의 1:1 정밀 다이어트 매크로 분석</h3>
+            <div style="font-size: 0.85rem; color: #94a3b8;">신체 대사량(BMR/TDEE) 기반 목표 체중 달성을 위한 일일 권장 섭취 기준</div>
+          </div>
+        </div>
+        <span style="background: #10b981; color: #0b0f19; font-weight: 800; font-size: 0.8rem; padding: 4px 12px; border-radius: 999px;">식단 챌린지 공식 솔루션</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">기초대사량 (BMR)</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #fff;">1,758 <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">유지 대사량 (TDEE)</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #fff;">2,285 <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+        <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(52, 211, 153, 0.5); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #34d399; font-weight: 700; margin-bottom: 4px;">🎯 목표 권장 칼로리</div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #34d399;">1,805 <span style="font-size: 0.8rem; color: #34d399;">kcal</span></div>
+        </div>
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">일일 칼로리 결손</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #38bdf8;">-480 <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+      </div>
+
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 700; color: #e2e8f0; margin-bottom: 10px;">
+          <span>일일 황금 탄·단·지 매크로 배분</span>
+          <span style="color: #34d399;">단백질 140g · 탄수화물 208g · 지방 46g</span>
+        </div>
+        <div style="height: 12px; border-radius: 999px; display: flex; overflow: hidden; background: #1e293b; margin-bottom: 12px;">
+          <div style="width: 31%; background: #38bdf8;"></div>
+          <div style="width: 46%; background: #fbbf24;"></div>
+          <div style="width: 23%; background: #f87171;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-around; font-size: 0.82rem; font-weight: 700;">
+          <span style="color: #38bdf8;">● 단백질 140g (31%)</span>
+          <span style="color: #fbbf24;">● 탄수화물 208g (46%)</span>
+          <span style="color: #f87171;">● 지방 46g (23%)</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Hero Title -->
+    <section class="hero">
+      <div class="hero-badge">✨ 1명 혼밥 자취생을 위한 종결자 솔루션</div>
+      <h1>홍길동님 맞춤 플랜<br><span class="accent">30일 식단</span></h1>
+    </section>
+
+    <!-- Key Stats Overview -->
+    <div class="stats-bar">
+      <div class="stat-pill">
+        <span>💰 한 달 총 예산:</span>
+        <strong>250,000원</strong>
+      </div>
+      <div class="stat-pill">
+        <span>🛒 실제 총 구매액:</span>
+        <span class="num">249,100원</span>
+        <strong style="color: #34d399;">(+900원 절약!)</strong>
+      </div>
+      <div class="stat-pill">
+        <span>🍽️ 맞춤 요리 구성:</span>
+        <strong>한식 30끼 (맞춤 설계)</strong>
+      </div>
+    </div>
+
+    <!-- Program Guide CTA Button (프로그램 사용 전 필독 사항) -->
+    <div class="guide-cta-bar">
+      <button type="button" onclick="openGuideModal()" class="btn-guide-must-read">
+        <span class="btn-guide-pulse">🚨</span>
+        <span>프로그램 사용 전 필독 사항</span>
+        <span class="btn-guide-arrow">→</span>
+      </button>
+    </div>
+
+    <!-- Today's 1-Pick Meal Quest Banner (10분 컷 데일리 미션 바로가기) -->
+    <a href="recipes.html?day=1#day-1" class="today-quest-banner">
+      <div class="today-quest-left">
+        <span class="quest-badge">🔥 오늘의 집밥 퀘스트</span>
+        <span class="quest-title">오늘 저녁은 10분 원팬 집밥으로 시작하세요! 👉</span>
+      </div>
+      <div class="today-quest-right">
+        <span class="quest-sub">Day 1 임무 완수 도전 · 알뜰 집밥 시작</span>
+        <span class="quest-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- The 3 Core Action Cards (메인 3개 버튼) -->
+    <div class="action-grid">
+
+      <!-- Card 1: 30일 레시피 -->
+      <a href="recipes.html" class="core-card recipe">
+        <div>
+          <span class="card-badge">퇴근 후 15분 컷</span>
+          <div class="card-icon">🍳</div>
+          <h2 class="card-title">30일 레시피</h2>
+          <ul class="card-feature-list">
+            <li><span class="dot"></span> 🇰🇷한식 30 맞춤 황금 레시피</li>
+            <li><span class="dot"></span> 단계별 상세 조리법 수록</li>
+            <li><span class="dot"></span> 칼로리 & 탄·단·지 소수점 정밀 계산</li>
+          </ul>
+        </div>
+        <div class="btn-card-action">
+          <span>30일 레시피 보러가기</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Card 2: 장바구니 매니저 -->
+      <a href="cart.html" class="core-card cart">
+        <div>
+          <span class="card-badge">쿠팡 로켓프레시 4주 분할</span>
+          <div class="card-icon">🛒</div>
+          <h2 class="card-title">장바구니 매니저</h2>
+          <ul class="card-feature-list">
+            <li><span class="dot"></span> 249,100원 실구매 (예산 250,000원 대비 900원 절약)</li>
+            <li><span class="dot"></span> 신선식품 / 냉동식품 / 조미료 3대 분류 완벽 분할</li>
+            <li><span class="dot"></span> 원클릭 자동 장바구니 담기 (PC 크롬 & 네이버 웨일 지원)</li>
+          </ul>
+        </div>
+        <div class="btn-card-action">
+          <span>장바구니 매니저 열기</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Card 3: 재료별 보관방법 -->
+      <a href="storage.html" class="core-card storage">
+        <div>
+          <span class="card-badge">신선도 300% 극대화</span>
+          <div class="card-icon">❄️</div>
+          <h2 class="card-title">재료별 보관방법</h2>
+          <ul class="card-feature-list">
+            <li><span class="dot"></span> 소형 냉동실 공간 3배 넓어지는 납작 소분법</li>
+            <li><span class="dot"></span> 채소 한 달 내내 아삭하게 살리는 보관 꿀팁</li>
+            <li><span class="dot"></span> 조미료 개봉 후 냉장 vs 상온 분별 가이드</li>
+          </ul>
+        </div>
+        <div class="btn-card-action">
+          <span>재료별 보관방법 보기</span>
+          <span>→</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- 4-Week Smart Timeline Strategy -->
+    <div class="strategy-section">
+      <div class="strategy-header">
+        <h3>📅 쿠팡 로켓프레시 4주 분할 주문 로드맵</h3>
+        <span style="font-size: 0.85rem; color: #34d399; font-weight: 700;">4회 배송비 전액 0원 (각 15,000원 이상 충족)</span>
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-col">
+          <div class="col-week">1주차 주문</div>
+          <div class="col-price">154,000원</div>
+          <div class="col-desc">청정원 고소한 들깨가루, 샘표 맑은 조선간장 국간장, 임금님표이천 쌀 상등급, 샘표 진간장 금F3, 국산 태양초 고춧가루 등</div>
+        </div>
+        <div class="strategy-col">
+          <div class="col-week">2주차 주문</div>
+          <div class="col-price">52,600원</div>
+          <div class="col-desc">하림 무항생제 닭가슴살, 풀무원 소야가식 부침두부  [2주차 신선보충], 풀무원 국산 순두부, 오뚜기 열라면 5입, 국내산 친환경 새송이버섯 등</div>
+        </div>
+        <div class="strategy-col">
+          <div class="col-week">3주차 주문</div>
+          <div class="col-price">0원</div>
+          <div class="col-desc">잔여 식재료 알뜰 소진 및 맞춤 요리</div>
+        </div>
+        <div class="strategy-col">
+          <div class="col-week">4주차 주문</div>
+          <div class="col-price">42,500원</div>
+          <div class="col-desc">오뚜기 옛날 당면, 하림 무항생제 닭다리살 정육, 국내산 신선 양배추, 도드람한돈 1등급 통삼겹살</div>
+        </div>
+      </div>
+    </div></main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 다이어트봇 by. 다이어트 플래너 (DietBot)</p>
+    </div>
+  </footer>
+
+  <!-- Guide Detail Modal (프로그램 사용 전 필독 사항) -->
+  <div id="guide-modal" class="guide-modal-overlay" onclick="handleGuideOverlayClick(event)">
+    <div class="guide-modal-content">
+      <div class="guide-modal-header">
+        <div class="guide-modal-title">
+          <span>🚨</span> 프로그램 사용 전 필독 사항
+        </div>
+        <button type="button" class="btn-close-modal" onclick="closeGuideModal()">✕</button>
+      </div>
+
+      <div class="guide-detail-list">
+        <div class="guide-detail-item" style="border: 1.5px solid rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.08);">
+          <div class="guide-detail-item-title" style="color: #f87171;">
+            <span>1️⃣</span> 🛒 1주차 장보기 (⚠️ PC 크롬 & 네이버 웨일 지원!)
+          </div>
+          <div class="guide-detail-item-desc">
+            스마트폰 브라우저는 기술 제약상 자동 담기가 불가능합니다. 
+            <strong>원클릭 자동 장바구니 담기는 [PC / 노트북 크롬 또는 네이버 웨일 브라우저]</strong>에서 [장바구니 매니저]를 열어 실행해 주세요. 
+            담은 후 스마트폰 쿠팡 앱에서 편하게 결제하시면 됩니다!
+          </div>
+        </div>
+
+        <div class="guide-detail-item">
+          <div class="guide-detail-item-title">
+            <span>2️⃣</span> 🧊 배송 즉시 소분 & 보관 (버리는 재료 0%)
+          </div>
+          <div class="guide-detail-item-desc">
+            식재료가 배송되면 <strong>[재료별 보관방법]</strong> 안내대로 고기는 1회분씩 랩핑하여 냉동실에 납작하게 넣고, 채소는 밀폐 보관해야 한 달 내내 버리는 재료 없이 신선하게 드실 수 있습니다.
+          </div>
+        </div>
+
+        <div class="guide-detail-item">
+          <div class="guide-detail-item-title">
+            <span>3️⃣</span> 🍳 30일 레시피 15분 조리 (순서는 자유롭게 선택)
+          </div>
+          <div class="guide-detail-item-desc">
+            퇴근 후 <strong>[30일 레시피]</strong>에서 오늘 가장 먹고 싶은 요리를 자유롭게 골라 15분 만에 조리해 드시면 됩니다. Day 1부터 꼭 순서대로 드시지 않아도 괜찮습니다.
+          </div>
+        </div>
+
+        <div class="guide-detail-item">
+          <div class="guide-detail-item-title">
+            <span>4️⃣</span> 🏠 보유 재료 0원 공제 (중복 구매 차단)
+          </div>
+          <div class="guide-detail-item-desc">
+            설문지에 적어주신 집에 있는 양념 및 식재료는 자동으로 <strong>[0원 공제]</strong>되어 중복 구매되지 않으니 안심하셔도 됩니다.
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-modal-confirm" onclick="goToExtensionInstall()">
+        🧩 크롬 / 네이버 웨일 확장 프로그램 설치 가이드 ➔
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function openGuideModal() {
+      document.getElementById('guide-modal').style.display = 'flex';
+    }
+    function closeGuideModal() {
+      document.getElementById('guide-modal').style.display = 'none';
+    }
+    function handleGuideOverlayClick(e) {
+      if (e.target.id === 'guide-modal') {
+        closeGuideModal();
+      }
+    }
+    function goToExtensionInstall() {
+      closeGuideModal();
+      window.location.href = 'cart.html?open=extension';
+    }
+  </script>
+
+</body>
+</html>

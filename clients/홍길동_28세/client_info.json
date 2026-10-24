@@ -1,0 +1,222 @@
+{
+  "client_id": "홍길동_28세",
+  "client_name": "홍길동",
+  "client_age": "28세",
+  "household_size": "1명",
+  "people_count": 1,
+  "budget": 250000,
+  "total_spent": 249100,
+  "saved_from_budget": 900,
+  "total_saved_pantry": 0,
+  "meal_frequency": "점심만 클린 원물 식단",
+  "total_meals": 30,
+  "goal": "다이어트 챌린지",
+  "cuisine": "클린 원물 식단 (닭가슴살, 샐러드, 고단백 두유)",
+  "excluded_foods": "없음",
+  "pantry_items": "",
+  "goal_notes": "체지방 8kg 감량 및 턱선/복근 윤곽 만들기",
+  "theme": "홍길동님을 위한 1명 다이어트 챌린지 맞춤 식단 (클린 원물 식단 (닭가슴살, 샐러드, 고단백 두유))",
+  "created_at": "2026-10-24 16:01:22",
+  "created_timestamp": 1792825282,
+  "recipes_summary": [
+    "구수한 들깨 애호박 감자 수제비 (1인분)",
+    "만능간장 가지밥 + 부추양념장 (1인분)",
+    "불맛 제육볶음 + 계란파국 (1인분)",
+    "갈아만든 배 제육볶음 (1인분)",
+    "돼지고기 김치찌개 (1인분)"
+  ],
+  "pages": {
+    "portal": "clients/홍길동_28세/index.html",
+    "cart": "clients/홍길동_28세/cart.html",
+    "recipes": "clients/홍길동_28세/recipes.html",
+    "storage": "clients/홍길동_28세/storage.html"
+  },
+  "diet_analysis": {
+    "bmr": 1758,
+    "tdee": 2285,
+    "target_calories": 1805,
+    "calorie_deficit": 480,
+    "protein_g": 140,
+    "protein_cal": 560,
+    "protein_pct": 31,
+    "carbs_g": 208,
+    "carbs_cal": 830,
+    "carbs_pct": 46,
+    "fat_g": 46,
+    "fat_cal": 415,
+    "fat_pct": 23,
+    "recommended_combos": [
+      {
+        "id": "combo_salad_chicken_soymilk",
+        "name": "🥗 타임핏 샐러드 & 스팀닭 & 고단백 두유 세트 (시그니처)",
+        "desc": "피그인더가든 샐러드(식이섬유 6g) + 착한 닭가슴살(단백질 23g) + 매일두유 고단백(단백질 12g)",
+        "calories": 325,
+        "protein": 43,
+        "carbs": 24,
+        "fat": 7,
+        "items": [
+          {
+            "name": "피그인더가든 타임핏 스모키포크/닭가슴살 샐러드",
+            "spec": "1팩 (드레싱 포함)",
+            "cal": 120,
+            "protein": 8,
+            "coupang_keyword": "피그인더가든 샐러드"
+          },
+          {
+            "name": "착한 닭가슴살 블랙페퍼/오리지널",
+            "spec": "1팩 100g",
+            "cal": 115,
+            "protein": 23,
+            "coupang_keyword": "착한닭가슴살 100g"
+          },
+          {
+            "name": "매일두유 플레인 고단백 190ml",
+            "spec": "1팩 (설탕무첨가)",
+            "cal": 90,
+            "protein": 12,
+            "coupang_keyword": "매일두유 고단백"
+          }
+        ]
+      },
+      {
+        "id": "combo_sweetpotato_egg_salad",
+        "name": "🍠 꿀고구마 & 구운란 & 믹스 샐러드 볼 세트",
+        "desc": "자연 복합 탄수화물 고구마(120g) + 훈제란 2알 + 신선 샐러드 채소 + 발사믹 드레싱",
+        "calories": 290,
+        "protein": 19,
+        "carbs": 42,
+        "fat": 6,
+        "items": [
+          {
+            "name": "한끼 군고구마/호박고구마 파우치",
+            "spec": "1팩 120g",
+            "cal": 140,
+            "protein": 2,
+            "coupang_keyword": "아이스 군고구마 120g"
+          },
+          {
+            "name": "무항생제 신선 구운란",
+            "spec": "2개 (100g)",
+            "cal": 110,
+            "protein": 13,
+            "coupang_keyword": "구운란 소포장"
+          },
+          {
+            "name": "데일리 컷팅 샐러드믹스 + 발사믹",
+            "spec": "1팩 80g",
+            "cal": 40,
+            "protein": 4,
+            "coupang_keyword": "로켓프레시 샐러드 채소"
+          }
+        ]
+      },
+      {
+        "id": "combo_tofu_steak_oatmeal",
+        "name": "🌱 고단백 두부 스테이크 & 오트밀 리조또 세트",
+        "desc": "속 편한 100% 식물성 클린 식단: 두부 스테이크 + 롤드오츠 30g + 방울토마토",
+        "calories": 310,
+        "protein": 24,
+        "carbs": 33,
+        "fat": 8,
+        "items": [
+          {
+            "name": "풀무원 직화 두부 스테이크",
+            "spec": "1팩 100g",
+            "cal": 145,
+            "protein": 15,
+            "coupang_keyword": "두부 스테이크"
+          },
+          {
+            "name": "퀘이커 퀵오트밀 (온수 2분)",
+            "spec": "30g",
+            "cal": 115,
+            "protein": 4,
+            "coupang_keyword": "오트밀 소용량"
+          },
+          {
+            "name": "신선 대추방울토마토",
+            "spec": "1컵 (120g)",
+            "cal": 50,
+            "protein": 5,
+            "coupang_keyword": "대추방울토마토 500g"
+          }
+        ]
+      },
+      {
+        "id": "combo_beef_brownrice_veggie",
+        "name": "🥩 소고기 우둔살 슬라이스 & 발아현미밥 팩",
+        "desc": "양질의 크레아틴과 철분: 지방 2% 소고기 우둔살 100g + 1/2 공기 현미밥 + 쌈채소",
+        "calories": 340,
+        "protein": 31,
+        "carbs": 35,
+        "fat": 6,
+        "items": [
+          {
+            "name": "맛있닭 소고기 우둔살 볼/슬라이스",
+            "spec": "1팩 100g",
+            "cal": 135,
+            "protein": 24,
+            "coupang_keyword": "소우둔살 슬라이스 100g"
+          },
+          {
+            "name": "햇반 발아현미밥 작은공기",
+            "spec": "130g (1/2 분량)",
+            "cal": 170,
+            "protein": 4,
+            "coupang_keyword": "발아현미밥 작은공기"
+          },
+          {
+            "name": "모둠 쌈채소 믹스 (깻잎/상추/치커리)",
+            "spec": "1팩 60g",
+            "cal": 35,
+            "protein": 3,
+            "coupang_keyword": "모둠 쌈채소 로켓프레시"
+          }
+        ]
+      }
+    ],
+    "meal_plan": {
+      "점심": {
+        "id": "combo_salad_chicken_soymilk",
+        "name": "🥗 타임핏 샐러드 & 스팀닭 & 고단백 두유 세트 (시그니처)",
+        "desc": "피그인더가든 샐러드(식이섬유 6g) + 착한 닭가슴살(단백질 23g) + 매일두유 고단백(단백질 12g)",
+        "calories": 325,
+        "protein": 43,
+        "carbs": 24,
+        "fat": 7,
+        "items": [
+          {
+            "name": "피그인더가든 타임핏 스모키포크/닭가슴살 샐러드",
+            "spec": "1팩 (드레싱 포함)",
+            "cal": 120,
+            "protein": 8,
+            "coupang_keyword": "피그인더가든 샐러드"
+          },
+          {
+            "name": "착한 닭가슴살 블랙페퍼/오리지널",
+            "spec": "1팩 100g",
+            "cal": 115,
+            "protein": 23,
+            "coupang_keyword": "착한닭가슴살 100g"
+          },
+          {
+            "name": "매일두유 플레인 고단백 190ml",
+            "spec": "1팩 (설탕무첨가)",
+            "cal": 90,
+            "protein": 12,
+            "coupang_keyword": "매일두유 고단백"
+          }
+        ]
+      }
+    }
+  },
+  "gender": "남성",
+  "height_cm": "178",
+  "weight_kg": "78",
+  "target_weight_kg": "70",
+  "activity_level": "좌식 생활",
+  "workout_type": "헬스(웨이트)",
+  "workout_freq": "주 3~4회",
+  "meal_target": "점심만",
+  "health_notes": "없음"
+}

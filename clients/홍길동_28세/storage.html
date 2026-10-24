@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="홍길동님 맞춤 식재료 보관 & 소분 백과 | 다이어트봇">
+  <meta property="og:description" content="홍길동님 구매 식재료 100% 맞춤 신선도 극대화 보관법">
+  <meta property="og:image" content="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="icon" type="image/png" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="apple-touch-icon" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <title>홍길동님 맞춤 식재료 보관 & 소분 백과 | 다이어트봇</title>
+  <script>
+    (function() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('kakaotalk') !== -1) {
+        if (/android/i.test(ua)) {
+          location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        }
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --fresh: #34d399;
+      --fresh-bg: rgba(52, 211, 153, 0.12);
+      --frozen: #38bdf8;
+      --frozen-bg: rgba(56, 189, 248, 0.12);
+      --seasoning: #fbbf24;
+      --seasoning-bg: rgba(251, 191, 36, 0.12);
+      --orange: #f97316;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(52, 211, 153, 0.07) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* Global Header Nav */
+    .top-nav {
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 24px;
+    }
+    .top-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+    .nav-brand-badge {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+    .nav-btn.recipe:hover:not(.active) {
+      border-color: rgba(249, 115, 22, 0.5);
+      color: #fb923c;
+      background: rgba(249, 115, 22, 0.1);
+    }
+    .nav-btn.cart:hover:not(.active) {
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .nav-btn.storage:hover:not(.active) {
+      border-color: rgba(52, 211, 153, 0.5);
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+    }
+    /* 3대 핵심 서비스 버튼 활성화 (주황색, 파란색, 초록색) */
+    .nav-btn.orange.active, .nav-btn.recipe.active {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45);
+    }
+    .nav-btn.orange.active:hover, .nav-btn.recipe.active:hover {
+      background: linear-gradient(135deg, #ea580c, #c2410c);
+      transform: translateY(-1px);
+    }
+    .nav-btn.blue.active, .nav-btn.cart.active, .nav-btn.cyan.active {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.45);
+    }
+    .nav-btn.blue.active:hover, .nav-btn.cart.active:hover, .nav-btn.cyan.active:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      transform: translateY(-1px);
+    }
+    .nav-btn.green.active, .nav-btn.storage.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+    }
+    .nav-btn.green.active:hover, .nav-btn.storage.active:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* 3 Big Principles Callout */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .principle-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .principle-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .principle-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+    .principle-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .principle-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Filter & Search Bar */
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      background: rgba(18, 26, 43, 0.8);
+      padding: 12px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+    }
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .chip:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .chip.active {
+      color: #fff;
+      border-color: transparent;
+    }
+    .chip.active.all { background: #3b82f6; }
+    .chip.active.fresh { background: var(--fresh); color: #064e3b; font-weight: 700; }
+    .chip.active.frozen { background: var(--frozen); color: #082f49; font-weight: 700; }
+    .chip.active.seasoning { background: var(--seasoning); color: #78350f; font-weight: 700; }
+
+    .search-input-wrap {
+      position: relative;
+      min-width: 260px;
+    }
+    .search-input-wrap input {
+      width: 100%;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 8px 14px 8px 36px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input-wrap input:focus { border-color: var(--primary); }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Storage Grid */
+    .storage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+
+    .storage-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .storage-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.22);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .item-category-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .item-category-tag.fresh { background: var(--fresh-bg); color: var(--fresh); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .item-category-tag.frozen { background: var(--frozen-bg); color: var(--frozen); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .item-category-tag.seasoning { background: var(--seasoning-bg); color: var(--seasoning); border: 1px solid rgba(251, 191, 36, 0.3); }
+
+    .storage-location-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .item-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .item-spec {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .meta-pills {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+    }
+    .pill {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .pill span { color: #fff; font-weight: 600; }
+
+    .tip-box {
+      background: rgba(15, 23, 42, 0.6);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+    .tip-box strong { color: #38bdf8; }
+
+    .spoilage-alert {
+      font-size: 0.78rem;
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 6px;
+      padding: 7px 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.4;
+    }
+    .spoilage-alert strong {
+      color: #fca5a5;
+      margin-right: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.7rem; }
+      .storage-grid { grid-template-columns: 1fr; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      .search-input-wrap { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Global Navigation Bar -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span>🤖 다이어트봇</span>
+        <span class="nav-brand-badge">재료별 보관방법</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn">🏠 홈</a>
+        <a href="recipes.html" class="nav-btn recipe">🍳 30일 레시피</a>
+        <a href="cart.html" class="nav-btn cart">🛒 장바구니 매니저</a>
+        <a href="storage.html" class="nav-btn storage green active">❄️ 재료별 보관방법</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Title -->
+    <div class="hero">
+      <div class="hero-badge">💡 홍길동님 1명 구매 식재료 100% 맞춤 보관법</div>
+      <h1>❄️ 47종 맞춤 식재료 완벽 소분 & 신선 보관 백과</h1>
+      <p>채소 썩어서 버리는 비용 0원! 소형 냉동실 용량 300% 극대화 소분법과<br>재료 본연의 신선도와 맛을 30일 내내 최상으로 지키는 자취 전문 꿀팁입니다.</p>
+    </div>
+
+    <!-- 3 Core Principles -->
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-icon">🥩</div>
+        <div class="principle-title">1. 고기는 1회분 '납작 랩핑' 급속냉동</div>
+        <div class="principle-desc">구매 즉시 1회분(100~130g)씩 랩으로 얇고 납작하게 펴서 밀착 포장하세요. 냉동실에 책처럼 세워 꽂으면 부피가 1/3로 줄고 해동이 5분 컷입니다.</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">🥬</div>
+        <div class="principle-title">2. 채소는 '물기 차단 & 세움 보관'</div>
+        <div class="principle-desc">대파는 썰어서 냉동하고, 양파는 껍질째 통풍 보관, 감자는 상온 암소에 사과와 함께 보관합니다 (감자 냉장 보관 시 유해물질 아크릴아마이드 생성 주의!).</div>
+      </div>
+      <div class="principle-card">
+        <div class="principle-icon">🧂</div>
+        <div class="principle-title">3. 조미료는 '개봉 후 냉장 vs 상온' 엄수</div>
+        <div class="principle-desc">간장·된장·고추장·굴소스는 개봉 즉시 반드시 냉장 보관! 반면 참기름은 상온 어두운 곳에 둬야 향이 살아있고 굳지 않습니다.</div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="filter-bar">
+      <div class="filter-chips">
+        <button class="chip active all" onclick="filterItems('all')">전체 (47종)</button>
+        <button class="chip fresh" onclick="filterItems('fresh')">🥬 신선식품 (냉장 21종)</button>
+        <button class="chip frozen" onclick="filterItems('frozen')">❄️ 냉동식품 (냉동 4종)</button>
+        <button class="chip seasoning" onclick="filterItems('seasoning')">🧂 조미료 & 팬트리 (22종)</button>
+      </div>
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="guide-search" placeholder="식재료명 검색 (예: 대파, 우삼겹)" onkeyup="searchItems()">
+      </div>
+    </div>
+
+    <!-- Storage Cards Grid -->
+    <div class="storage-grid" id="storage-cards-container">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </div>
+
+  <script>
+    const storageData = [
+  {
+    "name": "가지",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "서늘한 상온 / 냉장 야채실",
+    "duration": "상온 3~4일 / 냉장 5일",
+    "spec": "3개 1봉",
+    "tip": "가지는 저온 장애를 겪기 쉬우므로 키친타월로 1개씩 감싼 뒤 비닐팩에 넣어 야채실에 보관하세요.",
+    "spoilage": "표면이 쭈글거리고 물러지며 속이 갈색 변색"
+  },
+  {
+    "name": "감자",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "상온 그늘 (절대 냉장 금지!)",
+    "duration": "상온 3~4주",
+    "spec": "500g 1봉",
+    "tip": "★감자는 절대 냉장고에 넣지 마세요★ (저온에서 녹말이 당분화되어 조리 시 발암물질 생성). 박스에 신문지를 깔고 사과 1알을 넣어두면 싹트는 것을 방지합니다.",
+    "spoilage": "표면 초록 변색(솔라닌 독소), 싹 자람 및 쭈글거림"
+  },
+  {
+    "name": "계란 (달걀)",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 안쪽 (문쪽 X)",
+    "duration": "냉장 30~40일",
+    "spec": "30구 1판",
+    "tip": "계란은 물로 씻으면 보호막(큐티클)이 파괴되므로 씻지 말고, 뾰족한 쪽이 아래로 둥근 쪽(숨구멍)이 위로 향하게 보관하세요. 문쪽 선반은 흔들림과 온도 변화가 심하므로 냉장실 안쪽에 두는 것이 좋습니다.",
+    "spoilage": "물에 둥둥 뜨거나 노른자가 퍼져 악취 발생"
+  },
+  {
+    "name": "당근",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 보관",
+    "duration": "냉장 7일",
+    "spec": "1kg 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 냉장실 보관하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "대파",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉동실 소분 / 야채칸",
+    "duration": "냉동 1~2개월 / 냉장 7일",
+    "spec": "500g 1봉",
+    "tip": "세척 후 키친타월로 물기를 완전히 말린 뒤 송송 썰어 밀폐용기에 담아 냉동실에 얼려두면, 요리할 때 한 줌씩 바로 꺼내 파기름과 찌개에 쓰기 가장 좋습니다.",
+    "spoilage": "진액 발생, 시큼한 냄새, 잎이 누렇게 물러짐"
+  },
+  {
+    "name": "두부",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 안쪽",
+    "duration": "개봉 후 7~10일 (생수 침지 시)",
+    "spec": "290g 1모",
+    "tip": "남은 두부는 밀폐용기에 담고 두부가 잠길 정도로 깨끗한 생수를 부은 뒤 소금 0.3t를 살짝 섞어주세요. 2일에 한 번 물을 갈아주면 10일 넘게 처음 맛 그대로 신선합니다.",
+    "spoilage": "표면 미끌거리는 점액질, 시큼한 신맛과 악취"
+  },
+  {
+    "name": "마늘 (깐마늘/통마늘)",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 밀폐 / 다져서 냉동",
+    "duration": "냉장 2주 / 냉동 6개월",
+    "spec": "200g 1봉",
+    "tip": "밀폐용기 바닥에 설탕이나 키친타월을 깔고 깐마늘을 넣으면 수분이 차단되어 싹이 나지 않습니다. 남으면 다져서 냉동 소분하세요.",
+    "spoilage": "물렁거림, 곰팡이 및 변색"
+  },
+  {
+    "name": "무",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 야채실",
+    "duration": "냉장 2주",
+    "spec": "1개 1개",
+    "tip": "자른 단면에서 수분이 증발하면 바람이 들므로, 단면에 키친타월을 대고 랩으로 단단히 밀착 포장하여 야채칸에 세워서 보관합니다.",
+    "spoilage": "스펀지처럼 푸석해지거나 무르고 곰팡이 발생"
+  },
+  {
+    "name": "새송이버섯",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 보관",
+    "duration": "냉장 7일",
+    "spec": "400g 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 냉장실 보관하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "숙주나물",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실",
+    "duration": "냉장 3~4일",
+    "spec": "500g 1봉",
+    "tip": "수분이 많아 콩나물보다 쉽게 상하므로 구매 후 3일 내 우선 조리하세요. 밀폐용기에 찬물을 붓고 담가두면 신선도가 2일 더 연장됩니다.",
+    "spoilage": "갈색으로 변색, 퀴퀴한 냄새 및 짓무름"
+  },
+  {
+    "name": "순두부",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 안쪽",
+    "duration": "유통기한 준수 (약 2주)",
+    "spec": "350g 1봉",
+    "tip": "튜브 형태 그대로 차가운 냉장실 안쪽에 보관하세요. 충격을 받으면 튜브가 터질 수 있으니 벽면에 안전하게 눕혀둡니다.",
+    "spoilage": "포장 튜브 팽창, 국물 탁해짐 및 시큼한 냄새"
+  },
+  {
+    "name": "애호박",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 야채실",
+    "duration": "냉장 7~10일",
+    "spec": "1개 1개",
+    "tip": "비닐을 벗기지 않은 상태로 키친타월에 한 번 감싸서 야채실에 보관하세요. 쓰고 남은 단면은 랩으로 공기가 통하지 않게 팽팽하게 감싸서 산화 방지합니다.",
+    "spoilage": "씨 부분이 갈색으로 물러지며 표면 끈적임"
+  },
+  {
+    "name": "양배추",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 야채실",
+    "duration": "냉장 3~4주 (심지 제거 시)",
+    "spec": "1통 1통",
+    "tip": "양배추 가운데 딱딱한 심지를 칼로 도려내고, 그 자리에 물에 젖은 키친타월을 채워 넣은 뒤 랩으로 꽁꽁 싸면 한 달 내내 시들지 않고 갓 산 것처럼 아삭합니다.",
+    "spoilage": "잎이 검게 변색되고 시큼하고 퀴퀴한 냄새"
+  },
+  {
+    "name": "양파",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "서늘한 상온 / 냉장 야채실",
+    "duration": "상온 2~3주 / 냉장 10일",
+    "spec": "1.5kg 1망",
+    "tip": "통풍이 잘되는 그늘진 곳에 서로 닿지 않게 보관하세요. 껍질을 깐 양파는 키친타월로 감싼 뒤 랩으로 밀봉해 냉장 야채실에 넣으면 물러지지 않습니다.",
+    "spoilage": "속이 검게 변색, 물렁거리며 쉰내 발생"
+  },
+  {
+    "name": "열라면 5입",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 보관",
+    "duration": "냉장 7일",
+    "spec": "5개 1번들",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 냉장실 보관하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "옛날 당면",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 보관",
+    "duration": "냉장 7일",
+    "spec": "500g 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 냉장실 보관하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "전라도 묵은지",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실 보관",
+    "duration": "냉장 7일",
+    "spec": "1kg 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 냉장실 보관하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "콩나물",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장실",
+    "duration": "냉장 5~7일 (물 침지 시)",
+    "spec": "500g 1봉",
+    "tip": "봉지째 두면 3일 만에 상합니다! 밀폐용기에 콩나물을 담고 찬물을 가득 채워 냉장 보관하며, 2일마다 물을 갈아주세요.",
+    "spoilage": "줄기가 갈색으로 무르고 물 생기며 악취"
+  },
+  {
+    "name": "통삼겹살",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 3일 / 냉동실 소분",
+    "duration": "냉장 3일 / 냉동 2~3개월",
+    "spec": "1kg 1팩",
+    "tip": "겉면 핏물을 닦은 후 식용유나 올리브유를 겉에 살짝 바르고 랩으로 팽팽하게 감싸면 냉동 번(동결건조 현상)이 방지됩니다.",
+    "spoilage": "악취, 끈적이는 진액, 누런 변색"
+  },
+  {
+    "name": "팽이버섯",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 야채실",
+    "duration": "냉장 10~14일",
+    "spec": "3봉 1팩",
+    "tip": "포장을 뜯지 않은 상태로 보관하세요. 물에 절대 씻지 말고, 조리 직전 밑동만 잘라내어 사용합니다.",
+    "spoilage": "포장 내 수분이 고이고 갈색 변색 및 끈적임"
+  },
+  {
+    "name": "표고버섯",
+    "category": "fresh",
+    "categoryLabel": "🥬 신선식품",
+    "location": "냉장 야채실 / 냉동",
+    "duration": "냉장 7일 / 냉동 1개월",
+    "spec": "4입 1팩",
+    "tip": "기둥을 떼어내고 갓의 주름이 아래로 향하게 키친타월을 깐 밀폐용기에 담아 보관하세요. 썰어서 냉동 보관해도 좋습니다.",
+    "spoilage": "표면이 검게 변하고 끈적이는 점액질 발생"
+  },
+  {
+    "name": "닭가슴살",
+    "category": "frozen",
+    "categoryLabel": "❄️ 냉동식품",
+    "location": "소형 냉동실",
+    "duration": "냉동 3개월",
+    "spec": "1kg 1봉",
+    "tip": "1덩이씩 랩으로 밀착 포장해 지퍼백에 보관하세요. 조리 30분 전 찬물에 담가 해동하면 촉촉함을 유지할 수 있습니다.",
+    "spoilage": "표면 끈적임, 황변 및 쉰내"
+  },
+  {
+    "name": "닭다리살 (순살)",
+    "category": "frozen",
+    "categoryLabel": "❄️ 냉동식품",
+    "location": "소형 냉동실",
+    "duration": "냉동 3개월",
+    "spec": "1kg 1봉",
+    "tip": "도착 즉시 키친타월로 물기를 닦은 뒤, 1장씩 랩으로 꼼꼼히 싸서 냉동 보관하세요. 조리 전날 냉장실로 옮겨 저온 해동하면 육즙 손실이 없습니다.",
+    "spoilage": "미끌거리는 점액질, 시큼한 닭 비린내"
+  },
+  {
+    "name": "돼지 앞다리살 (불고기용)",
+    "category": "frozen",
+    "categoryLabel": "❄️ 냉동식품",
+    "location": "소형 냉동실",
+    "duration": "냉동 3개월",
+    "spec": "1kg 1팩",
+    "tip": "도착 즉시 키친타월로 가볍게 핏물을 닦은 뒤, 1회분(120~150g)씩 랩 위에 얇게 펴서 쌉니다. 지퍼백에 책처럼 세워 꽂으면 찾기 쉽고 해동이 초고속입니다.",
+    "spoilage": "해동 시 시큼한 악취, 끈적이는 점액질"
+  },
+  {
+    "name": "우삼겹",
+    "category": "frozen",
+    "categoryLabel": "❄️ 냉동식품",
+    "location": "소형 냉동실",
+    "duration": "냉동 3개월",
+    "spec": "1kg 1팩",
+    "tip": "돌돌 말린 채 뭉쳐 얼리면 떼어내기 힘듭니다. 1회분(120g)씩 소분해 납작하게 얼려두면 조리 시 팬에 바로 털어 넣을 수 있습니다.",
+    "spoilage": "누런 기름 산패, 역한 쩐내"
+  },
+  {
+    "name": "갈아만든 배 (배 음료)",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 서랍 / 개봉 후 냉장",
+    "duration": "상온 1년 (개봉 후 즉시 소진)",
+    "spec": "238ml 1캔",
+    "tip": "고기 연육 및 양념용입니다. 남은 음료는 컵에 따라 즉시 마시거나 밀폐용기에 냉장 보관하세요.",
+    "spoilage": "캔 팽창, 신맛"
+  },
+  {
+    "name": "감자전분",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 1년",
+    "spec": "500g 1봉",
+    "tip": "지퍼백에 밀봉해 습기가 없는 싱크대 안쪽에 보관하세요.",
+    "spoilage": "습기로 굳음, 벌레 유입"
+  },
+  {
+    "name": "고추장",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "개봉 후 냉장실 필수",
+    "duration": "개봉 후 냉장 1년",
+    "spec": "1kg 1통",
+    "tip": "물 묻은 숟가락이 닿으면 곰팡이가 피어납니다. 항상 마른 숟가락으로 퍼내고, 윗면을 평평하게 다진 뒤 랩을 표면에 밀착시켜 덮어두면 오랫동안 깔끔합니다.",
+    "spoilage": "표면 푸른·검은 곰팡이, 퀴퀴한 변질 악취"
+  },
+  {
+    "name": "고춧가루",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "냉동실 / 냉장실 밀폐",
+    "duration": "냉동 1년 / 냉장 6개월",
+    "spec": "500g 1봉",
+    "tip": "고춧가루를 상온에 두면 곰팡이(아플라톡신 발암물질)가 번식하기 쉽습니다. 지퍼백에 담아 냉동실에 얼려두면 붉은 색감과 매콤한 풍미가 1년 내내 그대로 유지됩니다.",
+    "spoilage": "검붉은 변색, 덩어리 굳음 및 곰팡이 냄새"
+  },
+  {
+    "name": "굴소스",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "개봉 즉시 100% 냉장실 필수",
+    "duration": "개봉 후 냉장 6개월",
+    "spec": "510g 1병",
+    "tip": "★굴소스는 개봉 전엔 상온이지만 개봉 즉시 100% 냉장 보관해야 합니다★ 방부제가 거의 없어 상온에 두면 곰팡이가 쉽게 핍니다. 입구를 키친타월로 닦아 뚜껑을 닫으세요.",
+    "spoilage": "병 입구 흰 곰팡이, 물 분리 및 신 냄새"
+  },
+  {
+    "name": "된장",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "개봉 후 냉장실 필수",
+    "duration": "개봉 후 냉장 1년",
+    "spec": "1kg 1통",
+    "tip": "마른 숟가락으로 사용하고 표면을 비닐이나 랩으로 꼭 밀착하여 덮어주면 마르거나 곰팡이가 피지 않습니다.",
+    "spoilage": "표면 검은 곰팡이, 퀴퀴한 군내"
+  },
+  {
+    "name": "들깨가루",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 6개월~1년",
+    "spec": "200g 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 상온 건조한 곳하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "마요네즈",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "개봉 후 냉장실 문쪽 선반",
+    "duration": "개봉 후 냉장 2~3개월",
+    "spec": "500g 1개",
+    "tip": "너무 차가운 곳에 두면 기름과 식초가 분리되므로 냉장고 문쪽 선반에 보관하세요.",
+    "spoilage": "기름 분리, 시큼한 변질 악취"
+  },
+  {
+    "name": "맛술 (미림)",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 서늘한 곳 / 개봉 후 냉장",
+    "duration": "상온 1년",
+    "spec": "500ml 1병",
+    "tip": "직사광선을 피해 서늘한 곳에 보관하고 뚜껑을 꼭 닫아 알코올 증발을 막으세요.",
+    "spoilage": "부유물 발생, 변색"
+  },
+  {
+    "name": "버터",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "냉장실 / 소분 냉동",
+    "duration": "냉장 1개월 / 냉동 6개월",
+    "spec": "200g 1개",
+    "tip": "10g씩 큐브 모양으로 썰어 종이호일로 싼 뒤 밀폐용기에 담아 냉동실에 얼려두면 요리할 때 1알씩 꺼내 쓰기 최고입니다.",
+    "spoilage": "표면 진노란색 산화 변색, 퀴퀴한 냄새"
+  },
+  {
+    "name": "설탕",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 무기한 (수분 차단)",
+    "spec": "1kg 1봉",
+    "tip": "습기를 먹으면 단단하게 굳습니다. 밀폐용기에 담아 수분을 차단해 보관하세요.",
+    "spoilage": "수분 침투로 굳음, 이물질 유입"
+  },
+  {
+    "name": "소금 (꽃소금)",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 무기한 (수분 차단)",
+    "spec": "500g 1봉",
+    "tip": "습기를 먹으면 굳습니다. 볶은 쌀알 몇 알이나 실리카겔을 함께 넣어두면 보송보송하게 유지됩니다.",
+    "spoilage": "수분 침투로 굳음"
+  },
+  {
+    "name": "스팸",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 서랍 / 개봉 후 밀폐용기 냉장",
+    "duration": "상온 3~5년 (개봉 후 냉장 3일)",
+    "spec": "200g 3캔",
+    "tip": "개봉하지 않은 캔은 상온 보관 최강입니다. 캔을 따고 남은 것은 캔 채로 두지 말고 유리/플라스틱 밀폐용기로 옮겨 담아 냉장 보관하세요.",
+    "spoilage": "캔 팽창, 녹 발생, 개봉 시 시큼한 악취"
+  },
+  {
+    "name": "식초",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 서늘한 곳",
+    "duration": "상온 1~2년",
+    "spec": "500ml 1병",
+    "tip": "산도가 높아 상온에서 변질되지 않습니다. 뚜껑만 잘 닫아두세요.",
+    "spoilage": "침전물 및 혼탁"
+  },
+  {
+    "name": "쌀 (백미)",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "서늘한 상온 / 냉장 야채실",
+    "duration": "상온 3~6개월 (직사광선 차단)",
+    "spec": "2kg 1포",
+    "tip": "포대째 두면 쌀벌레가 생길 수 있습니다. 밀폐용기나 페트병에 담아 서늘한 그늘에 보관하거나 냉장고 야채칸에 넣으면 쌀벌레와 산화를 완벽 차단합니다.",
+    "spoilage": "쌀벌레 발생, 곰팡이 및 묵은 쩐내"
+  },
+  {
+    "name": "옛날 국수 중면",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 6개월~1년",
+    "spec": "900g 1봉",
+    "tip": "직사광선과 공기 접촉을 피해 밀폐용기 또는 지퍼백에 소분하여 상온 건조한 곳하세요.",
+    "spoilage": "이취, 변색, 끈적임 및 곰팡이 발생 시 즉시 폐기"
+  },
+  {
+    "name": "중국당면",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 1년",
+    "spec": "300g 1봉",
+    "tip": "개봉 후 집게로 집어 상온에 보관하며, 조리 전 최소 6시간 찬물에 불려 사용합니다.",
+    "spoilage": "벌레 유입, 곰팡이"
+  },
+  {
+    "name": "진간장",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "개봉 후 냉장실 권장",
+    "duration": "개봉 후 6개월~1년",
+    "spec": "500ml 1병",
+    "tip": "간장은 개봉 후 공기와 접촉하면 맛과 향이 산화됩니다. 냉장고 문쪽이나 서늘한 곳에 두고 뚜껑을 꼭 닫아 보관하세요.",
+    "spoilage": "표면 흰색 막 형성, 퀴퀴한 군내 및 침전물"
+  },
+  {
+    "name": "참기름",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 그늘 (절대 냉장 금지!)",
+    "duration": "상온 6~9개월",
+    "spec": "320ml 1병",
+    "tip": "참기름은 냉장 보관하면 고소한 향이 날아가고 굳어버립니다. 신문지나 은박지로 병을 감싸 싱크대 안쪽에 보관하세요.",
+    "spoilage": "기름 쩐내, 고소한 풍미 상실"
+  },
+  {
+    "name": "카레가루",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "밀봉 후 냉장 / 냉동",
+    "duration": "개봉 후 밀봉 6개월",
+    "spec": "100g 1봉",
+    "tip": "쓰고 남은 봉지는 입구를 꼭 집은 뒤 지퍼백에 한 번 더 넣어 냉장 보관하면 습기로 굳지 않습니다.",
+    "spoilage": "습기로 돌처럼 굳음 및 눅눅한 냄새"
+  },
+  {
+    "name": "페페론치노",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 1~2년",
+    "spec": "30g 1통",
+    "tip": "건조 고추이므로 습기만 차단하면 오래 보관됩니다.",
+    "spoilage": "곰팡이, 변색"
+  },
+  {
+    "name": "후추",
+    "category": "seasoning",
+    "categoryLabel": "🧂 조미료 & 팬트리",
+    "location": "상온 건조한 곳",
+    "duration": "상온 1~2년",
+    "spec": "50g 1통",
+    "tip": "가스레인지 열기와 수증기가 닿지 않는 건조한 양념장에 보관하세요.",
+    "spoilage": "향 소실, 눅눅함"
+  }
+];
+
+    let currentFilter = 'all';
+
+    function renderStorageCards(items) {
+      const container = document.getElementById('storage-cards-container');
+      container.innerHTML = '';
+
+      if (items.length === 0) {
+        container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #94a3b8;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 8px;">검색된 식재료가 없습니다 😢</h3>
+          <p>다른 검색어를 입력해 보세요.</p>
+        </div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'storage-card';
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <span class="item-category-tag ${item.category}">${item.categoryLabel}</span>
+              <span class="storage-location-badge">📍 ${item.location}</span>
+            </div>
+            <div class="item-name">${item.name}</div>
+            <div class="item-spec">📦 규격: ${item.spec}</div>
+            
+            <div class="meta-pills">
+              <div class="pill">⏱️ 권장 기간: <span>${item.duration}</span></div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 보관 & 소분 꿀팁:</strong><br>
+              ${item.tip}
+            </div>
+          </div>
+
+          <div class="spoilage-alert" title="상함 판별: ${item.spoilage}"><strong>⚠️ 상함 판별:</strong> ${item.spoilage}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterItems(category) {
+      currentFilter = category;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      const activeBtn = document.querySelector(`.chip.${category}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const searchQuery = document.getElementById('guide-search').value.toLowerCase().trim();
+      applyFilters(category, searchQuery);
+    }
+
+    function searchItems() {
+      const query = document.getElementById('guide-search').value.toLowerCase().trim();
+      applyFilters(currentFilter, query);
+    }
+
+    function getChoseong(str) {
+      const CHOS = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+      let result = '';
+      for (let i = 0; i < str.length; i++) {
+        const code = str.charCodeAt(i);
+        if (code >= 0xAC00 && code <= 0xD7A3) {
+          result += CHOS[Math.floor((code - 0xAC00) / 588)];
+        } else {
+          result += str[i];
+        }
+      }
+      return result;
+    }
+
+    function applyFilters(category, query) {
+      const isCho = /^[ㄱ-ㅎ]+$/.test(query);
+      const filtered = storageData.filter(item => {
+        const matchCategory = (category === 'all') || (item.category === category);
+        let matchQuery = !query;
+        if (query) {
+          if (isCho) {
+            matchQuery = getChoseong(item.name).includes(query);
+          } else {
+            matchQuery = item.name.toLowerCase().includes(query) || 
+                         item.tip.toLowerCase().includes(query) ||
+                         item.location.toLowerCase().includes(query);
+          }
+        }
+        return matchCategory && matchQuery;
+      });
+      renderStorageCards(filtered);
+    }
+
+    function updateCategoryCounts() {
+      const total = storageData.length;
+      const freshCount = storageData.filter(i => i.category === 'fresh').length;
+      const frozenCount = storageData.filter(i => i.category === 'frozen').length;
+      const seasoningCount = storageData.filter(i => i.category === 'seasoning').length;
+
+      const btnAll = document.querySelector('.chip.all');
+      const btnFresh = document.querySelector('.chip.fresh');
+      const btnFrozen = document.querySelector('.chip.frozen');
+      const btnSeasoning = document.querySelector('.chip.seasoning');
+
+      if (btnAll) btnAll.textContent = `전체 (${total}종)`;
+      if (btnFresh) btnFresh.textContent = `🥬 신선식품 (${freshCount}종)`;
+      if (btnFrozen) btnFrozen.textContent = `❄️ 냉동식품 (${frozenCount}종)`;
+      if (btnSeasoning) btnSeasoning.textContent = `🧂 조미료 & 팬트리 (${seasoningCount}종)`;
+    }
+
+    // Initial render
+    updateCategoryCounts();
+    renderStorageCards(storageData);
+  </script>
+</body>
+</html>
