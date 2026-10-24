@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "집밥봇 - 쿠팡 장바구니 1초 자동 담기 도우미 (Chrome / Whale)",
+  "version": "1.0.0",
+  "description": "집밥봇 대시보드에서 30일 식단 식재료를 쿠팡 장바구니에 1초 만에 원클릭으로 자동 담아주는 공식 확장 프로그램입니다. (Chrome & Whale 브라우저, Windows PC / Mac 완벽 지원)",
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "집밥봇 장바구니 도우미"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.onrender.com/*",
+        "*://zipbabot.onrender.com/*",
+        "*://bohwan100.github.io/*",
+        "*://localhost/*",
+        "*://127.0.0.1/*",
+        "file:///*",
+        "<all_urls>"
+      ],
+      "js": ["content-dashboard.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.coupang.com/*"],
+      "js": ["content-coupang.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

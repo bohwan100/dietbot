@@ -1,0 +1,26 @@
+# Environment & Secrets
+.env
+*.env
+credentials.json
+
+# Local browser & testing cache
+threads_session_profile/
+coupang_session_profile/
+screenshots/
+archive/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Temporary & test assets
+scratch/cloudflared
+scratch/*.log
+scratch/*.mp4
+scratch/out_frames*/
+scratch/test_renders/
+scratch/ref_frames/
+scratch/test_acts_*/
+scratch/*.png
+
+# Large raw reference images
+data/스레드 레퍼런스 /

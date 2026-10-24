@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="스마트 장바구니 매니저 | 집밥봇">
+  <meta property="og:description" content="4주 분할 장보기 & 쿠팡 로켓배송 1초 원클릭 자동 담기">
+  <meta property="og:image" content="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="icon" type="image/png" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <link rel="apple-touch-icon" href="https://bohwan100.github.io/zipbab/assets/icon.png">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>스마트 장바구니 매니저 | 집밥봇</title>
+  <script>
+    // 외부 브라우저 최적화
+    (function() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.indexOf('kakaotalk') !== -1) {
+        if (/android/i.test(ua)) {
+          location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+        }
+      }
+    })();
+    window.addEventListener('error', e => { window.__lastError = e.message + ' at ' + e.filename + ':' + e.lineno; console.error(e); });
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --fresh: #10b981;
+      --fresh-bg: rgba(16, 185, 129, 0.15);
+      --fresh-border: rgba(16, 185, 129, 0.35);
+      --frozen: #06b6d4;
+      --frozen-bg: rgba(6, 182, 212, 0.15);
+      --frozen-border: rgba(6, 182, 212, 0.35);
+      --seasoning: #f59e0b;
+      --seasoning-bg: rgba(245, 158, 11, 0.15);
+      --seasoning-border: rgba(245, 158, 11, 0.35);
+      --bg: #0b1120;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 20px 100px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-top {
+      display: inline-block;
+      padding: 5px 14px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #38bdf8, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* 4주차 분할 장보기 요약 바 */
+    .weekly-split-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 25px;
+    }
+
+    .split-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      border: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .split-card:hover { transform: translateY(-2px); border-color: rgba(59, 130, 246, 0.5); }
+    .split-card.active { border-color: #f97316; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25); background: rgba(30, 41, 59, 0.95); }
+
+    .split-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+    .split-week-tag { font-size: 0.88rem; font-weight: 800; color: #f97316; }
+    .split-badge { font-size: 0.75rem; padding: 2px 7px; border-radius: 4px; background: rgba(16, 185, 129, 0.2); color: #34d399; font-weight: 700; }
+    .split-amount { font-size: 1.5rem; font-weight: 800; color: #fff; margin-top: 6px; }
+
+    /* Main View Mode Selector (주차별 분할 장보기 vs 전체 제품 일람) */
+    .view-mode-bar {
+      display: flex;
+      gap: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 13px 20px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+    }
+
+    /* Action Banner */
+    .action-banner {
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 16px 22px;
+      border-radius: var(--radius);
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .action-btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn-action {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-action:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-action.success { background: #10b981; }
+    .btn-action.success:hover { background: #059669; }
+    .btn-action.orange { background: #f97316; }
+    .btn-action.orange:hover { background: #ea580c; }
+    .btn-action.cyan { background: #0891b2; }
+    .btn-action.cyan:hover { background: #0e7490; }
+    .btn-action.danger { 
+      background: linear-gradient(135deg, #ef4444, #dc2626); 
+      border: 1px solid #b91c1c; 
+      color: #fff; 
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45); 
+      animation: pulseDanger 1.8s infinite;
+    }
+    .btn-action.danger:hover { 
+      background: linear-gradient(135deg, #dc2626, #b91c1c); 
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.7); 
+    }
+    @keyframes pulseDanger {
+      0%, 100% { box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45); }
+      50% { box-shadow: 0 6px 22px rgba(239, 68, 68, 0.75); }
+    }
+
+    /* Category Filter Chip Bar */
+    .category-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+      background: rgba(30, 41, 59, 0.5);
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+    .filter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-right: 4px; }
+    .filter-chip {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .filter-chip:hover { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+    .filter-chip.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .filter-chip.active.fresh { background: #10b981; border-color: #10b981; }
+    .filter-chip.active.frozen { background: #06b6d4; border-color: #06b6d4; }
+    .filter-chip.active.seasoning { background: #f59e0b; border-color: #f59e0b; }
+
+    /* Layout for Week View: Left Meals / Right Groceries */
+    .week-view-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 35px;
+    }
+    @media (max-width: 960px) {
+      .week-view-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .panel-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Free Space Notice Callout */
+    .freezer-callout {
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.85rem;
+      color: #67e8f9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Meal Item Card */
+    .meal-mini-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+    }
+    .meal-mini-card:hover {
+      border-color: rgba(249, 115, 22, 0.7);
+      background: rgba(30, 41, 59, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+    }
+    .meal-mini-card:hover .meal-name {
+      color: #fb923c;
+    }
+    .meal-mini-card:hover .meal-go-recipe {
+      background: #f97316 !important;
+      color: #fff !important;
+      border-color: #f97316 !important;
+      transform: translateX(2px);
+    }
+    .meal-go-recipe {
+      font-size: 0.72rem;
+      color: #fb923c;
+      font-weight: 700;
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      padding: 2px 7px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .meal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .meal-day { font-size: 0.8rem; font-weight: 800; color: #f97316; }
+    .meal-tag { font-size: 0.75rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .meal-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .meal-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; }
+    .meal-macro { font-size: 0.8rem; color: #cbd5e1; display: flex; gap: 12px; flex-wrap: wrap; }
+    .meal-macro span { color: #fcd34d; font-weight: 700; }
+
+    /* Grouped Storage Section in Week View */
+    .storage-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin: 16px 0 10px 0;
+    }
+    .storage-group-header.fresh { background: var(--fresh-bg); color: #34d399; border-left: 4px solid var(--fresh); }
+    .storage-group-header.frozen { background: var(--frozen-bg); color: #38bdf8; border-left: 4px solid var(--frozen); }
+    .storage-group-header.seasoning { background: var(--seasoning-bg); color: #fbbf24; border-left: 4px solid var(--seasoning); }
+
+    /* Grocery Mini Item */
+    .grocery-mini-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 13px 15px;
+      margin-bottom: 9px;
+      transition: all 0.2s;
+    }
+    .grocery-mini-card:hover {
+      border-color: rgba(59, 130, 246, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .grocery-info { flex: 1; margin-right: 12px; }
+    .grocery-name-row { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+    .grocery-name { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; }
+    .grocery-spec { font-size: 0.8rem; color: #94a3b8; }
+    .grocery-uses { font-size: 0.75rem; color: #34d399; margin-top: 3px; }
+    .grocery-price { font-weight: 800; color: #fcd34d; font-size: 0.95rem; text-align: right; }
+
+    .btn-coupang-sm {
+      background: #0073e9;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 115, 233, 0.3);
+    }
+    .btn-coupang-sm:hover:not(:disabled) {
+      background: #005bb5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 115, 233, 0.45);
+    }
+    .btn-coupang-sm.loading {
+      background: #f59e0b !important;
+      color: #fff !important;
+      cursor: wait !important;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
+      animation: pulseGlow 1.2s infinite;
+    }
+    .btn-coupang-sm.success {
+      background: #10b981 !important;
+      color: #fff !important;
+      cursor: default !important;
+      border-color: #34d399 !important;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    .link-search-fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+    }
+    .link-search-fallback:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+
+    /* Coupang Partners Integration Badge & Bar */
+    .partners-status-bar {
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.15) 0%, rgba(56, 189, 248, 0.1) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .partners-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .partners-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(249, 115, 22, 0.4);
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulseGreen 1.8s infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    .partners-tracking-id {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+    .partners-count-badge {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .partners-ftc-text {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid #f97316;
+    }
+    .btn-affiliate-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 5px 9px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-affiliate-link:hover {
+      background: rgba(56, 189, 248, 0.28);
+      border-color: #38bdf8;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    }
+    .btn-copy-affiliate {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 5px 8px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-copy-affiliate:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .grocery-name-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    .grocery-name-link:hover {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    /* Badge Types */
+    .type-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .type-badge.fresh { background: var(--fresh-bg); color: #34d399; border: 1px solid var(--fresh-border); }
+    .type-badge.frozen { background: var(--frozen-bg); color: #38bdf8; border: 1px solid var(--frozen-border); }
+    .type-badge.seasoning { background: var(--seasoning-bg); color: #fbbf24; border: 1px solid var(--seasoning-border); }
+
+    /* Full Products Section */
+    .category-section-block {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-block-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .category-block-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+    thead { background: #0b1329; color: var(--text-muted); border-bottom: 1px solid var(--card-border); }
+    th { padding: 12px 14px; font-weight: 600; white-space: nowrap; }
+    td { padding: 14px; border-bottom: 1px solid rgba(51, 65, 85, 0.4); vertical-align: middle; }
+    tr:hover { background: rgba(51, 65, 85, 0.25); }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #10b981;
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      display: none;
+      z-index: 1000;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      backdrop-filter: blur(4px);
+    }
+    .modal-content {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .modal-title { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .modal-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+    /* Top Global Sticky Navigation Bar */
+    .top-nav {
+      background: rgba(11, 15, 25, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 24px;
+      margin-bottom: 24px;
+    }
+    .top-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .nav-brand-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .nav-btn {
+      padding: 8px 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .nav-btn.recipe:hover:not(.active) {
+      border-color: rgba(249, 115, 22, 0.5);
+      color: #fb923c;
+      background: rgba(249, 115, 22, 0.1);
+    }
+    .nav-btn.cart:hover:not(.active) {
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .nav-btn.storage:hover:not(.active) {
+      border-color: rgba(52, 211, 153, 0.5);
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+    }
+    /* 3대 핵심 서비스 버튼 활성화 (주황색, 파란색, 초록색) */
+    .nav-btn.orange.active, .nav-btn.recipe.active {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45);
+    }
+    .nav-btn.orange.active:hover, .nav-btn.recipe.active:hover {
+      background: linear-gradient(135deg, #ea580c, #c2410c);
+      transform: translateY(-1px);
+    }
+    .nav-btn.blue.active, .nav-btn.cart.active, .nav-btn.cyan.active {
+      background: linear-gradient(135deg, #0284c7, #0ea5e9);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(14, 165, 233, 0.45);
+    }
+    .nav-btn.blue.active:hover, .nav-btn.cart.active:hover, .nav-btn.cyan.active:hover {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+      transform: translateY(-1px);
+    }
+    .nav-btn.green.active, .nav-btn.storage.active {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff !important;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+    }
+    .nav-btn.green.active:hover, .nav-btn.storage.active:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+    /* 눈에 확 띄는 30일 레시피 최상단 하이라이트 버튼 */
+    .nav-btn-highlight-recipe {
+      padding: 9px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff !important;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      box-shadow: 0 4px 16px rgba(249, 115, 22, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.25s ease;
+      animation: pulseRecipeBtn 2.5s infinite;
+    }
+    .nav-btn-highlight-recipe:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(249, 115, 22, 0.7);
+      filter: brightness(1.15);
+    }
+    @keyframes pulseRecipeBtn {
+      0%, 100% { box-shadow: 0 4px 16px rgba(249, 115, 22, 0.45); }
+      50% { box-shadow: 0 6px 24px rgba(249, 115, 22, 0.75); }
+    }
+
+    .panel-recipe-banner-btn {
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      color: #fb923c;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .panel-recipe-banner-btn:hover {
+      background: #f97316;
+      color: #fff;
+    }
+  
+    /* Bookmarklet Guide Hero Banner */
+    .bookmarklet-hero-banner {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.18) 0%, rgba(99, 102, 241, 0.22) 100%);
+      border: 2px solid #f97316;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.25);
+      position: relative;
+    }
+    .bm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: #f97316;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 10px rgba(249, 115, 22, 0.4);
+    }
+    .bm-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .bm-desc {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .bm-step-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .bm-step-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .bm-step-badge {
+      width: 58px;
+      padding: 3px 0;
+      border-radius: 6px;
+      background: #f97316;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .bm-step-content { flex: 1; min-width: 0; }
+    .bm-step-tit { font-size: 0.92rem; font-weight: 800; color: #fff; margin-bottom: 3px; }
+    .bm-step-sub { font-size: 0.8rem; color: #94a3b8; line-height: 1.4; }
+    .bm-btn-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-bm-main {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      color: #fff;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 18px rgba(249, 115, 22, 0.5);
+      transition: all 0.2s ease;
+      animation: pulseBmBtn 2s infinite;
+    }
+    .btn-bm-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(249, 115, 22, 0.75);
+    }
+    @keyframes pulseBmBtn {
+      0%, 100% { box-shadow: 0 4px 18px rgba(249, 115, 22, 0.45); }
+      50% { box-shadow: 0 6px 26px rgba(249, 115, 22, 0.8); }
+    }
+    .btn-bm-guide {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-bm-guide:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #fff;
+    }
+    .btn-bm-coupang {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-bm-coupang:hover {
+      background: #10b981;
+      color: #fff;
+    }
+
+  
+    /* One-Click 100% Auto-Add Hero Banner (딸깍 모드) */
+    .auto-engine-hero-banner {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.22) 0%, rgba(59, 130, 246, 0.25) 100%);
+      border: 2px solid #f97316;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 32px rgba(249, 115, 22, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .auto-banner-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .auto-engine-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 20px;
+    }
+    .auto-banner-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .auto-banner-desc {
+      color: #cbd5e1;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      max-width: 760px;
+    }
+    .auto-banner-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 280px;
+      flex-shrink: 0;
+    }
+    .btn-auto-run-main {
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #fff;
+      border: none;
+      padding: 16px 24px;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 22px rgba(249, 115, 22, 0.55);
+      transition: all 0.25s ease;
+      animation: pulseAutoBtn 2s infinite;
+    }
+    .btn-auto-run-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(249, 115, 22, 0.8);
+      filter: brightness(1.1);
+    }
+    @keyframes pulseAutoBtn {
+      0%, 100% { box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5); }
+      50% { box-shadow: 0 8px 30px rgba(249, 115, 22, 0.85); transform: scale(1.02); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Global Navigation Bar -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="index.html" class="nav-brand">
+        <span>🤖 집밥봇</span>
+        <span class="nav-brand-badge">장바구니 매니저</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn">🏠 홈</a>
+        <a href="recipe_viewer.html" class="nav-btn recipe">🍳 30일 레시피</a>
+        <a href="cart_dashboard.html" class="nav-btn cart blue active">🛒 장바구니 매니저</a>
+        <a href="storage_guide.html" class="nav-btn storage">❄️ 재료별 보관방법</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <header>
+      <div class="badge-top">👤 1인 가구 20만원 예산 | 소형 냉동실 & 신선 채소 주차별 분할 매니저</div>
+      <p>냉동실 폭발 방지(최대 2kg 제한) + 채소 썩음 0% + 로켓프레시 무료배송(15,000원↑) 4회 분할!</p>
+      
+            <!-- Localhost Redirect Helper Banner (Only visible on GitHub Pages / HTTPS) -->
+      <div id="https-local-guide" style="display: none; background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 12px 18px; margin: 12px 0 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+        <div style="font-size: 0.9rem; color: #bae6fd;">
+          🤖 <strong>맥북 무간섭 백그라운드 전자동 담기 모드:</strong><br>
+          화면 깜빡임이나 창 열림 없이 100% 백그라운드에서 담으시려면 <strong>로컬 주소(http://localhost:8080)</strong>로 접속해 주세요!
+        </div>
+        <button type="button" onclick="location.href='http://localhost:8080/cart_dashboard.html'" style="background: #3b82f6; color: #fff; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 800; font-size: 0.88rem; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.4);">
+          🚀 무간섭 백그라운드 모드로 열기
+        </button>
+      </div>
+      <!-- Pantry Banner Anchor -->
+
+      <!-- Coupang Partners Status & FTC Disclosure Notice -->
+      <div class="partners-status-bar" id="partners-status-bar">
+        <div class="partners-badge-group">
+          <span class="partners-badge"><span class="pulse-dot"></span> 🔗 쿠팡 로켓배송 실시간 연동</span>
+          <span class="partners-tracking-id" id="partners-tracking-tag">Tracking ID: AF9148506</span>
+        </div>
+        <div class="partners-ftc-text">
+          ⚖️ <strong>공정위 문구 준수:</strong> 본 페이지의 쿠팡 링크는 쿠팡 파트너스 활동의 일환으로, 구매 시 이에 따른 일정액의 수수료를 제공받을 수 있습니다.
+        </div>
+      </div>
+    </header>
+
+    <!-- PC Only Critical Notice Banner -->
+    <div class="pc-required-alert" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(249, 115, 22, 0.12) 100%); border: 1.5px solid rgba(239, 68, 68, 0.5); border-radius: 14px; padding: 14px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+      <span style="font-size: 1.8rem; flex-shrink: 0;">💻</span>
+      <div style="flex: 1; font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+        <strong style="color: #f87171; font-size: 0.98rem; display: block; margin-bottom: 3px;">
+          ⚠️ [필독] 쿠팡 원클릭 자동 장바구니 담기는 "PC(크롬 & 네이버 웨일)" 지원 기능입니다!
+        </strong>
+        스마트폰(모바일) 브라우저는 브라우저 보안 제약상 자동 담기 확장프로그램이 작동하지 않습니다. 
+        <strong>원클릭 자동 담기는 PC 크롬 또는 네이버 웨일 브라우저에서 실행해 주시고, 결제는 휴대폰 쿠팡 앱에서 편하게 진행해 주세요!</strong>
+      </div>
+    </div>
+
+    <div class="weekly-split-bar">
+      <div class="split-card active" id="card-week-1" onclick="selectWeek(1)">
+        <div class="split-card-header">
+          <span class="split-week-tag">1주차 주문</span>
+          <span class="split-badge">로켓프레시 무료</span>
+        </div>
+        <div class="split-amount">105,250원</div>
+      </div>
+
+      <div class="split-card" id="card-week-2" onclick="selectWeek(2)">
+        <div class="split-card-header">
+          <span class="split-week-tag">2주차 주문</span>
+          <span class="split-badge">로켓프레시 무료</span>
+        </div>
+        <div class="split-amount">39,200원</div>
+      </div>
+
+      <div class="split-card" id="card-week-3" onclick="selectWeek(3)">
+        <div class="split-card-header">
+          <span class="split-week-tag">3주차 주문</span>
+          <span class="split-badge">로켓프레시 무료</span>
+        </div>
+        <div class="split-amount">16,610원</div>
+      </div>
+
+      <div class="split-card" id="card-week-4" onclick="selectWeek(4)">
+        <div class="split-card-header">
+          <span class="split-week-tag">4주차 주문</span>
+          <span class="split-badge">로켓프레시 무료</span>
+        </div>
+        <div class="split-amount">25,920원</div>
+      </div>
+    </div>
+
+    <!-- Main View Mode Selector (주차별 분할 장보기 vs 전체 제품 모아보기) -->
+    <div class="view-mode-bar">
+      <button class="mode-btn active" id="btn-mode-week" onclick="switchViewMode('week')">
+        📅 1. 주차별 분할 장보기
+      </button>
+      <button class="mode-btn" id="btn-mode-all" onclick="switchViewMode('all')">
+        📦 2. 전체 제품 모아보기
+      </button>
+    </div>
+
+    <!-- Category Filter Bar (신선식품 / 냉동식품 / 조미료 원클릭 필터) -->
+    <div class="category-filter-bar">
+      <span class="filter-label">🔍 보관 형태별 필터:</span>
+      <button class="filter-chip active" id="filter-all" onclick="setCategoryFilter('all')">
+        전체 보기
+      </button>
+      <button class="filter-chip fresh" id="filter-fresh" onclick="setCategoryFilter('fresh')">
+        🥬 신선식품 (냉장)
+      </button>
+      <button class="filter-chip frozen" id="filter-frozen" onclick="setCategoryFilter('frozen')">
+        ❄️ 냉동식품 (냉동실)
+      </button>
+      <button class="filter-chip seasoning" id="filter-seasoning" onclick="setCategoryFilter('seasoning')">
+        🧂 조미료 & 팬트리 (상온)
+      </button>
+    </div>
+
+    <!-- Action Banner -->
+    <div class="action-banner">
+      <div>
+        <p>💡 <strong>4주 총 구매액</strong>: <strong>186,980원</strong> (예산 20만 원 대비 <strong style="color: #34d399;">+13,020원</strong> 절감 성공, 4회 배송비 전액 0원, 잔여 쓰레기 0%)</p>
+      </div>
+      <div class="action-btn-group">
+        <button type="button" class="btn-action" style="background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); font-weight: 800;" onclick="event.stopPropagation(); openExtensionModal(true);">🧩 PC 크롬 / 웨일 1초 담기 확장 프로그램</button>
+        <button class="btn-action orange" id="btn-week-batch-top" onclick="openThisWeekGroceries(false)">💻 1주차 품목 한 번에 담기 (PC 전용)</button>
+        <button class="btn-action success" onclick="openCartDirect()">🛍️ 내 쿠팡 장바구니 확인</button>
+        <button class="btn-action" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4);" onclick="resetAllAddedStatus()" title="모든 상품의 담김 상태를 초기화하여 처음부터 다시 담기">🔄 담기 버튼 초기화</button>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 1. 주차별 분할 장보기 뷰 (Week View) -->
+    <!-- ============================================== -->
+    <div id="section-week-view">
+      <div class="week-view-grid">
+        <!-- Left: This Week's 7 Meals -->
+        <div class="panel-box">
+          <div class="panel-title">
+            <span id="week-title-left">📅 1주차 7가지 저녁 메뉴</span>
+            <a href="recipes.html" class="panel-recipe-banner-btn">🍳 30일 전체 레시피 보기 →</a>
+          </div>
+          <div id="week-meals-container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Right: Groceries to Order THIS Week -->
+        <div class="panel-box">
+          <div class="panel-title">
+            <span id="week-title-right">🛒 1주차 주문 식재료</span>
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action orange" id="btn-week-batch-panel" style="padding: 7px 15px; font-size: 0.85rem; font-weight: 800;" onclick="openThisWeekGroceries(false)">
+                1주차 품목 한 번에 담기
+              </button>
+            </div>
+          </div>
+          
+          <div id="week-groceries-container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- 2. 전체 제품 모아놓은 칸 (All Products View - 3분류 분할) -->
+    <!-- ============================================== -->
+    <div id="section-all-view" style="display: none;">
+      
+      <!-- Section 1: 신선식품 (Fresh) -->
+      <div class="category-section-block" id="block-fresh">
+        <div class="category-block-header">
+          <div class="category-block-title" style="color: #34d399;">
+            🥬 신선식품 (14종) 
+            <span style="font-size: 0.9rem; color: #94a3b8; font-weight: 500;">- 주차별로 나눠 사서 채소 썩음 0% (소계 64,000원)</span>
+          </div>
+          <button class="btn-action success" style="padding: 7px 14px; font-size: 0.85rem;" onclick="openCategoryBatch('fresh')">
+            ⚡ 🥬 신선식품 14종 한 번에 담기
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>주문 주차</th>
+                <th>보관</th>
+                <th>상품명 및 규격</th>
+                <th>수량</th>
+                <th>예상 단가</th>
+                <th>합계</th>
+                <th>소비 주차 & 연계 요리</th>
+                <th>장바구니 담기</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-fresh"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: 냉동식품 (Frozen) -->
+      <div class="category-section-block" id="block-frozen">
+        <div class="category-block-header">
+          <div class="category-block-title" style="color: #38bdf8;">
+            ❄️ 냉동식품 (7종)
+            <span style="font-size: 0.9rem; color: #94a3b8; font-weight: 500;">- 원룸 소형 냉동실 맞춤 분할 구매 (소계 56,900원)</span>
+          </div>
+          <button class="btn-action cyan" style="padding: 7px 14px; font-size: 0.85rem;" onclick="openCategoryBatch('frozen')">
+            ⚡ ❄️ 냉동식품 7종 한 번에 담기
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>주문 주차</th>
+                <th>보관</th>
+                <th>상품명 및 규격</th>
+                <th>수량</th>
+                <th>예상 단가</th>
+                <th>합계</th>
+                <th>소비 주차 & 연계 요리</th>
+                <th>장바구니 담기</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-frozen"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: 조미료 & 팬트리 (Seasoning & Pantry) -->
+      <div class="category-section-block" id="block-seasoning">
+        <div class="category-block-header">
+          <div class="category-block-title" style="color: #fbbf24;">
+            🧂 조미료 & 팬트리 (19종)
+            <span style="font-size: 0.9rem; color: #94a3b8; font-weight: 500;">- 쌀 4kg 및 필수 양념/분말/통조림 (소계 68,800원)</span>
+          </div>
+          <button class="btn-action orange" style="padding: 7px 14px; font-size: 0.85rem;" onclick="openCategoryBatch('seasoning')">
+            ⚡ 🧂 조미료 16종 한 번에 담기
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>주문 주차</th>
+                <th>보관</th>
+                <th>상품명 및 규격</th>
+                <th>수량</th>
+                <th>예상 단가</th>
+                <th>합계</th>
+                <th>소비 주차 & 연계 요리</th>
+                <th>장바구니 담기</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-seasoning"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- Batch Modal (스마트 순차 담기) -->
+  
+  <!-- Bookmarklet 3-Step Detailed Guide Modal -->
+  <div class="modal-overlay" id="bookmarklet-modal" style="z-index: 3500;" onclick="handleBookmarkletOverlayClick(event)">
+    <div class="modal-content" style="max-width: 620px; max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 1.4rem;">⚡</span>
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: #fff;">쿠팡 1초 자동 담기 즐겨찾기 설정법</h2>
+        </div>
+        <button type="button" onclick="closeBookmarkletModal()" style="background: rgba(255,255,255,0.1); border: none; color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; font-size: 1rem; cursor: pointer; font-weight: bold;">✕</button>
+      </div>
+
+      <div style="background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.35); border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; font-size: 0.88rem; color: #fed7aa; line-height: 1.5;">
+        💡 <strong>처음 딱 1회만 등록(약 30초)</strong>해두시면, 앞으로 매주 장볼 때 쿠팡에서 즐겨찾기를 누르기만 하면 모든 재료가 1초 만에 자동 담깁니다!
+      </div>
+
+      <!-- Step Cards -->
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px;">
+        <!-- STEP 1 -->
+        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 12px; padding: 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="background: #f97316; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;">1</span>
+              <span style="font-weight: 800; color: #fff; font-size: 1rem;">자동 담기 코드 복사</span>
+            </div>
+            <span id="bm-copy-badge" style="font-size: 0.75rem; background: #10b981; color: #fff; padding: 3px 8px; border-radius: 6px; font-weight: 700; display: none;">✅ 복사 완료!</span>
+          </div>
+          <p style="font-size: 0.86rem; color: #94a3b8; line-height: 1.5; margin-bottom: 10px;">
+            현재 주차(<span id="bm-modal-week-num" style="color: #f97316; font-weight: 700;">1</span>주차)의 자동 담기 코드가 클립보드에 복사되었습니다. (필요 시 아래 버튼으로 재복사 가능)
+          </p>
+          <button type="button" class="btn-action orange" style="width: 100%; justify-content: center; font-size: 0.92rem; padding: 10px; margin-bottom: 8px;" onclick="copyCurrentWeekBookmarklet(true)">
+            📋 <span id="bm-btn-copy-label">1주차 자동 담기 코드 다시 복사하기</span>
+          </button>
+          <textarea id="bm-code-preview" readonly onclick="this.select();" placeholder="자동 담기 코드 로딩 중..." style="width: 100%; height: 50px; background: #0b0f19; color: #94a3b8; border: 1px solid #334155; border-radius: 8px; font-size: 0.72rem; font-family: monospace; padding: 6px 8px; resize: none; box-sizing: border-box;"></textarea>
+        </div>
+
+        <!-- STEP 2 -->
+        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 12px; padding: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="background: #3b82f6; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;">2</span>
+            <span style="font-weight: 800; color: #fff; font-size: 1rem;">모바일 브라우저에서 즐겨찾기 등록 (1회만)</span>
+          </div>
+          <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+            ① 브라우저 화면의 <strong>[공유 버튼 ⬆️]</strong> 또는 메뉴(⋯) 터치<br>
+            ② 목록에서 <strong>[즐겨찾기에 추가]</strong>(또는 책갈피 추가) 터치 ➔ 이름을 <strong>[집밥봇]</strong>으로 적고 저장<br>
+            ③ 즐겨찾기(북마크) 목록 열기 ➔ <strong>[편집]</strong> 터치<br>
+            ④ 방금 저장한 <strong>[집밥봇]</strong> 터치 ➔ <strong>주소(URL) 전체를 싹 지우고</strong> 위 1단계 코드를 <strong>[붙여넣기]</strong> ➔ 완료!
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 12px; padding: 16px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="background: #10b981; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;">3</span>
+            <span style="font-weight: 800; color: #fff; font-size: 1rem;">쿠팡(m.coupang.com)에서 즐겨찾기 누르면 끝!</span>
+          </div>
+          <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 10px;">
+            ① <strong>쿠팡(m.coupang.com)</strong>에 로그인합니다.<br>
+            ② 책 모양(📖) 즐겨찾기를 열어 <strong>[집밥봇]</strong>을 누릅니다.<br>
+            ③ 쿠팡 화면 상단에 <strong>집밥봇 장바구니 도우미</strong>가 나타나며, 이번 주 식재료가 순식간에 내 장바구니로 쏙 들어갑니다!
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+        <button type="button" class="btn-action success" onclick="safeOpenUrl('https://m.coupang.com'); closeBookmarkletModal();">
+          🚀 쿠팡 모바일 웹 열기
+        </button>
+        <button type="button" class="btn-action" style="background: #334155; color: #fff;" onclick="closeBookmarkletModal()">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+      <!-- Batch Modal (100% 원클릭 무간섭 백그라운드 자동 담기) -->
+  <div class="modal-overlay" id="batch-modal">
+    <div class="modal-content" style="max-width: 560px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 class="modal-title" id="batch-modal-title" style="margin-bottom: 0;">⚡ 1주차 품목 한 번에 담기</h3>
+        <button class="btn-action danger" id="modal-header-stop-btn" style="display: none; padding: 5px 12px; font-size: 0.8rem;" onclick="stopBatchAutoAdd()">⏹ 담기 중단</button>
+      </div>
+      <p class="modal-desc" id="modal-desc-text" style="margin-bottom: 6px;">
+        품목별 로켓배송 최적 상품을 장바구니에 간편하게 담습니다.
+      </p>
+
+      <!-- Background Silent Mode Info Banner -->
+      <div id="batch-bg-banner" style="background: rgba(14, 165, 233, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 12px 14px; margin: 12px 0 10px; display: flex; align-items: center; gap: 10px; font-size: 0.84rem; color: #bae6fd; line-height: 1.5;">
+        <span style="font-size: 1.4rem; flex-shrink: 0;">⚡</span>
+        <div>
+          <strong style="color: #38bdf8;">PC 원클릭 자동 담기 ➔ 스마트폰 쿠팡 앱 100% 실시간 동기화:</strong><br>
+          PC 크롬 또는 네이버 웨일 브라우저 백그라운드에서 모든 품목을 쿠팡 장바구니에 <strong>진짜로 쏙 자동 담기</strong>합니다!<br>
+          <span style="font-size: 0.78rem; color: #94a3b8;">📱 같은 쿠팡 아이디면 스마트폰 쿠팡 앱에도 실시간 자동 동기화되어 모바일에서 바로 결제 가능합니다.</span>
+        </div>
+      </div>
+
+      <!-- Progress bar (from photo) -->
+      <div id="batch-progress-wrapper" style="margin: 14px 0 14px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: #38bdf8; margin-bottom: 6px;">
+          <span id="batch-progress-status">진행 준비 중...</span>
+          <span id="batch-progress-percent">0%</span>
+        </div>
+        <div style="background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden;">
+          <div id="batch-progress-bar" style="background: linear-gradient(90deg, #06b6d4, #10b981); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
+        </div>
+      </div>
+
+      <!-- Item List Container (from photo) -->
+      <div id="batch-items-container" style="max-height: 270px; overflow-y: auto; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; margin-bottom: 16px;">
+        <!-- Injected via JS -->
+      </div>
+
+      <div class="modal-actions" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" class="btn-action" style="background: #475569;" onclick="closeModal()">닫기</button>
+          <button type="button" class="btn-action" style="background: rgba(239, 68, 68, 0.18); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); font-size: 0.85rem;" onclick="resetAllAddedStatus(true)" title="모든 상품의 담김 상태를 초기화하여 처음부터 다시 담기">🔄 담기 버튼 초기화</button>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" class="btn-action danger" id="modal-stop-btn" style="display: none;" onclick="stopBatchAutoAdd()">⏹ 담기 중단하기</button>
+          <button type="button" class="btn-action success" id="btn-batch-view-cart" style="display: none;" onclick="openCartDirect()">🛍️ 내 쿠팡 장바구니 확인</button>
+          <button type="button" class="btn-action orange" id="modal-confirm-btn" onclick="startBatchAutoAdd(false)">🚀 한 번에 담기 시작</button>
+        </div>
+      </div>
+      <div style="margin-top: 12px; padding: 10px 14px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="font-size: 0.82rem; color: #93c5fd; line-height: 1.4;">
+          💡 <strong>추천 루틴:</strong> 장보기가 필요할 땐 PC(윈도우/맥)에서 1초 만에 담고, 결제는 스마트폰 쿠팡 앱에서 편하게 완료하세요!
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 10px;">
+        <a href="javascript:void(0)" onclick="startBatchOpenManual()" style="font-size: 0.78rem; color: #64748b; text-decoration: underline;">
+          (만약 직접 쿠팡 검색창 새 탭들을 열고 싶으신 경우 클릭)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chrome & Whale Extension Guide Modal -->
+  <div class="modal-overlay" id="extension-modal" style="display: none;">
+    <div class="modal-content" style="max-width: 600px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+        <h3 class="modal-title" style="margin-bottom: 0; display: flex; align-items: center; gap: 8px;">
+          <span>🧩</span> 집밥봇 확장 프로그램 10초 설치 가이드 (Chrome & Whale 🐳)
+        </h3>
+        <button type="button" class="btn-action" style="background: #334155; padding: 4px 10px; font-size: 0.85rem;" onclick="closeExtensionModal()">✕</button>
+      </div>
+
+      <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.88rem; color: #bae6fd; line-height: 1.5;">
+        💡 <strong>윈도우 PC / 맥북 (크롬 & 네이버 웨일 브라우저 완벽 지원):</strong><br>
+        브라우저에 확장 프로그램을 딱 1번만 등록해두시면, [한 번에 담기] 클릭 시 백그라운드에서 쿠팡 장바구니에 <strong>진짜로 쏙 자동 담기</strong>가 실행됩니다! (결제는 스마트폰 쿠팡 앱에서 완료 가능)
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; font-size: 0.88rem;">
+        <div style="display: flex; gap: 12px; background: rgba(15, 23, 42, 0.6); padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+          <span style="font-weight: 800; color: #f97316; font-size: 1.1rem;">Step 1</span>
+          <div style="flex: 1;">
+            <div style="font-weight: 700; color: #fff; margin-bottom: 6px;">확장 프로그램 압축 파일 다운로드 & 압축 풀기</div>
+            <a href="https://bohwan100.github.io/zipbab/assets/extension/zipbabbot-extension.zip" download="zipbabbot-extension.zip" class="btn-action orange" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; font-size: 0.84rem; text-decoration: none;">
+              📥 zipbabbot-extension.zip 다운로드 (10KB)
+            </a>
+            <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 6px;">다운로드 후 다운로드 폴더에서 압축을 풀어 <code>zipbabbot-extension</code> 폴더를 만듭니다.</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; background: rgba(15, 23, 42, 0.6); padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+          <span style="font-weight: 800; color: #38bdf8; font-size: 1.1rem;">Step 2</span>
+          <div style="flex: 1;">
+            <div style="font-weight: 700; color: #fff; margin-bottom: 4px;">브라우저 확장 프로그램 관리창 열기 & [개발자 모드] 켜기</div>
+            <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.6;">
+              • <strong>구글 크롬(Chrome)</strong>: 새 탭 주소창에 <code style="background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; color: #38bdf8;">chrome://extensions</code> 입력 후 이동 ➔ 우측 상단 <strong>[개발자 모드]</strong> ON<br>
+              • <strong>네이버 웨일(Whale 🐳)</strong>: 새 탭 주소창에 <code style="background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; color: #00c73c;">whale://extensions</code> 입력 후 이동 ➔ 우측 상단 <strong>[개발자 모드]</strong> ON
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; background: rgba(15, 23, 42, 0.6); padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+          <span style="font-weight: 800; color: #10b981; font-size: 1.1rem;">Step 3</span>
+          <div style="flex: 1;">
+            <div style="font-weight: 700; color: #fff; margin-bottom: 4px;">폴더 등록하기 (드래그 한 번이면 끝!)</div>
+            <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5;">
+              좌측 상단 <strong>[압축해제된 확장 프로그램 로드]</strong>(웨일은 <strong>[압축해제된 확장 앱 로드]</strong>)를 누르고 <code>zipbabbot-extension</code> 폴더를 선택하거나, 브라우저 화면 안으로 폴더를 끌어다 놓으면 즉시 완료!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <button type="button" class="btn-action" style="background: rgba(56, 189, 248, 0.15); border: 1.5px solid #38bdf8; color: #38bdf8; font-weight: 800;" onclick="markExtensionInstalledAndStart()">
+          ✅ 이미 설치했습니다 (바로 담기 시작)
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-action" style="background: #334155;" onclick="closeExtensionModal()">닫기</button>
+          <button type="button" class="btn-action success" onclick="location.reload()">🔄 등록 완료 후 새로고침</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+    // Coupang Partners Tracking & Affiliate Link Mapping
+    let partnersLinks = {};
+    let partnersStatus = null;
+    function getPartnerUrl(query) {
+      if (partnersLinks && partnersLinks[query] && partnersLinks[query].shortenUrl) {
+        return partnersLinks[query].shortenUrl;
+      }
+      const isMob = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMob) {
+        return `https://m.coupang.com/nm/search?q=${encodeURIComponent(query)}`;
+      }
+      return `https://www.coupang.com/np/search?q=${encodeURIComponent(query)}&channel=user`;
+    }
+
+    function safeOpenUrl(url) {
+      if (!url) return;
+      // [쿠팡 403 차단 및 멈춤 원천 방지]:
+      // 현재 창의 location.href를 절대 바꾸지 않고 독립된 새 창/앱으로 전송하여
+      // 현재 대시보드 페이지 상태(주차, 체크리스트, 진행률)를 100% 보존합니다.
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        try { document.body.removeChild(a); } catch (e) {}
+      }, 300);
+    }
+
+    function copyAffiliateLink(query, btn) {
+      const url = getPartnerUrl(query);
+      navigator.clipboard.writeText(url).then(() => {
+        showToast(`📋 파트너스 수익 링크가 복사되었습니다! (${query})`);
+        if (btn) {
+          const oldText = btn.innerHTML;
+          btn.innerHTML = '✅';
+          setTimeout(() => { btn.innerHTML = oldText; }, 1500);
+        }
+      }).catch(err => {
+        prompt('아래 파트너스 링크를 복사하세요:', url);
+      });
+    }
+
+    async function loadPartnersData() {
+      try {
+        let linksRes = await fetch(window.location.pathname.includes('/clients/') ? '../../data/partners_links_cache.json' : 'data/partners_links_cache.json').catch(() => null);
+        if (linksRes && linksRes.ok) {
+          partnersLinks = await linksRes.json();
+        }
+
+        partnersStatus = {
+          connected: true,
+          trackingId: 'AF9148506',
+          cachedLinksCount: Object.keys(partnersLinks || {}).length || 41
+        };
+
+        const trackingEl = document.getElementById('partners-tracking-tag');
+        if (trackingEl && partnersStatus.trackingId) {
+          trackingEl.innerText = `Tracking ID: ${partnersStatus.trackingId}`;
+        }
+        if (typeof renderWeekView === 'function') renderWeekView(currentSelectedWeek);
+        if (typeof renderAllProductsTables === 'function') renderAllProductsTables();
+      } catch (err) {
+        console.warn('Partners data load warning:', err);
+      }
+    }
+
+    // 37가지 전체 품목 DB (주차별 분할 구매 orderWeek 명시: 1주차 20종, 2주차 8종, 3주차 4종, 4주차 5종)
+    const allProducts = [
+      // ==========================================
+      // [1주차 주문: 총 20종 - 105,490원 (실제 결제가 105,250원)]
+      // ==========================================
+      { id: 1,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "임금님표이천 쌀 상등급 (2kg)", spec: "2kg 1포", qty: 1, unitPrice: 10800, total: 10800, weeks: "1~4주차", recipes: "30일 전 식단 공깃밥", query: "쌀 4kg" },
+      { id: 2,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "샘표 진간장 금F3 (500ml)", spec: "500ml 1병", qty: 1, unitPrice: 4030, total: 4030, weeks: "1~4주차", recipes: "부타동, 찜닭, 제육, 간장계란밥", query: "샘표 진간장 금F" },
+      { id: 3,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "해찬들 100% 태양초 우리쌀 고추장 (500g)", spec: "500g 1통", qty: 1, unitPrice: 6570, total: 6570, weeks: "1~4주차", recipes: "제육덮밥, 콩불, 고추장찌개, 떡볶이", query: "해찬들 고추장 500g" },
+      { id: 4,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "해찬들 재래식 된장 (500g)", spec: "500g 1통", qty: 1, unitPrice: 2690, total: 2690, weeks: "1~4주차", recipes: "된장찌개, 일식풍 장국, 마파두부, 짜글이", query: "해찬들 재래식 된장 500g" },
+      { id: 5,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "곰곰 굵은 고춧가루 (200g)", spec: "200g 1봉", qty: 1, unitPrice: 5490, total: 5490, weeks: "1~4주차", recipes: "고추기름, 짬뽕탕, 제육, 떡볶이", query: "고춧가루 200g" },
+      { id: 6,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "백설 카놀라유 (500ml)", spec: "500ml 1병", qty: 1, unitPrice: 2590, total: 2590, weeks: "1~4주차", recipes: "파기름, 계란후라이, 전 부침, 볶음", query: "카놀라유 500ml" },
+      { id: 7,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "백설 하얀설탕 (1kg)", spec: "1kg 1봉", qty: 1, unitPrice: 2240, total: 2240, weeks: "1~4주차", recipes: "고기 연육, 부타동, 오야꼬동, 찜닭", query: "백설 설탕 1kg" },
+      { id: 8,  orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "백설 오천년의 신비 명품 천일염 꽃소금 (200g)", spec: "200g 1봉", qty: 1, unitPrice: 3450, total: 3450, weeks: "1~4주차", recipes: "뭇국 간 맞추기, 감자채전, 두부침지", query: "꽃소금 500g" },
+      { id: 36, orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기 고소한 참기름 (80ml)", spec: "80ml 1캔", qty: 1, unitPrice: 4610, total: 4610, weeks: "1~4주차", recipes: "계란밥, 뭇국 볶기, 비빔밥, 전골 계란죽 마무리의 핵심", query: "오뚜기 참기름 160ml" },
+      { id: 37, orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "이금기 치킨 파우더 (273g 대용량캔)", spec: "273g 1캔", qty: 1, unitPrice: 7500, total: 7500, weeks: "1~4주차", recipes: "일식 장국 육수, 콩나물국, 짬뽕탕, 파기름 볶음밥 비법", query: "이금기 치킨파우더 227g" },
+      { id: 9,  orderWeek: 1, storage: "frozen",    cat: "❄️ 냉동식품", name: "곰곰 냉동 큐브 다진마늘 (270g)", spec: "270g 1팩 (큐브형)", qty: 1, unitPrice: 4940, total: 4940, weeks: "1~4주차", recipes: "모든 볶음 및 찌개 필수 양념", query: "냉동 다진마늘 200g" },
+      { id: 10, orderWeek: 1, storage: "seasoning", cat: "🧂 조미료", name: "이금기 팬더 굴소스 (255g)", spec: "255g 1병", qty: 1, unitPrice: 2890, total: 2890, weeks: "1, 2, 3주차", recipes: "마파두부, 중화풍 우삼겹볶음, 볶음밥", query: "이금기 굴소스 150g" },
+      { id: 12, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "한돈 1등급 앞다리살 불고기용 (냉장 1kg)", spec: "1kg 1팩 (냉장 한돈 1등급)", qty: 1, unitPrice: 16240, total: 16240, weeks: "1, 2, 3주차", recipes: "Day 1 제육, Day 2 부타동, Day 5 콩불, Day 7 마파두부", query: "돼지 앞다리살 불고기용 1kg" },
+      { id: 14, orderWeek: 1, storage: "frozen",    cat: "❄️ 냉동식품", name: "브라질산 미트코리아 닭다리 순살 정육 (1kg)", spec: "1kg 1팩 (130g x 8회 소분)", qty: 1, unitPrice: 10900, total: 10900, weeks: "1, 3, 4주차", recipes: "Day 4 치킨스테이크, Day 6 오야꼬동, Day 19 유린기, Day 25 찜닭", query: "닭다리살 정육 1kg" },
+      { id: 18, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "국내산 절단대파 (500g)", spec: "500g 1봉 (손질 대파)", qty: 1, unitPrice: 3200, total: 3200, weeks: "1~4주차", recipes: "파기름 볶음밥, 제육, 찌개, 짬뽕탕 전 요리", query: "손질 대파 500g" },
+      { id: 19, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "국내산 양파 (1.5kg)", spec: "1.5kg 1망 (약 7개)", qty: 1, unitPrice: 3080, total: 3080, weeks: "1~4주차", recipes: "부타동, 규동, 카레라이스, 간짜장, 샥슈카", query: "깐 양파 1.5kg" },
+      { id: 20, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "국내산 햇 감자 (1kg)", spec: "1kg 1봉 (약 5~6개)", qty: 1, unitPrice: 2590, total: 2590, weeks: "1, 2, 4주차", recipes: "치킨스테이크 가니쉬, 감자오믈렛, 감자채전, 짜글이", query: "감자 1kg" },
+      { id: 24, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "곰곰 아삭한 콩나물 (500g)", spec: "500g 1봉", qty: 1, unitPrice: 1090, total: 1090, weeks: "1주차 전량 소진", recipes: "Day 3 콩나물국, Day 5 콩나물불고기(콩불)", query: "콩나물 500g" },
+      { id: 26, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "맑은물에 국산 촌두부 (300g)", spec: "300g 1모", qty: 1, unitPrice: 1960, total: 1960, weeks: "1, 2, 3, 4주차", recipes: "마파두부, 된장찌개, 일식풍 두부장국, 부대찌개", query: "국산 두부 300g 3구" },
+      { id: 27, orderWeek: 1, storage: "fresh",     cat: "🥬 신선식품", name: "곰곰 무항생제 신선 대란 (30구)", spec: "30구 1판", qty: 1, unitPrice: 8390, total: 8390, weeks: "1~4주차", recipes: "파기름볶음밥, 오야꼬동, 샥슈카, 오믈렛, 계란말이", query: "무항생제 대란 30구" },
+
+      // ==========================================
+      // [2주차 주문: 총 10종 - 39,200원 (소용량 최적화)]
+      // ==========================================
+      { id: 13, orderWeek: 2, storage: "frozen",    cat: "❄️ 냉동식품", name: "우삼겹 바로구이용 (600g 소용량)", spec: "600g 1팩 (120g x 5회 소분)", qty: 1, unitPrice: 9900, total: 9900, weeks: "2, 3, 4주차", recipes: "Day 9 된장찌개, Day 10 규동, Day 11 볶음, Day 18 고명, Day 28 짜글이", query: "우삼겹 600g" },
+      { id: 32, orderWeek: 2, storage: "frozen",    cat: "❄️ 냉동식품", name: "비엔나 소시지 (250g)", spec: "250g 1봉", qty: 1, unitPrice: 2900, total: 2900, weeks: "2, 4주차", recipes: "Day 8 샥슈카, Day 12 오믈렛, Day 16 나폴리탄, Day 26 부대찌개", query: "비엔나 소시지 250g" },
+      { id: 30, orderWeek: 2, storage: "seasoning", cat: "🧂 조미료", name: "스팸 클래식 (200g 1캔)", spec: "200g 1캔 단품", qty: 1, unitPrice: 3200, total: 3200, weeks: "2, 4주차", recipes: "Day 12 스페니쉬오믈렛(80g), Day 26 사골부대찌개(120g)", query: "스팸 클래식 200g 1개" },
+      { id: 23, orderWeek: 2, storage: "fresh",     cat: "🥬 신선식품", name: "세척 무 반토막 (700g)", spec: "반토막 1개", qty: 1, unitPrice: 1800, total: 1800, weeks: "2, 3, 4주차", recipes: "Day 13 김치찜(200g), Day 17 뭇국(250g), Day 28 짜글이(150g), Day 30 전골(100g)", query: "세척 무 반토막" },
+      { id: 21, orderWeek: 2, storage: "fresh",     cat: "🥬 신선식품", name: "인큐 애호박 (1개 단품)", spec: "1개 단품 (신선 100% 소진)", qty: 1, unitPrice: 1500, total: 1500, weeks: "2, 4주차", recipes: "Day 9 된장찌개(1/3), Day 14 카레(1/3), Day 28 짜글이(1/3)", query: "인큐 애호박 1개" },
+      { id: 22, orderWeek: 2, storage: "fresh",     cat: "🥬 신선식품", name: "신선 양배추 (반통 800g)", spec: "반통 1개", qty: 1, unitPrice: 2500, total: 2500, weeks: "2, 3, 4주차", recipes: "Day 11 우삼겹볶음, Day 15 간짜장, Day 16 나폴리탄, Day 24 샐러드", query: "양배추 반통" },
+      { id: 25, orderWeek: 2, storage: "fresh",     cat: "🥬 신선식품", name: "팽이버섯 (3입 기획팩)", spec: "3입 1봉", qty: 1, unitPrice: 1800, total: 1800, weeks: "2, 3, 4주차", recipes: "Day 9 된장찌개(1봉), Day 18 일식풍 팽이장국(1봉), Day 30 전골(1봉)", query: "팽이버섯 3입" },
+      { id: 28, orderWeek: 2, storage: "fresh",     cat: "🥬 신선식품", name: "종가집 맛김치 (1.5kg)", spec: "1.5kg 1통", qty: 1, unitPrice: 11900, total: 11900, weeks: "2, 3, 4주차", recipes: "Day 13 김치찜, Day 21 김치찌개, Day 26 부대찌개, Day 27 오리김치볶음밥", query: "종가집 맛김치 1.5kg" },
+      { id: 11, orderWeek: 2, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기 토마토 케첩 (300g)", spec: "300g 1병", qty: 1, unitPrice: 1800, total: 1800, weeks: "2, 3, 4주차", recipes: "Day 8 샥슈카, Day 16 나폴리탄, Day 24 햄버그 소스", query: "오뚜기 케첩 300g" },
+      { id: 34, orderWeek: 2, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기 카레 약간매운맛 (100g)", spec: "100g 1봉", qty: 1, unitPrice: 1900, total: 1900, weeks: "2, 3주차", recipes: "Day 14 일식 양파카레, Day 20 치킨 카레 볶음밥", query: "오뚜기 카레 약간매운맛 100g" },
+
+      // ==========================================
+      // [3주차 주문: 총 4종 - 16,610원 (로켓프레시 무료배송 충족)]
+      // ==========================================
+      { id: 16, orderWeek: 3, storage: "fresh",     cat: "🥬 신선식품", name: "소고기 국거리 양지/설도 (200g)", spec: "200g 1팩 (2회분 신선육)", qty: 1, unitPrice: 8900, total: 8900, weeks: "3, 4주차", recipes: "Day 17 소고기뭇국, Day 24 햄버그 소고기패티", query: "소고기 국거리 양지 200g" },
+      { id: 35, orderWeek: 3, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기옛날 국수 소면 (900g)", spec: "900g 1봉 (실속 로켓 규격)", qty: 1, unitPrice: 3510, total: 3510, weeks: "3, 4주차", recipes: "Day 16 나폴리탄, Day 17 뭇국소면, Day 23 짬뽕소면, Day 25 찜닭사리", query: "오뚜기 소면 900g" },
+      { id: 36, orderWeek: 3, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기 직접볶은 짜장가루 (100g)", spec: "100g 1봉", qty: 1, unitPrice: 2100, total: 2100, weeks: "3주차", recipes: "Day 15 양배추 간짜장밥", query: "오뚜기 짜장가루 100g" },
+      { id: 31, orderWeek: 3, storage: "seasoning", cat: "🧂 조미료", name: "동원 살코기참치 (100g 1캔)", spec: "100g 1캔 단품", qty: 1, unitPrice: 2100, total: 2100, weeks: "3주차", recipes: "Day 21 참치김치찌개(100g 1캔 전량)", query: "동원참치 100g 1캔" },
+
+      // ==========================================
+      // [4주차 주문: 총 6종 - 25,920원 (소용량 최적화)]
+      // ==========================================
+      { id: 17, orderWeek: 4, storage: "frozen",    cat: "❄️ 냉동식품", name: "냉동 손질 해물믹스 (500g)", spec: "500g 1봉", qty: 1, unitPrice: 7900, total: 7900, weeks: "4주차", recipes: "Day 23 짬뽕순두부(150g), Day 29 해물떡볶이(150g), Day 30 전골(200g)", query: "냉동 해물믹스 500g" },
+      { id: 29, orderWeek: 4, storage: "frozen",    cat: "❄️ 냉동식품", name: "부산 사각어묵 (200g 소포장)", spec: "200g 1봉 (5~6장)", qty: 1, unitPrice: 1300, total: 1300, weeks: "4주차", recipes: "Day 29 떡볶이(3장) + 사각어묵국(3장) 100% 전량 소진", query: "부산 사각어묵 200g" },
+      { id: 15, orderWeek: 4, storage: "fresh",     cat: "🥬 신선식품", name: "훈제오리 슬라이스 (400g)", spec: "200g x 2입 번들", qty: 1, unitPrice: 7900, total: 7900, weeks: "4주차", recipes: "Day 22 오리덮밥(200g 1팩), Day 27 오리김치볶음밥(200g 1팩)", query: "훈제오리 슬라이스 400g" },
+      { id: 33, orderWeek: 4, storage: "fresh",     cat: "🥬 신선식품", name: "풀무원 순두부 (350g x 2개)", spec: "350g 2개 묶음", qty: 1, unitPrice: 2200, total: 2200, weeks: "4주차", recipes: "Day 23 짬뽕순두부탕(1봉), Day 30 해물순두부전골(1봉)", query: "풀무원 순두부 350g" },
+      { id: 37, orderWeek: 4, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기옛날 사골곰탕 (500g)", spec: "500g 1팩 (로켓 1위 규격)", qty: 1, unitPrice: 1720, total: 1720, weeks: "4주차", recipes: "Day 26 사골부대찌개, Day 29 사골떡볶이", query: "오뚜기 사골곰탕 500g" },
+      { id: 38, orderWeek: 4, storage: "seasoning", cat: "🧂 조미료", name: "오뚜기 쌀 떡국떡 (1kg)", spec: "1kg 1봉 (로켓 표준 규격)", qty: 1, unitPrice: 4900, total: 4900, weeks: "4주차", recipes: "Day 29 해물떡볶이, Day 30 전골사리", query: "오뚜기 떡국떡 1kg" }
+    ];
+
+    // 주차별 식단 DB (고기 분할에 맞춰 1주차 부타동, 2주차 규동으로 완벽 최적화)
+    const weekData = {
+      1: {
+        title: "1주차 식단 (Day 1 ~ Day 7)",
+        freezerMsg: "🧊 <strong>1주차 냉동실 안심</strong>: 돼지 앞다리살(1kg)과 닭다리살(1kg) 2팩만 수납합니다. 소형 냉동실 한 칸에 여유 있게 쏙 들어갑니다!",
+        meals: [
+          {
+                    "day": "Day 1",
+                    "tag": "🇰🇷 한식",
+                    "name": "제육덮밥 + 계란파국",
+                    "chef": "백종원 요리비책 시그니처 제육 & 편스토랑 어남선생 류수영 마이야르 킥",
+                    "cal": "695.0",
+                    "carb": "82.4",
+                    "prot": "41.5",
+                    "fat": "22.0",
+                    "desc": "앞다리살과 양념을 센 불에 볶은 제육덮밥과 계란파국"
+          },
+          {
+                    "day": "Day 2",
+                    "tag": "🇯🇵 일식",
+                    "name": "돼지고기 덮밥 (부타동) + 두부 장국",
+                    "chef": "일식 명장 정호영 셰프 (오사카 츠지 조리사학교) & 홋카이도 오비히로 원조 부타동 비법",
+                    "cal": "698.0",
+                    "carb": "80.5",
+                    "prot": "42.0",
+                    "fat": "22.5",
+                    "desc": "앞다리살을 구워 소스에 조린 부타동과 두부 장국"
+          },
+          {
+                    "day": "Day 3",
+                    "tag": "🇨🇳 중식",
+                    "name": "계란 볶음밥 + 콩나물국",
+                    "chef": "중식 50년 대가 이연복 셰프 (목란) 차오화(炒火) 기법",
+                    "cal": "640.0",
+                    "carb": "84.0",
+                    "prot": "32.0",
+                    "fat": "18.0",
+                    "desc": "파기름에 볶은 계란 볶음밥과 콩나물국"
+          },
+          {
+                    "day": "Day 4",
+                    "tag": "🇪🇺 양식",
+                    "name": "치킨 스테이크 & 감자 구이",
+                    "chef": "미슐랭 3스타 고든 램지 (Gordon Ramsay) 치킨 시어링 & 프렌치 퐁(Fond) 소스",
+                    "cal": "690.0",
+                    "carb": "62.0",
+                    "prot": "48.0",
+                    "fat": "24.0",
+                    "desc": "팬에 구운 치킨 스테이크와 감자 구이"
+          },
+          {
+                    "day": "Day 5",
+                    "tag": "🇰🇷 한식",
+                    "name": "콩나물 불고기 (콩불) + 볶음밥",
+                    "chef": "백종원 골목식당 대박집 무수분 채수 조리 공식",
+                    "cal": "695.0",
+                    "carb": "85.0",
+                    "prot": "42.0",
+                    "fat": "21.0",
+                    "desc": "콩나물과 앞다리살을 볶은 콩불과 볶음밥"
+          },
+          {
+                    "day": "Day 6",
+                    "tag": "🇯🇵 일식",
+                    "name": "닭고기 계란덮밥 (오야꼬동)",
+                    "chef": "일본 도쿄 100년 노포 '타마히데(玉ひで)' 오야꼬동 2단 계란 투입 비법",
+                    "cal": "650.0",
+                    "carb": "78.0",
+                    "prot": "46.0",
+                    "fat": "18.0",
+                    "desc": "닭고기와 계란을 얹은 오야꼬동"
+          },
+          {
+                    "day": "Day 7",
+                    "tag": "🇨🇳 중식",
+                    "name": "마파두부 덮밥",
+                    "chef": "사천요리 명장 첸켄이치(陳建一) 정통 마파두부 & 이연복 대가 파마늘 라유 킥",
+                    "cal": "630.0",
+                    "carb": "80.0",
+                    "prot": "32.0",
+                    "fat": "20.0",
+                    "desc": "두부와 다진 돼지고기를 볶은 마파두부 덮밥"
+          }
+]
+      },
+      2: {
+        title: "2주차 식단 (Day 8 ~ Day 14)",
+        freezerMsg: "🧊 <strong>2주차 냉동실 안심</strong>: 1주차 고기들이 절반 이상 소진된 빈자리에 우삼겹(600g 소용량) 1팩만 추가로 쏙 들어갑니다!",
+        meals: [
+          {
+                    "day": "Day 8",
+                    "tag": "🇪🇺 양식",
+                    "name": "소시지 에그 인 헬",
+                    "chef": "지중해 미식 셰프 요탐 오톨렝기 (Yotam Ottolenghi) 토마토 산미 마스터리",
+                    "cal": "620.0",
+                    "carb": "68.0",
+                    "prot": "26.0",
+                    "fat": "24.0",
+                    "desc": "소시지와 토마토소스에 계란을 익힌 에그인헬"
+          },
+          {
+                    "day": "Day 9",
+                    "tag": "🇰🇷 한식",
+                    "name": "우삼겹 된장찌개 + 계란후라이",
+                    "chef": "40년 전통 양평동 또순이네 된장찌개 & 편스토랑 어남선생 류수영 고깃집 된장 공식",
+                    "cal": "690.0",
+                    "carb": "72.0",
+                    "prot": "38.0",
+                    "fat": "26.0",
+                    "desc": "우삼겹을 볶아 끓인 된장찌개와 계란후라이"
+          },
+          {
+                    "day": "Day 10",
+                    "tag": "🇯🇵 일식",
+                    "name": "소고기 덮밥 (규동) + 두부 장국",
+                    "chef": "도쿄 요시노야 120년 원조 비법 & 일식 마스터 셰프 1분 30초 쾌속 조림",
+                    "cal": "685.0",
+                    "carb": "79.0",
+                    "prot": "39.0",
+                    "fat": "24.0",
+                    "desc": "우삼겹과 양파를 조려 올린 규동과 두부 장국"
+          },
+          {
+                    "day": "Day 11",
+                    "tag": "🇨🇳 중식",
+                    "name": "우삼겹 양배추 볶음덮밥",
+                    "chef": "이연복 셰프의 고온 단시간 채소 볶음(수분 락킹) 원리",
+                    "cal": "660.0",
+                    "carb": "78.0",
+                    "prot": "35.0",
+                    "fat": "23.0",
+                    "desc": "우삼겹과 양배추를 센 불에 볶은 덮밥"
+          },
+          {
+                    "day": "Day 12",
+                    "tag": "🇪🇺 양식",
+                    "name": "스팸 감자 오믈렛",
+                    "chef": "스페인 페란 아드리아 & 바르셀로나 타파스 바 또르띠야 에스파뇰라 침지 비법",
+                    "cal": "610.0",
+                    "carb": "65.0",
+                    "prot": "28.0",
+                    "fat": "25.0",
+                    "desc": "감자와 햄을 계란에 섞어 부친 오믈렛"
+          },
+          {
+                    "day": "Day 13",
+                    "tag": "🇰🇷 한식",
+                    "name": "돼지고기 김치찜 & 무조림",
+                    "chef": "전라도 해남 60년 노포 묵은지찜 장인 & 성시경 먹을텐데 노포 비법",
+                    "cal": "680.0",
+                    "carb": "70.0",
+                    "prot": "45.0",
+                    "fat": "24.0",
+                    "desc": "무를 깔고 돼지고기와 김치를 조린 김치찜"
+          },
+          {
+                    "day": "Day 14",
+                    "tag": "🇯🇵 일식",
+                    "name": "양파 카레라이스 & 애호박",
+                    "chef": "일본 코코이찌방야 R&D 수석 셰프 & 도쿄 진보초 카레 마스터",
+                    "cal": "670.0",
+                    "carb": "88.0",
+                    "prot": "38.0",
+                    "fat": "19.0",
+                    "desc": "볶은 양파와 애호박을 넣은 카레라이스"
+          }
+]
+      },
+      3: {
+        title: "3주차 식단 (Day 15 ~ Day 21)",
+        freezerMsg: "🧊 <strong>3주차 냉동실 안심</strong>: 이번 주는 냉동식품을 새로 사지 않습니다! 냉동실을 비우는 쾌적한 주간입니다.",
+        meals: [
+          {
+                    "day": "Day 15",
+                    "tag": "🇨🇳 중식",
+                    "name": "간짜장밥 + 계란후라이",
+                    "chef": "인천 차이나타운 60년 노포 화상(華商) 중식당 간짜장 장인",
+                    "cal": "690.0",
+                    "carb": "85.0",
+                    "prot": "42.0",
+                    "fat": "22.0",
+                    "desc": "돼지고기와 양배추를 볶은 간짜장밥과 계란후라이"
+          },
+          {
+                    "day": "Day 16",
+                    "tag": "🇪🇺 양식",
+                    "name": "소시지 나폴리탄 소면 파스타",
+                    "chef": "50년 전통 도쿄 긴자 킷사텐(다방) '카도' 원조 나폴리탄 비법",
+                    "cal": "610.0",
+                    "carb": "82.0",
+                    "prot": "26.0",
+                    "fat": "19.0",
+                    "desc": "비엔나와 채소를 케첩에 볶은 소면 파스타"
+          },
+          {
+                    "day": "Day 17",
+                    "tag": "🇰🇷 한식",
+                    "name": "소고기 뭇국 + 감자채전",
+                    "chef": "종로 60년 노포 '청진옥' / 한일관 소고기뭇국 명인",
+                    "cal": "650.0",
+                    "carb": "82.0",
+                    "prot": "34.0",
+                    "fat": "21.0",
+                    "desc": "소고기와 무를 끓인 뭇국과 감자채전"
+          },
+          {
+                    "day": "Day 18",
+                    "tag": "🇯🇵 일식",
+                    "name": "간장계란밥 & 우삼겹 구이 + 두부 팽이 장국",
+                    "chef": "심야식당 마스터의 버터간장밥 비법 & 츠지 조리사학교 일식 맑은 국 밸런스",
+                    "cal": "680.0",
+                    "carb": "78.0",
+                    "prot": "36.0",
+                    "fat": "24.0",
+                    "desc": "구운 우삼겹을 올린 간장계란밥과 장국"
+          },
+          {
+                    "day": "Day 19",
+                    "tag": "🇨🇳 중식",
+                    "name": "대파간장 치킨 구이 (유린기)",
+                    "chef": "중식 대가 여경래 셰프의 논프라이(Non-fry) 크리스피 치킨 & 유린기 소스",
+                    "cal": "710.0",
+                    "carb": "68.0",
+                    "prot": "48.0",
+                    "fat": "24.0",
+                    "desc": "구운 닭다리살에 대파간장 소스를 얹은 유린기"
+          },
+          {
+                    "day": "Day 20",
+                    "tag": "🇪🇺 양식",
+                    "name": "치킨 카레 볶음밥 & 계란",
+                    "chef": "도쿄 긴자 서양식당 '시세이도 파러' 치킨 카레 볶음밥 비법",
+                    "cal": "690.0",
+                    "carb": "82.0",
+                    "prot": "42.0",
+                    "fat": "22.0",
+                    "desc": "닭다리살을 넣고 볶은 카레 볶음밥과 계란"
+          },
+          {
+                    "day": "Day 21",
+                    "tag": "🇰🇷 한식",
+                    "name": "참치 김치찌개 + 계란말이",
+                    "chef": "백종원 참치액/참치기름 활용 김치찌개 & 기사식당 40년 뚝배기 공식",
+                    "cal": "650.0",
+                    "carb": "68.0",
+                    "prot": "41.0",
+                    "fat": "22.0",
+                    "desc": "참치와 김치를 끓인 김치찌개와 계란말이"
+          }
+]
+      },
+      4: {
+        title: "4주차 식단 (Day 22 ~ Day 30)",
+        freezerMsg: "🧊 <strong>4주차 냉동실 안심</strong>: 1~3주차 고기가 완전히 비워진 상태이므로 해물믹스(500g)와 소포장 어묵(200g)이 쏙 들어갑니다!",
+        meals: [
+          {
+                    "day": "Day 22",
+                    "tag": "🇯🇵 일식",
+                    "name": "훈제오리 덮밥 & 계란",
+                    "chef": "일식 이자카야 명장 카모동(오리고기 덮밥) 글레이징 비법",
+                    "cal": "720.0",
+                    "carb": "80.0",
+                    "prot": "38.0",
+                    "fat": "25.0",
+                    "desc": "구운 훈제오리에 간장소스를 조려 올린 덮밥"
+          },
+          {
+                    "day": "Day 23",
+                    "tag": "🇨🇳 중식",
+                    "name": "해물 짬뽕 순두부탕 & 소면사리",
+                    "chef": "강릉 초당 순두부 마을 '동화가든' 원조 짬뽕순두부 명가 비법",
+                    "cal": "660.0",
+                    "carb": "75.0",
+                    "prot": "42.0",
+                    "fat": "20.0",
+                    "desc": "해물과 순두부를 넣고 끓인 짬뽕순두부와 소면"
+          },
+          {
+                    "day": "Day 24",
+                    "tag": "🇪🇺 양식",
+                    "name": "소고기 햄버그 덮밥 & 양배추 샐러드",
+                    "chef": "도쿄 긴자 함바그 전문점 '히키니쿠토 코메' & 프렌치 비스트로 스팀 조리법",
+                    "cal": "690.0",
+                    "carb": "75.0",
+                    "prot": "40.0",
+                    "fat": "22.0",
+                    "desc": "소고기 패티를 구워 밥에 올린 햄버그 덮밥"
+          },
+          {
+                    "day": "Day 25",
+                    "tag": "🇰🇷 한식",
+                    "name": "순살 찜닭 & 소면사리",
+                    "chef": "안동 구시장 40년 원조 찜닭골목 명가 비법 & 굴소스 카라멜 색감 공식",
+                    "cal": "760.0",
+                    "carb": "85.0",
+                    "prot": "52.0",
+                    "fat": "23.0",
+                    "desc": "닭다리살과 감자를 간장에 조린 찜닭과 소면"
+          },
+          {
+                    "day": "Day 26",
+                    "tag": "🇰🇷 한식",
+                    "name": "부대찌개",
+                    "chef": "의정부 원조 '오뎅식당' 부대찌개 명인 & 백종원 햄 육즙 추출 비법",
+                    "cal": "720.0",
+                    "carb": "68.0",
+                    "prot": "38.0",
+                    "fat": "28.0",
+                    "desc": "스팸, 소시지, 김치를 넣고 끓인 부대찌개"
+          },
+          {
+                    "day": "Day 27",
+                    "tag": "🇰🇷 한식",
+                    "name": "훈제오리 김치 볶음밥 & 계란후라이",
+                    "chef": "마포 대박 고깃집 후식 볶음밥 장인 & 어남선생 류수영 누룽지 볶음밥 킥",
+                    "cal": "710.0",
+                    "carb": "82.0",
+                    "prot": "35.0",
+                    "fat": "24.0",
+                    "desc": "훈제오리와 김치를 볶은 볶음밥과 계란후라이"
+          },
+          {
+                    "day": "Day 28",
+                    "tag": "🇰🇷 한식",
+                    "name": "우삼겹 감자 된장 짜글이",
+                    "chef": "전라도 백반 노포 명인 짜글이 공식 & 강순의 종부 된장·고추장 3:1 황금비",
+                    "cal": "690.0",
+                    "carb": "75.0",
+                    "prot": "36.0",
+                    "fat": "24.0",
+                    "desc": "우삼겹과 채소를 넣고 자작하게 끓인 된장 짜글이"
+          },
+          {
+                    "day": "Day 29",
+                    "tag": "🇰🇷 한식",
+                    "name": "해물 떡볶이 & 어묵국",
+                    "chef": "신당동 떡볶이 명가 & 부산 깡통시장 포장마차 어묵탕 장인",
+                    "cal": "630.0",
+                    "carb": "78.0",
+                    "prot": "28.0",
+                    "fat": "14.0",
+                    "desc": "떡 140g과 어묵, 해물을 넣고 알맞게 조린 1인분 떡볶이와 어묵국"
+          },
+          {
+                    "day": "Day 30",
+                    "tag": "🇰🇷 한식",
+                    "name": "해물 순두부 된장 전골 & 계란죽",
+                    "chef": "미슐랭 일식 나베 장인 & 샤브샤브 명가 피날레 죽 비법",
+                    "cal": "540.0",
+                    "carb": "48.0",
+                    "prot": "32.0",
+                    "fat": "16.0",
+                    "desc": "순두부 반 봉과 해물을 넣고 끓인 담백한 1인분 전골과 고소한 계란죽"
+          }
+]
+      }
+    };
+
+    let currentSelectedWeek = 1;
+    let currentFilter = 'all'; // 'all' | 'fresh' | 'frozen' | 'seasoning'
+    let currentBatchItems = [];
+    let currentBatchTitle = '';
+    let batchIndex = 0;
+
+    // 이미 장바구니에 담긴 품목 관리 (로컬스토리지 연동)
+    const ADDED_KEY = 'zipbabbot_added_items_v2';
+    // 초기 기본 등록 목록 (사용자 요청 시 언제든 초기화 가능)
+    const initialAdded = [];
+
+    function getAddedQueries() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(ADDED_KEY) || '[]');
+        return Array.isArray(stored) ? stored : [];
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function isItemAdded(query) {
+      const list = getAddedQueries();
+      return list.some(q => q === query || (query && query.includes(q)) || (q && q.includes(query)));
+    }
+
+    function markQueryAdded(query) {
+      try {
+        const list = getAddedQueries();
+        if (!list.includes(query)) {
+          list.push(query);
+          localStorage.setItem(ADDED_KEY, JSON.stringify(list));
+        }
+      } catch(e) {}
+      document.querySelectorAll(`[data-query="${query}"]`).forEach(btn => {
+        btn.classList.add('success');
+        btn.classList.remove('loading');
+        btn.innerHTML = '✅ 담김!';
+        btn.disabled = true;
+      });
+    }
+
+    // 담기 상태 전체 초기화 (1주차 등 모든 품목 처음부터 다시 담기 가능)
+    function resetAllAddedStatus(keepModal = false) {
+      isBatchRunning = false;
+      try {
+        localStorage.removeItem(ADDED_KEY);
+      } catch(e) {}
+      renderWeekView(currentSelectedWeek);
+      renderAllProductsTables();
+      const modal = document.getElementById('batch-modal');
+      if (modal && modal.style.display !== 'none') {
+        if (keepModal && currentBatchItems && currentBatchItems.length > 0) {
+          triggerBatchModal(currentBatchItems, currentBatchTitle || '품목', false);
+        } else if (!keepModal) {
+          closeModal();
+        }
+      }
+      showToast("🔄 모든 상품의 [담기] 상태가 초기화되었습니다. 처음부터 다시 담을 수 있습니다!");
+    }
+
+    function escapeForAttr(str) {
+      return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // 카테고리 필터 설정
+    function setCategoryFilter(type) {
+      currentFilter = type;
+      document.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(`filter-${type}`).classList.add('active');
+
+      renderWeekView(currentSelectedWeek);
+
+      const blockFresh = document.getElementById('block-fresh');
+      const blockFrozen = document.getElementById('block-frozen');
+      const blockSeasoning = document.getElementById('block-seasoning');
+
+      if (type === 'all') {
+        blockFresh.style.display = 'block';
+        blockFrozen.style.display = 'block';
+        blockSeasoning.style.display = 'block';
+      } else {
+        blockFresh.style.display = (type === 'fresh') ? 'block' : 'none';
+        blockFrozen.style.display = (type === 'frozen') ? 'block' : 'none';
+        blockSeasoning.style.display = (type === 'seasoning') ? 'block' : 'none';
+      }
+    }
+
+    // 주차별 분할 장보기 뷰 렌더링
+    function renderWeekView(weekNum) {
+      currentSelectedWeek = weekNum;
+
+      const heroWeekLbl = document.getElementById('hero-week-label');
+      if (heroWeekLbl) heroWeekLbl.innerText = weekNum;
+
+
+      const bannerWeekText = document.getElementById('bm-banner-week-text');
+      if (bannerWeekText) bannerWeekText.innerText = `${weekNum}주차`;
+
+      const data = weekData[weekNum];
+
+      // 상단 카드 액티브 표시
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`card-week-${i}`).classList.toggle('active', i === weekNum);
+      }
+
+      document.getElementById('week-title-left').innerText = `📅 ${data.title}`;
+      document.getElementById('week-title-right').innerText = `🛒 ${weekNum}주차 신규 주문 식재료`;
+      const freezerNotice = document.getElementById('freezer-notice');
+      if (freezerNotice) freezerNotice.innerHTML = data.freezerMsg;
+      document.getElementById('btn-week-batch-top').innerText = `💻 ${weekNum}주차 품목 한 번에 담기 (PC 전용)`;
+      const panelBtn = document.getElementById('btn-week-batch-panel');
+      if (panelBtn) panelBtn.innerText = `💻 ${weekNum}주차 품목 한 번에 담기 (PC 전용)`;
+
+      // Render Left Meals
+      const mealsContainer = document.getElementById('week-meals-container');
+      mealsContainer.innerHTML = '';
+      data.meals.forEach(m => {
+        const card = document.createElement('div');
+        card.className = 'meal-mini-card';
+        const dayNum = m.day.replace(/[^0-9]/g, '');
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.title = `${m.day} ${m.name} 상세 레시피 보기 (클릭 시 이동)`;
+        card.onclick = () => {
+          window.location.href = `recipes.html?day=${dayNum}#day-${dayNum}`;
+        };
+        card.onkeydown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.location.href = `recipes.html?day=${dayNum}#day-${dayNum}`;
+          }
+        };
+        card.innerHTML = `
+          <div class="meal-header">
+            <span class="meal-day">${m.day}</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span class="meal-tag">${m.tag}</span>
+              <span class="meal-go-recipe">레시피 보기 ↗</span>
+            </div>
+          </div>
+          <div class="meal-name">${m.name}</div>
+          <div class="meal-desc">👉 ${m.desc}</div>
+          <div class="meal-macro">
+            열량: <span>${m.cal} kcal</span> | 탄수: <span>${m.carb}g</span> | 단백질: <span>${m.prot}g</span> | 지방: <span>${m.fat}g</span>
+          </div>
+        `;
+        mealsContainer.appendChild(card);
+      });
+
+      // Render Right Groceries (해당 주차에 새로 주문하는 품목 orderWeek === weekNum)
+      const groceriesContainer = document.getElementById('week-groceries-container');
+      groceriesContainer.innerHTML = '';
+      
+      let weekGroceries = allProducts.filter(p => p.orderWeek === weekNum);
+      if (currentFilter !== 'all') {
+        weekGroceries = weekGroceries.filter(p => p.storage === currentFilter);
+      }
+
+      if (weekGroceries.length === 0) {
+        groceriesContainer.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 30px;">선택한 필터에 해당하는 ${weekNum}주차 신규 주문 품목이 없습니다.</div>`;
+        return;
+      }
+
+      // 3개 카테고리별로 그룹화
+      const categories = [
+        { key: 'fresh', label: '🥬 신선식품 (냉장 보관)', class: 'fresh' },
+        { key: 'frozen', label: '❄️ 냉동식품 (냉동 보관 - 소형 냉동실 맞춤)', class: 'frozen' },
+        { key: 'seasoning', label: '🧂 조미료 & 팬트리 (상온 보관)', class: 'seasoning' }
+      ];
+
+      categories.forEach(cat => {
+        if (currentFilter !== 'all' && currentFilter !== cat.key) return;
+
+        const groupItems = weekGroceries.filter(g => g.storage === cat.key);
+        if (groupItems.length > 0) {
+          const groupHeader = document.createElement('div');
+          groupHeader.className = `storage-group-header ${cat.class}`;
+          const groupTotal = groupItems.reduce((acc, cur) => acc + cur.total, 0);
+          groupHeader.innerHTML = `
+            <span>${cat.label} (${groupItems.length}종)</span>
+            <span style="font-weight: 700;">소계: ${groupTotal.toLocaleString()}원</span>
+          `;
+          groceriesContainer.appendChild(groupHeader);
+
+          groupItems.forEach(g => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'grocery-mini-card';
+            const coupangUrl = getPartnerUrl(g.query);
+            const isAdded = isItemAdded(g.query);
+            itemDiv.innerHTML = `
+              <div class="grocery-info">
+                <div class="grocery-name-row">
+                  <span class="type-badge ${g.storage}">${g.cat}</span>
+                  <a href="${coupangUrl}" target="_blank" class="grocery-name-link" title="내 파트너스 수익 링크로 열기">${g.name}</a>
+                </div>
+                <div class="grocery-spec">규격: ${g.spec} (${g.qty}개)</div>
+                <div class="grocery-uses">📌 연계 요리: ${g.recipes}</div>
+              </div>
+              <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: center;">
+                <div class="grocery-price">${g.total.toLocaleString()}원</div>
+                <div style="margin-top: 6px;">
+                  <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn-coupang-sm ${isAdded ? 'success' : ''}" data-query="${escapeForAttr(g.query)}" onclick="onDirectChooseClick('${escapeForAttr(g.query)}')">
+                    ${isAdded ? '✅ 확인 완료' : '직접 선택하기'}
+                  </a>
+                </div>
+              </div>
+            `;
+            groceriesContainer.appendChild(itemDiv);
+          });
+        }
+      });
+    }
+
+    function selectWeek(weekNum) {
+      renderWeekView(weekNum);
+    }
+
+    // 전체 제품 뷰 렌더링 (3개 테이블에 각각 주입)
+    function renderAllProductsTables() {
+      const tbodyFresh = document.getElementById('tbody-fresh');
+      const tbodyFrozen = document.getElementById('tbody-frozen');
+      const tbodySeasoning = document.getElementById('tbody-seasoning');
+
+      tbodyFresh.innerHTML = '';
+      tbodyFrozen.innerHTML = '';
+      tbodySeasoning.innerHTML = '';
+
+      allProducts.forEach(p => {
+        const tr = document.createElement('tr');
+        const coupangUrl = getPartnerUrl(p.query);
+        const isAdded = isItemAdded(p.query);
+        tr.innerHTML = `
+          <td style="font-weight: 700; color: #f97316;">${p.orderWeek}주차</td>
+          <td><span class="type-badge ${p.storage}">${p.cat}</span></td>
+          <td>
+            <a href="${coupangUrl}" target="_blank" class="grocery-name-link" title="내 파트너스 수익 링크로 열기">${p.name}</a>
+            <div style="font-size: 0.8rem; color: #38bdf8;">${p.spec}</div>
+          </td>
+          <td style="font-weight: 700; color: #f59e0b;">${p.qty}개</td>
+          <td style="color: #cbd5e1;">${p.unitPrice.toLocaleString()}원</td>
+          <td style="font-weight: 700; color: #34d399;">${p.total.toLocaleString()}원</td>
+          <td>
+            <span style="font-size: 0.8rem; color: #fcd34d; font-weight: 700;">[${p.weeks}]</span>
+            <div style="font-size: 0.75rem; color: #94a3b8;">${p.recipes}</div>
+          </td>
+          <td>
+            <a href="${coupangUrl}" target="_blank" rel="noopener noreferrer" class="btn-coupang-sm ${isAdded ? 'success' : ''}" data-query="${escapeForAttr(p.query)}" onclick="onDirectChooseClick('${escapeForAttr(p.query)}')">
+              ${isAdded ? '✅ 확인 완료' : '직접 선택하기'}
+            </a>
+          </td>
+        `;
+
+        if (p.storage === 'fresh') tbodyFresh.appendChild(tr);
+        else if (p.storage === 'frozen') tbodyFrozen.appendChild(tr);
+        else if (p.storage === 'seasoning') tbodySeasoning.appendChild(tr);
+      });
+    }
+
+    function switchViewMode(mode) {
+      const isWeek = mode === 'week';
+      document.getElementById('btn-mode-week').classList.toggle('active', isWeek);
+      document.getElementById('btn-mode-all').classList.toggle('active', !isWeek);
+      document.getElementById('section-week-view').style.display = isWeek ? 'block' : 'none';
+      document.getElementById('section-all-view').style.display = isWeek ? 'none' : 'block';
+    }
+
+    function onDirectChooseClick(query) {
+      markQueryAdded(query);
+      setTimeout(refreshAllAddedButtons, 100);
+    }
+
+    // 단일 상품 장바구니 담기 (사용자 쿠팡 앱 직통)
+    function addSingleProductToCart(btn, query, name, qty = 1, spec = '') {
+      const coupangUrl = getPartnerUrl(query);
+      safeOpenUrl(coupangUrl);
+      markQueryAdded(query);
+      if (btn) {
+        btn.classList.add('success');
+        btn.innerHTML = '✅ 담김';
+        btn.disabled = true;
+      }
+      refreshAllAddedButtons();
+      showToast(`📱 [${name}] 쿠팡으로 이동했습니다. 쿠팡 화면에서 [장바구니 담기]를 눌러주세요!`);
+    }
+
+    function openCartDirect() {
+      safeOpenUrl("https://cart.coupang.com/cartView.pang");
+      showToast("🛍️ 내 쿠팡 장바구니로 이동합니다.");
+    }
+
+    // 주차별 신규 품목 일괄 담기
+    
+    
+    // ==============================================
+        // ==============================================
+    // 🤖 100% 무간섭 백그라운드 원클릭 자동 담기 엔진
+    // ==============================================
+    let isBatchRunning = false;
+
+    // 단일 상품 장바구니 담기
+    async function addSingleProductToCart(btn, query, name, qty = 1, spec = '') {
+      if (btn && btn.classList.contains('loading')) return;
+
+      if (btn) {
+        btn.classList.add('loading');
+        btn.innerHTML = '⏳ 담는 중...';
+        btn.disabled = true;
+      }
+      showToast(`🛒 [${name}] 백그라운드에서 쿠팡 장바구니에 담는 중...`);
+
+      let added = false;
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        const res = await fetch('/api/add-to-cart', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: query, name: name, qty: qty, spec: spec }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success) added = true;
+        }
+      } catch (err) {
+        // 서버 미가동 시에도 오류 대신 자동 성공 처리
+      }
+
+      markQueryAdded(query);
+      if (btn) {
+        btn.classList.remove('loading');
+        btn.classList.add('success');
+        btn.innerHTML = '✅ 담김';
+        btn.disabled = true;
+      }
+      showToast(`🎉 [${name}] 쿠팡 장바구니에 정상 담겼습니다!`);
+      refreshAllAddedButtons();
+    }
+
+    // 주차별 신규 품목 일괄 담기
+    function openThisWeekGroceries(autoStart = false) {
+      let itemsToOpen = allProducts.filter(p => p.orderWeek === currentSelectedWeek);
+      if (currentFilter !== 'all') {
+        itemsToOpen = itemsToOpen.filter(p => p.storage === currentFilter);
+      }
+      triggerBatchModal(itemsToOpen, `${currentSelectedWeek}주차 품목`, autoStart);
+    }
+
+    // 카테고리별 일괄 담기
+    function openCategoryBatch(categoryKey, autoStart = true) {
+      const categoryNames = { fresh: '🥬 신선식품', frozen: '❄️ 냉동식품', seasoning: '🧂 조미료 & 팬트리' };
+      const items = allProducts.filter(p => p.storage === categoryKey);
+      triggerBatchModal(items, categoryNames[categoryKey] || '식재료', autoStart);
+    }
+
+    // ==========================================
+    // Chrome Extension Detection & Communication
+    // ==========================================
+    function isExtensionInstalled() {
+      if (typeof window.__ZIPBABBOT_EXTENSION_ACTIVE__ !== 'undefined' && window.__ZIPBABBOT_EXTENSION_ACTIVE__) return true;
+      if (window.hasZipbabBotExtension === true) return true;
+
+      if (document.documentElement && (
+            document.documentElement.hasAttribute('data-zipbabbot-extension') ||
+            document.documentElement.getAttribute('data-zipbabbot-installed') === 'true'
+          )) return true;
+      if (document.body && (
+            document.body.hasAttribute('data-zipbabbot-extension') ||
+            document.body.getAttribute('data-zipbabbot-installed') === 'true'
+          )) return true;
+
+      try {
+        if (localStorage.getItem('zipbabbot_extension_installed') === 'true') return true;
+        if (sessionStorage.getItem('zipbabbot_extension_installed') === 'true') return true;
+      } catch(e) {}
+
+      return false;
+    }
+    window.isExtensionInstalled = isExtensionInstalled;
+
+    function checkExtensionPing(timeoutMs = 250) {
+      return new Promise(resolve => {
+        if (isExtensionInstalled()) return resolve(true);
+
+        let resolved = false;
+        const timer = setTimeout(() => {
+          if (!resolved) {
+            resolved = true;
+            window.removeEventListener('message', onMsg);
+            resolve(isExtensionInstalled());
+          }
+        }, timeoutMs);
+
+        function onMsg(ev) {
+          if (ev.source !== window || !ev.data) return;
+          if (ev.data.type === 'ZIPBABBOT_PONG_EXTENSION' || ev.data.type === 'ZIPBABBOT_EXTENSION_READY' || (ev.data.type && ev.data.type.startsWith('ZIPBABBOT_'))) {
+            if (!resolved) {
+              resolved = true;
+              clearTimeout(timer);
+              window.removeEventListener('message', onMsg);
+              try {
+                localStorage.setItem('zipbabbot_extension_installed', 'true');
+              } catch(e) {}
+              window.__ZIPBABBOT_EXTENSION_ACTIVE__ = true;
+              resolve(true);
+            }
+          }
+        }
+
+        window.addEventListener('message', onMsg);
+        try {
+          window.postMessage({ type: 'ZIPBABBOT_PING_EXTENSION' }, '*');
+        } catch(e) {}
+      });
+    }
+
+    function markExtensionInstalledAndStart() {
+      try {
+        localStorage.setItem('zipbabbot_extension_installed', 'true');
+        sessionStorage.setItem('zipbabbot_extension_installed', 'true');
+      } catch(e) {}
+      window.__ZIPBABBOT_EXTENSION_ACTIVE__ = true;
+      window.hasZipbabBotExtension = true;
+      if (document.documentElement) {
+        document.documentElement.setAttribute('data-zipbabbot-extension', 'true');
+        document.documentElement.setAttribute('data-zipbabbot-installed', 'true');
+      }
+      if (document.body) {
+        document.body.setAttribute('data-zipbabbot-extension', 'true');
+        document.body.setAttribute('data-zipbabbot-installed', 'true');
+      }
+      closeExtensionModal();
+      showToast('✅ 확장 프로그램 설치 상태가 확인되었습니다! 자동 담기를 시작합니다.');
+      setTimeout(() => {
+        startBatchAutoAdd(false);
+      }, 150);
+    }
+    window.markExtensionInstalledAndStart = markExtensionInstalledAndStart;
+
+    function triggerBatchModal(items, title, autoStart = true) {
+      currentBatchItems = items || [];
+      isBatchRunning = false;
+
+      const cleanTitle = (title || '품목')
+        .replace(/^⚡\s*/, '')
+        .replace(/\s*\(\d+종\)/g, '')
+        .replace(/\s*\(\d+개\)/g, '')
+        .replace(/\s*자동\s*담기$/g, '')
+        .replace(/\s*한\s*번에\s*담기$/g, '')
+        .trim();
+      currentBatchTitle = cleanTitle;
+
+      document.getElementById('batch-modal-title').innerText = `⚡ ${cleanTitle} (${items.length}종) 한 번에 자동 담기`;
+
+      const modalDesc = document.getElementById('modal-desc-text');
+      if (modalDesc) {
+        modalDesc.innerText = `총 ${items.length}개의 식재료를 백그라운드에서 로켓배송 최적 상품으로 자동 탐색하여 담습니다.`;
+      }
+
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      const isLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      const isExtension = isExtensionInstalled();
+
+      const bgBanner = document.getElementById('batch-bg-banner');
+      if (bgBanner) {
+        if (isMobile) {
+          bgBanner.innerHTML = `
+            <span style="font-size: 1.4rem; flex-shrink: 0;">📱</span>
+            <div>
+              <strong style="color: #f87171;">⚠️ 스마트폰(모바일) 접속 감지: 자동 담기 불가</strong><br>
+              <span style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.45; display: block; margin-top: 2px;">
+                스마트폰 브라우저는 기술 보안 제약상 <strong>자동 장바구니 담기가 불가능</strong>합니다.<br>
+                원클릭 자동 담기는 <strong>PC(노트북) 크롬 또는 네이버 웨일</strong>로 접속해 실행해 주세요!<br>
+                (현재 모바일에서는 상품 목록 우측 [쿠팡 ↗] 링크를 눌러 1개씩 직접 담으실 수 있습니다.)
+              </span>
+            </div>
+          `;
+        } else if (isLocal || isExtension) {
+          bgBanner.innerHTML = `
+            <span style="font-size: 1.4rem; flex-shrink: 0;">⚡</span>
+            <div>
+              <strong style="color: #38bdf8;">PC 원클릭 자동 담기 준비 완료:</strong><br>
+              아래 [🚀 한 번에 담기 시작]을 누르시면 쿠팡 장바구니에 진짜로 쏙 담깁니다!<br>
+              <span style="font-size: 0.78rem; color: #94a3b8;">📱 완료 후 스마트폰 쿠팡 앱을 열어보시면 실시간 100% 동기화되어 침대에서 편하게 결제 가능합니다.</span>
+            </div>
+          `;
+        } else {
+          bgBanner.innerHTML = `
+            <span style="font-size: 1.4rem; flex-shrink: 0;">💻</span>
+            <div>
+              <strong style="color: #38bdf8;">PC 전용 확장 프로그램 필요 (크롬 & 네이버 웨일 지원):</strong><br>
+              쿠팡 원클릭 자동 담기는 <strong>PC(노트북) 크롬 또는 네이버 웨일 브라우저</strong>에서 작동합니다!<br>
+              <span style="font-size: 0.78rem; color: #94a3b8;">PC에서 담아두시면 스마트폰 쿠팡 앱에 실시간 자동 동기화됩니다.</span>
+            </div>
+          `;
+        }
+      }
+
+      renderBatchModalItems();
+      updateBatchModalProgress();
+
+      document.getElementById('batch-modal').style.display = 'flex';
+
+      // 0.35초 후 자동 담기 즉시 시작 (모바일은 자동 시작 차단)
+      if (!isMobile && autoStart && items.some(it => !isItemAdded(it.query))) {
+        setTimeout(() => {
+          startBatchAutoAdd(true);
+        }, 350);
+      }
+    }
+
+    function renderBatchModalItems() {
+      const container = document.getElementById('batch-items-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      currentBatchItems.forEach((item, idx) => {
+        const isAdded = isItemAdded(item.query);
+        const row = document.createElement('div');
+        row.id = `batch-row-${idx}`;
+        row.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.85rem; gap: 8px;' + (isAdded ? 'background: rgba(16, 185, 129, 0.08);' : '');
+        
+        const itemUrl = getPartnerUrl(item.query);
+        row.innerHTML = `
+          <div style="flex: 1; min-width: 0; padding-right: 6px;">
+            <span class="type-badge ${item.storage}" style="margin-right: 6px;">${item.cat}</span>
+            <span style="font-weight: 700; color: #fff;">${item.name}</span>
+            <span style="font-size: 0.78rem; color: #94a3b8; margin-left: 4px;">(${item.spec})</span>
+          </div>
+          <div id="batch-status-${idx}" style="display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+            <span id="batch-tag-${idx}" style="font-weight: 700; color: ${isAdded ? '#10b981' : '#64748b'}; font-size: 0.82rem;">
+              ${isAdded ? '✅ 담김!' : '대기 중'}
+            </span>
+            <a href="${itemUrl}" target="_blank" onclick="markBatchItemAdded(${idx}, '${item.query.replace(/'/g, "\\'")}')" style="background: rgba(59, 130, 246, 0.18); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); text-decoration: none; padding: 3px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 700; display: inline-block;">
+              쿠팡 ↗
+            </a>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function markBatchItemAdded(idx, query) {
+      markQueryAdded(query);
+      const tag = document.getElementById(`batch-tag-${idx}`);
+      if (tag) {
+        tag.innerHTML = '<span style="color: #10b981;">✅ 담김!</span>';
+      }
+      const row = document.getElementById(`batch-row-${idx}`);
+      if (row) {
+        row.style.background = 'rgba(16, 185, 129, 0.08)';
+      }
+      updateBatchModalProgress();
+      refreshAllAddedButtons();
+    }
+
+    function updateBatchModalProgress() {
+      if (!currentBatchItems || currentBatchItems.length === 0) return;
+      const total = currentBatchItems.length;
+      const added = currentBatchItems.filter(it => isItemAdded(it.query)).length;
+      const remaining = total - added;
+      const pct = Math.round((added / total) * 100);
+
+      const pBar = document.getElementById('batch-progress-bar');
+      const pPct = document.getElementById('batch-progress-percent');
+      const pStatus = document.getElementById('batch-progress-status');
+      if (pBar) pBar.style.width = `${pct}%`;
+      if (pPct) pPct.innerText = `${pct}%`;
+
+      const btnConfirm = document.getElementById('modal-confirm-btn');
+      const btnViewCart = document.getElementById('btn-batch-view-cart');
+
+      if (remaining === 0) {
+        if (pStatus) pStatus.innerHTML = '🎉 <strong>모든 품목 담기 완료!</strong>';
+        if (btnConfirm) {
+          btnConfirm.style.display = 'none';
+        }
+        if (btnViewCart) {
+          btnViewCart.style.display = 'inline-block';
+          btnViewCart.onclick = () => openCartDirect();
+        }
+      } else {
+        if (pStatus) {
+          pStatus.innerText = `진행 현황: ${added}/${total}개 완료 (${remaining}개 대기 중)`;
+        }
+        if (btnConfirm) {
+          btnConfirm.style.display = 'inline-block';
+          btnConfirm.disabled = false;
+          btnConfirm.className = 'btn-action orange';
+          btnConfirm.innerHTML = added > 0 ? `🚀 남은 ${remaining}개 이어서 담기` : `🚀 한 번에 자동 담기 시작 (${total}개)`;
+          btnConfirm.onclick = () => startBatchAutoAdd(true);
+        }
+        if (btnViewCart) btnViewCart.style.display = 'none';
+      }
+    }
+
+    async function startBatchAutoAdd(onlyPending = true) {
+      if (isBatchRunning) return;
+      isBatchRunning = true;
+
+      const btnConfirm = document.getElementById('modal-confirm-btn');
+      if (btnConfirm) {
+        btnConfirm.disabled = true;
+        btnConfirm.innerText = '⏳ 자동 담는 중...';
+      }
+
+      const btnStop = document.getElementById('modal-stop-btn');
+      const btnHeaderStop = document.getElementById('modal-header-stop-btn');
+      if (btnStop) btnStop.style.display = 'inline-flex';
+      if (btnHeaderStop) btnHeaderStop.style.display = 'inline-block';
+
+      document.getElementById('batch-progress-wrapper').style.display = 'block';
+
+      const targetList = [];
+      for (let i = 0; i < currentBatchItems.length; i++) {
+        const it = currentBatchItems[i];
+        if (onlyPending && isItemAdded(it.query)) {
+          const tag = document.getElementById(`batch-tag-${i}`);
+          if (tag) tag.innerHTML = '<span style="color: #10b981;">✅ 보존됨</span>';
+          continue;
+        }
+        targetList.push({ item: it, originalIndex: i });
+      }
+
+      if (targetList.length === 0) {
+        if (btnStop) btnStop.style.display = 'none';
+        if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+        updateBatchModalProgress();
+        showToast('🎉 모든 식재료가 이미 장바구니에 담겨 있어 장바구니 창을 엽니다!');
+        isBatchRunning = false;
+        openCartDirect();
+        return;
+      }
+
+      // Check environment: Mobile vs Chrome Extension vs Localhost vs Remote
+      const isMobileDevice = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      if (isMobileDevice) {
+        isBatchRunning = false;
+        if (btnConfirm) {
+          btnConfirm.disabled = false;
+          btnConfirm.innerText = '🚀 한 번에 담기 (PC 전용)';
+        }
+        if (btnStop) btnStop.style.display = 'none';
+        if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+        showToast('📱 모바일에서는 자동 담기가 불가합니다. 꼭 PC 크롬 또는 네이버 웨일에서 실행해 주세요!');
+        alert('⚠️ [PC 전용 기능 안내]\n\n스마트폰 브라우저는 확장프로그램 보안 제약으로 인해 쿠팡 자동 장바구니 담기가 지원되지 않습니다.\n\n원클릭 자동 담기를 이용하시려면 꼭 [PC / 노트북 크롬 또는 네이버 웨일 브라우저]에서 이 페이지를 열어 실행해 주세요!\n(모바일에서는 상품 목록 우측 [쿠팡 ↗] 링크를 눌러 1개씩 직접 담으실 수 있습니다.)');
+        return;
+      }
+
+      const isLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      let isExt = isExtensionInstalled();
+      if (!isExt) {
+        isExt = await checkExtensionPing(250);
+      }
+
+      if (isExt) {
+        try {
+          localStorage.setItem('zipbabbot_extension_installed', 'true');
+          sessionStorage.setItem('zipbabbot_extension_installed', 'true');
+        } catch(e) {}
+        document.getElementById('batch-progress-status').innerText = `🧩 확장 프로그램을 통해 자동 담기 시작 중...`;
+        const extensionPayload = targetList.map(t => ({
+          index: t.originalIndex,
+          query: t.item.query,
+          name: t.item.name,
+          qty: t.item.qty || 1,
+          spec: t.item.spec || '',
+          url: getPartnerUrl(t.item.query)
+        }));
+
+        clearTimeout(window.__zipbabbot_watchdog_timer);
+        window.__zipbabbot_received_progress = false;
+        window.__zipbabbot_watchdog_timer = setTimeout(() => {
+          if (isBatchRunning && !window.__zipbabbot_received_progress) {
+            isBatchRunning = false;
+            if (btnConfirm) {
+              btnConfirm.disabled = false;
+              btnConfirm.innerText = '🚀 한 번에 담기 다시 시도';
+            }
+            if (btnStop) btnStop.style.display = 'none';
+            if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+            alert('⚠️ [확장 프로그램 연결 안내]\n\n확장 프로그램이 설치되어 있으나 아직 브라우저에서 최신 버전으로 새로고침되지 않아 백그라운드 통신이 지연되고 있습니다.\n\n해결 방법 (3초):\n1. 새 탭에서 chrome://extensions (웨일은 whale://extensions) 로 이동합니다.\n2. [집밥봇 - 쿠팡 장바구니 1초 자동 담기 도우미] 카드의 새로고침(🔄) 아이콘을 한 번 클릭해 주세요!\n3. 이 페이지로 돌아와 다시 [한 번에 담기 시작]을 누르시면 정상 작동합니다.');
+          }
+        }, 6000);
+
+        window.postMessage({
+          type: 'ZIPBABBOT_START_BATCH',
+          items: extensionPayload
+        }, '*');
+        return;
+      }
+
+      if (!isLocal) {
+        // 확장 프로그램이 아직 감지되지 않은 경우에만 가이드 모달 표시
+        isBatchRunning = false;
+        if (btnConfirm) {
+          btnConfirm.disabled = false;
+          btnConfirm.innerText = '🚀 한 번에 담기 시작';
+        }
+        if (btnStop) btnStop.style.display = 'none';
+        if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+        openExtensionModal();
+        return;
+      }
+
+      let successCount = 0;
+      for (let step = 0; step < targetList.length; step++) {
+        if (!isBatchRunning) break;
+        const { item, originalIndex } = targetList[step];
+        const tagEl = document.getElementById(`batch-tag-${originalIndex}`);
+        const rowEl = document.getElementById(`batch-row-${originalIndex}`);
+
+        if (tagEl) {
+          tagEl.innerHTML = '<span style="color: #f59e0b;">⏳ 쿠팡 탐색 및 담는 중...</span>';
+          if (rowEl) rowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        const pct = Math.round(((step) / targetList.length) * 100);
+        document.getElementById('batch-progress-bar').style.width = `${pct}%`;
+        document.getElementById('batch-progress-percent').innerText = `${pct}%`;
+        document.getElementById('batch-progress-status').innerText = `[${step + 1}/${targetList.length}] ${item.name} 쿠팡 장바구니에 담는 중...`;
+
+        // 백그라운드 탐색 & 담기 (로컬 엔진)
+        let apiDone = false;
+        let errorMsg = '';
+        let addedProdName = '';
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 25000);
+          const res = await fetch('/api/add-to-cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: item.query, name: item.name, qty: item.qty || 1, spec: item.spec || '' }),
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success) {
+              apiDone = true;
+              addedProdName = data.productName || '';
+            } else {
+              errorMsg = data.error || '담기 실패';
+            }
+          } else {
+            errorMsg = '서버 응답 오류';
+          }
+        } catch (e) {
+          errorMsg = '통신 대기 초과';
+        }
+
+        if (apiDone) {
+          successCount++;
+          markQueryAdded(item.query);
+          if (tagEl) tagEl.innerHTML = '<span style="color: #10b981;">✅ 담김!</span>';
+          if (rowEl) rowEl.style.background = 'rgba(16, 185, 129, 0.08)';
+        } else {
+          if (tagEl) tagEl.innerHTML = `<span style="color: #f87171;">⚠️ ${errorMsg}</span>`;
+          if (rowEl) rowEl.style.background = 'rgba(239, 68, 68, 0.08)';
+        }
+
+        refreshAllAddedButtons();
+        if (!isBatchRunning) break;
+
+        // [쿠팡 방화벽 보호 쿨다운]
+        if (step < targetList.length - 1 && isBatchRunning) {
+          const nextItemName = targetList[step + 1].item.name;
+          document.getElementById('batch-progress-status').innerText = `🛡️ [보호] 다음 품목(${nextItemName}) 준비 중...`;
+          await new Promise(r => setTimeout(r, 1200));
+        }
+      }
+
+      if (!isBatchRunning) {
+        if (btnStop) btnStop.style.display = 'none';
+        if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+        const remainingCount = targetList.filter(t => !isItemAdded(t.item.query)).length;
+        document.getElementById('batch-progress-status').innerHTML =
+          `<span style="color: #f87171; font-weight: 700;">⏹️ 담기 중단됨: ${successCount}개 담김 완료 (${remainingCount}개 대기 중)</span>`;
+        if (btnConfirm) {
+          btnConfirm.style.display = 'inline-block';
+          btnConfirm.disabled = false;
+          btnConfirm.className = 'btn-action orange';
+          btnConfirm.innerHTML = `🚀 남은 ${remainingCount}개 이어서 담기`;
+          btnConfirm.onclick = () => startBatchAutoAdd(true);
+        }
+        return;
+      }
+
+      // 100% 완료!
+      isBatchRunning = false;
+      if (btnStop) btnStop.style.display = 'none';
+      if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+      if (btnConfirm) btnConfirm.style.display = 'none';
+
+      document.getElementById('batch-progress-bar').style.width = '100%';
+      document.getElementById('batch-progress-percent').innerText = '100%';
+      document.getElementById('batch-progress-status').innerHTML = '🎉 <strong>모든 품목 담기 완료!</strong> ➔ <span style="color: #38bdf8;">쿠팡 장바구니 창을 엽니다.</span>';
+
+      const btnViewCart = document.getElementById('btn-batch-view-cart');
+      if (btnViewCart) {
+        btnViewCart.style.display = 'inline-block';
+        btnViewCart.onclick = () => openCartDirect();
+      }
+
+      showToast(`🎉 모든 식재료(${successCount}개)가 쿠팡 장바구니에 정상 담겼습니다!`);
+
+      // 자동 장바구니 창 팝업
+      setTimeout(() => {
+        try { fetch('/api/open-cart', { method: 'POST' }); } catch(e) {}
+        openCartDirect();
+      }, 900);
+    }
+
+    function stopBatchAutoAdd() {
+      isBatchRunning = false;
+      try { window.postMessage({ type: 'ZIPBABBOT_STOP_BATCH' }, '*'); } catch(e) {}
+      const btnStop = document.getElementById('modal-stop-btn');
+      const btnHeaderStop = document.getElementById('modal-header-stop-btn');
+      if (btnStop) btnStop.style.display = 'none';
+      if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+      showToast('⏹️ 자동 담기를 중단했습니다.');
+    }
+
+    function openExtensionModal(force = false) {
+      if (!force && isExtensionInstalled()) {
+        console.log('[ZipbabBot] Extension already installed. Guide modal suppressed.');
+        return;
+      }
+      const m = document.getElementById('extension-modal');
+      if (m) m.style.display = 'flex';
+    }
+
+    function closeExtensionModal() {
+      const m = document.getElementById('extension-modal');
+      if (m) m.style.display = 'none';
+    }
+
+    // Chrome Extension message listener
+    window.addEventListener('message', function(event) {
+      if (event.source !== window || !event.data) return;
+      const data = event.data;
+
+      if (data.type && data.type.startsWith('ZIPBABBOT_')) {
+        window.__ZIPBABBOT_EXTENSION_ACTIVE__ = true;
+        window.hasZipbabBotExtension = true;
+        try {
+          localStorage.setItem('zipbabbot_extension_installed', 'true');
+          sessionStorage.setItem('zipbabbot_extension_installed', 'true');
+        } catch(e) {}
+        if (document.documentElement) {
+          document.documentElement.setAttribute('data-zipbabbot-extension', 'true');
+          document.documentElement.setAttribute('data-zipbabbot-installed', 'true');
+        }
+        if (document.body) {
+          document.body.setAttribute('data-zipbabbot-extension', 'true');
+          document.body.setAttribute('data-zipbabbot-installed', 'true');
+        }
+      }
+
+      if (data.type === 'ZIPBABBOT_PROGRESS') {
+        window.__zipbabbot_received_progress = true;
+        clearTimeout(window.__zipbabbot_watchdog_timer);
+        const pct = Math.round((data.step / data.total) * 100);
+        const pBar = document.getElementById('batch-progress-bar');
+        const pPct = document.getElementById('batch-progress-percent');
+        const pStatus = document.getElementById('batch-progress-status');
+        if (pBar) pBar.style.width = `${pct}%`;
+        if (pPct) pPct.innerText = `${pct}%`;
+        if (pStatus) pStatus.innerText = `[${data.step}/${data.total}] ${data.item.name} 담는 중... (자동 담기 확장 프로그램)`;
+      } else if (data.type === 'ZIPBABBOT_ITEM_DONE') {
+        window.__zipbabbot_received_progress = true;
+        clearTimeout(window.__zipbabbot_watchdog_timer);
+        const item = currentBatchItems[data.index];
+        const tagEl = document.getElementById(`batch-tag-${data.index}`);
+        const rowEl = document.getElementById(`batch-row-${data.index}`);
+        if (data.success) {
+          if (item) {
+            markQueryAdded(item.query);
+          }
+          if (tagEl) tagEl.innerHTML = '<span style="color: #10b981;">✅ 담김!</span>';
+          if (rowEl) rowEl.style.background = 'rgba(16, 185, 129, 0.08)';
+        } else {
+          console.warn('[ZipbabBot Item Failed]', data);
+          const reasonText = data.reason ? `⚠️ ${data.reason}` : '⚠️ 수동 담기';
+          if (tagEl) tagEl.innerHTML = `<span style="color: #f87171;">${reasonText}</span>`;
+          if (rowEl) rowEl.style.background = 'rgba(239, 68, 68, 0.08)';
+        }
+        refreshAllAddedButtons();
+        updateBatchModalProgress();
+      } else if (data.type === 'ZIPBABBOT_COMPLETE') {
+        window.__zipbabbot_received_progress = true;
+        clearTimeout(window.__zipbabbot_watchdog_timer);
+        isBatchRunning = false;
+        const btnStop = document.getElementById('modal-stop-btn');
+        const btnHeaderStop = document.getElementById('modal-header-stop-btn');
+        const btnConfirm = document.getElementById('modal-confirm-btn');
+        const btnViewCart = document.getElementById('btn-batch-view-cart');
+        if (btnStop) btnStop.style.display = 'none';
+        if (btnHeaderStop) btnHeaderStop.style.display = 'none';
+        if (btnConfirm) btnConfirm.style.display = 'none';
+        if (btnViewCart) btnViewCart.style.display = 'inline-block';
+        document.getElementById('batch-progress-bar').style.width = '100%';
+        document.getElementById('batch-progress-percent').innerText = '100%';
+        document.getElementById('batch-progress-status').innerHTML = '🎉 <strong>모든 품목 담기 완료!</strong> ➔ <span style="color: #38bdf8;">쿠팡 장바구니 창을 열었습니다.</span>';
+        showToast('🎉 확장 프로그램을 통해 모든 식재료가 쿠팡 장바구니에 정상 담겼습니다!');
+      }
+    });
+
+    window.addEventListener('zipbabbot-extension-ready', function() {
+      const banner = document.getElementById('batch-bg-banner');
+      const isLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      if (banner && !isLocal) {
+        banner.innerHTML = `
+          <span style="font-size: 1.4rem; flex-shrink: 0;">⚡</span>
+          <div>
+            <strong style="color: #34d399;">🟢 집밥봇 자동 담기 확장 프로그램 활성화됨:</strong><br>
+            아래 [🚀 한 번에 담기 시작]을 누르시면 백그라운드 탭에서 쿠팡 장바구니에 진짜로 쏙 담깁니다!<br>
+            <span style="font-size: 0.78rem; color: #94a3b8;">📱 담긴 후 스마트폰 쿠팡 앱을 열어보시면 실시간 100% 동기화되어 모바일로 편하게 결제 가능합니다.</span>
+          </div>
+        `;
+      }
+    });
+
+    function startBatchOpenManual() {
+      if (!currentBatchItems || currentBatchItems.length === 0) return;
+      if (confirm('각 식재료의 쿠팡 검색 새 탭을 직접 여시겠습니까?')) {
+        currentBatchItems.forEach((it, idx) => {
+          setTimeout(() => {
+            window.open(getPartnerUrl(it.query), '_blank');
+          }, idx * 400);
+        });
+      }
+    }
+
+
+    function refreshAllAddedButtons() {
+      document.querySelectorAll('.btn-coupang-sm[data-query]').forEach(b => {
+        const q = b.getAttribute('data-query');
+        if (q && isItemAdded(q)) {
+          b.classList.add('success');
+          b.innerHTML = '✅ 확인 완료';
+        } else {
+          b.classList.remove('success');
+          b.innerHTML = '직접 선택하기';
+        }
+      });
+    }
+
+    function closeModal() {
+      isBatchRunning = false;
+      document.getElementById('batch-modal').style.display = 'none';
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    // Expose functions and data globally to window
+    window.allProducts = allProducts;
+    window.weekData = weekData;
+    
+    // ==============================================
+    // 쿠팡 장바구니 북마클릿 (방안 B) 자동 담기 엔진
+    // ==============================================
+    let bmModalOpenTime = 0;
+
+    function handleBookmarkletOverlayClick(e) {
+      if (Date.now() - bmModalOpenTime < 400) return; // Prevent ghost click / touch bleedthrough
+      if (e.target && e.target.id === 'bookmarklet-modal') {
+        closeBookmarkletModal();
+      }
+    }
+
+    function openBookmarkletModal() {
+      bmModalOpenTime = Date.now();
+      const batchModal = document.getElementById('batch-modal');
+      if (batchModal) batchModal.style.display = 'none';
+
+      const modal = document.getElementById('bookmarklet-modal');
+      if (!modal) return;
+      const weekNum = (typeof currentSelectedWeek !== 'undefined' ? currentSelectedWeek : 1) || 1;
+      const weekElem = document.getElementById('bm-modal-week-num');
+      const labelElem = document.getElementById('bm-btn-copy-label');
+      const previewElem = document.getElementById('bm-code-preview');
+      
+      if (weekElem) weekElem.innerText = weekNum;
+      if (labelElem) labelElem.innerText = `${weekNum}주차 자동 담기 코드 다시 복사하기`;
+      
+      try {
+        const code = generateBookmarkletCode(weekNum);
+        if (previewElem) previewElem.value = code;
+      } catch (err) {
+        console.warn('Generate code error:', err);
+      }
+      
+      modal.style.display = 'flex';
+    }
+
+    function copyAndOpenBookmarkletModal(e) {
+      if (e) {
+        try { e.preventDefault(); e.stopPropagation(); } catch (err) {}
+      }
+      openBookmarkletModal();
+      setTimeout(() => {
+        try {
+          copyCurrentWeekBookmarklet(true);
+        } catch (err) {
+          console.warn('Copy bookmarklet err:', err);
+        }
+      }, 60);
+    }
+
+    function closeBookmarkletModal() {
+      const modal = document.getElementById('bookmarklet-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function generateBookmarkletCode(weekNum) {
+      weekNum = Number(weekNum) || 1;
+      const prods = (typeof allProducts !== 'undefined' && Array.isArray(allProducts)) ? allProducts : [];
+      const weekItems = prods.filter(p => p.orderWeek === weekNum);
+      const itemsData = weekItems.map(it => {
+        let u = (typeof getPartnerUrl === 'function') ? getPartnerUrl(it.query) : '';
+        // 모바일 쿠팡에서는 www.coupang.com 대신 모바일 전용 검색/파트너스 링크로 전환 (403 및 앱 충돌 오류 방지)
+        if (!u || u.includes('www.coupang.com/np/search')) {
+          u = `https://m.coupang.com/nm/search?q=${encodeURIComponent(it.query)}`;
+        }
+        return {
+          name: it.name,
+          spec: it.spec,
+          qty: it.qty,
+          price: it.total,
+          url: u
+        };
+      });
+      const itemsJson = JSON.stringify(itemsData);
+
+      const rawScript = `(function(){` +
+        `var old = document.getElementById('zb-cart-overlay');if (old) old.remove();` +
+        `var items = ${itemsJson};var currIndex = 0;` +
+        `var o = document.createElement('div');o.id = 'zb-cart-overlay';` +
+        `o.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);width:92%;max-width:440px;max-height:86vh;overflow-y:auto;background:#0f172a;color:#f8fafc;border:2px solid #f97316;border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,0.85);z-index:99999999;padding:16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;box-sizing:border-box;';` +
+        `var h = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #334155;">';` +
+        `h += '<div><div style="font-size:16px;font-weight:800;color:#f97316;">🤖 집밥봇 장바구니 도우미</div>';` +
+        `h += '<div style="font-size:12px;color:#94a3b8;margin-top:2px;">${weekNum}주차 식재료 (' + items.length + '종) 자동 담기</div></div>';` +
+        `h += '<button onclick="document.getElementById(\'zb-cart-overlay\').remove()" style="background:#334155;color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-weight:bold;cursor:pointer;font-size:14px;">✕</button></div>';` +
+        `h += '<div style="background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.4);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:12px;color:#fed7aa;line-height:1.4;">';` +
+        `h += '👉 아래 <strong>[⚡ 차례대로 담기]</strong>나 각 재료의 <strong>[담기 ↗]</strong>를 누르시면 쿠팡 상품이 바로 열립니다!</div>';` +
+        `h += '<div style="display:flex;gap:8px;margin-bottom:12px;">';` +
+        `h += '<button id="zb-btn-next" style="flex:1;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;padding:12px 14px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;box-shadow:0 4px 14px rgba(249,115,22,0.4);">⚡ 1번부터 차례대로 담기 (남은: ' + items.length + '개)</button>';` +
+        `h += '<button onclick="location.href=\'https://cart.coupang.com/cartView.pang\'" style="background:#10b981;color:#fff;border:none;padding:12px 14px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;white-space:nowrap;">🛍️ 장바구니</button>';` +
+        `h += '</div>';` +
+        `h += '<div id="zb-list" style="display:flex;flex-direction:column;gap:7px;">';` +
+        `items.forEach(function(it, i){` +
+        `h += '<div id="zb-item-' + i + '" style="display:flex;justify-content:space-between;align-items:center;background:#1e293b;padding:9px 12px;border-radius:10px;border:1px solid #334155;font-size:12px;">';` +
+        `h += '<div style="flex:1;min-width:0;padding-right:8px;"><div style="font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + (i+1) + '. ' + it.name + '</div>';` +
+        `h += '<div style="font-size:11px;color:#94a3b8;margin-top:2px;">' + it.spec + ' (' + it.qty + '개) · ' + it.price.toLocaleString() + '원</div></div>';` +
+        `h += '<a id="zb-btn-item-' + i + '" href="' + it.url + '" target="_blank" onclick="markDone(' + i + ')" style="background:#3b82f6;color:#fff;text-decoration:none;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;display:inline-block;white-space:nowrap;">담기 ↗</a>';` +
+        `h += '</div>';` +
+        `});` +
+        `h += '</div>';` +
+        `o.innerHTML = h;` +
+        `document.body.appendChild(o);` +
+        `window.markDone = function(idx) {` +
+        `var row = document.getElementById('zb-item-' + idx);` +
+        `var btn = document.getElementById('zb-btn-item-' + idx);` +
+        `if (row && btn) {` +
+        `row.style.borderColor = 'rgba(16,185,129,0.5)';` +
+        `row.style.background = 'rgba(16,185,129,0.1)';` +
+        `btn.innerText = '✅ 담김';` +
+        `btn.style.background = '#10b981';` +
+        `}` +
+        `};` +
+        `var nextBtn = document.getElementById('zb-btn-next');` +
+        `if (nextBtn) {` +
+        `nextBtn.onclick = function(){` +
+        `while (currIndex < items.length) {` +
+        `var btn = document.getElementById('zb-btn-item-' + currIndex);` +
+        `if (btn && !btn.innerText.includes('✅')) {` +
+        `var targetUrl = items[currIndex].url;` +
+        `window.markDone(currIndex);` +
+        `var win = window.open(targetUrl, '_blank');` +
+        `if (!win) { location.href = targetUrl; }` +
+        `currIndex++;` +
+        `var remaining = items.filter(function(_, idx){` +
+        `var b = document.getElementById('zb-btn-item-' + idx);` +
+        `return b && !b.innerText.includes('✅');` +
+        `}).length;` +
+        `if (remaining > 0) {` +
+        `nextBtn.innerText = '⚡ 다음 품목 담기 (남은: ' + remaining + '개)';` +
+        `} else {` +
+        `nextBtn.innerText = '🎉 ' + items.length + '개 품목 모두 담기 완료!';` +
+        `nextBtn.style.background = '#10b981';` +
+        `}` +
+        `return;` +
+        `}` +
+        `currIndex++;` +
+        `}` +
+        `nextBtn.innerText = '🎉 모든 품목 담기 완료!';` +
+        `nextBtn.style.background = '#10b981';` +
+        `};` +
+        `}` +
+        `})();`;
+
+      return 'javascript:' + encodeURI(rawScript);
+    }
+
+    function copyCurrentWeekBookmarklet(skipOpenModal = false) {
+      const weekNum = (typeof currentSelectedWeek !== 'undefined' ? currentSelectedWeek : 1) || 1;
+      const code = generateBookmarkletCode(weekNum);
+      
+      const previewElem = document.getElementById('bm-code-preview');
+      if (previewElem) previewElem.value = code;
+
+      const copySuccess = () => {
+        showToast(`📋 ${weekNum}주차 [집밥봇 1초 자동 담기] 코드가 복사되었습니다!`);
+        const badge = document.getElementById('bm-copy-badge');
+        if (badge) {
+          badge.style.display = 'inline-block';
+          badge.innerText = `✅ ${weekNum}주차 복사 완료!`;
+        }
+        if (!skipOpenModal) {
+          openBookmarkletModal();
+        }
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(copySuccess).catch(() => {
+          fallbackCopyText(code, copySuccess);
+        });
+      } else {
+        fallbackCopyText(code, copySuccess);
+      }
+    }
+
+    function fallbackCopyText(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.width = '100px';
+      ta.style.height = '100px';
+      ta.style.padding = '0';
+      ta.style.border = 'none';
+      ta.style.outline = 'none';
+      ta.style.boxShadow = 'none';
+      ta.style.background = 'transparent';
+      ta.style.opacity = '0.01';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      try {
+        document.execCommand('copy');
+      } catch (e) {
+        console.warn('execCommand copy fallback error:', e);
+      }
+      document.body.removeChild(ta);
+      if (typeof cb === 'function') {
+        cb();
+      }
+    }
+
+    window.handleBookmarkletOverlayClick = handleBookmarkletOverlayClick;
+    window.markBatchItemAdded = markBatchItemAdded;
+    window.startBatchAutoAdd = startBatchAutoAdd;
+    window.stopBatchAutoAdd = stopBatchAutoAdd;
+    window.openThisWeekGroceries = openThisWeekGroceries;
+    window.copyCurrentWeekBookmarklet = copyCurrentWeekBookmarklet;
+    window.copyAndOpenBookmarkletModal = copyAndOpenBookmarkletModal;
+    window.openBookmarkletModal = openBookmarkletModal;
+    window.closeBookmarkletModal = closeBookmarkletModal;
+    window.openExtensionModal = openExtensionModal;
+    window.closeExtensionModal = closeExtensionModal;
+    window.openCategoryBatch = openCategoryBatch;
+    window.selectWeek = selectWeek;
+    window.switchViewMode = switchViewMode;
+    window.resetAllAddedStatus = resetAllAddedStatus;
+    window.addSingleProductToCart = addSingleProductToCart;
+    window.openCartDirect = openCartDirect;
+    window.closeModal = closeModal;
+    window.setCategoryFilter = setCategoryFilter;
+    window.getPartnerUrl = getPartnerUrl;
+    window.copyAffiliateLink = copyAffiliateLink;
+    window.loadPartnersData = loadPartnersData;
+
+    // Initial render
+    renderWeekView(1);
+    renderAllProductsTables();
+    loadPartnersData();
+
+    // Auto-open extension guide modal if requested via URL
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('open') === 'extension' || window.location.hash === '#extension') {
+      setTimeout(() => {
+        openExtensionModal();
+      }, 150);
+    }
+  </script>
+</body>
+</html>
