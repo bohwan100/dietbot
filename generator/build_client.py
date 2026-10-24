@@ -34,7 +34,9 @@ def build_client(
     exclude="없음",
     pantry="아무것도 없음",
     goal_notes="",
-    data_file=None
+    data_file=None,
+    diet_analysis=None,
+    **kwargs
 ):
     client_dir = os.path.join(CLIENTS_DIR, client_id)
     os.makedirs(client_dir, exist_ok=True)
@@ -96,8 +98,73 @@ def build_client(
         content = content.replace('cart_dashboard.html', 'cart.html')
         content = content.replace('storage_guide.html', 'storage.html')
 
+
         # A. index.html (포털 홈) 개인화 주입
         if dest_name == "index.html":
+            if diet_analysis:
+                bmr = diet_analysis.get('bmr', 1600)
+                tdee = diet_analysis.get('tdee', 2100)
+                target_cal = diet_analysis.get('target_calories', 1650)
+                p_g = diet_analysis.get('protein_g', 130)
+                c_g = diet_analysis.get('carbs_g', 160)
+                f_g = diet_analysis.get('fat_g', 40)
+                p_pct = diet_analysis.get('protein_pct', 30)
+                c_pct = diet_analysis.get('carbs_pct', 45)
+                f_pct = diet_analysis.get('fat_pct', 25)
+
+                diet_banner = f'''
+    <!-- 🥗 1:1 맞춤 다이어트 대사량 & 황금 매크로 분석 리포트 -->
+    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1.5px solid #10b981; border-radius: 20px; padding: 24px 28px; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.8rem;">🥗</span>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: #34d399;">{name}님의 1:1 정밀 다이어트 매크로 분석</h3>
+            <div style="font-size: 0.85rem; color: #94a3b8;">신체 대사량(BMR/TDEE) 기반 목표 체중 달성을 위한 일일 권장 섭취 기준</div>
+          </div>
+        </div>
+        <span style="background: #10b981; color: #0b0f19; font-weight: 800; font-size: 0.8rem; padding: 4px 12px; border-radius: 999px;">식단 챌린지 공식 솔루션</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px;">
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">기초대사량 (BMR)</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #fff;">{bmr:,} <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">유지 대사량 (TDEE)</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #fff;">{tdee:,} <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+        <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(52, 211, 153, 0.5); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #34d399; font-weight: 700; margin-bottom: 4px;">🎯 목표 권장 칼로리</div>
+          <div style="font-size: 1.45rem; font-weight: 900; color: #34d399;">{target_cal:,} <span style="font-size: 0.8rem; color: #34d399;">kcal</span></div>
+        </div>
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 14px; text-align: center;">
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px;">일일 칼로리 결손</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #38bdf8;">-{tdee - target_cal:,} <span style="font-size: 0.8rem; color: #94a3b8;">kcal</span></div>
+        </div>
+      </div>
+
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 700; color: #e2e8f0; margin-bottom: 10px;">
+          <span>일일 황금 탄·단·지 매크로 배분</span>
+          <span style="color: #34d399;">단백질 {p_g}g · 탄수화물 {c_g}g · 지방 {f_g}g</span>
+        </div>
+        <div style="height: 12px; border-radius: 999px; display: flex; overflow: hidden; background: #1e293b; margin-bottom: 12px;">
+          <div style="width: {p_pct}%; background: #38bdf8;"></div>
+          <div style="width: {c_pct}%; background: #fbbf24;"></div>
+          <div style="width: {f_pct}%; background: #f87171;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-around; font-size: 0.82rem; font-weight: 700;">
+          <span style="color: #38bdf8;">● 단백질 {p_g}g ({p_pct}%)</span>
+          <span style="color: #fbbf24;">● 탄수화물 {c_g}g ({c_pct}%)</span>
+          <span style="color: #f87171;">● 지방 {f_g}g ({f_pct}%)</span>
+        </div>
+      </div>
+    </div>
+'''
+                content = content.replace('<main class="container">', f'<main class="container">\n{diet_banner}')
+
             content = content.replace('<title>다이어트봇 | 1인 가구 20만원 30일 식단 & 스마트 장보기 포털</title>', f'<title>{name}님 맞춤 30일 식단 & 스마트 장보기 포털 | 다이어트봇</title>')
             content = content.replace('content="다이어트봇 | 1인 가구 20만원 30일 식단 & 스마트 장보기 포털"', f'content="{name}님 {household} 맞춤 식단 & 스마트 장보기 포털 | 다이어트봇"')
             content = content.replace('content="1인 가구 20만원 한 달 식단 & 쿠팡 1초 원클릭 스마트 장바구니 자동화 솔루션"', f'content="{name}님을 위한 {goal} 맞춤 식단과 쿠팡 1초 원클릭 스마트 장바구니"')

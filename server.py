@@ -300,7 +300,161 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
 
 
 
-        elif parsed.path == '/api/create-client':
+        elif parsed.path in ['/api/create-diet-client', '/api/create-client']:
+            token = data.get('token', '').strip()
+            is_admin = data.get('admin', False)
+
+            if token and not is_admin:
+                valid, msg = stm.verify_token(token)
+                if not valid:
+                    self._send_json({"success": False, "error": f"1회용 초대 코드가 유효하지 않습니다: {msg}"}, 403)
+                    return
+
+            name = data.get('name', '회원님')
+            age = data.get('age', '30세')
+            gender = data.get('gender', '남성')
+            height = data.get('height', '175')
+            weight = data.get('weight', '75')
+            target_weight = data.get('target_weight', '68')
+            activity_level = data.get('activity_level', '좌식 생활')
+            workout_type = data.get('workout_type', '웨이트')
+            workout_freq = data.get('workout_freq', '주 3~4회')
+            workout_duration = data.get('workout_duration', '30분~1시간')
+            meal_count = data.get('meal_count', '하루 3끼')
+            delivery_freq = data.get('delivery_freq', '주 2~3회')
+            snack_habit = data.get('snack_habit', '없음')
+            meal_target = data.get('meal_target', '점심만')
+            health_notes = data.get('health_notes', '없음')
+            budget = int(data.get('budget', 250000))
+            goal_notes = data.get('goal_notes', '')
+
+            import re
+            from urllib.parse import quote
+            clean_name = re.sub(r'[^\w가-힣]', '', name.strip()) or '회원님'
+            clean_age = re.sub(r'[^\w가-힣]', '', age.strip()) or '연령미상'
+            base_id = f"{clean_name}_{clean_age}"
+            client_id = base_id
+
+            count = 2
+            target_clients_dir = os.path.join(DIRECTORY, "clients")
+            while os.path.exists(os.path.join(target_clients_dir, client_id)):
+                client_id = f"{base_id}_{count}"
+                count += 1
+
+            print(f"[DietBot API] Creating diet client [{client_id}] for {name} ({gender}, {height}cm, {weight}kg -> {target_weight}kg, {meal_target})...")
+            try:
+                sys.path.insert(0, os.path.join(DIRECTORY, "generator"))
+                import importlib
+                import diet_calculator
+                import build_client as builder
+                importlib.reload(diet_calculator)
+                importlib.reload(builder)
+
+                # 다이어트 매크로 & 원물 식단 계산
+                diet_analysis = diet_calculator.calculate_diet_macro(
+                    age=age.replace('세', ''),
+                    gender=gender,
+                    height_cm=height,
+                    weight_kg=weight,
+                    target_weight_kg=target_weight,
+                    activity_level=activity_level,
+                    workout_type=workout_type,
+                    workout_freq=workout_freq,
+                    workout_duration=workout_duration,
+                    meal_change_target=meal_target,
+                    budget=budget,
+                    allergies=health_notes
+                )
+
+                # 포털 빌더 호출
+                builder.build_client(
+                    client_id=client_id,
+                    name=name,
+                    age=age,
+                    household="1명",
+                    budget=budget,
+                    frequency=f"{meal_target} 클린 원물 식단",
+                    goal="다이어트 챌린지",
+                    cuisine="클린 원물 식단 (닭가슴살, 샐러드, 고단백 두유)",
+                    exclude=health_notes,
+                    pantry="",
+                    goal_notes=goal_notes,
+                    diet_analysis=diet_analysis
+                )
+
+                # client_info.json에 정밀 다이어트 데이터 추가 기록
+                c_info_file = os.path.join(target_clients_dir, client_id, "client_info.json")
+                if os.path.exists(c_info_file):
+                    try:
+                        with open(c_info_file, "r", encoding="utf-8") as f:
+                            c_info = json.load(f)
+                        c_info["diet_analysis"] = diet_analysis
+                        c_info["gender"] = gender
+                        c_info["height_cm"] = height
+                        c_info["weight_kg"] = weight
+                        c_info["target_weight_kg"] = target_weight
+                        c_info["activity_level"] = activity_level
+                        c_info["workout_type"] = workout_type
+                        c_info["workout_freq"] = workout_freq
+                        c_info["meal_target"] = meal_target
+                        c_info["health_notes"] = health_notes
+                        with open(c_info_file, "w", encoding="utf-8") as f:
+                            json.dump(c_info, f, ensure_ascii=False, indent=2)
+                    except Exception as ex:
+                        print(f"[Warning] Failed to enrich client_info.json: {ex}")
+
+                # clients.html 자동 동기화
+                try:
+                    dash_script = os.path.join(DIRECTORY, "scratch", "generate_clients_dashboard.py")
+                    if os.path.exists(dash_script):
+                        with open(dash_script, "r", encoding="utf-8") as f:
+                            exec(f.read(), {"__name__": "__main__"})
+                except Exception as ex:
+                    print(f"[Warning] Failed to update clients.html: {ex}")
+                finally:
+                    gc.collect()
+
+                # 토큰 소멸
+                if token and not is_admin:
+                    try:
+                        host = self.headers.get('Host', f'localhost:{PORT}')
+                        mobile_base = get_public_tunnel_url(host=host)
+                        stm.mark_token_used(
+                            token=token,
+                            client_id=client_id,
+                            client_name=name,
+                            portal_url=f"{mobile_base}/clients/{quote(client_id)}/index.html"
+                        )
+                    except Exception as ex:
+                        print(f"[Warning] Failed to mark token used: {ex}")
+
+                # GitHub 동기화
+                try:
+                    import github_sync
+                    github_sync.trigger_async_sync(f"feat: auto-sync diet client {client_id}")
+                except Exception as ex:
+                    print(f"[Warning] Failed to trigger git sync: {ex}")
+
+                host = self.headers.get('Host', f'localhost:{PORT}')
+                encoded_client_id = quote(client_id)
+                mobile_base = get_public_tunnel_url(host=host)
+
+                self._send_json({
+                    "success": True,
+                    "client_id": client_id,
+                    "portal_url": f"{mobile_base}/clients/{encoded_client_id}/index.html",
+                    "cart_url": f"{mobile_base}/clients/{encoded_client_id}/cart.html",
+                    "local_portal_url": f"http://localhost:{PORT}/clients/{encoded_client_id}/index.html",
+                    "local_cart_url": f"http://localhost:{PORT}/clients/{encoded_client_id}/cart.html",
+                    "diet_analysis": diet_analysis
+                })
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                print(f"[API Error] Failed to build diet client: {e}")
+                self._send_json({"success": False, "error": str(e)}, 500)
+            return
+
             import time
             token = data.get('token', '').strip()
             is_admin = bool(data.get('admin', False)) or (token == 'ADMIN_MASTER')
@@ -409,7 +563,7 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
                 host = self.headers.get('Host', f'localhost:{PORT}')
                 encoded_client_id = quote(client_id)
                 mobile_base = get_public_tunnel_url(host=host)
-                cdn_base = "https://bohwan100.github.io/zipbab"
+                cdn_base = mobile_base
 
                 self._send_json({
                     "success": True,
