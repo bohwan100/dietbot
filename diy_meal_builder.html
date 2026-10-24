@@ -833,7 +833,10 @@
           단 0g · 탄 0g · 지 0g
         </div>
       </div>
-      <div class="action-group">
+      <div class="action-group" style="display: flex; gap: 8px;">
+        <button type="button" onclick="openRecipeModalForCurrentSelection()" id="btn-quick-recipe" style="display: none; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px 14px; font-weight: 800; font-size: 0.88rem; cursor: pointer; transition: all 0.2s;">
+          <span>📖</span> <span>레시피 보기</span>
+        </button>
         <button type="button" onclick="openCartModal()" class="btn-action-primary" id="btn-save-meal" style="display: flex; align-items: center; gap: 8px;">
           <span>🛒 장바구니 담기 및 확인 (<span id="dock_cart_count">0</span>)</span>
         </button>
@@ -1178,6 +1181,16 @@
             trayList.appendChild(tag);
           }
         });
+      }
+
+      // 카운터 및 레시피 버튼 업데이트
+      const navCount = document.getElementById('nav_cart_count');
+      const dockCount = document.getElementById('dock_cart_count');
+      const quickRecipeBtn = document.getElementById('btn-quick-recipe');
+      if (navCount) navCount.innerText = selectedFoodIds.size;
+      if (dockCount) dockCount.innerText = selectedFoodIds.size;
+      if (quickRecipeBtn) {
+        quickRecipeBtn.style.display = selectedFoodIds.size > 0 ? 'inline-flex' : 'none';
       }
     }
 
@@ -1850,10 +1863,15 @@
             </div>
           </div>
 
-          <!-- 선택 버튼 -->
-          <button type="button" onclick="applyRecommendedMeal(${idx})" style="width: 100%; background: #10b981; color: #0b0f19; font-weight: 900; font-size: 0.95rem; padding: 11px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s;">
-            ✅ 이 맞춤 식단 선택하여 빌더에 담기
-          </button>
+          <!-- 직관적 레시피 버튼 & 식단 선택 버튼 -->
+          <div style="display: flex; gap: 8px;">
+            <button type="button" onclick="openRecipeModalForTheme(${idx})" style="flex: 1; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1.5px solid rgba(56, 189, 248, 0.35); font-weight: 800; font-size: 0.88rem; padding: 11px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;">
+              <span>📖</span> <span>초간단 레시피</span>
+            </button>
+            <button type="button" onclick="applyRecommendedMeal(${idx})" style="flex: 2; background: #10b981; color: #0b0f19; font-weight: 900; font-size: 0.95rem; padding: 11px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s;">
+              ✅ 이 식단 담기
+            </button>
+          </div>
         `;
         container.appendChild(card);
       });
@@ -1890,6 +1908,204 @@
     }
 
     
+    
+    // ==========================================
+    // 📖 직관적이고 깔끔한 초간단 5분 레시피 엔진
+    // ==========================================
+    const THEME_RECIPES = [
+      {
+        themeIdx: 0,
+        title: "🥑 지중해식 프레시 연어 & 통밀파스타 보울",
+        time: "7분",
+        difficulty: "초간단 ★☆☆",
+        calText: "597 kcal · 단 48g · 탄 55g · 지 20g",
+        ingredientsSummary: "연어 100g, 난백 150ml, 통밀파스타 70g, 루꼴라 30g, 방울토마토 100g, 올리브유 10g",
+        dressingRecipe: "엑스트라 버진 올리브유 1T + 생레몬즙 1T + 알룰로스 0.5T + 디종머스터드 0.5t + 통후추 톡톡",
+        steps: [
+          {
+            num: 1,
+            title: "통밀면 삶기 (원팬 타이머 6분)",
+            desc: "끓는 물에 소금 반 티스푼 넣고 통밀파스타를 6분간 삶아 체에 건져둡니다."
+          },
+          {
+            num: 2,
+            title: "연어 & 난백 노릇 굽기",
+            desc: "달군 팬에 올리브유를 살짝 두르고 연어와 난백을 앞뒤로 노릇하게 2~3분간 구워냅니다."
+          },
+          {
+            num: 3,
+            title: "특급 레몬 올리브유 드레싱 유화",
+            desc: "작은 볼에 레몬즙 1T, 알룰로스 0.5T, 디종머스터드를 넣고 올리브유를 천천히 저으며 섞어 상큼하게 완성합니다."
+          },
+          {
+            num: 4,
+            title: "보울 플레이팅 & 시너지 완성",
+            desc: "넓은 볼에 루꼴라와 반 자른 방울토마토, 삶은 통밀면, 구운 연어를 올린 뒤 드레싱을 둘러 완성합니다."
+          }
+        ],
+        chefTip: "생레몬즙의 구연산이 연어의 잡내를 100% 제거하고, 올리브유의 지방산이 토마토의 지용성 리코펜 흡수를 4배 극대화합니다."
+      },
+      {
+        themeIdx: 1,
+        title: "🥩 정갈한 고단백 우둔살 & 두부 쌈밥상",
+        time: "6분",
+        difficulty: "초간단 ★☆☆",
+        calText: "530 kcal · 단 42g · 탄 52g · 지 15g",
+        ingredientsSummary: "소고기 우둔살 100g, 부침두부 150g, 보리밥 130g, 깻잎 20g(7~8장), 상추 40g(5~6장), 들기름 5g",
+        dressingRecipe: "양조간장 1T + 알룰로스 1T + 사과식초 1T + 들기름 0.5T + 들깨가루 1t",
+        steps: [
+          {
+            num: 1,
+            title: "신선 쌈채소 씻기",
+            desc: "깻잎과 상추를 찬물에 가볍게 흔들어 씻은 뒤 탈탈 털어 접시에 담아둡니다."
+          },
+          {
+            num: 2,
+            title: "소고기 우둔살 & 두부 굽기",
+            desc: "팬에 들기름을 두르고 키친타월로 핏물을 닦은 우둔살과 두부를 중강불에 2분간 노릇하게 구워냅니다."
+          },
+          {
+            num: 3,
+            title: "만능 참깨 들깨 오리엔탈장 배합",
+            desc: "간장, 식초, 알룰로스를 1큰술씩 섞어 녹인 뒤 들기름과 고소한 들깨가루를 섞어 감칠맛 장을 만듭니다."
+          },
+          {
+            num: 4,
+            title: "따뜻한 보리밥과 쌈 싸먹기",
+            desc: "따뜻하게 데운 보리밥 위에 구운 고기와 두부를 얹고, 깻잎·상추에 오리엔탈장을 살짝 올려 한 쌈씩 즐깁니다."
+          }
+        ],
+        chefTip: "들기름의 오메가-3와 깻잎의 철분이 만나 체내 혈관 염증을 제거하며 속 편하고 든든한 포만감을 유지합니다."
+      },
+      {
+        themeIdx: 2,
+        title: "🦆 훈제오리 양배추 5분 웜샐러드",
+        time: "5분",
+        difficulty: "초간단 ★☆☆",
+        calText: "565 kcal · 단 38g · 탄 48g · 지 22g",
+        ingredientsSummary: "훈제오리 100g, 달걀 2알, 단호박 150g, 양배추 100g, 당근 80g, 땅콩버터 15g",
+        dressingRecipe: "100% 무첨가 땅콩버터 1T + 온수 1T + 진간장 0.5T + 알룰로스 1T + 식초 1T",
+        steps: [
+          {
+            num: 1,
+            title: "단호박 & 달걀 준비",
+            desc: "단호박은 전자레인지에 2분간 돌려 부드럽게 익히고, 삶은 달걀을 반으로 자릅니다."
+          },
+          {
+            num: 2,
+            title: "원팬 훈제오리 & 채소 볶기",
+            desc: "달군 팬에 훈제오리를 굽다가 나오는 기름에 채 썬 양배추와 당근을 넣어 강불에 1~2분간 아삭하게 볶습니다."
+          },
+          {
+            num: 3,
+            title: "단짠 고소 피넛 소스 풀기",
+            desc: "땅콩버터 1T에 따뜻한 물 1T를 넣어 부드럽게 푼 뒤 진간장, 알룰로스, 식초를 섞어 디핑 소스로 완성합니다."
+          },
+          {
+            num: 4,
+            title: "원플레이트 담기",
+            desc: "넓은 접시에 볶은 오리와 채소, 달걀, 단호박을 올린 뒤 피넛 소스를 곁들여 맛있게 찍먹합니다."
+          }
+        ],
+        chefTip: "땅콩버터의 불포화지방이 당근의 지용성 베타카로틴 흡수를 극대화하고, 양배추의 비타민 U가 소화를 돕습니다."
+      }
+    ];
+
+    function openRecipeModalForTheme(idx) {
+      const recipe = THEME_RECIPES[idx];
+      if (!recipe) return;
+      renderRecipeContent(recipe);
+      document.getElementById('recipe-detail-modal').style.display = 'flex';
+    }
+
+    function openRecipeModalForCurrentSelection() {
+      const selectedItems = Array.from(selectedFoodIds).map(id => foodsData.find(x => x.id === id)).filter(Boolean);
+      if (selectedItems.length === 0) {
+        alert('먼저 식재료를 선택해주세요!');
+        return;
+      }
+
+      const dressing = getBestDressingForFoods(selectedFoodIds);
+      const proteins = selectedItems.filter(x => x.category === 'protein').map(x => x.name);
+      const carbs = selectedItems.filter(x => x.category === 'carb').map(x => x.name);
+      const vegs = selectedItems.filter(x => x.category === 'veg').map(x => x.name);
+      const fats = selectedItems.filter(x => x.category === 'fat').map(x => x.name);
+
+      const tCal = selectedItems.reduce((acc, cur) => acc + cur.calories, 0);
+      const tP = Math.round(selectedItems.reduce((acc, cur) => acc + cur.protein, 0) * 10) / 10;
+      const tC = Math.round(selectedItems.reduce((acc, cur) => acc + cur.carbs, 0) * 10) / 10;
+      const tF = Math.round(selectedItems.reduce((acc, cur) => acc + cur.fat, 0) * 10) / 10;
+
+      const dynamicRecipe = {
+        title: `✨ 나만의 클린 ${proteins[0] || '단백질'} & ${vegs[0] || '신선'} 식단`,
+        time: "5~7분",
+        difficulty: "초간단 ★☆☆",
+        calText: `${tCal} kcal · 단 ${tP}g · 탄 ${tC}g · 지 ${tF}g`,
+        ingredientsSummary: selectedItems.map(it => `${it.name} ${it.portion}`).join(', '),
+        dressingRecipe: dressing ? `${dressing.icon} ${dressing.name}: ${dressing.ingredients}` : "기호에 맞게 가벼운 소금·후추 또는 올리브유 드레즐링",
+        steps: [
+          {
+            num: 1,
+            title: "재료 세척 및 손질 (1분)",
+            desc: `${vegs.length > 0 ? vegs.join(', ') + ' 채소를 찬물에 씻어 물기를 털고, ' : ''}모든 재료를 먹기 좋은 한 입 크기로 준비합니다.`
+          },
+          {
+            num: 2,
+            title: "주재료 간편 열조리 (3~4분)",
+            desc: `${proteins.length > 0 ? proteins.join(', ') + '을(를) 달군 팬에 노릇하게 굽거나 끓는 물/에어프라이어에 데웁니다.' : '탄수화물과 단백질을 따뜻하게 데웁니다.'} ${carbs.length > 0 ? '(' + carbs.join(', ') + ' 준비)' : ''}`
+          },
+          {
+            num: 3,
+            title: "황금 소스/드레싱 배합 (1분)",
+            desc: dressing ? `${dressing.how_to}` : "올리브유나 들기름을 가볍게 둘러 지용성 비타민 흡수를 돕습니다."
+          },
+          {
+            num: 4,
+            title: "플레이팅 & 맛있게 섭취",
+            desc: "보울이나 접시에 준비한 재료를 보기 좋게 담고 소스를 둘러 최상의 식감과 영양 밸런스로 즐깁니다."
+          }
+        ],
+        chefTip: dressing ? dressing.synergy_note : "단백질과 채소를 함께 섭취하면 인슐린 스파이크를 방지하고 포만감이 4시간 이상 지속됩니다."
+      };
+
+      renderRecipeContent(dynamicRecipe);
+      document.getElementById('recipe-detail-modal').style.display = 'flex';
+    }
+
+    function renderRecipeContent(recipe) {
+      document.getElementById('recipe-modal-title').innerText = recipe.title;
+      document.getElementById('recipe-modal-time').innerText = `⏱️ ${recipe.time}`;
+      document.getElementById('recipe-modal-diff').innerText = `⚡ ${recipe.difficulty}`;
+      document.getElementById('recipe-modal-macros').innerText = `🔥 ${recipe.calText}`;
+      document.getElementById('recipe-modal-ingredients').innerText = recipe.ingredientsSummary;
+      document.getElementById('recipe-modal-dressing').innerText = recipe.dressingRecipe;
+      document.getElementById('recipe-modal-tip').innerText = recipe.chefTip;
+
+      const stepsContainer = document.getElementById('recipe-modal-steps');
+      stepsContainer.innerHTML = recipe.steps.map(s => `
+        <div style="display: flex; gap: 12px; align-items: flex-start; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px;">
+          <div style="background: linear-gradient(135deg, #10b981, #059669); color: #0b0f19; font-weight: 900; font-size: 0.85rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            ${s.num}
+          </div>
+          <div>
+            <div style="font-weight: 800; color: #fff; font-size: 0.92rem; margin-bottom: 2px;">${s.title}</div>
+            <div style="color: #94a3b8; font-size: 0.82rem; line-height: 1.45;">${s.desc}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function closeRecipeModal() {
+      const modal = document.getElementById('recipe-detail-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleRecipeModalOverlay(event) {
+      if (event.target.id === 'recipe-detail-modal') {
+        closeRecipeModal();
+      }
+    }
+
     // 전역 브라우저 바인딩 (인라인 핸들러 100% 호환)
     window.DRESSINGS = DRESSINGS;
     window.getBestDressingForFoods = getBestDressingForFoods;
@@ -1903,6 +2119,13 @@
     window.applyRecommendedMeal = applyRecommendedMeal;
     window.switchToManualMode = switchToManualMode;
     window.loadSavedUserProfile = loadSavedUserProfile;
+    window.THEME_RECIPES = THEME_RECIPES;
+    window.openRecipeModalForTheme = openRecipeModalForTheme;
+    window.openRecipeModalForCurrentSelection = openRecipeModalForCurrentSelection;
+    window.renderRecipeContent = renderRecipeContent;
+    window.closeRecipeModal = closeRecipeModal;
+    window.handleRecipeModalOverlay = handleRecipeModalOverlay;
+
 
     function loadSavedUserProfile() {
       try {
@@ -2016,6 +2239,11 @@
       <!-- 🥗 추천 검증 드레싱 안내 (채소 포함 시 자동 매칭) -->
       <div id="complete-dressing-container" style="margin-bottom: 20px;"></div>
 
+      <div style="margin-bottom: 10px;">
+        <button type="button" onclick="openRecipeModalForCurrentSelection()" style="width: 100%; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 12px; font-weight: 800; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
+          <span>📖</span> <span>완성된 식단 초간단 5분 레시피 보기</span>
+        </button>
+      </div>
       <div style="display: flex; gap: 10px;">
         <button type="button" onclick="closeCompleteModal()" class="btn-action-secondary" style="flex: 1; padding: 12px;">
           수정하기
@@ -2154,6 +2382,55 @@
           닫기
         </button>
       </div>
+    </div>
+  </div>
+
+
+  <!-- 📖 직관적이고 깔끔한 초간단 5분 레시피 모달 (Recipe Detail Modal) -->
+  <div id="recipe-detail-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 10000;" onclick="handleRecipeModalOverlay(event)">
+    <div class="modal-card" style="max-width: 620px; max-height: 90vh; overflow-y: auto; padding: 26px 22px; border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 50px rgba(56, 189, 248, 0.25);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.6rem;">📖</span>
+            <h2 id="recipe-modal-title" style="font-size: 1.3rem; font-weight: 900; color: #fff; margin: 0;">초간단 5분 레시피</h2>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+            <span id="recipe-modal-time" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-size: 0.74rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;">⏱️ 5분</span>
+            <span id="recipe-modal-diff" style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 0.74rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;">⚡ 초간단</span>
+            <span id="recipe-modal-macros" style="background: rgba(251, 191, 36, 0.15); color: #fbbf24; font-size: 0.74rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;">🔥 칼로리 요약</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeRecipeModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
+      </div>
+
+      <!-- 1회 정량 재료 요약 -->
+      <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;">
+        <div style="font-size: 0.76rem; font-weight: 800; color: #94a3b8; margin-bottom: 4px;">🛒 1인분 정량 재료:</div>
+        <div id="recipe-modal-ingredients" style="color: #e2e8f0; font-size: 0.84rem; font-weight: 700; line-height: 1.45;"></div>
+      </div>
+
+      <!-- 검증 드레싱/소스 비율 -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid rgba(52, 211, 153, 0.3); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
+        <div style="font-size: 0.78rem; font-weight: 900; color: #34d399; margin-bottom: 4px;">🥄 황금 드레싱 & 소스 배합비:</div>
+        <div id="recipe-modal-dressing" style="color: #cbd5e1; font-size: 0.82rem; font-weight: 700; line-height: 1.45;"></div>
+      </div>
+
+      <!-- 순서별 초간단 조리법 단계 -->
+      <div style="margin-bottom: 16px;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px;">🍳 4단계 초간단 조리법:</div>
+        <div id="recipe-modal-steps"></div>
+      </div>
+
+      <!-- 셰프의 시너지 꿀팁 -->
+      <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 12px 14px; margin-bottom: 20px;">
+        <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; margin-bottom: 3px;">💡 맛 & 영양 극대화 꿀팁:</div>
+        <div id="recipe-modal-tip" style="color: #94a3b8; font-size: 0.8rem; line-height: 1.4;"></div>
+      </div>
+
+      <button type="button" onclick="closeRecipeModal()" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: #0b0f19; font-weight: 900; font-size: 0.95rem; padding: 12px; border: none; border-radius: 10px; cursor: pointer;">
+        확인 완료
+      </button>
     </div>
   </div>
 
