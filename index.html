@@ -3,62 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>다이어트봇 | 맞춤 체중 감량 식단 & 스마트 로켓프레시 장보기</title>
-  <script>
-    (function() {
-      var ua = navigator.userAgent.toLowerCase();
-      if (ua.indexOf('kakaotalk') !== -1) {
-        if (/android/i.test(ua)) {
-          location.href = 'intent://' + location.href.replace(/https?:\/\//i, '') + '#Intent;scheme=https;package=com.android.chrome;end';
-        }
-      }
-    })();
-  </script>
+  <title>나만의 클린 원물 식단 시너지 빌더 | 다이어트봇</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #070a12;
-      --card-bg: rgba(18, 24, 38, 0.7);
+      --card-bg: rgba(18, 24, 38, 0.75);
       --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #38bdf8;
-      --orange: #f97316;
-      --emerald: #10b981;
-      --purple: #a855f7;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --accent-blue: #38bdf8;
+      --accent-gold: #fbbf24;
+      --accent-coral: #f87171;
       --text: #f8fafc;
       --text-muted: #94a3b8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
+
     body {
       background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
       color: var(--text);
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      line-height: 1.5;
+      padding-bottom: 120px;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
+      padding: 0 20px;
     }
 
     /* Top Navigation */
     .top-nav {
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(11, 15, 25, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 0;
     }
     .nav-inner {
       display: flex;
@@ -68,708 +55,1492 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: #fff;
     }
     .brand-icon {
-      font-size: 1.8rem;
-      filter: drop-shadow(0 2px 8px rgba(249, 115, 22, 0.4));
+      font-size: 1.6rem;
+      background: rgba(16, 185, 129, 0.15);
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(52, 211, 153, 0.3);
     }
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-    .brand-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #fff 60%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-tag {
-      font-size: 0.72rem;
-      color: var(--primary);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+    .brand-title { font-weight: 900; font-size: 1.15rem; }
+    .brand-subtitle { font-size: 0.76rem; color: #34d399; font-weight: 700; }
 
-    .nav-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.8rem;
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+    .nav-btn {
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
       font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.04);
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+    /* Sticky Live Macro Dashboard */
+    .macro-dashboard {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1.5px solid #10b981;
+      border-radius: 20px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.18);
+    }
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .guide-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: #34d399;
     }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: #34d399;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #34d399;
-      animation: pulse 1.8s infinite;
+    .guide-banner .pulse-icon {
+      animation: pulseAnim 1.2s infinite;
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.5; }
+    @keyframes pulseAnim {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+      100% { transform: scale(1); }
     }
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 60px 0 40px;
+    /* Macro Gauges Grid */
+    .gauges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
     }
-    .hero-badge {
+    .gauge-box {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .gauge-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+    .gauge-val {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .gauge-val span { font-size: 0.82rem; color: #94a3b8; font-weight: 600; }
+    .gauge-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #1e293b;
+      overflow: hidden;
+    }
+    .gauge-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease-out;
+    }
+
+    /* Selected Tray */
+    .tray-container {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .tray-items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tray-tag {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #34d399;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tray-tag .del-btn {
+      cursor: pointer;
+      color: #f87171;
+      font-weight: 900;
+      margin-left: 4px;
+    }
+    .tray-tag .del-btn:hover { color: #ef4444; }
+
+    /* Category Filter Tabs */
+    .cat-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.03);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .tab-btn.active {
+      background: #10b981;
+      border-color: #10b981;
+      color: #0b0f19;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+
+    /* Food Cards Grid - Clean & Spacious */
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    /* Food Card Component - Ultra Clean Minimalist */
+    .food-card {
+      background: rgba(18, 24, 38, 0.65);
+      border: 1.2px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .food-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(22, 30, 48, 0.85);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Selected State */
+    .food-card.selected {
+      background: rgba(16, 185, 129, 0.12) !important;
+      border: 1.8px solid #10b981 !important;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.25) !important;
+    }
+
+    /* ✨ Golden Neon Synergy Glow State (황금빛 추천 궁합 - 초록색 선택과 100% 완벽 대비!) */
+    @keyframes goldGlowAnim {
+      0% {
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.35);
+        border-color: #fbbf24;
+        transform: translateY(0);
+      }
+      50% {
+        box-shadow: 0 0 26px rgba(245, 158, 11, 0.75), 0 0 12px rgba(251, 191, 36, 0.5);
+        border-color: #fde047;
+        transform: translateY(-4px);
+      }
+      100% {
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.35);
+        border-color: #fbbf24;
+        transform: translateY(0);
+      }
+    }
+    .food-card.glowing {
+      animation: goldGlowAnim 1.5s infinite ease-in-out;
+      border-color: #fbbf24 !important;
+      background: rgba(245, 158, 11, 0.07) !important;
+    }
+    .food-card.glowing .synergy-badge {
+      display: inline-flex;
+    }
+    .food-card.glowing .select-circle {
+      border-color: #fbbf24;
+      color: #fbbf24;
+    }
+
+    /* Golden Synergy Floating Badge */
+    .synergy-badge {
+      display: none;
+      position: absolute;
+      top: -11px;
+      right: 16px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #ffffff;
+      font-size: 0.74rem;
+      font-weight: 900;
+      padding: 3px 11px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.6);
+      z-index: 10;
+      letter-spacing: -0.2px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Selected State (안정적인 고정 에메랄드 그린 - 깜빡이지 않고 확정된 상태) */
+    .food-card.selected {
+      background: rgba(16, 185, 129, 0.16) !important;
+      border: 2px solid #10b981 !important;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35) !important;
+      animation: none !important;
+    }
+    .food-card.selected .synergy-badge {
+      display: none !important;
+    }
+    .selected-tag-badge {
+      display: none;
+      position: absolute;
+      top: -11px;
+      left: 16px;
+      background: #10b981;
+      color: #0b0f19;
+      font-size: 0.74rem;
+      font-weight: 900;
+      padding: 3px 11px;
+      border-radius: 999px;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.5);
+      z-index: 10;
+    }
+    .food-card.selected .selected-tag-badge {
+      display: inline-flex;
+    }
+
+    /* Card Top Header */
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .card-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .food-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .food-card.selected .food-icon-circle {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+    .food-name {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .food-portion {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Selection Circle Indicator */
+    .select-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: transparent;
+      transition: all 0.2s;
+    }
+    .food-card:hover .select-circle {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .food-card.selected .select-circle {
+      background: #10b981;
+      border-color: #10b981;
+      color: #0b0f19;
+      font-weight: 900;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Nutrient Metrics Grid (Clean 3-Column) */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 10px 8px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric-lbl {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .metric-num {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #f1f5f9;
+    }
+    .metric-item.p .metric-num { color: #38bdf8; }
+    .metric-item.c .metric-num { color: #fbbf24; }
+    .metric-item.f .metric-num { color: #f87171; }
+
+    /* Card Bottom Foot */
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 4px;
+    }
+    .calorie-pill {
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .calorie-pill span {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .btn-quick-storage {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-quick-storage:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #34d399;
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+
+    /* Fixed Bottom Action Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(11, 15, 25, 0.95);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--card-border);
+      padding: 16px 0;
+      z-index: 1000;
+    }
+    .bottom-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .status-summary {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .total-cal-badge {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #34d399;
+    }
+    .action-group {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-action-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-action-primary:hover { transform: translateY(-2px); }
+    .btn-action-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-action-secondary:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+    /* Modal for Food Storage Tips */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+    .modal-card {
+      background: #0f172a;
+      border: 1.5px solid #10b981;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 440px;
+      padding: 26px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .food-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 1px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .food-summary-line {
+      margin: 10px 0 12px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 7px 11px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.77rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+      transition: all 0.2s;
+    }
+    .food-card:hover .food-summary-line {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.14);
+      color: #f1f5f9;
+    }
+    .food-card.selected .food-summary-line {
+      background: rgba(16, 185, 129, 0.09);
+      border-color: rgba(52, 211, 153, 0.25);
+      color: #ecfdf5;
+    }
+    .food-card.glowing .food-summary-line {
+      background: rgba(245, 158, 11, 0.09);
+      border-color: rgba(251, 191, 36, 0.25);
+      color: #fef3c7;
+    }
+    .summary-bulb {
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+    .summary-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+    .nutrition-bullet-item {
+      margin-bottom: 7px;
+      line-height: 1.55;
+      font-size: 0.83rem;
+      color: #e2e8f0;
+    }
+    .nutrition-bullet-item:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .btn-cart-nav {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #0b0f19;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s;
     }
-    .hero h1 {
-      font-size: 3.2rem;
+    .btn-cart-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .cart-pill-count {
+      background: #0b0f19;
+      color: #34d399;
+      font-size: 0.74rem;
       font-weight: 900;
-      line-height: 1.25;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 30%, #e2e8f0 70%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero h1 span.accent {
-      background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 720px;
-      margin: 0 auto 36px;
-      line-height: 1.65;
-    }
-
-    /* Quick Stats Bar */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 50px;
-    }
-    .stat-pill {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 10px 18px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-    }
-    .stat-pill strong { color: #fff; }
-    .stat-pill .num { color: #34d399; font-weight: 700; }
-
-    /* The 3 Core Action Cards (Main Buttons) */
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 60px;
-    }
-
-    .core-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 36px 28px;
-      backdrop-filter: blur(16px);
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .core-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      opacity: 0.8;
-      transition: height 0.3s;
-    }
-    .core-card.recipe::before { background: linear-gradient(90deg, #f97316, #fb923c); }
-    .core-card.cart::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
-    .core-card.storage::before { background: linear-gradient(90deg, #10b981, #34d399); }
-
-    .core-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-    .core-card.recipe:hover { border-color: rgba(249, 115, 22, 0.4); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15); }
-    .core-card.cart:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 20px 40px rgba(56, 189, 248, 0.15); }
-    .core-card.storage:hover { border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 20px 40px rgba(52, 211, 153, 0.15); }
-
-    .card-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
+      padding: 1px 7px;
       border-radius: 999px;
-      margin-bottom: 20px;
     }
-    .core-card.recipe .card-badge { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
-    .core-card.cart .card-badge { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .core-card.storage .card-badge { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
-
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      transition: transform 0.3s ease;
-    }
-    .core-card:hover .card-icon {
-      transform: scale(1.15) rotate(3deg);
-    }
-
-    .card-title {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
-    }
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .card-feature-list {
-      list-style: none;
-      margin-bottom: 30px;
-      font-size: 0.88rem;
-      color: #cbd5e1;
-    }
-    .card-feature-list li {
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card-feature-list li span.dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--text-muted);
-    }
-    .core-card.recipe .card-feature-list li span.dot { background: #f97316; }
-    .core-card.cart .card-feature-list li span.dot { background: #38bdf8; }
-    .core-card.storage .card-feature-list li span.dot { background: #34d399; }
-
-    /* Action Buttons Inside Cards */
-    .btn-card-action {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 20px;
+    .cart-item-row {
+      background: rgba(18, 24, 38, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    .core-card.recipe .btn-card-action {
-      background: linear-gradient(135deg, #f97316, #ea580c);
-    }
-    .core-card.cart .btn-card-action {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-    }
-    .core-card.storage .btn-card-action {
-      background: linear-gradient(135deg, #059669, #047857);
-    }
-
-    .core-card:hover .btn-card-action {
-      filter: brightness(1.15);
-      gap: 14px;
-    }
-
-    /* Timeline & Strategy Section */
-    .strategy-section {
-      background: rgba(18, 24, 38, 0.5);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 32px 30px;
-      margin-bottom: 60px;
-    }
-    .strategy-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .strategy-header h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
-    }
-    .strategy-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .strategy-col {
-      background: rgba(11, 15, 25, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
-      padding: 18px;
-    }
-    .col-week {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 4px;
-      text-transform: uppercase;
-    }
-    .col-price {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .col-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 24px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    @media (max-width: 992px) {
-      .action-grid { grid-template-columns: 1fr; gap: 20px; }
-      .strategy-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero h1 { font-size: 2.3rem; }
-    }
-    @media (max-width: 576px) {
-      .strategy-grid { grid-template-columns: 1fr; }
-    }
-
-    /* Program Guide CTA - Simple Red Button */
-    .guide-cta-bar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 16px 0 28px;
-    }
-    .btn-guide-must-read {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      color: #ffffff;
-      padding: 13px 32px;
-      border-radius: 9999px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      border: 1.5px solid rgba(254, 202, 202, 0.45);
-      box-shadow: 0 4px 18px rgba(239, 68, 68, 0.42);
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      letter-spacing: -0.3px;
-    }
-    .btn-guide-must-read:hover {
-      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(239, 68, 68, 0.6);
-    }
-    .btn-guide-must-read:active {
-      transform: translateY(0);
-    }
-    .btn-guide-pulse {
-      font-size: 1.2rem;
-      animation: pulse-alert 1.8s infinite;
-    }
-    @keyframes pulse-alert {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.25); }
-    }
-    .btn-guide-arrow {
-      font-size: 1.15rem;
-      transition: transform 0.2s ease;
-    }
-    .btn-guide-must-read:hover .btn-guide-arrow {
-      transform: translateX(4px);
-    }
-
-    /* Guide Modal Styling */
-    .guide-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .guide-modal-content {
-      background: #0f172a;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 600px;
-      padding: 32px 28px;
-      color: #f8fafc;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-      animation: guidePop 0.3s ease;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    @keyframes guidePop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    .guide-modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 16px;
-    }
-    .guide-modal-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-close-modal {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: #94a3b8;
-      font-size: 1.2rem;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-    .btn-close-modal:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-    }
-    .guide-detail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-    .guide-detail-item {
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 14px;
-      padding: 16px 20px;
-    }
-    .guide-detail-item-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #38bdf8;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .guide-detail-item-desc {
-      font-size: 0.9rem;
-      color: #cbd5e1;
-      line-height: 1.55;
-    }
-    .btn-modal-confirm {
-      width: 100%;
       padding: 14px;
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       transition: all 0.2s;
     }
-    .btn-modal-confirm:hover {
-      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    .cart-item-row:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(22, 30, 48, 0.85);
     }
+
   </style>
 </head>
 <body>
 
-  <!-- Top Header Nav -->
+  <!-- Top Sticky Nav -->
   <header class="top-nav">
     <div class="container nav-inner">
       <a href="index.html" class="brand">
-        <span class="brand-icon">🤖</span>
-        <div class="brand-text">
-          <span class="brand-name">다이어트봇 DietBot</span>
-          <span class="brand-tag">개인 맞춤 다이어트 식단 & 4주 분할 장보기</span>
+        <span class="brand-icon">🥗</span>
+        <div>
+          <div class="brand-title">나만의 클린 원물 식단 빌더</div>
+          <div class="brand-subtitle">영양 시너지 & 실시간 매크로 자동 매칭</div>
         </div>
       </a>
-      <div class="nav-status" style="display: flex; gap: 8px; align-items: center;">
-        <a href="diy_meal_builder.html" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; padding: 6px 14px; border-radius: 999px; text-decoration: none; font-size: 0.84rem; font-weight: 800; display: flex; align-items: center; gap: 5px;">
-          <span>✨ 나만의 식단 빌더</span>
-        </a>
-        <span class="pulse-dot"></span>
-        <span>4주 분할 장보기</span>
+      <div class="nav-links" style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" onclick="openCartModal()" class="btn-cart-nav" id="btn-cart-nav">
+          <span>🛒 장바구니</span>
+          <span class="cart-pill-count" id="nav_cart_count">0</span>
+        </button>
+        <button type="button" onclick="resetBuilder()" class="nav-btn" style="padding: 7px 12px; font-size: 0.8rem;">
+          🔄 초기화
+        </button>
       </div>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- Hero Title -->
-    <section class="hero">
-      <div class="hero-badge">✨ 1인 가구 혼밥 자취생을 위한 종결자 솔루션</div>
-      <h1>체계적인 감량 플랜으로 완성하는<br><span class="accent">30일 원물 식단</span></h1>
-      <p style="font-size: 1.25rem; font-weight: 600; color: #cbd5e1;">지속 가능한 건강 다이어트 챌린지!</p>
-      <div style="margin-top: 24px;">
-        <a href="survey.html?admin=true" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; padding: 14px 28px; border-radius: 14px; font-weight: 800; font-size: 1.05rem; text-decoration: none; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);">
-          🥗 내 신체 스펙 맞춤 식단 & 매크로 분석 설문 시작하기 ➔
-        </a>
+    <!-- Interactive Macro Dashboard -->
+    <section class="macro-dashboard">
+      <div class="dash-header">
+        <div class="guide-banner" id="guide-banner-text">
+          <span class="pulse-icon">👉</span>
+          <span id="guide-instruction">먼저 메인이 될 <strong>[단백질 원재료]</strong>를 골라보세요! (예: 닭가슴살)</span>
+        </div>
+        <button type="button" onclick="resetBuilder()" class="nav-btn" style="font-size: 0.8rem; padding: 6px 12px;">
+          🔄 처음부터 다시 짜기
+        </button>
+      </div>
+
+      <!-- Gauges Grid -->
+      <div class="gauges-grid">
+        <!-- 칼로리 -->
+        <div class="gauge-box">
+          <div class="gauge-head">
+            <span>🔥 한 끼 칼로리</span>
+            <span id="pct_cal">0%</span>
+          </div>
+          <div class="gauge-val"><span id="val_cal">0</span> / 450 <span>kcal</span></div>
+          <div class="gauge-track">
+            <div class="gauge-fill" id="fill_cal" style="width: 0%; background: #34d399;"></div>
+          </div>
+        </div>
+
+        <!-- 단백질 -->
+        <div class="gauge-box">
+          <div class="gauge-head">
+            <span>🍗 단백질 (Protein)</span>
+            <span id="pct_p">0%</span>
+          </div>
+          <div class="gauge-val" style="color: #38bdf8;"><span id="val_p">0</span> / 35 <span>g</span></div>
+          <div class="gauge-track">
+            <div class="gauge-fill" id="fill_p" style="width: 0%; background: #38bdf8;"></div>
+          </div>
+        </div>
+
+        <!-- 탄수화물 -->
+        <div class="gauge-box">
+          <div class="gauge-head">
+            <span>🍠 탄수화물 (Carbs)</span>
+            <span id="pct_c">0%</span>
+          </div>
+          <div class="gauge-val" style="color: #fbbf24;"><span id="val_c">0</span> / 45 <span>g</span></div>
+          <div class="gauge-track">
+            <div class="gauge-fill" id="fill_c" style="width: 0%; background: #fbbf24;"></div>
+          </div>
+        </div>
+
+        <!-- 지방 -->
+        <div class="gauge-box">
+          <div class="gauge-head">
+            <span>🥑 건강한 지방 (Fat)</span>
+            <span id="pct_f">0%</span>
+          </div>
+          <div class="gauge-val" style="color: #f87171;"><span id="val_f">0</span> / 12 <span>g</span></div>
+          <div class="gauge-track">
+            <div class="gauge-fill" id="fill_f" style="width: 0%; background: #f87171;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Selected Foods Tray -->
+      <div class="tray-container">
+        <div style="font-size: 0.88rem; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px;">
+          <span>🍽️ 현재 담긴 식재료:</span>
+        </div>
+        <div class="tray-items" id="tray-list">
+          <span style="font-size: 0.82rem; color: #64748b;">아래 카드에서 원하는 원재료를 클릭해 담아보세요.</span>
+        </div>
       </div>
     </section>
 
-    <!-- Key Stats Overview -->
-    <div class="stats-bar">
-      <div class="stat-pill">
-        <span>💰 한 달 총 예산:</span>
-        <strong>200,000원</strong>
+    <!-- Category Filter & Elimination Mode Toggle -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
+      <div class="cat-tabs" style="margin-bottom: 0;">
+      <button class="tab-btn active" onclick="filterCategory('all', this)">✨ 전체 원재료</button>
+      <button class="tab-btn" onclick="filterCategory('protein', this)">🍗 단백질 (Protein)</button>
+      <button class="tab-btn" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 (Carbs)</button>
+      <button class="tab-btn" onclick="filterCategory('fat', this)">🥑 건강한 지방 (Fat)</button>
+      <button class="tab-btn" onclick="filterCategory('veg', this)">🥗 식이섬유 & 채소 (Fiber)</button>
       </div>
-      <div class="stat-pill">
-        <span>🛒 실제 총 구매액:</span>
-        <span class="num">189,700원</span>
-        <strong style="color: #34d399;">(+10,300원 절감!)</strong>
-      </div>
-      <div class="stat-pill">
-        <span>🌍 4대 요리 조화:</span>
-        <strong>한식 12 · 일식 6 · 중식 6 · 양식 6</strong>
-      </div>
-    </div>
-
-    <!-- Program Guide CTA Button (프로그램 사용 전 필독 사항) -->
-    <div class="guide-cta-bar">
-      <button type="button" onclick="openGuideModal()" class="btn-guide-must-read">
-        <span class="btn-guide-pulse">🚨</span>
-        <span>프로그램 사용 전 필독 사항</span>
-        <span class="btn-guide-arrow">→</span>
+      <button type="button" onclick="toggleShowAllMode()" id="toggle-show-all-btn" class="nav-btn" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24; background: rgba(245, 158, 11, 0.1); font-size: 0.84rem; padding: 8px 14px;">
+        👀 모든 식재료 펼쳐보기
       </button>
     </div>
 
-    <!-- The 3 Core Action Cards (메인 3개 버튼) -->
-    <div class="action-grid">
-
-      <!-- Card 1: 30일 레시피 -->
-      <a href="recipes.html" class="core-card recipe">
-        <div>
-          <span class="card-badge">퇴근 후 15분 컷</span>
-          <div class="card-icon">🍳</div>
-          <h2 class="card-title">30일 레시피</h2>
-          <ul class="card-feature-list">
-            <li><span class="dot"></span> 🇰🇷한식 12 · 🇯🇵일식 6 · 🇨🇳중식 6 · 🇪🇺양식 6</li>
-            <li><span class="dot"></span> 단계별 상세 조리법 & 프로 셰프 팁 수록</li>
-            <li><span class="dot"></span> 칼로리 & 탄·단·지 소수점 정밀 계산</li>
-          </ul>
-        </div>
-        <div class="btn-card-action">
-          <span>30일 레시피 보러가기</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Card 2: 장바구니 매니저 -->
-      <a href="cart.html" class="core-card cart">
-        <div>
-          <span class="card-badge">쿠팡 로켓프레시 4주 분할</span>
-          <div class="card-icon">🛒</div>
-          <h2 class="card-title">장바구니 매니저</h2>
-          <ul class="card-feature-list">
-            <li><span class="dot"></span> 189,700원 실구매 (예산 20만원 이내 100%)</li>
-            <li><span class="dot"></span> 신선식품 / 냉동식품 / 조미료 3대 분류 완벽 분할</li>
-            <li><span class="dot"></span> 원클릭 자동 장바구니 담기 연동 지원</li>
-          </ul>
-        </div>
-        <div class="btn-card-action">
-          <span>장바구니 매니저 열기</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Card 3: 재료별 보관방법 -->
-      <a href="storage.html" class="core-card storage">
-        <div>
-          <span class="card-badge">신선도 300% 극대화</span>
-          <div class="card-icon">❄️</div>
-          <h2 class="card-title">재료별 보관방법</h2>
-          <ul class="card-feature-list">
-            <li><span class="dot"></span> 소형 냉동실 공간 3배 넓어지는 납작 소분법</li>
-            <li><span class="dot"></span> 채소 한 달 내내 아삭하게 살리는 보관 꿀팁</li>
-            <li><span class="dot"></span> 조미료 개봉 후 냉장 vs 상온 분별 가이드</li>
-          </ul>
-        </div>
-        <div class="btn-card-action">
-          <span>재료별 보관방법 보기</span>
-          <span>→</span>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- 4-Week Smart Timeline Strategy -->
-    <div class="strategy-section">
-      <div class="strategy-header">
-        <h3>📅 쿠팡 로켓프레시 4주 분할 주문 로드맵</h3>
-        <span style="font-size: 0.85rem; color: #34d399; font-weight: 700;">4회 배송비 전액 0원 (각 15,000원 이상 충족)</span>
-      </div>
-      <div class="strategy-grid">
-        <div class="strategy-col">
-          <div class="col-week">1주차 주문</div>
-          <div class="col-price">105,250원</div>
-          <div class="col-desc">쌀 2kg, 기본 양념 11종, 돼지 앞다리살, 닭다리살, 계란 및 1주차 신선 채소</div>
-        </div>
-        <div class="strategy-col">
-          <div class="col-week">2주차 주문</div>
-          <div class="col-price">39,200원</div>
-          <div class="col-desc">우삼겹, 비엔나소시지, 스팸, 세척 무, 애호박, 양배추, 팽이버섯, 맛김치</div>
-        </div>
-        <div class="strategy-col">
-          <div class="col-week">3주차 주문</div>
-          <div class="col-price">16,610원</div>
-          <div class="col-desc">소고기 양지, 오뚜기 소면, 짜장가루, 참치캔</div>
-        </div>
-        <div class="strategy-col">
-          <div class="col-week">4주차 주문</div>
-          <div class="col-price">25,920원</div>
-          <div class="col-desc">해물믹스, 사각어묵, 훈제오리, 순두부, 사골육수, 떡국떡</div>
-        </div>
-      </div>
+    <!-- Food Cards Grid -->
+    <div class="food-grid" id="food-cards-grid">
+      <!-- Cards rendered via JS -->
     </div>
 
   </main>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 다이어트봇 by. DietBot</p>
+  <!-- Sticky Bottom Bar -->
+  <aside class="bottom-bar">
+    <div class="container bottom-inner">
+      <div class="status-summary">
+        <div>
+          <div style="font-size: 0.78rem; color: #94a3b8; font-weight: 600;">나만의 식단 합계</div>
+          <div class="total-cal-badge" id="bottom_cal_text">0 kcal</div>
+        </div>
+        <div style="font-size: 0.84rem; color: #cbd5e1; font-weight: 700;" id="bottom_macro_text">
+          단 0g · 탄 0g · 지 0g
+        </div>
+      </div>
+      <div class="action-group">
+        <button type="button" onclick="openCartModal()" class="btn-action-primary" id="btn-save-meal" style="display: flex; align-items: center; gap: 8px;">
+          <span>🛒 장바구니 담기 및 확인 (<span id="dock_cart_count">0</span>)</span>
+        </button>
+      </div>
     </div>
-  </footer>
+  </aside>
 
-  <!-- Guide Detail Modal (프로그램 사용 전 필독 사항) -->
-  <div id="guide-modal" class="guide-modal-overlay" onclick="handleGuideOverlayClick(event)">
-    <div class="guide-modal-content">
-      <div class="guide-modal-header">
-        <div class="guide-modal-title">
-          <span>🚨</span> 프로그램 사용 전 필독 사항
+  <!-- Storage & Detailed Nutrition Modal -->
+  <div id="storage-modal" class="modal-overlay" onclick="handleModalOverlayClick(event)">
+    <div class="modal-card" style="max-width: 520px; max-height: 88vh; overflow-y: auto; padding: 24px;">
+      <div class="modal-header" style="margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span id="modal-food-icon" style="font-size: 2.2rem; background: rgba(255,255,255,0.06); border-radius: 14px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.12);">🍗</span>
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <h3 id="modal-food-name" style="color: #fff; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.4px;">식품명</h3>
+              <span id="modal-food-category" style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.3);">카테고리</span>
+            </div>
+            <span id="modal-food-portion" style="color: #94a3b8; font-size: 0.82rem; font-weight: 600;">1회 섭취 기준: 100g</span>
+          </div>
         </div>
-        <button type="button" class="btn-close-modal" onclick="closeGuideModal()">✕</button>
+        <button type="button" onclick="closeStorageModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 2px 8px; border-radius: 6px; line-height: 1;">&times;</button>
       </div>
 
-      <div class="guide-detail-list">
-        <div class="guide-detail-item" style="border: 1.5px solid rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.08);">
-          <div class="guide-detail-item-title" style="color: #f87171;">
-            <span>1️⃣</span> 🛒 1주차 장보기 (⚠️ PC 크롬 & 네이버 웨일 지원!)
-          </div>
-          <div class="guide-detail-item-desc">
-            스마트폰 브라우저는 기술 제약상 자동 담기가 불가능합니다. 
-            <strong>원클릭 자동 장바구니 담기는 [PC / 노트북 크롬 또는 네이버 웨일 브라우저]</strong>에서 [장바구니 매니저]를 열어 실행해 주세요. 
-            담은 후 스마트폰 쿠팡 앱에서 편하게 결제하시면 됩니다!
-          </div>
+      <!-- Quick Macro Specs Banner -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 10px; text-align: center;">
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">열량</div>
+          <div id="modal-cal" style="font-size: 0.95rem; font-weight: 800; color: #f59e0b;">115 kcal</div>
         </div>
-
-        <div class="guide-detail-item">
-          <div class="guide-detail-item-title">
-            <span>2️⃣</span> 🧊 배송 즉시 소분 & 보관 (버리는 재료 0%)
-          </div>
-          <div class="guide-detail-item-desc">
-            식재료가 배송되면 <strong>[재료별 보관방법]</strong> 안내대로 고기는 1회분씩 랩핑하여 냉동실에 납작하게 넣고, 채소는 밀폐 보관해야 한 달 내내 버리는 재료 없이 신선하게 드실 수 있습니다.
-          </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">단백질</div>
+          <div id="modal-p" style="font-size: 0.95rem; font-weight: 800; color: #38bdf8;">23.0g</div>
         </div>
-
-        <div class="guide-detail-item">
-          <div class="guide-detail-item-title">
-            <span>3️⃣</span> 🍳 30일 레시피 15분 조리 (순서는 자유롭게 선택)
-          </div>
-          <div class="guide-detail-item-desc">
-            퇴근 후 <strong>[30일 레시피]</strong>에서 오늘 가장 먹고 싶은 요리를 자유롭게 골라 15분 만에 조리해 드시면 됩니다. Day 1부터 꼭 순서대로 드시지 않아도 괜찮습니다.
-          </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">탄수화물</div>
+          <div id="modal-c" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24;">0.0g</div>
         </div>
-
-        <div class="guide-detail-item">
-          <div class="guide-detail-item-title">
-            <span>4️⃣</span> 🏠 보유 재료 0원 공제 (중복 구매 차단)
-          </div>
-          <div class="guide-detail-item-desc">
-            설문지에 적어주신 집에 있는 양념 및 식재료는 자동으로 <strong>[0원 공제]</strong>되어 중복 구매되지 않으니 안심하셔도 됩니다.
-          </div>
+        <div>
+          <div style="font-size: 0.7rem; color: #94a3b8; font-weight: 600;">지방</div>
+          <div id="modal-f" style="font-size: 0.95rem; font-weight: 800; color: #f43f5e;">1.5g</div>
         </div>
       </div>
 
-      <button type="button" class="btn-modal-confirm" onclick="goToExtensionInstall()">
-        🧩 크롬 / 네이버 웨일 확장 프로그램 설치 가이드 ➔
-      </button>
+      <!-- Detailed Nutrition Breakdown (핵심 영양 효과) -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
+          <div style="font-size: 0.88rem; font-weight: 900; color: #34d399; display: flex; align-items: center; gap: 6px;">
+            <span>🧬</span> <span>핵심 영양 효과 & 다이어트 기전</span>
+          </div>
+          <span id="modal-tagline" style="font-size: 0.72rem; color: #a7f3d0; background: rgba(52, 211, 153, 0.18); border: 1px solid rgba(52, 211, 153, 0.3); padding: 2px 8px; border-radius: 999px; font-weight: 800;">체지방 컷팅 1위</span>
+        </div>
+        <ul id="modal-nutrition-bullets" style="margin: 0; padding-left: 20px;">
+          <!-- dynamically populated bullets -->
+        </ul>
+      </div>
+
+      <!-- Fresh Storage & Prep Guide (보관법 & 소분 꿀팁) -->
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(251, 191, 36, 0.25); border-radius: 14px; padding: 16px; margin-bottom: 14px;">
+        <div style="font-size: 0.88rem; font-weight: 900; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          <span>❄️</span> <span>신선 200% 보관법 & 소분 꿀팁</span>
+        </div>
+        <div id="modal-storage-method" style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.55; margin-bottom: 8px;"></div>
+        <div id="modal-storage-tip" style="font-size: 0.81rem; color: #fde68a; background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 8px 12px; border-radius: 0 8px 8px 0; line-height: 1.45;"></div>
+      </div>
+
+      <!-- Recommended Synergy Note -->
+      <div id="modal-synergy-box" style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(129, 140, 248, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 18px;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #a5b4fc; margin-bottom: 5px; display: flex; align-items: center; gap: 5px;">
+          <span>✨</span> <span>추천 궁합 식재료 시너지</span>
+        </div>
+        <div id="modal-synergy-text" style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5;"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" id="modal-select-btn" onclick="toggleFoodFromModal()" style="flex: 1; background: #10b981; color: #0b0f19; border: none; padding: 12px; border-radius: 10px; font-weight: 900; font-size: 0.95rem; cursor: pointer; transition: all 0.2s;">
+          + 이 식재료 담기
+        </button>
+        <button type="button" onclick="closeStorageModal()" style="background: rgba(255,255,255,0.08); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 12px 20px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer;">
+          닫기
+        </button>
+      </div>
     </div>
   </div>
 
   <script>
-    function openGuideModal() {
-      document.getElementById('guide-modal').style.display = 'flex';
-    }
-    function closeGuideModal() {
-      document.getElementById('guide-modal').style.display = 'none';
-    }
-    function handleGuideOverlayClick(e) {
-      if (e.target.id === 'guide-modal') {
-        closeGuideModal();
+    let foodsData = [];
+    let selectedFoodIds = new Set();
+    let currentCategory = 'all';
+
+    // 한 끼 기준 목표치 (일반적인 성인 다이어트 한 끼)
+    const TARGET = {
+      cal: 450,
+      p: 35,
+      c: 45,
+      f: 12
+    };
+
+    async function loadFoods() {
+      try {
+        const res = await fetch('data/diet_foods_db.json');
+        foodsData = await res.json();
+        renderFoodCards();
+      } catch (err) {
+        console.error('Failed to load foods:', err);
       }
     }
-    function goToExtensionInstall() {
-      closeGuideModal();
-      window.location.href = 'cart_dashboard.html?open=extension';
-    }
-  </script>
 
+    let showAllMode = false; // 소거법 vs 전체보기 토글
+    let hasShownCompletionModal = false;
+
+    function toggleShowAllMode() {
+      showAllMode = !showAllMode;
+      const btn = document.getElementById('toggle-show-all-btn');
+      if (btn) {
+        btn.innerText = showAllMode ? '🎯 추천 조합만 보기 (소거법)' : '👀 모든 식재료 펼쳐보기';
+      }
+      renderFoodCards();
+    }
+
+    function renderFoodCards() {
+      const grid = document.getElementById('food-cards-grid');
+      grid.innerHTML = '';
+
+      // 1. 현재 선택된 아이템들의 궁합 목록 추출
+      const allSynergyIds = new Set();
+      selectedFoodIds.forEach(id => {
+        const f = foodsData.find(x => x.id === id);
+        if (f && f.synergy_ids) {
+          f.synergy_ids.forEach(sId => allSynergyIds.add(sId));
+        }
+      });
+
+      // 2. 현재 부족한 영양소 카테고리 파악
+      const currentTotals = calculateCurrentTotals();
+      const hasProtein = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'protein');
+      const hasCarb = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'carb');
+      const hasFat = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'fat');
+      const isComplete = (hasProtein && hasCarb && hasFat) || (currentTotals.p >= 25 && currentTotals.c >= 30 && currentTotals.f >= 7 && currentTotals.cal >= 330);
+
+      foodsData.forEach(food => {
+        const isSelected = selectedFoodIds.has(food.id);
+
+        // ✨ 황금빛 추천 궁합 판별
+        let isGlowing = false;
+        if (selectedFoodIds.size > 0 && !isSelected) {
+          if (!hasCarb && (food.category === 'carb' || allSynergyIds.has(food.id))) {
+            isGlowing = true;
+          } else if (hasCarb && !hasFat && (food.category === 'fat' || food.category === 'veg' || allSynergyIds.has(food.id))) {
+            isGlowing = true;
+          } else if (allSynergyIds.has(food.id)) {
+            isGlowing = true;
+          }
+        }
+
+        // 🎯 소거법 필터링 로직:
+        // showAllMode가 false일 때:
+        // - 하나 이상 선택되었으면: "이미 선택된 카드" + "황금빛 추천 궁합 카드"만 화면에 남김!
+        // - 아무것도 선택 안 되었을 때는 메인이 될 '단백질' 카드 위주로 집중 제시 (선택 피로 제거)
+        if (!showAllMode) {
+          if (selectedFoodIds.size === 0) {
+            // 처음에는 단백질 카드를 집중 추천 (단백질이 식단의 기둥)
+            if (food.category !== 'protein' && currentCategory === 'all') {
+              return;
+            }
+          } else {
+            // 선택된 카드가 아닐 때, 추천 궁합이 아니면 소거(화면에서 숨김)!
+            if (!isSelected && !isGlowing) {
+              return;
+            }
+          }
+        }
+
+        // 탭 카테고리 필터
+        if (currentCategory !== 'all' && food.category !== currentCategory) {
+          return;
+        }
+
+        const card = document.createElement('div');
+        card.className = `food-card ${isSelected ? 'selected' : ''} ${isGlowing ? 'glowing' : ''}`;
+        card.onclick = (e) => {
+          if (e.target.closest('.btn-storage')) return;
+          toggleFoodSelect(food.id);
+        };
+
+        const summaryText = food.one_line_summary || food.benefit || '';
+
+        card.innerHTML = `
+          <span class="selected-tag-badge">✓ 담김</span>
+          <span class="synergy-badge">✨ 추천 궁합</span>
+          
+          <div>
+            <div class="card-head">
+              <div class="card-title-wrap">
+                <div class="food-icon-circle">${food.icon}</div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <div class="food-name">${food.name}</div>
+                    <span class="food-tag">${food.tag}</span>
+                  </div>
+                  <div class="food-portion">${food.portion}</div>
+                </div>
+              </div>
+              <div class="select-circle">${isSelected ? '✓' : '+'}</div>
+            </div>
+
+            <!-- 💡 겉에 직관적인 1줄 요약 -->
+            <div class="food-summary-line" title="${summaryText}">
+              <span class="summary-bulb">💡</span>
+              <span class="summary-text">${summaryText}</span>
+            </div>
+
+            <div class="metric-grid">
+              <div class="metric-item p">
+                <span class="metric-lbl">단백질</span>
+                <span class="metric-num">${food.protein}g</span>
+              </div>
+              <div class="metric-item c">
+                <span class="metric-lbl">탄수화물</span>
+                <span class="metric-num">${food.carbs}g</span>
+              </div>
+              <div class="metric-item f">
+                <span class="metric-lbl">지방</span>
+                <span class="metric-num">${food.fat}g</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-foot">
+            <div class="calorie-pill">
+              🔥 ${food.calories} <span>kcal</span>
+            </div>
+            <button type="button" class="btn-quick-storage btn-storage" onclick="event.stopPropagation(); openStorageModal('${food.id}')">
+              ❄️ 보관법
+            </button>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      updateMacroGauges();
+      updateGuideInstruction();
+    }
+
+    function toggleFoodSelect(id) {
+      if (selectedFoodIds.has(id)) {
+        selectedFoodIds.delete(id);
+      } else {
+        selectedFoodIds.add(id);
+      }
+      renderFoodCards();
+    }
+
+    function calculateCurrentTotals() {
+      let cal = 0, p = 0, c = 0, f = 0;
+      selectedFoodIds.forEach(id => {
+        const item = foodsData.find(x => x.id === id);
+        if (item) {
+          cal += item.calories;
+          p += item.protein;
+          c += item.carbs;
+          f += item.fat;
+        }
+      });
+      return { cal: Math.round(cal), p: Math.round(p * 10) / 10, c: Math.round(c * 10) / 10, f: Math.round(f * 10) / 10 };
+    }
+
+    function updateMacroGauges() {
+      const totals = calculateCurrentTotals();
+
+      // 숫자 업데이트
+      document.getElementById('val_cal').innerText = totals.cal;
+      document.getElementById('val_p').innerText = totals.p;
+      document.getElementById('val_c').innerText = totals.c;
+      document.getElementById('val_f').innerText = totals.f;
+
+      // 퍼센트
+      const pctCal = Math.min(100, Math.round((totals.cal / TARGET.cal) * 100));
+      const pctP = Math.min(100, Math.round((totals.p / TARGET.p) * 100));
+      const pctC = Math.min(100, Math.round((totals.c / TARGET.c) * 100));
+      const pctF = Math.min(100, Math.round((totals.f / TARGET.f) * 100));
+
+      document.getElementById('pct_cal').innerText = `${pctCal}%`;
+      document.getElementById('pct_p').innerText = `${pctP}%`;
+      document.getElementById('pct_c').innerText = `${pctC}%`;
+      document.getElementById('pct_f').innerText = `${pctF}%`;
+
+      document.getElementById('fill_cal').style.width = `${pctCal}%`;
+      document.getElementById('fill_p').style.width = `${pctP}%`;
+      document.getElementById('fill_c').style.width = `${pctC}%`;
+      document.getElementById('fill_f').style.width = `${pctF}%`;
+
+      // 하단 바
+      document.getElementById('bottom_cal_text').innerText = `${totals.cal} kcal`;
+      document.getElementById('bottom_macro_text').innerText = `단백질 ${totals.p}g · 탄수화물 ${totals.c}g · 지방 ${totals.f}g`;
+
+      // 트레이 업데이트
+      const trayList = document.getElementById('tray-list');
+      if (selectedFoodIds.size === 0) {
+        trayList.innerHTML = `<span style="font-size: 0.82rem; color: #64748b;">아래 카드에서 원하는 원재료를 클릭해 담아보세요.</span>`;
+      } else {
+        trayList.innerHTML = '';
+        selectedFoodIds.forEach(id => {
+          const item = foodsData.find(x => x.id === id);
+          if (item) {
+            const tag = document.createElement('div');
+            tag.className = 'tray-tag';
+            tag.innerHTML = `
+              <span>${item.icon} ${item.name}</span>
+              <span class="del-btn" onclick="toggleFoodSelect('${item.id}')">&times;</span>
+            `;
+            trayList.appendChild(tag);
+          }
+        });
+      }
+    }
+
+    function updateGuideInstruction() {
+      const totals = calculateCurrentTotals();
+      const hasProtein = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'protein');
+      const hasCarb = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'carb');
+      const hasFat = Array.from(selectedFoodIds).some(id => foodsData.find(x => x.id === id)?.category === 'fat');
+
+      const banner = document.getElementById('guide-instruction');
+      const saveBtn = document.getElementById('btn-save-meal');
+      const isComplete = (hasProtein && hasCarb && hasFat) || (totals.p >= 25 && totals.c >= 30 && totals.f >= 7 && totals.cal >= 330);
+
+      if (selectedFoodIds.size === 0) {
+        hasShownCompletionModal = false;
+        banner.innerHTML = `👉 1단계: 메인이 될 <strong>[단백질 원재료]</strong>를 골라보세요! (예: 닭가슴살, 소우둔살)`;
+        saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else if (hasProtein && !hasCarb) {
+        hasShownCompletionModal = false;
+        banner.innerHTML = `🍗 <strong>단백질(${totals.p}g) 확보 완료!</strong> ➔ 소거법으로 추천된 <strong>[황금빛 복합 탄수화물 ✨]</strong> 중 1개를 골라보세요!`;
+        saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else if (hasProtein && hasCarb && !hasFat) {
+        hasShownCompletionModal = false;
+        banner.innerHTML = `🍠 <strong>탄수화물(${totals.c}g) 추가 완료!</strong> ➔ 마지막으로 <strong>[건강한 지방/식이섬유 ✨]</strong>를 더해 황금 비율을 완성하세요!`;
+        saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+      } else if (isComplete) {
+        banner.innerHTML = `🎉 <strong>완벽합니다! 모든 필수 영양소가 100% 채워져 황금 식단이 완성되었습니다!</strong> (총 ${totals.cal}kcal)`;
+        saveBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        saveBtn.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.8)';
+
+        // ✨ 모든 영양소가 완성되었을 때 자동으로 축하 완료 팝업 모달 띄우기!
+        if (!hasShownCompletionModal) {
+          hasShownCompletionModal = true;
+          setTimeout(() => {
+            showMealCompleteModal(totals);
+          }, 400);
+        }
+      } else {
+        banner.innerHTML = `✨ <strong>빛나는 추천 궁합 재료</strong>를 추가해 목표 영양 매크로를 100% 채워보세요!`;
+      }
+    }
+
+    function showMealCompleteModal(totals) {
+      const modal = document.getElementById('complete-confirm-modal');
+      if (!modal) return;
+
+      const items = Array.from(selectedFoodIds).map(id => foodsData.find(x => x.id === id)).filter(Boolean);
+      const itemsHtml = items.map(it => `
+        <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">${it.icon}</span>
+            <div>
+              <div style="font-weight: 800; color: #fff; font-size: 0.95rem;">${it.name}</div>
+              <div style="font-size: 0.76rem; color: #94a3b8;">${it.portion} · ${it.calories}kcal</div>
+            </div>
+          </div>
+          <div style="font-size: 0.82rem; font-weight: 700; color: #34d399;">
+            단 ${it.protein}g · 탄 ${it.carbs}g · 지 ${it.fat}g
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('complete-items-container').innerHTML = itemsHtml;
+      document.getElementById('complete-total-cal').innerText = `${totals.cal} kcal`;
+      document.getElementById('complete-macro-summary').innerText = `단백질 ${totals.p}g · 탄수화물 ${totals.c}g · 지방 ${totals.f}g`;
+
+      modal.style.display = 'flex';
+    }
+
+    function closeCompleteModal() {
+      document.getElementById('complete-confirm-modal').style.display = 'none';
+    }
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderFoodCards();
+    }
+
+    function resetBuilder() {
+      selectedFoodIds.clear();
+      renderFoodCards();
+    }
+
+    let currentModalFoodId = null;
+
+    function handleModalOverlayClick(event) {
+      if (event.target.id === 'storage-modal') {
+        closeStorageModal();
+      }
+    }
+
+    function openStorageModal(id) {
+      const food = foodsData.find(x => x.id === id);
+      if (!food) return;
+
+      currentModalFoodId = id;
+
+      document.getElementById('modal-food-icon').innerText = food.icon;
+      document.getElementById('modal-food-name').innerText = food.name;
+      document.getElementById('modal-food-category').innerText = food.category_name || '원재료';
+      document.getElementById('modal-food-portion').innerText = `1회 섭취 기준: ${food.portion}`;
+
+      // Macro Strip
+      document.getElementById('modal-cal').innerText = `${food.calories} kcal`;
+      document.getElementById('modal-p').innerText = `${food.protein}g`;
+      document.getElementById('modal-c').innerText = `${food.carbs}g`;
+      document.getElementById('modal-f').innerText = `${food.fat}g`;
+
+      // Detailed Nutrition
+      const det = food.detailed_benefit || {};
+      document.getElementById('modal-tagline').innerText = det.tagline || food.tag || '핵심 영양 효과';
+      
+      const bulletContainer = document.getElementById('modal-nutrition-bullets');
+      bulletContainer.innerHTML = '';
+      const points = (det.points && det.points.length > 0) ? det.points : [food.benefit || '영양 성분이 균형 있게 포함되어 있습니다.'];
+      points.forEach(pt => {
+        const li = document.createElement('li');
+        li.className = 'nutrition-bullet-item';
+        li.innerText = pt;
+        bulletContainer.appendChild(li);
+      });
+
+      // Storage Guide
+      const sp = food.storage_prep || {};
+      document.getElementById('modal-storage-method').innerText = sp.method || food.storage || '냉장 또는 냉동 밀폐 보관';
+      document.getElementById('modal-storage-tip').innerText = `💡 조리 & 섭취 꿀팁: ${sp.tip || '먹기 전날 냉장 해동하여 조리하시면 본연의 맛과 영양이 유지됩니다.'}`;
+
+      // Synergy Note
+      const synBox = document.getElementById('modal-synergy-box');
+      const synText = document.getElementById('modal-synergy-text');
+      if (food.synergy_reason) {
+        synBox.style.display = 'block';
+        synText.innerText = food.synergy_reason;
+      } else {
+        synBox.style.display = 'none';
+      }
+
+      // Update modal select button state
+      updateModalSelectBtn();
+
+      document.getElementById('storage-modal').style.display = 'flex';
+    }
+
+    function updateModalSelectBtn() {
+      const btn = document.getElementById('modal-select-btn');
+      if (!btn || !currentModalFoodId) return;
+      const isSelected = selectedFoodIds.has(currentModalFoodId);
+      if (isSelected) {
+        btn.style.background = 'rgba(239, 68, 68, 0.15)';
+        btn.style.color = '#f87171';
+        btn.style.border = '1.2px solid rgba(239, 68, 68, 0.4)';
+        btn.innerText = '✕ 식단에서 빼기';
+      } else {
+        btn.style.background = '#10b981';
+        btn.style.color = '#0b0f19';
+        btn.style.border = 'none';
+        btn.innerText = '+ 이 식재료 담기';
+      }
+    }
+
+    function toggleFoodFromModal() {
+      if (!currentModalFoodId) return;
+      toggleFoodSelect(currentModalFoodId);
+      updateModalSelectBtn();
+    }
+
+    function closeStorageModal() {
+      document.getElementById('storage-modal').style.display = 'none';
+      currentModalFoodId = null;
+    }
+
+    function confirmSaveMeal() {
+      closeCompleteModal();
+      saveCustomMeal();
+    }
+
+    
+    function openCartModal() {
+      renderCartItems();
+      document.getElementById('cart-modal').style.display = 'flex';
+    }
+
+    function closeCartModal() {
+      document.getElementById('cart-modal').style.display = 'none';
+    }
+
+    function handleCartOverlayClick(event) {
+      if (event.target.id === 'cart-modal') {
+        closeCartModal();
+      }
+    }
+
+    function confirmOpenCart() {
+      closeCompleteModal();
+      openCartModal();
+    }
+
+    function removeFromCart(id) {
+      selectedFoodIds.delete(id);
+      renderFoodCards();
+      renderCartItems();
+    }
+
+    function renderCartItems() {
+      const listEl = document.getElementById('cart-items-list');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+
+      if (selectedFoodIds.size === 0) {
+        listEl.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: #64748b; background: rgba(255,255,255,0.02); border-radius: 14px; border: 1px dashed rgba(255,255,255,0.1);">
+            <div style="font-size: 2.2rem; margin-bottom: 10px;">🍽️</div>
+            <div style="font-size: 0.95rem; font-weight: 700; color: #94a3b8;">아직 담긴 식재료가 없습니다.</div>
+            <div style="font-size: 0.82rem; margin-top: 4px;">원하는 단백질, 탄수화물, 지방 카드를 클릭해 장바구니에 담아보세요!</div>
+          </div>
+        `;
+        document.getElementById('cart-total-cal').innerText = '0 kcal';
+        document.getElementById('cart-macro-sub').innerText = '단 0g · 탄 0g · 지 0g';
+        document.getElementById('cart-total-price').innerText = '0원';
+        return;
+      }
+
+      let totalPrice = 0;
+      const totals = calculateCurrentTotals();
+
+      selectedFoodIds.forEach(id => {
+        const food = foodsData.find(x => x.id === id);
+        if (!food) return;
+
+        const price = food.price || 5000;
+        totalPrice += price;
+
+        const row = document.createElement('div');
+        row.className = 'cart-item-row';
+        row.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1;">
+            <span style="font-size: 1.8rem; flex-shrink: 0;">${food.icon}</span>
+            <div style="min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <strong style="color: #fff; font-size: 0.95rem;">${food.name}</strong>
+                <span style="font-size: 0.72rem; color: #38bdf8; background: rgba(56,189,248,0.12); padding: 1px 6px; border-radius: 4px;">${food.portion}</span>
+                <span style="font-size: 0.72rem; color: #10b981; background: rgba(16,185,129,0.12); padding: 1px 6px; border-radius: 4px;">${food.market_badge || '🚀 로켓프레시'}</span>
+              </div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${food.market_product || food.name}
+              </div>
+              <div style="font-size: 0.82rem; color: #fbbf24; font-weight: 800; margin-top: 3px;">
+                ${price.toLocaleString()}원 <span style="font-size: 0.72rem; color: #64748b; font-weight: 400;">(${food.market_spec || '1인 소분'})</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+            ${food.coupang_url ? `
+              <a href="${food.coupang_url}" target="_blank" rel="noopener" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; font-size: 0.78rem; font-weight: 800; padding: 6px 12px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 3px;">
+                <span>담기</span><span>➔</span>
+              </a>
+            ` : `
+              <span style="font-size: 0.74rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 5px 8px; border-radius: 6px;">정육 코너</span>
+            `}
+            <button type="button" onclick="removeFromCart('${food.id}')" title="삭제" style="background: transparent; border: none; color: #ef4444; font-size: 1.3rem; cursor: pointer; padding: 4px 6px; line-height: 1;">&times;</button>
+          </div>
+        `;
+        listEl.appendChild(row);
+      });
+
+      document.getElementById('cart-total-cal').innerText = `${totals.cal} kcal`;
+      document.getElementById('cart-macro-sub').innerText = `단 ${totals.p}g · 탄 ${totals.c}g · 지 ${totals.f}g`;
+      document.getElementById('cart-total-price').innerText = `${totalPrice.toLocaleString()}원`;
+    }
+
+    function buyAllRocketFresh() {
+      if (selectedFoodIds.size === 0) {
+        alert('장바구니에 담긴 식재료가 없습니다. 먼저 카드를 선택해 주세요!');
+        return;
+      }
+      const links = [];
+      selectedFoodIds.forEach(id => {
+        const food = foodsData.find(x => x.id === id);
+        if (food && food.coupang_url) links.push(food.coupang_url);
+      });
+
+      if (links.length > 0) {
+        window.open(links[0], '_blank');
+        if (links.length > 1) {
+          alert(`🚀 [로켓프레시 주문 안내]\n\n선택하신 식재료 중 첫 번째 상품 페이지로 연결되었습니다.\n나머지 식재료 품목도 장바구니에서 개별 담기 버튼을 통해 원클릭으로 담으실 수 있습니다!`);
+        }
+      } else {
+        alert('선택하신 식재료 목록을 확인하여 가까운 마트 또는 쿠팡에서 주문해 보세요!');
+      }
+    }
+
+    function copyCartMealList() {
+      if (selectedFoodIds.size === 0) {
+        alert('담긴 식재료가 없습니다!');
+        return;
+      }
+      const totals = calculateCurrentTotals();
+      let text = `[🥗 다이어트봇 클린 원물 식단 장바구니]\n\n`;
+      let totalPrice = 0;
+
+      selectedFoodIds.forEach(id => {
+        const food = foodsData.find(x => x.id === id);
+        if (!food) return;
+        const p = food.price || 0;
+        totalPrice += p;
+        text += `- ${food.icon} ${food.name} (${food.portion}): ${food.calories}kcal (단 ${food.protein}g, 탄 ${food.carbs}g, 지 ${food.fat}g)\n  📦 추천 상품: ${food.market_product || food.name} (${p.toLocaleString()}원)\n`;
+      });
+
+      text += `\n🔥 총 섭취 칼로리: ${totals.cal} kcal\n`;
+      text += `📊 영양 밸런스: 단백질 ${totals.p}g / 탄수화물 ${totals.c}g / 지방 ${totals.f}g\n`;
+      text += `💰 예상 장보기 금액: ${totalPrice.toLocaleString()}원\n`;
+
+      navigator.clipboard.writeText(text.replace(/\\n/g, '\n')).then(() => {
+        alert('📋 식단 및 장바구니 목록이 클립보드에 복사되었습니다! 카톡이나 메모장에 붙여넣어 사용하세요.');
+      });
+    }
+
+    function saveCustomMeal() {
+      if (selectedFoodIds.size === 0) {
+        alert('식재료를 1개 이상 선택해 주세요!');
+        return;
+      }
+      const totals = calculateCurrentTotals();
+      const names = Array.from(selectedFoodIds).map(id => foodsData.find(x => x.id === id)?.name).join(' + ');
+      alert(`🎉 [나만의 클린 원물 식단 저장 완료!]
+
+구성: ${names}
+
+🔥 총 칼로리: ${totals.cal} kcal
+🍗 단백질: ${totals.p}g
+🍠 탄수화물: ${totals.c}g
+🥑 지방: ${totals.f}g
+
+이 조합이 내 다이어트 챌린지 식단에 등록되었습니다!`);
+    }
+
+    window.addEventListener('DOMContentLoaded', loadFoods);
+  </script>
+  <!-- 🛒 다이어트 원물 장바구니 모달 (Cart Modal) -->
+  <div id="cart-modal" class="modal-overlay" onclick="handleCartOverlayClick(event)">
+    <div class="modal-card" style="max-width: 580px; max-height: 90vh; overflow-y: auto; padding: 26px;">
+      <div class="modal-header" style="margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 2rem; background: rgba(16,185,129,0.15); border: 1px solid rgba(52,211,153,0.3); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">🛒</span>
+          <div>
+            <h3 style="color: #fff; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.4px;">다이어트 원물 장바구니</h3>
+            <span style="color: #94a3b8; font-size: 0.82rem;">선택하신 원재료의 1회 권장량 & 로켓프레시 주문 소용량 팩</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeCartModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 2px 8px; line-height: 1;">&times;</button>
+      </div>
+
+      <!-- Macro Total Banner -->
+      <div id="cart-macro-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 14px 18px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <div style="font-size: 0.74rem; color: #94a3b8; font-weight: 700;">한 끼 식단 총 영양</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #34d399;" id="cart-total-cal">0 kcal</div>
+          <div style="font-size: 0.82rem; color: #e2e8f0; font-weight: 700; margin-top: 2px;" id="cart-macro-sub">
+            단 0g · 탄 0g · 지 0g
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 0.74rem; color: #94a3b8; font-weight: 700;">로켓프레시 예상 금액</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #fbbf24;" id="cart-total-price">0원</div>
+          <div style="font-size: 0.75rem; color: #34d399; font-weight: 700;">1인 자취생 소용량 기준</div>
+        </div>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div id="cart-items-list" style="margin-bottom: 18px; display: flex; flex-direction: column; gap: 10px;">
+        <!-- Populated via JS -->
+      </div>
+
+      <!-- Cart Action Buttons -->
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button type="button" onclick="buyAllRocketFresh()" style="width: 100%; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #0b0f19; border: none; padding: 14px; border-radius: 12px; font-weight: 900; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);">
+          <span>🚀 쿠팡 로켓프레시 장바구니로 구매하기</span>
+          <span style="font-size: 0.9rem;">➔</span>
+        </button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" onclick="copyCartMealList()" style="flex: 1; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12); padding: 11px; border-radius: 10px; font-weight: 700; font-size: 0.88rem; cursor: pointer;">
+            📋 식단 & 장바구니 목록 복사
+          </button>
+          <button type="button" onclick="closeCartModal()" style="background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.08); padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 0.88rem; cursor: pointer;">
+            카드 더 담기
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎉 영양소 완성 축하 모달 (Completion Confirmation Modal) -->
+  <div id="complete-confirm-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 500px; padding: 32px 28px; text-align: center; border-color: #10b981; box-shadow: 0 0 50px rgba(16, 185, 129, 0.4);">
+      <div style="font-size: 3.2rem; margin-bottom: 10px; animation: bounceText 1s infinite;">🎉</div>
+      <h2 style="font-size: 1.55rem; font-weight: 900; color: #ffffff; margin-bottom: 6px;">나만의 황금 식단 완성!</h2>
+      <p style="color: #94a3b8; font-size: 0.92rem; margin-bottom: 20px;">
+        단백질, 복합 탄수화물, 건강한 지방이 <strong style="color: #34d399;">완벽한 황금 밸런스</strong>로 충족되었습니다!
+      </p>
+
+      <!-- Nutrition Summary Banner -->
+      <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1.5px solid #10b981; border-radius: 16px; padding: 16px 20px; margin-bottom: 20px; text-align: center;">
+        <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; margin-bottom: 4px;">한 끼 총 영양 섭취량</div>
+        <div style="font-size: 1.6rem; font-weight: 900; color: #34d399;" id="complete-total-cal">0 kcal</div>
+        <div style="font-size: 0.88rem; font-weight: 800; color: #e2e8f0; margin-top: 4px;" id="complete-macro-summary">
+          단백질 0g · 탄수화물 0g · 지방 0g
+        </div>
+      </div>
+
+      <!-- Selected Items List -->
+      <div style="text-align: left; margin-bottom: 22px;">
+        <div style="font-size: 0.82rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px;">🍽️ 완성된 식재료 조합:</div>
+        <div id="complete-items-container" style="max-height: 200px; overflow-y: auto;"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="closeCompleteModal()" class="btn-action-secondary" style="flex: 1; padding: 12px;">
+          수정하기
+        </button>
+        <button type="button" onclick="confirmOpenCart()" class="btn-action-primary" style="flex: 2; padding: 12px; justify-content: center;">
+          <span>🛒 바로 장바구니 담기 ➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

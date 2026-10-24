@@ -35,7 +35,12 @@
       "fat_avocado",
       "veg_salad_mix",
       "veg_tomato"
-    ]
+    ],
+    "market_product": "하림 자연실록 냉동 닭가슴살 (개별급속동결) 1kg",
+    "price": 8900,
+    "market_spec": "100g 개별 소분 팩",
+    "coupang_url": "https://link.coupang.com/a/bW5yU9",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_beef_round",
@@ -73,7 +78,12 @@
       "veg_salad_mix",
       "veg_paprika",
       "veg_ssam"
-    ]
+    ],
+    "market_product": "호주산 청정우 우둔살 찹스테이크용 300g",
+    "price": 9500,
+    "market_spec": "1회 100g 소분 3회분",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_eggs",
@@ -111,7 +121,12 @@
       "fat_avocado",
       "veg_tomato",
       "veg_paprika"
-    ]
+    ],
+    "market_product": "곰곰 무항생제 신선 대란 10구",
+    "price": 4200,
+    "market_spec": "10구 1팩 (1인분 2알씩 5회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6aB1",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_salmon",
@@ -148,7 +163,12 @@
       "fat_olive_oil",
       "veg_salad_mix",
       "veg_cucumber"
-    ]
+    ],
+    "market_product": "동원 프리미엄 생연어 필렛 200g",
+    "price": 9800,
+    "market_spec": "횟감/구이용 200g (2회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6cK2",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_tofu",
@@ -185,7 +205,12 @@
       "fat_perilla_oil",
       "veg_salad_mix",
       "veg_ssam"
-    ]
+    ],
+    "market_product": "풀무원 국산콩 부침두부 300g",
+    "price": 2800,
+    "market_spec": "300g 1모 (반모 2회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6eM3",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_pork_tenderloin",
@@ -222,7 +247,12 @@
       "fat_olive_oil",
       "veg_ssam",
       "veg_paprika"
-    ]
+    ],
+    "market_product": "국내산 한돈 무항생제 안심 400g",
+    "price": 6500,
+    "market_spec": "초저지방 고단백 400g (4회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "protein_soymilk",
@@ -259,7 +289,12 @@
       "carb_sweet_potato",
       "fat_almond",
       "veg_salad_mix"
-    ]
+    ],
+    "market_product": "매일두유 99.9 무가당 고단백 190ml 16팩",
+    "price": 11900,
+    "market_spec": "190ml 1팩당 단백질 12g (16회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6fN4",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "protein_greek_yogurt",
@@ -296,7 +331,12 @@
       "carb_whole_bread",
       "fat_almond",
       "veg_tomato"
-    ]
+    ],
+    "market_product": "요즘(YOZM) 플레인 그릭요거트 100g 2입",
+    "price": 7900,
+    "market_spec": "무가당 꾸덕 그릭 100g 2컵",
+    "coupang_url": "https://link.coupang.com/a/bW6gP5",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "carb_sweet_potato",
@@ -333,7 +373,12 @@
       "protein_pork_tenderloin",
       "veg_salad_mix",
       "fat_almond"
-    ]
+    ],
+    "market_product": "곰곰 해남 꿀 밤고구마 1kg",
+    "price": 6900,
+    "market_spec": "다이어트용 중소과 1kg (약 7~8개)",
+    "coupang_url": "https://link.coupang.com/a/bW6hR6",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "carb_pumpkin",
@@ -370,7 +415,12 @@
       "protein_salmon",
       "veg_salad_mix",
       "fat_olive_oil"
-    ]
+    ],
+    "market_product": "국내산 친환경 미니 밤호박 1kg (2~3입)",
+    "price": 5900,
+    "market_spec": "초저칼로리 컷팅 1kg",
+    "coupang_url": "https://link.coupang.com/a/bW6jS7",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "carb_brown_rice",
@@ -407,7 +457,12 @@
       "protein_tofu",
       "veg_ssam",
       "fat_perilla_oil"
-    ]
+    ],
+    "market_product": "햇반 발아현미밥 130g 6개입",
+    "price": 7800,
+    "market_spec": "소용량 130g 다이어트팩 (6개입)",
+    "coupang_url": "https://link.coupang.com/a/bW6kU8",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "carb_oatmeal",
@@ -444,7 +499,12 @@
       "protein_greek_yogurt",
       "fat_almond",
       "carb_banana"
-    ]
+    ],
+    "market_product": "플라하반 오리지널 퀵오트밀 500g",
+    "price": 6200,
+    "market_spec": "3분 완성 롤드오츠 500g (약 12회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6mV9",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "carb_whole_bread",
@@ -481,7 +541,12 @@
       "fat_avocado",
       "veg_tomato",
       "veg_salad_mix"
-    ]
+    ],
+    "market_product": "삼립 로만밀 통밀식빵 420g",
+    "price": 3400,
+    "market_spec": "천연 통곡물 통밀식빵 420g (약 10장)",
+    "coupang_url": "https://link.coupang.com/a/bW6oW1",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "carb_banana",
@@ -518,7 +583,12 @@
       "protein_eggs",
       "fat_almond",
       "carb_oatmeal"
-    ]
+    ],
+    "market_product": "델몬트 고산지 바나나 1송이 (약 1kg)",
+    "price": 3900,
+    "market_spec": "운동 전후 천연 부스터 (약 5~6개)",
+    "coupang_url": "https://link.coupang.com/a/bW6qX2",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "fat_avocado",
@@ -555,7 +625,12 @@
       "carb_whole_bread",
       "veg_tomato",
       "veg_salad_mix"
-    ]
+    ],
+    "market_product": "멕시코산 항공직송 아보카도 3입",
+    "price": 5900,
+    "market_spec": "올레산 불포화지방 3입 (반 개씩 6회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6sY3",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "fat_almond",
@@ -592,7 +667,12 @@
       "carb_banana",
       "carb_sweet_potato",
       "veg_salad_mix"
-    ]
+    ],
+    "market_product": "곰곰 구운 아몬드 300g (지퍼백)",
+    "price": 4900,
+    "market_spec": "비타민E 항산화 300g (하루 15알 16회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6uZ4",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "fat_olive_oil",
@@ -629,7 +709,12 @@
       "protein_chicken_breast",
       "protein_beef_round",
       "carb_whole_bread"
-    ]
+    ],
+    "market_product": "데체코 엑스트라 버진 올리브유 500ml",
+    "price": 11500,
+    "market_spec": "이탈리아 냉압착 엑스트라 버진 500ml",
+    "coupang_url": "https://link.coupang.com/a/bW6wa5",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "fat_perilla_oil",
@@ -666,7 +751,12 @@
       "veg_ssam",
       "protein_eggs",
       "veg_cucumber"
-    ]
+    ],
+    "market_product": "오뚜기 국산 생들기름 160ml",
+    "price": 8900,
+    "market_spec": "오메가3 60% 함유 생들기름 160ml",
+    "coupang_url": "https://link.coupang.com/a/bW6yb6",
+    "market_badge": "🚀 로켓배송"
   },
   {
     "id": "veg_salad_mix",
@@ -703,7 +793,12 @@
       "fat_olive_oil",
       "carb_sweet_potato",
       "veg_tomato"
-    ]
+    ],
+    "market_product": "피그인더가든 타임핏 샐러드 100g 3팩",
+    "price": 5900,
+    "market_spec": "식이섬유 6g 세척 샐러드 3팩 (3회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6zc7",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "veg_tomato",
@@ -740,7 +835,12 @@
       "protein_eggs",
       "protein_chicken_breast",
       "carb_whole_bread"
-    ]
+    ],
+    "market_product": "곰곰 GAP 인증 대추방울토마토 750g",
+    "price": 6900,
+    "market_spec": "리코펜 항산화 방울토마토 750g (약 7회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6Bd8",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "veg_paprika",
@@ -777,7 +877,12 @@
       "fat_olive_oil",
       "carb_sweet_potato",
       "protein_eggs"
-    ]
+    ],
+    "market_product": "국내산 신선 파프리카 혼합 2입",
+    "price": 3500,
+    "market_spec": "레몬 2배 비타민C 파프리카 2개 (4회분)",
+    "coupang_url": "https://link.coupang.com/a/bW6De9",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "veg_cucumber",
@@ -814,7 +919,12 @@
       "fat_perilla_oil",
       "carb_sweet_potato",
       "veg_tomato"
-    ]
+    ],
+    "market_product": "국내산 백오이 3입",
+    "price": 2900,
+    "market_spec": "수분 95% 나트륨 배출 백오이 3개",
+    "coupang_url": "https://link.coupang.com/a/bW6Ff1",
+    "market_badge": "🚀 로켓프레시"
   },
   {
     "id": "veg_ssam",
@@ -851,6 +961,11 @@
       "protein_tofu",
       "carb_brown_rice",
       "fat_perilla_oil"
-    ]
+    ],
+    "market_product": "친환경 무농약 모둠 쌈채소 200g",
+    "price": 3200,
+    "market_spec": "상추/깻잎/치커리 모둠 200g",
+    "coupang_url": "https://link.coupang.com/a/bW6Hg2",
+    "market_badge": "🚀 로켓프레시"
   }
 ]
