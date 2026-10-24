@@ -72,8 +72,8 @@ def perform_git_sync(commit_message="feat: auto-sync clients data"):
 
         # 1. Git 작성자 정보 및 safe.directory 설정 (컨테이너/원격 환경 대비)
         _run_cmd(["git", "config", "--global", "--add", "safe.directory", "*"])
-        _run_cmd(["git", "config", "user.name", "ZipbabBot AutoSync"])
-        _run_cmd(["git", "config", "user.email", "bot@zipbab.com"])
+        _run_cmd(["git", "config", "user.name", "DietBot AutoSync"])
+        _run_cmd(["git", "config", "user.email", "bot@dietbot.com"])
         # RAM 절약을 위한 Git 메모리 상한선 설정 (512MB 컨테이너 OOM 방지)
         _run_cmd(["git", "config", "pack.windowMemory", "10m"])
         _run_cmd(["git", "config", "pack.packSizeLimit", "20m"])
@@ -85,7 +85,7 @@ def perform_git_sync(commit_message="feat: auto-sync clients data"):
         auth_target = "origin"
         if token and token.strip():
             token = token.strip()
-            auth_url = f"https://x-access-token:{token}@github.com/bohwan100/zipbab.git"
+            auth_url = f"https://x-access-token:{token}@github.com/bohwan100/dietbot.git"
             auth_target = auth_url
 
             ok, remotes, _ = _run_cmd(["git", "remote"])
