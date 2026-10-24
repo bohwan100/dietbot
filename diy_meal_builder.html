@@ -228,165 +228,214 @@
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
     }
 
-    /* Food Cards Grid */
+    /* Food Cards Grid - Clean & Spacious */
     .food-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
     }
 
-    /* Food Card Component */
+    /* Food Card Component - Ultra Clean Minimalist */
     .food-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 18px;
+      background: rgba(18, 24, 38, 0.65);
+      border: 1.2px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 20px;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      user-select: none;
     }
     .food-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(22, 30, 48, 0.85);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
     }
 
     /* Selected State */
     .food-card.selected {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1.8px solid #10b981;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
-    }
-    .food-card.selected::before {
-      content: "✓ 담김";
-      position: absolute;
-      top: -10px;
-      left: 14px;
-      background: #10b981;
-      color: #0b0f19;
-      font-size: 0.72rem;
-      font-weight: 900;
-      padding: 2px 8px;
-      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12) !important;
+      border: 1.8px solid #10b981 !important;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.25) !important;
     }
 
-    /* ✨ Glowing Synergy State (The Magic!) */
-    @keyframes synergyGlow {
+    /* ✨ Elegant Synergy Glow State */
+    @keyframes cleanGlow {
       0% {
-        box-shadow: 0 0 6px #10b981, inset 0 0 6px rgba(16, 185, 129, 0.2);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
         border-color: #34d399;
         transform: translateY(0);
       }
       50% {
-        box-shadow: 0 0 24px #10b981, inset 0 0 14px rgba(16, 185, 129, 0.45);
+        box-shadow: 0 0 24px rgba(16, 185, 129, 0.6), 0 0 10px rgba(52, 211, 153, 0.4);
         border-color: #6ee7b7;
         transform: translateY(-4px);
       }
       100% {
-        box-shadow: 0 0 6px #10b981, inset 0 0 6px rgba(16, 185, 129, 0.2);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
         border-color: #34d399;
         transform: translateY(0);
       }
     }
     .food-card.glowing {
-      animation: synergyGlow 1.4s infinite ease-in-out;
+      animation: cleanGlow 1.6s infinite ease-in-out;
       border-color: #34d399 !important;
-      background: rgba(16, 185, 129, 0.08);
+      background: rgba(16, 185, 129, 0.06);
     }
-    .food-card.glowing::after {
-      content: "✨ 추천 궁합";
+    .food-card.glowing .synergy-badge {
+      display: inline-flex;
+    }
+
+    /* Synergy Floating Badge */
+    .synergy-badge {
+      display: none;
       position: absolute;
       top: -10px;
-      right: 14px;
+      right: 16px;
       background: linear-gradient(135deg, #10b981, #059669);
       color: #fff;
       font-size: 0.72rem;
       font-weight: 900;
-      padding: 3px 9px;
+      padding: 3px 10px;
       border-radius: 999px;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.6);
-      animation: bounceText 1.4s infinite;
-    }
-    @keyframes bounceText {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-2px); }
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
+      z-index: 2;
     }
 
-    .card-top {
+    /* Card Top Header */
+    .card-head {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 10px;
+      align-items: center;
+      margin-bottom: 14px;
     }
-    .food-title-group {
+    .card-title-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
-    .food-icon { font-size: 1.8rem; }
-    .food-name { font-size: 1.05rem; font-weight: 800; color: #fff; }
-    .food-portion { font-size: 0.78rem; color: #94a3b8; }
-
-    .food-tag {
-      background: rgba(255, 255, 255, 0.06);
-      color: #cbd5e1;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-
-    /* Nutrients Badges */
-    .nutri-row {
+    .food-icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .food-card.selected .food-icon-circle {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(52, 211, 153, 0.4);
+    }
+    .food-name {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+    .food-portion {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Selection Circle Indicator */
+    .select-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: transparent;
+      transition: all 0.2s;
+    }
+    .food-card:hover .select-circle {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .food-card.selected .select-circle {
+      background: #10b981;
+      border-color: #10b981;
+      color: #0b0f19;
+      font-weight: 900;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Nutrient Metrics Grid (Clean 3-Column) */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 6px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      padding: 10px 8px;
       margin-bottom: 12px;
-      flex-wrap: wrap;
+      text-align: center;
     }
-    .nutri-pill {
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 3px 7px;
-      border-radius: 6px;
-      background: rgba(15, 23, 42, 0.6);
+    .metric-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
-    .pill-cal { color: #f1f5f9; border: 1px solid rgba(255,255,255,0.1); }
-    .pill-p { color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .pill-c { color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
-    .pill-f { color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); }
+    .metric-lbl {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .metric-num {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #f1f5f9;
+    }
+    .metric-item.p .metric-num { color: #38bdf8; }
+    .metric-item.c .metric-num { color: #fbbf24; }
+    .metric-item.f .metric-num { color: #f87171; }
 
-    .food-benefit {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-      margin-bottom: 12px;
-    }
-
-    .card-footer {
+    /* Card Bottom Foot */
+    .card-foot {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 10px;
+      padding-top: 4px;
     }
-    .btn-storage {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .calorie-pill {
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .calorie-pill span {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    .btn-quick-storage {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #94a3b8;
       font-size: 0.74rem;
       font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
+      padding: 4px 10px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s;
     }
-    .btn-storage:hover { color: #34d399; border-color: #34d399; }
-    .add-indicator {
-      font-size: 0.82rem;
-      font-weight: 800;
+    .btn-quick-storage:hover {
+      background: rgba(255, 255, 255, 0.1);
       color: #34d399;
+      border-color: rgba(52, 211, 153, 0.4);
     }
 
     /* Fixed Bottom Action Bar */
@@ -713,33 +762,43 @@
         };
 
         card.innerHTML = `
+          <span class="synergy-badge">✨ 추천 궁합</span>
+          
           <div>
-            <div class="card-top">
-              <div class="food-title-group">
-                <span class="food-icon">${food.icon}</span>
+            <div class="card-head">
+              <div class="card-title-wrap">
+                <div class="food-icon-circle">${food.icon}</div>
                 <div>
                   <div class="food-name">${food.name}</div>
                   <div class="food-portion">${food.portion}</div>
                 </div>
               </div>
-              <span class="food-tag">${food.tag}</span>
+              <div class="select-circle">${isSelected ? '✓' : '+'}</div>
             </div>
 
-            <div class="nutri-row">
-              <span class="nutri-pill pill-cal">🔥 ${food.calories}kcal</span>
-              <span class="nutri-pill pill-p">단백질 ${food.protein}g</span>
-              <span class="nutri-pill pill-c">탄수 ${food.carbs}g</span>
-              <span class="nutri-pill pill-f">지방 ${food.fat}g</span>
+            <div class="metric-grid">
+              <div class="metric-item p">
+                <span class="metric-lbl">단백질</span>
+                <span class="metric-num">${food.protein}g</span>
+              </div>
+              <div class="metric-item c">
+                <span class="metric-lbl">탄수화물</span>
+                <span class="metric-num">${food.carbs}g</span>
+              </div>
+              <div class="metric-item f">
+                <span class="metric-lbl">지방</span>
+                <span class="metric-num">${food.fat}g</span>
+              </div>
             </div>
-
-            <div class="food-benefit">${food.benefit}</div>
           </div>
 
-          <div class="card-footer">
-            <button type="button" class="btn-storage" onclick="openStorageModal('${food.id}')">
-              ❄️ 보관 꿀팁
+          <div class="card-foot">
+            <div class="calorie-pill">
+              🔥 ${food.calories} <span>kcal</span>
+            </div>
+            <button type="button" class="btn-quick-storage" onclick="openStorageModal('${food.id}')">
+              ❄️ 보관법
             </button>
-            <span class="add-indicator">${isSelected ? '✓ 선택됨' : (isGlowing ? '✨ 궁합 추천' : '+ 담기')}</span>
           </div>
         `;
 
