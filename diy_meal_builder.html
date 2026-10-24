@@ -920,17 +920,21 @@
   </div>
 
   <script>
-    let foodsData = [];
-    let selectedFoodIds = new Set();
-    let currentCategory = 'all';
+    window.foodsData = [];
+    var foodsData = window.foodsData;
+    window.selectedFoodIds = new Set();
+    var selectedFoodIds = window.selectedFoodIds;
+    window.currentCategory = 'all';
+    var currentCategory = window.currentCategory;
 
-    // 한 끼 기준 목표치 (일반적인 성인 다이어트 한 끼)
-    const TARGET = {
+    // 한 끼 기준 목표치 (개인별 신체 스펙 & 목표에 따라 가변 연동)
+    window.TARGET = {
       cal: 450,
       p: 35,
       c: 45,
       f: 12
     };
+    var TARGET = window.TARGET;
 
     async function loadFoods() {
       try {
