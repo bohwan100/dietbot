@@ -45,7 +45,7 @@ def get_public_tunnel_url(host=None):
         return f"https://{host}"
 
     # 3. Permanent 24/7 Cloud URL
-    return f"http://localhost:{PORT}"
+    return "https://dietbot-4giy.onrender.com"
 
 class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -166,7 +166,11 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
 
     def do_HEAD(self):
         parsed = urlparse(self.path)
-        if parsed.path in ['/api/ping', '/api/partners/status', '/api/partners/links', '/api/public-url']:
+        if parsed.path in ['/survey', '/survey/']:
+            self.path = '/survey.html'
+        elif parsed.path in ['/clients', '/clients/', '/admin', '/admin/', '/manage', '/manage/']:
+            self.path = '/clients.html'
+        elif parsed.path in ['/api/ping', '/api/partners/status', '/api/partners/links', '/api/public-url']:
             self.send_response(200)
             self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()

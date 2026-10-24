@@ -4,7 +4,7 @@ import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 cdn_base = "https://bohwan100.github.io/zipbab"
-render_base = "https://dietbot.onrender.com"
+render_base = "https://dietbot-4giy.onrender.com"
 
 clients_dir = os.path.join(BASE_DIR, 'clients')
 registry_file = os.path.join(BASE_DIR, 'data', 'clients_registry.json')
