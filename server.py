@@ -161,6 +161,10 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
             self.path = '/survey.html'
         elif parsed.path in ['/clients', '/clients/', '/admin', '/admin/', '/manage', '/manage/']:
             self.path = '/clients.html'
+        elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
+            self.path = '/diy_meal_builder.html'
+        elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
+            self.path = '/diy_meal_builder.html'
 
         super().do_GET()
 
@@ -170,6 +174,8 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
             self.path = '/survey.html'
         elif parsed.path in ['/clients', '/clients/', '/admin', '/admin/', '/manage', '/manage/']:
             self.path = '/clients.html'
+        elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
+            self.path = '/diy_meal_builder.html'
         elif parsed.path in ['/api/ping', '/api/partners/status', '/api/partners/links', '/api/public-url']:
             self.send_response(200)
             self.send_header('Content-Type', 'application/json; charset=utf-8')
