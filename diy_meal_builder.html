@@ -768,14 +768,14 @@
     <!-- Category Filter & Elimination Mode Toggle -->
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
       <div class="cat-tabs" style="margin-bottom: 0;">
-      <button class="tab-btn active" onclick="filterCategory('all', this)">✨ 전체 (38)</button>
-      <button class="tab-btn" onclick="filterCategory('protein', this)">🍗 단백질 (13)</button>
-      <button class="tab-btn" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 (10)</button>
-      <button class="tab-btn" onclick="filterCategory('fat', this)">🥑 건강한 지방 (6)</button>
-      <button class="tab-btn" onclick="filterCategory('veg', this)">🥗 식이섬유 & 채소 (9)</button>
+      <button class="tab-btn active" data-cat="all" onclick="filterCategory('all', this)">✨ 전체 원물 (70)</button>
+      <button class="tab-btn" data-cat="veg" onclick="filterCategory('veg', this)">🥗 신선 채소 & 샐러드 (35)</button>
+      <button class="tab-btn" data-cat="protein" onclick="filterCategory('protein', this)">🍗 신선 단백질 (17)</button>
+      <button class="tab-btn" data-cat="carb" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 (11)</button>
+      <button class="tab-btn" data-cat="fat" onclick="filterCategory('fat', this)">🥑 건강한 지방 (7)</button>
       </div>
       <button type="button" onclick="toggleShowAllMode()" id="toggle-show-all-btn" class="nav-btn" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24; background: rgba(245, 158, 11, 0.1); font-size: 0.84rem; padding: 8px 14px;">
-        👀 모든 식재료 펼쳐보기
+        🎯 추천 궁합만 보기 (소거 모드)
       </button>
     </div>
 
@@ -901,13 +901,32 @@
       try {
         const res = await fetch('data/diet_foods_db.json');
         foodsData = await res.json();
+        updateCategoryTabCounts();
         renderFoodCards();
       } catch (err) {
         console.error('Failed to load foods:', err);
       }
     }
 
-    let showAllMode = false; // 소거법 vs 전체보기 토글
+    function updateCategoryTabCounts() {
+      if (!foodsData || !Array.isArray(foodsData)) return;
+      const counts = { all: foodsData.length, veg: 0, protein: 0, carb: 0, fat: 0 };
+      foodsData.forEach(f => {
+        if (counts[f.category] !== undefined) counts[f.category]++;
+      });
+      const tabAll = document.querySelector('.tab-btn[data-cat="all"]');
+      const tabVeg = document.querySelector('.tab-btn[data-cat="veg"]');
+      const tabProtein = document.querySelector('.tab-btn[data-cat="protein"]');
+      const tabCarb = document.querySelector('.tab-btn[data-cat="carb"]');
+      const tabFat = document.querySelector('.tab-btn[data-cat="fat"]');
+      if (tabAll) tabAll.textContent = `✨ 전체 원물 (${counts.all})`;
+      if (tabVeg) tabVeg.textContent = `🥗 신선 채소 & 샐러드 (${counts.veg})`;
+      if (tabProtein) tabProtein.textContent = `🍗 신선 단백질 (${counts.protein})`;
+      if (tabCarb) tabCarb.textContent = `🍠 복합 탄수화물 (${counts.carb})`;
+      if (tabFat) tabFat.textContent = `🥑 건강한 지방 (${counts.fat})`;
+    }
+
+    let showAllMode = true; // 소거법 vs 전체보기 토글
     let hasShownCompletionModal = false;
 
     function toggleShowAllMode() {
