@@ -709,7 +709,10 @@
           <div class="brand-subtitle">영양 시너지 & 실시간 매크로 자동 매칭</div>
         </div>
       </a>
-      <div class="nav-links" style="display: flex; align-items: center; gap: 8px;">
+      <div class="nav-links" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <button type="button" onclick="openSurveyModal()" class="nav-btn" style="background: rgba(16, 185, 129, 0.18); border-color: #10b981; color: #34d399; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);">
+          🎯 신체 스펙 입력 & AI 맞춤 식단
+        </button>
         <button type="button" onclick="openCartModal()" class="btn-cart-nav" id="btn-cart-nav">
           <span>🛒 장바구니</span>
           <span class="cart-pill-count" id="nav_cart_count">0</span>
@@ -743,7 +746,7 @@
             <span>🔥 한 끼 칼로리</span>
             <span id="pct_cal">0%</span>
           </div>
-          <div class="gauge-val"><span id="val_cal">0</span> / 450 <span>kcal</span></div>
+          <div class="gauge-val"><span id="val_cal">0</span> / <span id="target_cal_disp">450</span> <span>kcal</span></div>
           <div class="gauge-track">
             <div class="gauge-fill" id="fill_cal" style="width: 0%; background: #34d399;"></div>
           </div>
@@ -755,7 +758,7 @@
             <span>🍗 단백질 (Protein)</span>
             <span id="pct_p">0%</span>
           </div>
-          <div class="gauge-val" style="color: #38bdf8;"><span id="val_p">0</span> / 35 <span>g</span></div>
+          <div class="gauge-val" style="color: #38bdf8;"><span id="val_p">0</span> / <span id="target_p_disp">35</span> <span>g</span></div>
           <div class="gauge-track">
             <div class="gauge-fill" id="fill_p" style="width: 0%; background: #38bdf8;"></div>
           </div>
@@ -767,7 +770,7 @@
             <span>🍠 탄수화물 (Carbs)</span>
             <span id="pct_c">0%</span>
           </div>
-          <div class="gauge-val" style="color: #fbbf24;"><span id="val_c">0</span> / 45 <span>g</span></div>
+          <div class="gauge-val" style="color: #fbbf24;"><span id="val_c">0</span> / <span id="target_c_disp">45</span> <span>g</span></div>
           <div class="gauge-track">
             <div class="gauge-fill" id="fill_c" style="width: 0%; background: #fbbf24;"></div>
           </div>
@@ -779,7 +782,7 @@
             <span>🥑 건강한 지방 (Fat)</span>
             <span id="pct_f">0%</span>
           </div>
-          <div class="gauge-val" style="color: #f87171;"><span id="val_f">0</span> / 12 <span>g</span></div>
+          <div class="gauge-val" style="color: #f87171;"><span id="val_f">0</span> / <span id="target_f_disp">12</span> <span>g</span></div>
           <div class="gauge-track">
             <div class="gauge-fill" id="fill_f" style="width: 0%; background: #f87171;"></div>
           </div>
@@ -1249,6 +1252,37 @@
       document.getElementById('complete-total-cal').innerText = `${totals.cal} kcal`;
       document.getElementById('complete-macro-summary').innerText = `단백질 ${totals.p}g · 탄수화물 ${totals.c}g · 지방 ${totals.f}g`;
 
+      // 채소가 포함되어 있다면 최적의 검증 드레싱 안내
+      const vegFoods = items.filter(it => it.category === 'veg');
+      const dressingBox = document.getElementById('complete-dressing-container');
+      if (dressingBox) {
+        if (vegFoods.length > 0) {
+          const dressing = getBestDressingForFoods(selectedFoodIds);
+          dressingBox.innerHTML = `
+            <div style="background: rgba(16, 185, 129, 0.08); border: 1.5px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 14px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 0.88rem; font-weight: 900; color: #34d399; display: flex; align-items: center; gap: 6px;">
+                  <span>${dressing.icon}</span>
+                  <span>채소 찰떡 추천 드레싱: ${dressing.name}</span>
+                </div>
+                <span style="font-size: 0.72rem; color: #a7f3d0; background: rgba(52, 211, 153, 0.2); padding: 2px 7px; border-radius: 999px; font-weight: 800;">${dressing.calories} kcal</span>
+              </div>
+              <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 6px;">
+                🥄 <strong>검증 황금 레시피</strong>:<br>${dressing.ingredients}
+              </div>
+              <div style="font-size: 0.76rem; color: #94a3b8; line-height: 1.4; margin-bottom: 4px;">
+                🥣 <strong>조리법</strong>: ${dressing.how_to}
+              </div>
+              <div style="font-size: 0.75rem; color: #6ee7b7; line-height: 1.4;">
+                💡 <strong>영양 시너지</strong>: ${dressing.synergy_note}
+              </div>
+            </div>
+          `;
+        } else {
+          dressingBox.innerHTML = '';
+        }
+      }
+
       modal.style.display = 'flex';
     }
 
@@ -1522,7 +1556,366 @@
 이 조합이 내 다이어트 챌린지 식단에 등록되었습니다!`);
     }
 
-    window.addEventListener('DOMContentLoaded', loadFoods);
+        // ==========================================
+    // 🥗 검증된 5대 저칼로리 특급 드레싱 레시피 라이브러리
+    // ==========================================
+    const DRESSINGS = [
+      {
+        id: "mediterranean_lemon",
+        name: "지중해 레몬 올리브유 드레싱",
+        icon: "🍋",
+        tag: "지용성 흡수 4배 & 잡내 제로",
+        calories: 45,
+        carbs: 0.5,
+        fat: 4.8,
+        protein: 0.1,
+        matching_veg: ["루꼴라", "토마토", "방울토마토", "버터헤드", "양상추", "로메인", "생바질", "아스파라거스"],
+        ingredients: "엑스트라 버진 올리브유 1T + 생레몬즙 1T + 알룰로스 0.5T + 디종머스터드 0.5t + 소금·통후추 약간",
+        how_to: "작은 볼에 레몬즙, 알룰로스, 머스터드를 섞은 후 올리브유를 천천히 저으며 섞어 유화시킵니다.",
+        synergy_note: "올리브유의 올레산이 토마토의 지용성 리코펜과 루꼴라의 카로티노이드 흡수율을 400% 끌어올립니다."
+      },
+      {
+        id: "sesame_oriental",
+        name: "만능 참깨 들깨 오리엔탈 드레싱",
+        icon: "🏺",
+        tag: "한식 쌈채소 감칠맛 폭발",
+        calories: 40,
+        carbs: 1.2,
+        fat: 3.5,
+        protein: 0.8,
+        matching_veg: ["깻잎", "상추", "양배추", "배추", "시금치", "치커리", "대파", "느타리버섯", "표고버섯"],
+        ingredients: "양조간장 1T + 알룰로스 1T + 사과식초 1T + 들기름(or 참기름) 0.5T + 통깨·들깨가루 1t",
+        how_to: "간장과 식초, 알룰로스를 완전히 녹인 뒤 들기름과 들깨가루를 섞어 채소 위에 둘러줍니다.",
+        synergy_note: "들기름의 식물성 오메가-3(ALA)가 깻잎의 철분 및 비타민과 결합하여 혈관 염증을 강력 제거합니다."
+      },
+      {
+        id: "peanut_sauce",
+        name: "단짠 고소 땅콩 피넛 소스",
+        icon: "🥜",
+        tag: "채소를 무한 흡입하게 만드는 마법",
+        calories: 58,
+        carbs: 2.1,
+        fat: 4.5,
+        protein: 2.2,
+        matching_veg: ["양배추", "당근", "오이", "파프리카", "숙주나물", "브로콜리"],
+        ingredients: "100% 무첨가 땅콩버터 1T + 진간장 0.5T + 알룰로스 1T + 식초 1T + 따뜻한 물 1T",
+        how_to: "땅콩버터에 따뜻한 물을 넣고 갠 뒤 간장, 식초, 알룰로스를 섞어 부드러운 디핑 소스로 완성합니다.",
+        synergy_note: "땅콩의 불포화지방이 당근의 지용성 베타카로틴을 흡수시키고 양배추의 씹는 맛을 고소하게 감싸줍니다."
+      },
+      {
+        id: "greek_ranch",
+        name: "상큼 달콤 요거트 렌치 드레싱",
+        icon: "🥣",
+        tag: "마요네즈 0g 순수 단백질 렌치",
+        calories: 35,
+        carbs: 1.5,
+        fat: 0.8,
+        protein: 3.2,
+        matching_veg: ["프릴아이스", "양상추", "파프리카", "오이", "어린잎", "새싹채소", "컬리플라워"],
+        ingredients: "무가당 그릭요거트 2T + 레몬즙 1t + 다진 마늘 0.3t + 알룰로스 0.5t + 파슬리 가루·소금·후추 톡톡",
+        how_to: "그릭요거트에 레몬즙과 다진 마늘, 알룰로스, 허브를 섞어 크리미한 서양식 렌치 소스로 완성합니다.",
+        synergy_note: "그릭요거트의 유청 단백질을 추가 보충하면서 마요네즈 없이도 깊고 크리미한 만족감을 선사합니다."
+      },
+      {
+        id: "balsamic_mustard",
+        name: "알싸한 홀그레인 발사믹 드레싱",
+        icon: "🍇",
+        tag: "쓴맛 잎채소 & 소고기 리셋",
+        calories: 38,
+        carbs: 2.2,
+        fat: 2.8,
+        protein: 0.3,
+        matching_veg: ["라디치오", "치커리", "적근대", "케일", "루꼴라", "양송이버섯", "가지"],
+        ingredients: "발사믹 식초 1T + 홀그레인 머스터드 1t + 엑스트라 버진 올리브유 0.5T + 알룰로스 0.5T + 통후추",
+        how_to: "모든 재료를 작은 소스병에 넣고 흔들어 유화시킨 뒤 샐러드 위에 가볍게 드레즐링합니다.",
+        synergy_note: "발사믹의 유기산이 라디치오와 치커리의 쓴맛을 부드럽게 감싸고 소고기의 지방을 분해합니다."
+      }
+    ];
+
+    function getBestDressingForFoods(foodIds) {
+      const selectedFoodNames = Array.from(foodIds).map(id => {
+        const f = foodsData.find(x => x.id === id);
+        return f ? f.name : '';
+      });
+      
+      let bestDressing = DRESSINGS[0];
+      let maxMatch = -1;
+      
+      DRESSINGS.forEach(dr => {
+        let matchCount = 0;
+        dr.matching_veg.forEach(vegName => {
+          if (selectedFoodNames.some(fn => fn.includes(vegName) || vegName.includes(fn))) {
+            matchCount++;
+          }
+        });
+        if (matchCount > maxMatch) {
+          maxMatch = matchCount;
+          bestDressing = dr;
+        }
+      });
+      
+      return bestDressing;
+    }
+
+    // ==========================================
+    // 🎯 신체 스펙 & 설문조사 & AI 식단 추천 제어
+    // ==========================================
+    function openSurveyModal() {
+      const modal = document.getElementById('survey-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeSurveyModal() {
+      const modal = document.getElementById('survey-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function openAiMealModal() {
+      const modal = document.getElementById('ai-meal-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeAiMealModal() {
+      const modal = document.getElementById('ai-meal-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function calculateDietTargets(gender, age, height, weight, targetWeight, activity, goal) {
+      // Mifflin-St Jeor 기초대사량(BMR)
+      let bmr = 0;
+      if (gender === 'm') {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+
+      const tdee = bmr * activity;
+      let dailyCal = 0;
+      let proteinMultiplier = 1.7;
+
+      if (goal === 'cut') {
+        dailyCal = tdee - 500;
+        const minCal = (gender === 'm') ? 1600 : 1350;
+        dailyCal = Math.max(dailyCal, minCal);
+        proteinMultiplier = 1.8;
+      } else if (goal === 'bulk') {
+        dailyCal = tdee + 250;
+        proteinMultiplier = 2.0;
+      } else {
+        dailyCal = tdee;
+        proteinMultiplier = 1.6;
+      }
+
+      const mealCal = Math.round((dailyCal / 3) / 10) * 10;
+      const mealP = Math.round(((weight * proteinMultiplier) / 3) * 10) / 10;
+      const mealF = Math.round(((mealCal * 0.22) / 9) * 10) / 10;
+      const mealC = Math.round(((mealCal - (mealP * 4) - (mealF * 9)) / 4) * 10) / 10;
+
+      return {
+        bmr: Math.round(bmr),
+        tdee: Math.round(tdee),
+        mealCal: Math.max(380, mealCal),
+        mealP: Math.max(25, mealP),
+        mealC: Math.max(35, mealC),
+        mealF: Math.max(8, mealF)
+      };
+    }
+
+    let currentAiThemes = [];
+
+    function handleSurveySubmit(event) {
+      event.preventDefault();
+
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const age = parseInt(document.getElementById('inp_age').value, 10) || 28;
+      const height = parseFloat(document.getElementById('inp_height').value) || 175;
+      const weight = parseFloat(document.getElementById('inp_weight').value) || 75;
+      const activity = parseFloat(document.getElementById('inp_activity').value) || 1.375;
+      const goal = document.querySelector('input[name="goal"]:checked').value;
+
+      const profile = { gender, age, height, weight, activity, goal };
+      localStorage.setItem('user_diet_profile', JSON.stringify(profile));
+
+      const targets = calculateDietTargets(gender, age, height, weight, weight, activity, goal);
+
+      // 글로벌 TARGET 업데이트
+      TARGET.cal = targets.mealCal;
+      TARGET.p = targets.mealP;
+      TARGET.c = targets.mealC;
+      TARGET.f = targets.mealF;
+
+      // 화면 대시보드 타겟 숫자 업데이트
+      const tCal = document.getElementById('target_cal_disp');
+      const tP = document.getElementById('target_p_disp');
+      const tC = document.getElementById('target_c_disp');
+      const tF = document.getElementById('target_f_disp');
+      if (tCal) tCal.innerText = TARGET.cal;
+      if (tP) tP.innerText = TARGET.p;
+      if (tC) tC.innerText = TARGET.c;
+      if (tF) tF.innerText = TARGET.f;
+
+      // AI 모달 상단 배너 업데이트
+      document.getElementById('ai-calc-meal-cal').innerText = `${TARGET.cal} kcal`;
+      document.getElementById('ai-calc-meal-p').innerText = `단백질 ${TARGET.p}g`;
+      document.getElementById('ai-calc-meal-c').innerText = `탄수화물 ${TARGET.c}g`;
+      document.getElementById('ai-calc-meal-f').innerText = `지방 ${TARGET.f}g`;
+
+      // 게이지 다시 그리기
+      updateMacroGauges();
+      updateGuideInstruction();
+
+      // 테마별 추천 식단 생성
+      generateAiMealThemes(targets);
+
+      closeSurveyModal();
+      openAiMealModal();
+    }
+
+    function generateAiMealThemes(targets) {
+      // 3가지 대표 테마 레시피 템플릿
+      currentAiThemes = [
+        {
+          title: "🥑 지중해식 프레시 연어 보울",
+          desc: "오메가-3와 지용성 리코펜 흡수를 극대화한 최고급 클린 식단",
+          foodIds: ["protein_salmon", "protein_egg_whites", "carb_whole_pasta", "veg_arugula", "veg_tomato", "fat_olive_oil"],
+          dressing: DRESSINGS.find(d => d.id === 'mediterranean_lemon')
+        },
+        {
+          title: "🥩 정갈한 고단백 한식 쌈밥상",
+          desc: "철분 흡수와 위벽 보호, 알리티아민 합성으로 속 편한 든든한 한상",
+          foodIds: ["protein_beef_round", "protein_tofu", "carb_barley_rice", "veg_perilla", "veg_lettuce_korean", "fat_perilla_oil"],
+          dressing: DRESSINGS.find(d => d.id === 'sesame_oriental')
+        },
+        {
+          title: "🦆 훈제오리 양배추 웜샐러드",
+          desc: "불포화지방산과 식이섬유를 단짠 피넛 소스로 무한 흡입하는 구성",
+          foodIds: ["protein_duck", "protein_eggs", "carb_sweet_potato", "veg_cabbage", "veg_carrot", "fat_peanut_butter"],
+          dressing: DRESSINGS.find(d => d.id === 'peanut_sauce')
+        }
+      ];
+
+      const container = document.getElementById('ai-theme-cards-container');
+      container.innerHTML = '';
+
+      currentAiThemes.forEach((theme, idx) => {
+        const themeFoods = theme.foodIds.map(id => foodsData.find(x => x.id === id)).filter(Boolean);
+        const tCal = themeFoods.reduce((acc, cur) => acc + cur.calories, 0);
+        const tP = Math.round(themeFoods.reduce((acc, cur) => acc + cur.protein, 0) * 10) / 10;
+        const tC = Math.round(themeFoods.reduce((acc, cur) => acc + cur.carbs, 0) * 10) / 10;
+        const tF = Math.round(themeFoods.reduce((acc, cur) => acc + cur.fat, 0) * 10) / 10;
+
+        const itemsPills = themeFoods.map(f => `
+          <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 3px 8px; font-size: 0.78rem; font-weight: 700; color: #e2e8f0;">
+            <span>${f.icon}</span> <span>${f.name}</span>
+          </span>
+        `).join('');
+
+        const card = document.createElement('div');
+        card.style.cssText = 'background: rgba(18, 24, 38, 0.85); border: 1.5px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px; transition: all 0.2s;';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <div style="font-size: 1.12rem; font-weight: 900; color: #fff;">${theme.title}</div>
+              <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 2px;">${theme.desc}</div>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 1.15rem; font-weight: 900; color: #34d399;">${tCal} kcal</span>
+              <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 700;">단 ${tP}g · 탄 ${tC}g · 지 ${tF}g</div>
+            </div>
+          </div>
+
+          <!-- 포함 원재료 리스트 -->
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
+            ${itemsPills}
+          </div>
+
+          <!-- 🥗 추천 특급 드레싱 박스 -->
+          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 12px; padding: 12px; margin-bottom: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-size: 0.84rem; font-weight: 900; color: #34d399; display: flex; align-items: center; gap: 6px;">
+                <span>${theme.dressing.icon}</span>
+                <span>채소 찰떡 추천 드레싱: ${theme.dressing.name}</span>
+              </div>
+              <span style="font-size: 0.72rem; color: #a7f3d0; background: rgba(52, 211, 153, 0.2); padding: 2px 7px; border-radius: 999px; font-weight: 800;">${theme.dressing.calories} kcal</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 4px;">
+              🥄 <strong>검증 레시피</strong>: ${theme.dressing.ingredients}
+            </div>
+            <div style="font-size: 0.74rem; color: #6ee7b7; line-height: 1.4;">
+              💡 <strong>미각 & 시너지</strong>: ${theme.dressing.synergy_note}
+            </div>
+          </div>
+
+          <!-- 선택 버튼 -->
+          <button type="button" onclick="applyRecommendedMeal(${idx})" style="width: 100%; background: #10b981; color: #0b0f19; font-weight: 900; font-size: 0.95rem; padding: 11px; border: none; border-radius: 10px; cursor: pointer; transition: all 0.2s;">
+            ✅ 이 맞춤 식단 선택하여 빌더에 담기
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function applyRecommendedMeal(idx) {
+      const theme = currentAiThemes[idx];
+      if (!theme) return;
+
+      selectedFoodIds.clear();
+      theme.foodIds.forEach(id => selectedFoodIds.add(id));
+
+      renderFoodCards();
+      updateMacroGauges();
+      updateTrayUI();
+      updateGuideInstruction();
+
+      closeAiMealModal();
+
+      // 상단 배너에 적용 알림
+      const banner = document.getElementById('guide-instruction');
+      if (banner) {
+        banner.innerHTML = `🎉 <strong>[${theme.title}]</strong> 식단이 자동 담겼습니다! 아래에서 재료를 자유롭게 변경하거나 장바구니에 담아보세요.`;
+      }
+    }
+
+    function switchToManualMode() {
+      closeAiMealModal();
+      // 자유 모드 진입
+      const banner = document.getElementById('guide-instruction');
+      if (banner) {
+        banner.innerHTML = `✏️ <strong>자유 빌더 모드</strong>: 설정된 맞춤 목표(칼로리: ${TARGET.cal}kcal)에 맞춰 111종 원물을 자유롭게 골라보세요!`;
+      }
+    }
+
+    function loadSavedUserProfile() {
+      try {
+        const saved = localStorage.getItem('user_diet_profile');
+        if (saved) {
+          const profile = JSON.parse(saved);
+          const targets = calculateDietTargets(profile.gender, profile.age, profile.height, profile.weight, profile.weight, profile.activity, profile.goal);
+          TARGET.cal = targets.mealCal;
+          TARGET.p = targets.mealP;
+          TARGET.c = targets.mealC;
+          TARGET.f = targets.mealF;
+
+          const tCal = document.getElementById('target_cal_disp');
+          const tP = document.getElementById('target_p_disp');
+          const tC = document.getElementById('target_c_disp');
+          const tF = document.getElementById('target_f_disp');
+          if (tCal) tCal.innerText = TARGET.cal;
+          if (tP) tP.innerText = TARGET.p;
+          if (tC) tC.innerText = TARGET.c;
+          if (tF) tF.innerText = TARGET.f;
+
+          updateMacroGauges();
+        }
+      } catch (err) {
+        console.error('Failed to load profile:', err);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedUserProfile();
+      loadFoods();
+    });
   </script>
   <!-- 🛒 다이어트 원물 장바구니 모달 (Cart Modal) -->
   <div id="cart-modal" class="modal-overlay" onclick="handleCartOverlayClick(event)">
@@ -1596,10 +1989,13 @@
       </div>
 
       <!-- Selected Items List -->
-      <div style="text-align: left; margin-bottom: 22px;">
+      <div style="text-align: left; margin-bottom: 16px;">
         <div style="font-size: 0.82rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px;">🍽️ 완성된 식재료 조합:</div>
         <div id="complete-items-container" style="max-height: 200px; overflow-y: auto;"></div>
       </div>
+
+      <!-- 🥗 추천 검증 드레싱 안내 (채소 포함 시 자동 매칭) -->
+      <div id="complete-dressing-container" style="margin-bottom: 20px;"></div>
 
       <div style="display: flex; gap: 10px;">
         <button type="button" onclick="closeCompleteModal()" class="btn-action-secondary" style="flex: 1; padding: 12px;">
@@ -1611,5 +2007,136 @@
       </div>
     </div>
   </div>
+
+  <!-- 🎯 신체 스펙 & 목표 입력 설문 모달 (Survey Modal) -->
+  <div id="survey-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 9999;">
+    <div class="modal-card" style="max-width: 540px; padding: 28px 24px; border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 50px rgba(16, 185, 129, 0.25);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.6rem;">🎯</span>
+            <h2 style="font-size: 1.35rem; font-weight: 900; color: #fff; margin: 0;">신체 스펙 & 다이어트 목표 설정</h2>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.82rem; margin: 4px 0 0 0;">개인별 기초대사량(BMR)과 활동량을 분석해 100% 최적화된 한 끼 매크로를 도출합니다.</p>
+        </div>
+        <button type="button" onclick="closeSurveyModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
+      </div>
+
+      <form id="survey-form" onsubmit="handleSurveySubmit(event)">
+        <!-- 성별 선택 -->
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 6px;">성별</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <label style="display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 800; color: #fff;">
+              <input type="radio" name="gender" value="m" checked style="accent-color: #10b981;"> 👨 남성
+            </label>
+            <label style="display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 800; color: #fff;">
+              <input type="radio" name="gender" value="f" style="accent-color: #10b981;"> 👩 여성
+            </label>
+          </div>
+        </div>
+
+        <!-- 나이 / 신장 / 체중 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 4px;">나이 (세)</label>
+            <input type="number" id="inp_age" value="28" min="15" max="80" required style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 9px 12px; color: #fff; font-weight: 700; font-size: 0.9rem;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 4px;">키 (cm)</label>
+            <input type="number" id="inp_height" value="175" min="130" max="220" required style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 9px 12px; color: #fff; font-weight: 700; font-size: 0.9rem;">
+          </div>
+          <div>
+            <label style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 4px;">현재 체중 (kg)</label>
+            <input type="number" id="inp_weight" value="75" min="35" max="180" step="0.5" required style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 9px 12px; color: #fff; font-weight: 700; font-size: 0.9rem;">
+          </div>
+        </div>
+
+        <!-- 활동량 선택 -->
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 4px;">평소 활동량</label>
+          <select id="inp_activity" style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 9px 12px; color: #fff; font-weight: 700; font-size: 0.88rem;">
+            <option value="1.2">🛋️ 거의 운동 안 함 (좌식 생활 중심)</option>
+            <option value="1.375" selected>🚶 가벼운 활동 (주 1~3회 가벼운 운동/산책)</option>
+            <option value="1.55">🏋️ 보통 활동 (주 3~5회 보통 강도 운동)</option>
+            <option value="1.725">⚡ 활발한 운동 (주 6~7회 강도 높은 웨이트/스포츠)</option>
+          </select>
+        </div>
+
+        <!-- 다이어트 목표 -->
+        <div style="margin-bottom: 20px;">
+          <label style="font-size: 0.82rem; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 6px;">다이어트 목표</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+            <label style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); padding: 10px 6px; border-radius: 10px; cursor: pointer; text-align: center;">
+              <input type="radio" name="goal" value="cut" checked style="accent-color: #10b981;">
+              <span style="font-size: 0.84rem; font-weight: 800; color: #fff; margin-top: 2px;">⚡ 체지방 컷팅</span>
+              <span style="font-size: 0.68rem; color: #94a3b8;">감량 (-500kcal)</span>
+            </label>
+            <label style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); padding: 10px 6px; border-radius: 10px; cursor: pointer; text-align: center;">
+              <input type="radio" name="goal" value="bulk" style="accent-color: #10b981;">
+              <span style="font-size: 0.84rem; font-weight: 800; color: #fff; margin-top: 2px;">💪 린매스업</span>
+              <span style="font-size: 0.68rem; color: #94a3b8;">근육증가 (+250kcal)</span>
+            </label>
+            <label style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.12); padding: 10px 6px; border-radius: 10px; cursor: pointer; text-align: center;">
+              <input type="radio" name="goal" value="maintain" style="accent-color: #10b981;">
+              <span style="font-size: 0.84rem; font-weight: 800; color: #fff; margin-top: 2px;">🌿 클린 유지</span>
+              <span style="font-size: 0.68rem; color: #94a3b8;">건강식 (TDEE유지)</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: #0b0f19; font-weight: 900; font-size: 1rem; padding: 13px; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4); transition: all 0.2s;">
+          ✨ 맞춤 칼로리 계산 & AI 황금 식단 추천받기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🤖 AI 맞춤 식단 & 검증 드레싱 추천 모달 (AI Meal Modal) -->
+  <div id="ai-meal-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 9999;">
+    <div class="modal-card" style="max-width: 680px; padding: 28px 24px; border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 50px rgba(56, 189, 248, 0.25); max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.6rem;">🤖</span>
+            <h2 style="font-size: 1.35rem; font-weight: 900; color: #fff; margin: 0;">AI 맞춤 황금 식단 & 특급 드레싱 추천</h2>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.84rem; margin: 4px 0 0 0;">
+            신체 스펙에 최적화된 <strong>한 끼 목표치</strong>에 맞춰 맛과 영양 궁합이 검증된 3가지 테마를 제안합니다.
+          </p>
+        </div>
+        <button type="button" onclick="closeAiMealModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
+      </div>
+
+      <!-- 계산된 목표 매크로 배너 -->
+      <div style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.3); border-radius: 14px; padding: 14px 18px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 700;">내 맞춤 한 끼 목표</div>
+          <div style="font-size: 1.35rem; font-weight: 900; color: #38bdf8;" id="ai-calc-meal-cal">450 kcal</div>
+        </div>
+        <div style="display: flex; gap: 12px; font-size: 0.84rem; font-weight: 800;">
+          <span style="color: #38bdf8;" id="ai-calc-meal-p">단백질 35g</span>
+          <span style="color: #fbbf24;" id="ai-calc-meal-c">탄수화물 45g</span>
+          <span style="color: #f43f5e;" id="ai-calc-meal-f">지방 12g</span>
+        </div>
+      </div>
+
+      <!-- 3대 추천 테마 식단 리스트 -->
+      <div id="ai-theme-cards-container" style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px;">
+        <!-- Dynamically filled by JS -->
+      </div>
+
+      <!-- 모달 하단 버튼: 직접 선택하기 vs 다른 조합 -->
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="button" onclick="switchToManualMode()" style="flex: 1; background: rgba(255, 255, 255, 0.08); color: #e2e8f0; border: 1.5px solid rgba(255, 255, 255, 0.18); padding: 13px; border-radius: 12px; font-weight: 800; font-size: 0.92rem; cursor: pointer; transition: all 0.2s;">
+          ✏️ 직접 선택하기 (자유 빌더 모드)
+        </button>
+        <button type="button" onclick="closeAiMealModal()" style="background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.08); padding: 13px 18px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; cursor: pointer;">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
