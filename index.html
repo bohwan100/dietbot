@@ -985,12 +985,12 @@
 
       // 2. 현재 부족한 영양소 파악 (사용자 규칙: 탄·단·지 우선 채우기 ➔ 다 찬 후 칼로리 채우기)
       const currentTotals = calculateCurrentTotals();
-      const isProteinFilled = currentTotals.p >= 20; // 단백질 권장 기준 (최소 20g 이상)
-      const isCarbFilled = currentTotals.c >= 25;    // 탄수화물 권장 기준 (최소 25g 이상)
-      const isFatFilled = currentTotals.f >= 7;      // 건강한 지방 권장 기준 (최소 7g 이상)
+      const isProteinFilled = currentTotals.p >= TARGET.p; // 단백질 목표 기준 (35g)
+      const isCarbFilled = currentTotals.c >= TARGET.c;    // 탄수화물 목표 기준 (45g)
+      const isFatFilled = currentTotals.f >= TARGET.f;      // 건강한 지방 목표 기준 (12g)
       const isMacroFilled = isProteinFilled && isCarbFilled && isFatFilled;
 
-      const isCalorieFilled = currentTotals.cal >= 380; // 목표 칼로리 (380~450 kcal)
+      const isCalorieFilled = currentTotals.cal >= TARGET.cal; // 목표 칼로리 (450 kcal)
       const isComplete = isMacroFilled && isCalorieFilled;
 
       foodsData.forEach(food => {
@@ -1176,11 +1176,11 @@
 
     function updateGuideInstruction() {
       const totals = calculateCurrentTotals();
-      const isProteinFilled = totals.p >= 20;
-      const isCarbFilled = totals.c >= 25;
-      const isFatFilled = totals.f >= 7;
+      const isProteinFilled = totals.p >= TARGET.p;
+      const isCarbFilled = totals.c >= TARGET.c;
+      const isFatFilled = totals.f >= TARGET.f;
       const isMacroFilled = isProteinFilled && isCarbFilled && isFatFilled;
-      const isCalorieFilled = totals.cal >= 380;
+      const isCalorieFilled = totals.cal >= TARGET.cal;
       const isComplete = isMacroFilled && isCalorieFilled;
 
       const banner = document.getElementById('guide-instruction');
@@ -1188,28 +1188,31 @@
 
       if (selectedFoodIds.size === 0) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `👉 <strong>[1순위 단백질]</strong> 식단의 기둥이 될 단백질 원재료를 먼저 골라보세요! (예: 닭가슴살, 소고기 우둔살)`;
+        banner.innerHTML = `👉 <strong>[1순위 단백질]</strong> 식단의 기둥이 될 단백질 원재료를 먼저 담아보세요! (목표: ${TARGET.p}g)`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
       } else if (!isProteinFilled) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `🍗 <strong>단백질 보충 필요 (${totals.p}g / 목표 25~35g)</strong>: 단백질을 먼저 든든하게 채워주세요!`;
+        const diffP = (TARGET.p - totals.p).toFixed(1);
+        banner.innerHTML = `🍗 <strong>단백질 부족</strong> (현재 ${totals.p}g / 목표 ${TARGET.p}g, <strong>${diffP}g 더 필요</strong>): 단백질 원재료를 더 담아주세요!`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
       } else if (!isCarbFilled) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `🍠 <strong>단백질(${totals.p}g) 충족!</strong> ➔ 2순위로 <strong>[황금빛 복합 탄수화물 ✨]</strong>을 골라 탄수화물을 채워보세요!`;
+        const diffC = (TARGET.c - totals.c).toFixed(1);
+        banner.innerHTML = `🍠 <strong>탄수화물 부족</strong> (현재 ${totals.c}g / 목표 ${TARGET.c}g, <strong>${diffC}g 더 필요</strong>): 복합 탄수화물 원재료를 더 담아주세요!`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
       } else if (!isFatFilled) {
         hasShownCompletionModal = false;
-        banner.innerHTML = `🥑 <strong>단·탄 충족!</strong> ➔ 3순위로 <strong>[건강한 불포화지방 ✨]</strong>을 더해 3대 영양(탄·단·지)을 먼저 완성하세요!`;
+        const diffF = (TARGET.f - totals.f).toFixed(1);
+        banner.innerHTML = `🥑 <strong>건강한 지방 부족</strong> (현재 ${totals.f}g / 목표 ${TARGET.f}g, <strong>${diffF}g 더 필요</strong>): 건강한 불포화지방을 더 담아주세요!`;
         saveBtn.style.background = 'rgba(255, 255, 255, 0.1)';
       } else if (!isCalorieFilled) {
-        // 탄단지는 다 찼고 칼로리를 채우는 단계!
         hasShownCompletionModal = false;
-        banner.innerHTML = `🥗 <strong>탄·단·지 100% 충족 완료!</strong> ➔ 이제 목표 칼로리(450 kcal)에 맞춰 <strong>[식이섬유 채소 & 샐러드 ✨]</strong>를 채워보세요! (현재 ${totals.cal} kcal)`;
+        const diffCal = TARGET.cal - totals.cal;
+        banner.innerHTML = `🥗 <strong>탄·단·지 충족 완료!</strong> ➔ 목표 칼로리(${TARGET.cal} kcal)까지 <strong>${diffCal} kcal 더 필요</strong>합니다. 신선 채소·샐러드를 더 채워보세요!`;
         saveBtn.style.background = 'rgba(16, 185, 129, 0.4)';
       } else {
-        // 탄단지도 다 차고 칼로리도 충분히 충족!
-        banner.innerHTML = `🎉 <strong>완벽합니다! 탄·단·지와 목표 칼로리가 100% 충족된 황금 식단입니다!</strong> (총 ${totals.cal}kcal)`;
+        // 탄단지와 목표 칼로리가 100% 충족되었을 때만 황금 식단 완성 트리거!
+        banner.innerHTML = `🎉 <strong>완벽합니다! 탄·단·지와 목표 칼로리(${TARGET.cal}kcal)가 100% 충족된 황금 식단입니다!</strong> (총 ${totals.cal}kcal)`;
         saveBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
         saveBtn.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.8)';
 
