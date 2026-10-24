@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="스마트 장바구니 매니저 | 집밥봇">
+  <meta property="og:title" content="스마트 장바구니 매니저 | 다이어트봇">
   <meta property="og:description" content="4주 분할 장보기 & 쿠팡 로켓배송 1초 원클릭 자동 담기">
   <meta property="og:image" content="https://bohwan100.github.io/zipbab/assets/icon.png">
   <link rel="icon" type="image/png" href="https://bohwan100.github.io/zipbab/assets/icon.png">
@@ -12,7 +12,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>스마트 장바구니 매니저 | 집밥봇</title>
+  <title>스마트 장바구니 매니저 | 다이어트봇</title>
   <script>
     // 외부 브라우저 최적화
     (function() {
@@ -1032,7 +1032,7 @@
   <header class="top-nav">
     <div class="top-nav-inner">
       <a href="index.html" class="nav-brand">
-        <span>🤖 집밥봇</span>
+        <span>🤖 다이어트봇</span>
         <span class="nav-brand-badge">장바구니 매니저</span>
       </a>
       <div class="nav-links">
@@ -1339,9 +1339,9 @@
           </div>
           <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
             ① 브라우저 화면의 <strong>[공유 버튼 ⬆️]</strong> 또는 메뉴(⋯) 터치<br>
-            ② 목록에서 <strong>[즐겨찾기에 추가]</strong>(또는 책갈피 추가) 터치 ➔ 이름을 <strong>[집밥봇]</strong>으로 적고 저장<br>
+            ② 목록에서 <strong>[즐겨찾기에 추가]</strong>(또는 책갈피 추가) 터치 ➔ 이름을 <strong>[다이어트봇]</strong>으로 적고 저장<br>
             ③ 즐겨찾기(북마크) 목록 열기 ➔ <strong>[편집]</strong> 터치<br>
-            ④ 방금 저장한 <strong>[집밥봇]</strong> 터치 ➔ <strong>주소(URL) 전체를 싹 지우고</strong> 위 1단계 코드를 <strong>[붙여넣기]</strong> ➔ 완료!
+            ④ 방금 저장한 <strong>[다이어트봇]</strong> 터치 ➔ <strong>주소(URL) 전체를 싹 지우고</strong> 위 1단계 코드를 <strong>[붙여넣기]</strong> ➔ 완료!
           </div>
         </div>
 
@@ -1353,8 +1353,8 @@
           </div>
           <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 10px;">
             ① <strong>쿠팡(m.coupang.com)</strong>에 로그인합니다.<br>
-            ② 책 모양(📖) 즐겨찾기를 열어 <strong>[집밥봇]</strong>을 누릅니다.<br>
-            ③ 쿠팡 화면 상단에 <strong>집밥봇 장바구니 도우미</strong>가 나타나며, 이번 주 식재료가 순식간에 내 장바구니로 쏙 들어갑니다!
+            ② 책 모양(📖) 즐겨찾기를 열어 <strong>[다이어트봇]</strong>을 누릅니다.<br>
+            ③ 쿠팡 화면 상단에 <strong>다이어트봇 장바구니 도우미</strong>가 나타나며, 이번 주 식재료가 순식간에 내 장바구니로 쏙 들어갑니다!
           </div>
         </div>
       </div>
@@ -1437,7 +1437,7 @@
     <div class="modal-content" style="max-width: 600px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
         <h3 class="modal-title" style="margin-bottom: 0; display: flex; align-items: center; gap: 8px;">
-          <span>🧩</span> 집밥봇 확장 프로그램 10초 설치 가이드 (Chrome & Whale 🐳)
+          <span>🧩</span> 다이어트봇 확장 프로그램 10초 설치 가이드 (Chrome & Whale 🐳)
         </h3>
         <button type="button" class="btn-action" style="background: #334155; padding: 4px 10px; font-size: 0.85rem;" onclick="closeExtensionModal()">✕</button>
       </div>
@@ -2346,7 +2346,7 @@
     // ==========================================
     function isExtensionInstalled() {
       if (typeof window.__ZIPBABBOT_EXTENSION_ACTIVE__ !== 'undefined' && window.__ZIPBABBOT_EXTENSION_ACTIVE__) return true;
-      if (window.hasZipbabBotExtension === true) return true;
+      if (window.hasDietBotExtension === true) return true;
 
       if (document.documentElement && (
             document.documentElement.hasAttribute('data-zipbabbot-extension') ||
@@ -2408,7 +2408,7 @@
         sessionStorage.setItem('zipbabbot_extension_installed', 'true');
       } catch(e) {}
       window.__ZIPBABBOT_EXTENSION_ACTIVE__ = true;
-      window.hasZipbabBotExtension = true;
+      window.hasDietBotExtension = true;
       if (document.documentElement) {
         document.documentElement.setAttribute('data-zipbabbot-extension', 'true');
         document.documentElement.setAttribute('data-zipbabbot-installed', 'true');
@@ -2667,7 +2667,7 @@
             }
             if (btnStop) btnStop.style.display = 'none';
             if (btnHeaderStop) btnHeaderStop.style.display = 'none';
-            alert('⚠️ [확장 프로그램 연결 안내]\n\n확장 프로그램이 설치되어 있으나 아직 브라우저에서 최신 버전으로 새로고침되지 않아 백그라운드 통신이 지연되고 있습니다.\n\n해결 방법 (3초):\n1. 새 탭에서 chrome://extensions (웨일은 whale://extensions) 로 이동합니다.\n2. [집밥봇 - 쿠팡 장바구니 1초 자동 담기 도우미] 카드의 새로고침(🔄) 아이콘을 한 번 클릭해 주세요!\n3. 이 페이지로 돌아와 다시 [한 번에 담기 시작]을 누르시면 정상 작동합니다.');
+            alert('⚠️ [확장 프로그램 연결 안내]\n\n확장 프로그램이 설치되어 있으나 아직 브라우저에서 최신 버전으로 새로고침되지 않아 백그라운드 통신이 지연되고 있습니다.\n\n해결 방법 (3초):\n1. 새 탭에서 chrome://extensions (웨일은 whale://extensions) 로 이동합니다.\n2. [다이어트봇 - 쿠팡 장바구니 1초 자동 담기 도우미] 카드의 새로고침(🔄) 아이콘을 한 번 클릭해 주세요!\n3. 이 페이지로 돌아와 다시 [한 번에 담기 시작]을 누르시면 정상 작동합니다.');
           }
         }, 6000);
 
@@ -2811,7 +2811,7 @@
 
     function openExtensionModal(force = false) {
       if (!force && isExtensionInstalled()) {
-        console.log('[ZipbabBot] Extension already installed. Guide modal suppressed.');
+        console.log('[DietBot] Extension already installed. Guide modal suppressed.');
         return;
       }
       const m = document.getElementById('extension-modal');
@@ -2830,7 +2830,7 @@
 
       if (data.type && data.type.startsWith('ZIPBABBOT_')) {
         window.__ZIPBABBOT_EXTENSION_ACTIVE__ = true;
-        window.hasZipbabBotExtension = true;
+        window.hasDietBotExtension = true;
         try {
           localStorage.setItem('zipbabbot_extension_installed', 'true');
           sessionStorage.setItem('zipbabbot_extension_installed', 'true');
@@ -2868,7 +2868,7 @@
           if (tagEl) tagEl.innerHTML = '<span style="color: #10b981;">✅ 담김!</span>';
           if (rowEl) rowEl.style.background = 'rgba(16, 185, 129, 0.08)';
         } else {
-          console.warn('[ZipbabBot Item Failed]', data);
+          console.warn('[DietBot Item Failed]', data);
           const reasonText = data.reason ? `⚠️ ${data.reason}` : '⚠️ 수동 담기';
           if (tagEl) tagEl.innerHTML = `<span style="color: #f87171;">${reasonText}</span>`;
           if (rowEl) rowEl.style.background = 'rgba(239, 68, 68, 0.08)';
@@ -2901,7 +2901,7 @@
         banner.innerHTML = `
           <span style="font-size: 1.4rem; flex-shrink: 0;">⚡</span>
           <div>
-            <strong style="color: #34d399;">🟢 집밥봇 자동 담기 확장 프로그램 활성화됨:</strong><br>
+            <strong style="color: #34d399;">🟢 다이어트봇 자동 담기 확장 프로그램 활성화됨:</strong><br>
             아래 [🚀 한 번에 담기 시작]을 누르시면 백그라운드 탭에서 쿠팡 장바구니에 진짜로 쏙 담깁니다!<br>
             <span style="font-size: 0.78rem; color: #94a3b8;">📱 담긴 후 스마트폰 쿠팡 앱을 열어보시면 실시간 100% 동기화되어 모바일로 편하게 결제 가능합니다.</span>
           </div>
@@ -3032,7 +3032,7 @@
         `var o = document.createElement('div');o.id = 'zb-cart-overlay';` +
         `o.style.cssText = 'position:fixed;top:10px;left:50%;transform:translateX(-50%);width:92%;max-width:440px;max-height:86vh;overflow-y:auto;background:#0f172a;color:#f8fafc;border:2px solid #f97316;border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,0.85);z-index:99999999;padding:16px;font-family:-apple-system,BlinkMacSystemFont,sans-serif;box-sizing:border-box;';` +
         `var h = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #334155;">';` +
-        `h += '<div><div style="font-size:16px;font-weight:800;color:#f97316;">🤖 집밥봇 장바구니 도우미</div>';` +
+        `h += '<div><div style="font-size:16px;font-weight:800;color:#f97316;">🤖 다이어트봇 장바구니 도우미</div>';` +
         `h += '<div style="font-size:12px;color:#94a3b8;margin-top:2px;">${weekNum}주차 식재료 (' + items.length + '종) 자동 담기</div></div>';` +
         `h += '<button onclick="document.getElementById(\'zb-cart-overlay\').remove()" style="background:#334155;color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-weight:bold;cursor:pointer;font-size:14px;">✕</button></div>';` +
         `h += '<div style="background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.4);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:12px;color:#fed7aa;line-height:1.4;">';` +
@@ -3104,7 +3104,7 @@
       if (previewElem) previewElem.value = code;
 
       const copySuccess = () => {
-        showToast(`📋 ${weekNum}주차 [집밥봇 1초 자동 담기] 코드가 복사되었습니다!`);
+        showToast(`📋 ${weekNum}주차 [다이어트봇 1초 자동 담기] 코드가 복사되었습니다!`);
         const badge = document.getElementById('bm-copy-badge');
         if (badge) {
           badge.style.display = 'inline-block';
