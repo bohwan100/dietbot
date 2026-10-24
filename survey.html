@@ -568,7 +568,7 @@
       // C. 토큰이 있을 때 서버에 유효성 검증 요청
       try {
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiBase = isLocal ? '' : 'https://zipbabot.onrender.com';
+        const apiBase = isLocal ? '' : window.location.origin;
         const res = await fetch(`${apiBase}/api/tokens/verify?token=${encodeURIComponent(currentToken)}`);
         const result = await res.json();
 
@@ -722,7 +722,7 @@
 
       try {
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiBase = isLocal ? '' : 'https://zipbabot.onrender.com';
+        const apiBase = isLocal ? '' : window.location.origin;
         const endpoint = apiBase + '/api/create-client';
 
         const controller = new AbortController();

@@ -45,7 +45,7 @@ def get_public_tunnel_url(host=None):
         return f"https://{host}"
 
     # 3. Permanent 24/7 Cloud URL
-    return "https://zipbabot.onrender.com"
+    return f"http://localhost:{PORT}"
 
 class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):

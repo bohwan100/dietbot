@@ -4,7 +4,7 @@ import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 cdn_base = "https://bohwan100.github.io/zipbab"
-render_base = "https://zipbabot.onrender.com"
+render_base = "https://dietbot.onrender.com"
 
 clients_dir = os.path.join(BASE_DIR, 'clients')
 registry_file = os.path.join(BASE_DIR, 'data', 'clients_registry.json')
@@ -522,7 +522,7 @@ html_content = f"""<!DOCTYPE html>
         </div>
       </div>
       <div class="header-actions">
-        <a href="http://localhost:8080/clients.html" target="_blank" class="btn btn-ghost" style="border-color: rgba(249, 115, 22, 0.5); color: #fb923c; background: rgba(249, 115, 22, 0.1);">👥 기존 집밥봇 관리자 (8080)</a>
+        <a href="https://zipbabot.onrender.com/clients" target="_blank" class="btn btn-ghost" style="border-color: rgba(249, 115, 22, 0.5); color: #fb923c; background: rgba(249, 115, 22, 0.1);">👥 기존 집밥봇 관리자 (8080)</a>
         <button type="button" onclick="triggerManualGitSync(this)" class="btn btn-ghost" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">☁️ GitHub 영구 저장 (Sync)</button>
         <a href="survey.html" class="btn btn-orange">➕ 신규 다이어트 고객 (설문)</a>
         <a href="index.html" class="btn btn-ghost">🏠 다이어트봇 홈</a>
@@ -924,7 +924,7 @@ html_content += f"""    </div>
       btn.innerHTML = '<span>⏳ GitHub 저장 중...</span>';
       try {{
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiBase = isLocal ? '' : 'https://zipbabot.onrender.com';
+        const apiBase = isLocal ? '' : window.location.origin;
         const res = await fetch(apiBase + '/api/sync-github');
         const data = await res.json();
         if (data.success) {{
@@ -1039,7 +1039,7 @@ html_content += f"""    </div>
 
       // 로컬이 아니면 Render 온라인 백엔드로 직접 API 호출
       const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const apiBase = isLocal ? '' : 'https://zipbabot.onrender.com';
+      const apiBase = isLocal ? '' : window.location.origin;
       const endpoint = apiBase + '/api/delete-client';
 
       try {{
