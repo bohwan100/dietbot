@@ -43,7 +43,13 @@
     "price": 3500,
     "market_spec": "1통 대용량 (약 15회분)",
     "coupang_url": "https://link.coupang.com/a/bW6Hg2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_red_cabbage",
@@ -83,7 +89,13 @@
     "price": 3900,
     "market_spec": "자색 적양배추 1통",
     "coupang_url": "https://link.coupang.com/a/bW6Hg2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_lettuce",
@@ -125,7 +137,13 @@
     "price": 2900,
     "market_spec": "아삭한 신선 양상추 1수",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_romaine",
@@ -165,7 +183,13 @@
     "price": 2800,
     "market_spec": "신선 무농약 로메인 200g (2~3회분)",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_kale",
@@ -207,7 +231,13 @@
     "price": 2800,
     "market_spec": "신선 쌈케일 200g",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_spinach",
@@ -254,7 +284,13 @@
     "price": 3200,
     "market_spec": "신선 시금치 1단 250g",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_bokchoy",
@@ -294,7 +330,13 @@
     "price": 2400,
     "market_spec": "아삭한 청경채 300g (3회분)",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_broccoli",
@@ -337,7 +379,13 @@
     "price": 3800,
     "market_spec": "신선 브로콜리 2개입",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_cauliflower",
@@ -377,7 +425,13 @@
     "price": 3900,
     "market_spec": "신선 컬리플라워 1개",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_asparagus",
@@ -421,7 +475,13 @@
     "price": 4900,
     "market_spec": "부드러운 중세 250g",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_paprika",
@@ -469,7 +529,13 @@
     "price": 3500,
     "market_spec": "레몬 2배 비타민C 파프리카 2개 (4회분)",
     "coupang_url": "https://link.coupang.com/a/bW6De9",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_cucumber",
@@ -518,7 +584,13 @@
     "price": 2900,
     "market_spec": "수분 95% 나트륨 배출 백오이 3개",
     "coupang_url": "https://link.coupang.com/a/bW6Ff1",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_tomato",
@@ -577,7 +649,13 @@
     "price": 6900,
     "market_spec": "리코펜 항산화 방울토마토 750g (약 7회분)",
     "coupang_url": "https://link.coupang.com/a/bW6Bd8",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_ripe_tomato",
@@ -618,7 +696,13 @@
     "price": 5900,
     "market_spec": "찰토마토 1kg (약 5~6개)",
     "coupang_url": "https://link.coupang.com/a/bW6Bd8",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_celery",
@@ -658,7 +742,13 @@
     "price": 3800,
     "market_spec": "신선 셀러리 500g",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_carrot",
@@ -702,7 +792,13 @@
     "price": 4500,
     "market_spec": "달콤한 제주 흙당근 1kg",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_onion",
@@ -747,7 +843,13 @@
     "price": 3900,
     "market_spec": "신선 단단 양파망 1.5kg",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_green_onion",
@@ -793,7 +895,13 @@
     "price": 2900,
     "market_spec": "신선 흙대파 1단",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_zucchini",
@@ -833,7 +941,13 @@
     "price": 1800,
     "market_spec": "단단한 신선 애호박 1개",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_king_oyster",
@@ -873,7 +987,13 @@
     "price": 2500,
     "market_spec": "신선 무농약 400g (4회분)",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_enoki",
@@ -913,7 +1033,13 @@
     "price": 1900,
     "market_spec": "신선 팽이버섯 3팩 묶음",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_oyster_mushrooms",
@@ -953,7 +1079,13 @@
     "price": 2200,
     "market_spec": "신선 참타리 200g (2회분)",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_button_mushrooms",
@@ -993,7 +1125,13 @@
     "price": 3200,
     "market_spec": "신선 백양송이 150g",
     "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "protein_chicken_breast",
@@ -1078,7 +1216,13 @@
     "price": 8900,
     "market_spec": "100g 개별 소분 팩",
     "coupang_url": "https://link.coupang.com/a/bW5yU9",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동/조리팩 뜯어서 도시락통에 그대로 툭 투하",
+      "lunch_action": "도시락 뚜껑 덮고 전자레인지 2분 30초 돌리면 따끈촉촉 완성"
+    }
   },
   {
     "id": "protein_chicken_tenderloin",
@@ -1123,7 +1267,13 @@
     "price": 6900,
     "market_spec": "100g씩 5회분 소분팩",
     "coupang_url": "https://link.coupang.com/a/bW5yU9",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동/조리팩 뜯어서 도시락통에 그대로 툭 투하",
+      "lunch_action": "도시락 뚜껑 덮고 전자레인지 2분 30초 돌리면 따끈촉촉 완성"
+    }
   },
   {
     "id": "protein_beef_round",
@@ -1183,7 +1333,13 @@
     "price": 9500,
     "market_spec": "1회 100g 소분 3회분",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
+      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
+    }
   },
   {
     "id": "protein_beef_tenderloin",
@@ -1225,7 +1381,13 @@
     "price": 14900,
     "market_spec": "두툼한 안심 스테이크 250g (2회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
+      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
+    }
   },
   {
     "id": "protein_pork_tenderloin",
@@ -1273,7 +1435,13 @@
     "price": 6500,
     "market_spec": "초저지방 고단백 400g (4회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
+      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
+    }
   },
   {
     "id": "protein_eggs",
@@ -1339,7 +1507,13 @@
     "price": 4200,
     "market_spec": "10구 1팩 (1인분 2알씩 5회분)",
     "coupang_url": "https://link.coupang.com/a/bW6aB1",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "삶은 계란 껍질 까서 도시락통에 툭 넣기",
+      "lunch_action": "차갑게 먹거나 렌지 20초 살짝 데워 섭취"
+    }
   },
   {
     "id": "protein_salmon",
@@ -1391,7 +1565,13 @@
     "price": 9800,
     "market_spec": "횟감/구이용 200g (2회분)",
     "coupang_url": "https://link.coupang.com/a/bW6cK2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 종이호일 깔고 4분 노릇하게 구워 담기",
+      "lunch_action": "렌지 40초 살짝 데워 고소하게 섭취"
+    }
   },
   {
     "id": "protein_cod_fillet",
@@ -1432,7 +1612,13 @@
     "price": 8900,
     "market_spec": "가시 없는 120g 개별 포장",
     "coupang_url": "https://link.coupang.com/a/bW6cK2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_shrimp",
@@ -1473,7 +1659,13 @@
     "price": 9900,
     "market_spec": "손질 완료 450g (약 4~5회분)",
     "coupang_url": "https://link.coupang.com/a/bW6cK2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 3분 가볍게 볶아 통에 담기",
+      "lunch_action": "렌지 1분 데워 따뜻하게 섭취"
+    }
   },
   {
     "id": "protein_squid",
@@ -1515,7 +1707,13 @@
     "price": 8900,
     "market_spec": "내장 손질 완료 4마리 (4회분)",
     "coupang_url": "https://link.coupang.com/a/bW6cK2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 3분 가볍게 볶아 통에 담기",
+      "lunch_action": "렌지 1분 데워 따뜻하게 섭취"
+    }
   },
   {
     "id": "protein_light_tuna",
@@ -1556,7 +1754,13 @@
     "price": 12900,
     "market_spec": "100g 소용량 8캔 묶음",
     "coupang_url": "https://link.coupang.com/a/bW6cK2",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_tofu",
@@ -1608,7 +1812,13 @@
     "price": 2800,
     "market_spec": "300g 1모 (반모 2회분)",
     "coupang_url": "https://link.coupang.com/a/bW6eM3",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "두부 물기 살짝 빼서 큐브로 썰어 통에 담기",
+      "lunch_action": "렌지 1분 살짝 데워 간장/오일 뿌려 섭취"
+    }
   },
   {
     "id": "protein_soft_tofu",
@@ -1648,7 +1858,13 @@
     "price": 3400,
     "market_spec": "개별 포장 4팩 (4회분)",
     "coupang_url": "https://link.coupang.com/a/bW6eM3",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "두부 물기 살짝 빼서 큐브로 썰어 통에 담기",
+      "lunch_action": "렌지 1분 살짝 데워 간장/오일 뿌려 섭취"
+    }
   },
   {
     "id": "protein_natto",
@@ -1688,7 +1904,13 @@
     "price": 7900,
     "market_spec": "개별 소분 8팩 묶음",
     "coupang_url": "https://link.coupang.com/a/bW6eM3",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_soymilk",
@@ -1734,7 +1956,13 @@
     "price": 11900,
     "market_spec": "190ml 1팩당 단백질 12g (16회분)",
     "coupang_url": "https://link.coupang.com/a/bW6fN4",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_greek_yogurt",
@@ -1785,7 +2013,13 @@
     "price": 7900,
     "market_spec": "무가당 꾸덕 그릭 100g 2컵",
     "coupang_url": "https://link.coupang.com/a/bW6gP5",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_sweet_potato",
@@ -1832,7 +2066,13 @@
     "price": 6900,
     "market_spec": "다이어트용 중소과 1kg (약 7~8개)",
     "coupang_url": "https://link.coupang.com/a/bW6hR6",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_pumpkin",
@@ -1876,7 +2116,13 @@
     "price": 5900,
     "market_spec": "초저칼로리 컷팅 1kg",
     "coupang_url": "https://link.coupang.com/a/bW6jS7",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "carb_boiled_potato",
@@ -1921,7 +2167,13 @@
     "price": 4900,
     "market_spec": "소과 1kg (약 7~8개)",
     "coupang_url": "https://link.coupang.com/a/bW6hR6",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_brown_rice",
@@ -1985,7 +2237,13 @@
     "price": 7800,
     "market_spec": "소용량 130g 다이어트팩 (6개입)",
     "coupang_url": "https://link.coupang.com/a/bW6kU8",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_konjac_rice",
@@ -2027,7 +2285,13 @@
     "price": 14900,
     "market_spec": "150g 소용량 10팩",
     "coupang_url": "https://link.coupang.com/a/bW6kU8",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_oatmeal",
@@ -2080,7 +2344,13 @@
     "price": 6200,
     "market_spec": "3분 완성 롤드오츠 500g (약 12회분)",
     "coupang_url": "https://link.coupang.com/a/bW6mV9",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_whole_bread",
@@ -2134,7 +2404,13 @@
     "price": 3400,
     "market_spec": "천연 통곡물 통밀식빵 420g (약 10장)",
     "coupang_url": "https://link.coupang.com/a/bW6oW1",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_banana",
@@ -2181,7 +2457,13 @@
     "price": 3900,
     "market_spec": "운동 전후 천연 부스터 (약 5~6개)",
     "coupang_url": "https://link.coupang.com/a/bW6qX2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_chickpeas",
@@ -2223,7 +2505,13 @@
     "price": 2800,
     "market_spec": "조리 없이 바로 먹는 400g 1캔",
     "coupang_url": "https://link.coupang.com/a/bW6kU8",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_blueberries",
@@ -2266,7 +2554,13 @@
     "price": 9900,
     "market_spec": "야생 블루베리 1kg (10회분)",
     "coupang_url": "https://link.coupang.com/a/bW6qX2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_apple",
@@ -2312,7 +2606,13 @@
     "price": 9900,
     "market_spec": "세척 꿀사과 5~6입",
     "coupang_url": "https://link.coupang.com/a/bW6qX2",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_avocado",
@@ -2361,7 +2661,13 @@
     "price": 5900,
     "market_spec": "올레산 불포화지방 3입 (반 개씩 6회분)",
     "coupang_url": "https://link.coupang.com/a/bW6sY3",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동 아보카도 큐브(or 껍질 벗겨 반 개) 툭 얹어두기",
+      "lunch_action": "오전에 자연 해동되어 버터처럼 부드럽게 쓱 비벼짐"
+    }
   },
   {
     "id": "fat_almond",
@@ -2407,7 +2713,13 @@
     "price": 4900,
     "market_spec": "비타민E 항산화 300g (하루 15알 16회분)",
     "coupang_url": "https://link.coupang.com/a/bW6uZ4",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_walnut",
@@ -2450,7 +2762,13 @@
     "price": 6900,
     "market_spec": "500g 지퍼백 대용량",
     "coupang_url": "https://link.coupang.com/a/bW6uZ4",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_peanut_butter",
@@ -2491,7 +2809,13 @@
     "price": 10500,
     "market_spec": "무가당 100% 땅콩 스프레드",
     "coupang_url": "https://link.coupang.com/a/bW6sY3",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_olive_oil",
@@ -2573,7 +2897,13 @@
     "price": 11500,
     "market_spec": "이탈리아 냉압착 엑스트라 버진 500ml",
     "coupang_url": "https://link.coupang.com/a/bW6wa5",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_perilla_oil",
@@ -2638,7 +2968,13 @@
     "price": 8900,
     "market_spec": "오메가3 60% 함유 생들기름 160ml",
     "coupang_url": "https://link.coupang.com/a/bW6yb6",
-    "market_badge": "🚀 로켓배송"
+    "market_badge": "🚀 로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_butterhead",
@@ -2678,7 +3014,13 @@
     "price": 3980,
     "market_spec": "로켓프레시 당일수확 무농약",
     "coupang_url": "https://link.coupang.com/a/butterhead_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_arugula",
@@ -2719,7 +3061,13 @@
     "price": 3490,
     "market_spec": "로켓프레시 당일수확 친환경",
     "coupang_url": "https://link.coupang.com/a/arugula_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_baechu",
@@ -2760,7 +3108,13 @@
     "price": 2980,
     "market_spec": "로켓프레시 산지직송 GAP인증",
     "coupang_url": "https://link.coupang.com/a/albaechi_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_radicchio",
@@ -2802,7 +3156,13 @@
     "price": 3200,
     "market_spec": "로켓프레시 프리미엄 샐러드",
     "coupang_url": "https://link.coupang.com/a/radicchio_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_shiitake",
@@ -2843,7 +3203,13 @@
     "price": 4490,
     "market_spec": "로켓프레시 친환경 무농약",
     "coupang_url": "https://link.coupang.com/a/shiitake_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_eggplant",
@@ -2883,7 +3249,13 @@
     "price": 2890,
     "market_spec": "로켓프레시 GAP인증 산지직송",
     "coupang_url": "https://link.coupang.com/a/eggplant_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_beansprout",
@@ -2923,7 +3295,13 @@
     "price": 1980,
     "market_spec": "로켓프레시 국산녹두 무농약",
     "coupang_url": "https://link.coupang.com/a/beansprout_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_beet",
@@ -2963,7 +3341,13 @@
     "price": 4980,
     "market_spec": "로켓프레시 제주산 신선비트",
     "coupang_url": "https://link.coupang.com/a/beet_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_seaweed",
@@ -3004,7 +3388,13 @@
     "price": 2690,
     "market_spec": "로켓프레시 완도산지직송",
     "coupang_url": "https://link.coupang.com/a/seaweed_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_egg_whites",
@@ -3044,7 +3434,13 @@
     "price": 7890,
     "market_spec": "로켓프레시 살균공정 무항생제",
     "coupang_url": "https://link.coupang.com/a/eggwhites_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_chia_seed",
@@ -3084,7 +3480,13 @@
     "price": 5900,
     "market_spec": "유기농 인증 로켓배송",
     "coupang_url": "https://link.coupang.com/a/chiaseed_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_lettuce_korean",
@@ -3133,7 +3535,13 @@
     "price": 2490,
     "market_spec": "로켓프레시 당일수확 무농약",
     "coupang_url": "https://link.coupang.com/a/sangchu_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_perilla",
@@ -3177,7 +3585,13 @@
     "price": 1980,
     "market_spec": "로켓프레시 산지직송 무농약",
     "coupang_url": "https://link.coupang.com/a/perilla_leaf_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_chicory",
@@ -3219,7 +3633,13 @@
     "price": 2200,
     "market_spec": "로켓프레시 당일수확",
     "coupang_url": "https://link.coupang.com/a/chicory_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_chard",
@@ -3259,7 +3679,13 @@
     "price": 2350,
     "market_spec": "로켓프레시 친환경 무농약",
     "coupang_url": "https://link.coupang.com/a/chard_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_mustard",
@@ -3300,7 +3726,13 @@
     "price": 2400,
     "market_spec": "로켓프레시 당일수확",
     "coupang_url": "https://link.coupang.com/a/mustard_greens_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_basil",
@@ -3343,7 +3775,13 @@
     "price": 2890,
     "market_spec": "로켓프레시 산지직송",
     "coupang_url": "https://link.coupang.com/a/basil_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_frillice",
@@ -3397,7 +3835,13 @@
     "price": 3290,
     "market_spec": "로켓프레시 친환경 무농약",
     "coupang_url": "https://link.coupang.com/a/frillice_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_sprouts",
@@ -3437,7 +3881,13 @@
     "price": 2190,
     "market_spec": "로켓프레시 당일수확",
     "coupang_url": "https://link.coupang.com/a/sprouts_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_duck",
@@ -3477,7 +3927,13 @@
     "price": 8900,
     "market_spec": "로켓프레시 냉장",
     "coupang_url": "https://link.coupang.com/a/duck_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동/조리팩 뜯어서 도시락통에 그대로 툭 투하",
+      "lunch_action": "도시락 뚜껑 덮고 전자레인지 2분 30초 돌리면 따끈촉촉 완성"
+    }
   },
   {
     "id": "protein_beef_eye_round",
@@ -3518,7 +3974,13 @@
     "price": 9900,
     "market_spec": "로켓프레시 냉장소고기",
     "coupang_url": "https://link.coupang.com/a/beef_eye_round_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
+      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
+    }
   },
   {
     "id": "protein_beef_blade",
@@ -3558,7 +4020,13 @@
     "price": 11500,
     "market_spec": "로켓프레시 냉장",
     "coupang_url": "https://link.coupang.com/a/beef_blade_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
+      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
+    }
   },
   {
     "id": "protein_pork_loin",
@@ -3598,7 +4066,13 @@
     "price": 6900,
     "market_spec": "로켓프레시 냉장한돈",
     "coupang_url": "https://link.coupang.com/a/pork_loin_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_mackerel",
@@ -3638,7 +4112,13 @@
     "price": 10900,
     "market_spec": "로켓프레시 개별가시제거",
     "coupang_url": "https://link.coupang.com/a/mackerel_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "one_pan",
+      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
+      "night_prep": "팬에 종이호일 깔고 4분 노릇하게 구워 담기",
+      "lunch_action": "렌지 40초 살짝 데워 고소하게 섭취"
+    }
   },
   {
     "id": "protein_spanish_mackerel",
@@ -3678,7 +4158,13 @@
     "price": 12800,
     "market_spec": "로켓프레시 개별진공",
     "coupang_url": "https://link.coupang.com/a/spanish_mackerel_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_flounder",
@@ -3718,7 +4204,13 @@
     "price": 9900,
     "market_spec": "로켓프레시 냉동순살",
     "coupang_url": "https://link.coupang.com/a/flounder_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_octopus",
@@ -3758,7 +4250,13 @@
     "price": 8900,
     "market_spec": "로켓프레시 당일배송",
     "coupang_url": "https://link.coupang.com/a/octopus_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_sea_snail",
@@ -3798,7 +4296,13 @@
     "price": 8900,
     "market_spec": "로켓배송",
     "coupang_url": "https://link.coupang.com/a/seasnail_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_clam",
@@ -3838,7 +4342,13 @@
     "price": 6900,
     "market_spec": "로켓프레시 산지직송",
     "coupang_url": "https://link.coupang.com/a/clam_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_crab",
@@ -3878,7 +4388,13 @@
     "price": 10900,
     "market_spec": "로켓프레시 국내산대게",
     "coupang_url": "https://link.coupang.com/a/crab_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_cottage_cheese",
@@ -3918,7 +4434,13 @@
     "price": 5400,
     "market_spec": "로켓프레시 저지방치즈",
     "coupang_url": "https://link.coupang.com/a/cottage_cheese_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_ricotta",
@@ -3958,7 +4480,13 @@
     "price": 5900,
     "market_spec": "로켓프레시 신선치즈",
     "coupang_url": "https://link.coupang.com/a/ricotta_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "protein_tempeh",
@@ -3998,7 +4526,13 @@
     "price": 4900,
     "market_spec": "로켓프레시 비건인증",
     "coupang_url": "https://link.coupang.com/a/tempeh_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_lentil",
@@ -4038,7 +4572,13 @@
     "price": 2980,
     "market_spec": "유기농인증 로켓배송",
     "coupang_url": "https://link.coupang.com/a/lentil_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_whole_pasta",
@@ -4079,7 +4619,13 @@
     "price": 3890,
     "market_spec": "이탈리아직수입 로켓배송",
     "coupang_url": "https://link.coupang.com/a/whole_pasta_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_buckwheat_noodles",
@@ -4119,7 +4665,13 @@
     "price": 4900,
     "market_spec": "국내산메밀 로켓배송",
     "coupang_url": "https://link.coupang.com/a/buckwheat_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_oat_rice",
@@ -4159,7 +4711,13 @@
     "price": 9900,
     "market_spec": "로켓배송 즉석밥",
     "coupang_url": "https://link.coupang.com/a/oat_rice_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_barley_rice",
@@ -4199,7 +4757,13 @@
     "price": 9400,
     "market_spec": "로켓배송 즉석밥",
     "coupang_url": "https://link.coupang.com/a/barley_rice_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_quinoa",
@@ -4239,7 +4803,13 @@
     "price": 6900,
     "market_spec": "유기농인증 로켓배송",
     "coupang_url": "https://link.coupang.com/a/quinoa_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_persimmon",
@@ -4278,7 +4848,13 @@
     "price": 8900,
     "market_spec": "로켓프레시 산지직송",
     "coupang_url": "https://link.coupang.com/a/persimmon_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_grapefruit",
@@ -4317,7 +4893,13 @@
     "price": 6900,
     "market_spec": "로켓프레시 프리미엄",
     "coupang_url": "https://link.coupang.com/a/grapefruit_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_kiwi",
@@ -4356,7 +4938,13 @@
     "price": 9900,
     "market_spec": "로켓프레시 뉴질랜드산",
     "coupang_url": "https://link.coupang.com/a/kiwi_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_orange",
@@ -4395,7 +4983,13 @@
     "price": 7900,
     "market_spec": "로켓프레시 고당도",
     "coupang_url": "https://link.coupang.com/a/orange_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_corn",
@@ -4434,7 +5028,13 @@
     "price": 5900,
     "market_spec": "로켓프레시 개별포장",
     "coupang_url": "https://link.coupang.com/a/corn_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_rye_bread",
@@ -4474,7 +5074,13 @@
     "price": 5900,
     "market_spec": "로켓배송 무설탕",
     "coupang_url": "https://link.coupang.com/a/rye_bread_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_cashew",
@@ -4513,7 +5119,13 @@
     "price": 5900,
     "market_spec": "로켓배송 무염",
     "coupang_url": "https://link.coupang.com/a/cashew_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_pistachio",
@@ -4552,7 +5164,13 @@
     "price": 9900,
     "market_spec": "로켓배송 무염구운",
     "coupang_url": "https://link.coupang.com/a/pistachio_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_pecan",
@@ -4591,7 +5209,13 @@
     "price": 7900,
     "market_spec": "로켓배송 무염",
     "coupang_url": "https://link.coupang.com/a/pecan_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_pumpkin_seed",
@@ -4630,7 +5254,13 @@
     "price": 5900,
     "market_spec": "로켓배송",
     "coupang_url": "https://link.coupang.com/a/pumpkin_seed_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_sunflower_seed",
@@ -4669,7 +5299,13 @@
     "price": 4900,
     "market_spec": "로켓배송",
     "coupang_url": "https://link.coupang.com/a/sunflower_seed_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_brazil_nut",
@@ -4708,7 +5344,13 @@
     "price": 6900,
     "market_spec": "로켓배송 무염",
     "coupang_url": "https://link.coupang.com/a/brazil_nut_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_cacao_nibs",
@@ -4747,7 +5389,13 @@
     "price": 5900,
     "market_spec": "로켓배송 무가당",
     "coupang_url": "https://link.coupang.com/a/cacao_nibs_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_mct_oil",
@@ -4786,7 +5434,13 @@
     "price": 12900,
     "market_spec": "로켓배송",
     "coupang_url": "https://link.coupang.com/a/mct_oil_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_ghee",
@@ -4825,7 +5479,13 @@
     "price": 14900,
     "market_spec": "로켓배송 목초버터",
     "coupang_url": "https://link.coupang.com/a/ghee_fresh",
-    "market_badge": "로켓배송"
+    "market_badge": "로켓배송",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_sesame_oil",
@@ -4865,7 +5525,13 @@
     "price": 8900,
     "market_spec": "로켓프레시 국산참깨",
     "coupang_url": "https://link.coupang.com/a/sesame_oil_fresh",
-    "market_badge": "로켓프레시"
+    "market_badge": "로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_baby_leaves",
@@ -4902,7 +5568,13 @@
     "price": 3200,
     "market_spec": "신선 어린잎 150g (약 5회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "veg_kohlrabi",
@@ -4939,7 +5611,13 @@
     "price": 4900,
     "market_spec": "콜라비 1kg (약 10회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_red_onion",
@@ -4976,7 +5654,13 @@
     "price": 5900,
     "market_spec": "적양파 1.5kg (약 20회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "veg_soybean_sprout",
@@ -5013,7 +5697,13 @@
     "price": 2200,
     "market_spec": "콩나물 300g (약 3회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "veg_green_beans",
@@ -5050,7 +5740,13 @@
     "price": 6900,
     "market_spec": "그린빈 1kg (약 15회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave_steam",
+      "mode_badge": "⚡ 렌지 2분 스팀 찜",
+      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
+      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
+    }
   },
   {
     "id": "protein_chicken_thigh",
@@ -5087,7 +5783,13 @@
     "price": 8900,
     "market_spec": "순살 닭다리살 500g (약 5회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동/조리팩 뜯어서 도시락통에 그대로 툭 투하",
+      "lunch_action": "도시락 뚜껑 덮고 전자레인지 2분 30초 돌리면 따끈촉촉 완성"
+    }
   },
   {
     "id": "protein_quail_eggs",
@@ -5124,7 +5826,13 @@
     "price": 4900,
     "market_spec": "깐메추리알 500g (약 8회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "삶은 계란 껍질 까서 도시락통에 툭 넣기",
+      "lunch_action": "차갑게 먹거나 렌지 20초 살짝 데워 섭취"
+    }
   },
   {
     "id": "protein_uncongealed_tofu",
@@ -5161,7 +5869,13 @@
     "price": 2800,
     "market_spec": "순두부 350g (약 2회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "두부 물기 살짝 빼서 큐브로 썰어 통에 담기",
+      "lunch_action": "렌지 1분 살짝 데워 간장/오일 뿌려 섭취"
+    }
   },
   {
     "id": "protein_edamame",
@@ -5198,7 +5912,13 @@
     "price": 6500,
     "market_spec": "풋콩 1kg (약 15회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_black_beans",
@@ -5235,7 +5955,13 @@
     "price": 12900,
     "market_spec": "서리태 1kg (약 20회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_kidney_beans",
@@ -5272,7 +5998,13 @@
     "price": 9900,
     "market_spec": "강낭콩 1kg (약 15회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "protein_mozzarella",
@@ -5309,7 +6041,13 @@
     "price": 4500,
     "market_spec": "생모짜렐라 125g (약 3회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "carb_mixed_grain_rice",
@@ -5346,7 +6084,13 @@
     "price": 9900,
     "market_spec": "즉석 잡곡밥 130g 8개입",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_white_rice",
@@ -5383,7 +6127,13 @@
     "price": 8900,
     "market_spec": "작은공기 백미밥 130g 8개입",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
+      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
+    }
   },
   {
     "id": "carb_whole_tortilla",
@@ -5420,7 +6170,13 @@
     "price": 4900,
     "market_spec": "통밀 또띠아 10장 (약 10회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "microwave",
+      "mode_badge": "⚡ 렌지 3분 원터치 해동",
+      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
+      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
+    }
   },
   {
     "id": "fat_olives",
@@ -5457,7 +6213,13 @@
     "price": 3500,
     "market_spec": "블랙올리브 350g (약 10회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "fat_peanuts",
@@ -5494,7 +6256,13 @@
     "price": 6900,
     "market_spec": "볶음땅콩 300g (약 20회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_strawberry",
@@ -5531,7 +6299,13 @@
     "price": 8900,
     "market_spec": "생딸기 500g (약 5회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_tangerine",
@@ -5568,7 +6342,13 @@
     "price": 9900,
     "market_spec": "감귤 2kg (약 20회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_pineapple",
@@ -5605,7 +6385,13 @@
     "price": 5900,
     "market_spec": "파인애플 400g (약 4회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_mango",
@@ -5642,7 +6428,13 @@
     "price": 9900,
     "market_spec": "망고 2과 (약 4회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_grapes",
@@ -5679,7 +6471,13 @@
     "price": 8900,
     "market_spec": "생포도 500g (약 6회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_pear",
@@ -5716,7 +6514,13 @@
     "price": 9900,
     "market_spec": "신고배 3개 (약 9회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_peach",
@@ -5753,7 +6557,13 @@
     "price": 11900,
     "market_spec": "복숭아 4개입 (약 4회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   },
   {
     "id": "carb_pomegranate",
@@ -5790,6 +6600,12 @@
     "price": 7900,
     "market_spec": "생석류 2과 (약 4회분)",
     "coupang_url": "",
-    "market_badge": "🚀 로켓프레시"
+    "market_badge": "🚀 로켓프레시",
+    "lunchbox_prep": {
+      "mode": "raw",
+      "mode_badge": "🥗 비가열 신선",
+      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
+      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
+    }
   }
 ]

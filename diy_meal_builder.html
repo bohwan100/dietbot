@@ -735,6 +735,9 @@
         <button type="button" onclick="openRecipeExplorerModal()" class="nav-btn" style="background: rgba(56, 189, 248, 0.15); border: 1.5px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 800; padding: 7px 13px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(56, 189, 248, 0.2);">
           📖 황금 레시피 50선
         </button>
+        <button type="button" onclick="openLunchboxRoutineModal()" class="nav-btn" style="background: rgba(245, 158, 11, 0.18); border: 1.5px solid #f59e0b; color: #fbbf24; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(245, 158, 11, 0.25);">
+          🍱 3분 도시락 루틴
+        </button>
         <button type="button" onclick="openSurveyModal()" class="nav-btn" style="background: rgba(16, 185, 129, 0.18); border-color: #10b981; color: #34d399; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);">
           🎯 신체 스펙 입력 & AI 맞춤 식단
         </button>
@@ -824,6 +827,41 @@
         </div>
       </div>
     </section>
+
+    <!-- 🍱 퇴근 후 3분 도시락 밀프랩 & 실전 루틴 바 -->
+    <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.88) 100%); border: 1.5px solid rgba(245, 158, 11, 0.35); border-radius: 18px; padding: 18px 22px; margin-bottom: 22px; box-shadow: 0 6px 25px rgba(0,0,0,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/lunchbox_power_bowl.jpg" alt="도시락 예시" style="width: 54px; height: 54px; border-radius: 14px; object-fit: cover; border: 2px solid #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);" />
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">🍱 퇴근 후 3분 도시락 루틴 (귀차니즘 제로 밀프랩)</span>
+              <span style="font-size: 0.72rem; color: #fbbf24; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 8px; border-radius: 999px; font-weight: 800;">초현실주의 직장인 식단</span>
+            </div>
+            <p style="color: #cbd5e1; font-size: 0.84rem; margin: 4px 0 0 0; line-height: 1.45;">
+              🌙 <strong>저녁 퇴근 후 2분</strong>: 도시락통에 툭툭 담기 ➔ ☀️ <strong>다음 날 점심 3분</strong>: 전자레인지 돌리면 양배추 스팀 찜 & 단백질·고구마 촉촉 해동 완성!
+            </p>
+          </div>
+        </div>
+        <button type="button" onclick="openLunchboxRoutineModal()" class="nav-btn" style="background: #f59e0b; color: #0b0f19; font-weight: 900; border: none; padding: 10px 18px; font-size: 0.88rem; box-shadow: 0 0 18px rgba(245, 158, 11, 0.4); border-radius: 10px;">
+          🍱 실전 3분 가이드 보기
+        </button>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <span style="font-size: 0.78rem; font-weight: 800; color: #94a3b8;">⚡ 1초 원클릭 프리셋:</span>
+        <button type="button" onclick="loadLunchboxPreset('golden')" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1.2px solid rgba(52, 211, 153, 0.35); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.2s;">
+          🏆 3분 렌지 황금 도시락 (닭·아·양·고)
+        </button>
+        <button type="button" onclick="loadLunchboxPreset('power_bowl')" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1.2px solid rgba(56, 189, 248, 0.35); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.2s;">
+          📸 사진 속 클린 파워 보울 (닭·현미·아보카도·채소)
+        </button>
+        <button type="button" onclick="loadLunchboxPreset('one_pan')" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1.2px solid rgba(251, 113, 133, 0.35); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.2s;">
+          🍳 원팬 5분 고단백 볼 (소고기·통밀파스타·아스파라거스)
+        </button>
+      </div>
+    </div>
 
     <!-- Category Filter & Elimination Mode Toggle -->
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
@@ -917,6 +955,22 @@
         <ul id="modal-nutrition-bullets" style="margin: 0; padding-left: 20px;">
           <!-- dynamically populated bullets -->
         </ul>
+      </div>
+
+      <!-- 🍱 직장인 3분 도시락 밀프랩 가이드 -->
+      <div style="background: rgba(245, 158, 11, 0.08); border: 1.2px solid rgba(245, 158, 11, 0.3); border-radius: 14px; padding: 15px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div style="font-size: 0.88rem; font-weight: 900; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
+            <span>🍱</span> <span>직장인 3분 도시락 루틴 (밀프랩 가이드)</span>
+          </div>
+          <span id="modal-lb-badge" style="font-size: 0.72rem; color: #f59e0b; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 999px; font-weight: 800;">⚡ 렌지 3분 원터치</span>
+        </div>
+        <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 6px;">
+          🌙 <strong>저녁 퇴근 후 담기</strong>: <span id="modal-lb-night">도시락통에 툭 담아 냉장 보관</span>
+        </div>
+        <div style="font-size: 0.82rem; color: #34d399; line-height: 1.5;">
+          ☀️ <strong>다음 날 점심 가열</strong>: <span id="modal-lb-lunch">전자레인지 2분 가열 후 간편 섭취</span>
+        </div>
       </div>
 
       <!-- Fresh Storage & Prep Guide (보관법 & 소분 꿀팁) -->
@@ -1397,6 +1451,19 @@
 
       // Storage Guide
       const sp = food.storage_prep || {};
+      // Lunchbox Prep Guide
+      const lb = food.lunchbox_prep || {
+        mode_badge: '⚡ 렌지 3분 원터치',
+        night_prep: '도시락통에 툭 담아 냉장 보관',
+        lunch_action: '전자레인지 2분 가열 후 간편 섭취'
+      };
+      const lbBadge = document.getElementById('modal-lb-badge');
+      const lbNight = document.getElementById('modal-lb-night');
+      const lbLunch = document.getElementById('modal-lb-lunch');
+      if (lbBadge) lbBadge.innerText = lb.mode_badge;
+      if (lbNight) lbNight.innerText = lb.night_prep;
+      if (lbLunch) lbLunch.innerText = lb.lunch_action;
+
       document.getElementById('modal-storage-method').innerText = sp.method || food.storage || '냉장 또는 냉동 밀폐 보관';
       document.getElementById('modal-storage-tip').innerText = `💡 조리 & 섭취 꿀팁: ${sp.tip || '먹기 전날 냉장 해동하여 조리하시면 본연의 맛과 영양이 유지됩니다.'}`;
 
@@ -2465,6 +2532,117 @@
       loadSavedUserProfile();
       loadFoods();
     });
+
+    // ==========================================
+    // 🍱 직장인 3분 도시락 루틴 & 프리셋 전용 JS
+    // ==========================================
+    const LUNCHBOX_PRESETS = {
+      golden: {
+        title: '🏆 3분 렌지 황금 도시락 (닭·아·양·고)',
+        foodIds: ['protein_chicken_breast', 'fat_avocado', 'veg_cabbage', 'carb_sweet_potato']
+      },
+      power_bowl: {
+        title: '📸 사진 속 클린 파워 보울 (닭·현미·아보카도·채소)',
+        foodIds: ['protein_chicken_breast', 'carb_brown_rice', 'fat_avocado', 'veg_broccoli', 'veg_carrot', 'veg_cherry_tomato']
+      },
+      one_pan: {
+        title: '🍳 원팬 5분 고단백 볼 (소고기·통밀파스타·아스파라거스)',
+        foodIds: ['protein_beef_round', 'carb_whole_wheat_pasta', 'veg_asparagus', 'fat_olive_oil']
+      }
+    };
+
+    function loadLunchboxPreset(type) {
+      const preset = LUNCHBOX_PRESETS[type];
+      if (!preset) return;
+
+      selectedFoodIds.clear();
+      preset.foodIds.forEach(id => {
+        const found = foodsData.find(f => f.id === id);
+        if (found) selectedFoodIds.add(id);
+      });
+
+      renderAll();
+      openLunchboxRoutineModal(preset.foodIds);
+    }
+
+    function openLunchboxRoutineModal(customFoodIds) {
+      const targetIds = customFoodIds || Array.from(selectedFoodIds);
+      const activeIds = (targetIds.length > 0) ? targetIds : LUNCHBOX_PRESETS.golden.foodIds;
+
+      const activeFoods = activeIds.map(id => foodsData.find(f => f.id === id)).filter(Boolean);
+
+      // Total Calorie & Macros
+      let totalCal = 0;
+      let totalP = 0;
+      let totalC = 0;
+      let totalF = 0;
+
+      activeFoods.forEach(f => {
+        totalCal += f.calories || 0;
+        totalP += f.protein || 0;
+        totalC += f.carbs || 0;
+        totalF += f.fat || 0;
+      });
+
+      const calDisp = document.getElementById('lb-routine-total-cal');
+      if (calDisp) {
+        calDisp.innerHTML = `<span style="color: #34d399; font-weight: 900;">${totalCal} kcal</span> (단:${totalP.toFixed(1)}g · 탄:${totalC.toFixed(1)}g · 지:${totalF.toFixed(1)}g)`;
+      }
+
+      // Render Item Action List
+      const listContainer = document.getElementById('lb-routine-items-list');
+      if (listContainer) {
+        listContainer.innerHTML = '';
+        activeFoods.forEach(f => {
+          const lb = f.lunchbox_prep || {
+            mode_badge: '⚡ 렌지 3분 원터치',
+            night_prep: '도시락통에 툭 담아 냉장 보관',
+            lunch_action: '전자레인지 2분 가열 후 간편 섭취'
+          };
+
+          const card = document.createElement('div');
+          card.style.background = 'rgba(255, 255, 255, 0.04)';
+          card.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+          card.style.borderRadius = '12px';
+          card.style.padding = '12px 14px';
+
+          card.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1.3rem;">${f.icon}</span>
+                <strong style="color: #fff; font-size: 0.95rem;">${f.name}</strong>
+                <span style="font-size: 0.75rem; color: #94a3b8;">(${f.portion})</span>
+              </div>
+              <span style="font-size: 0.72rem; color: #fbbf24; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 999px; font-weight: 800;">
+                ${lb.mode_badge}
+              </span>
+            </div>
+            <div style="font-size: 0.81rem; color: #cbd5e1; line-height: 1.45; margin-bottom: 4px;">
+              🌙 <strong>저녁 퇴근 후</strong>: ${lb.night_prep}
+            </div>
+            <div style="font-size: 0.81rem; color: #34d399; line-height: 1.45;">
+              ☀️ <strong>다음 날 점심</strong>: ${lb.lunch_action}
+            </div>
+          `;
+          listContainer.appendChild(card);
+        });
+      }
+
+      const modal = document.getElementById('lunchbox-routine-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeLunchboxRoutineModal() {
+      const modal = document.getElementById('lunchbox-routine-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleLunchboxOverlay(event) {
+      if (event.target.id === 'lunchbox-routine-modal') {
+        closeLunchboxRoutineModal();
+      }
+    }
+
   </script>
   <!-- 🛒 다이어트 원물 장바구니 모달 (Cart Modal) -->
   <div id="cart-modal" class="modal-overlay" onclick="handleCartOverlayClick(event)">
@@ -2589,6 +2767,23 @@
 
       <!-- 🥗 추천 검증 드레싱 안내 (채소 포함 시 자동 매칭) -->
       <div id="complete-dressing-container" style="margin-bottom: 20px;"></div>
+
+      <!-- 🍱 직장인 3분 도시락 밀프랩 요약 박스 -->
+      <div style="background: rgba(245, 158, 11, 0.09); border: 1.2px solid rgba(245, 158, 11, 0.35); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 1.15rem;">🍱</span>
+            <span style="font-size: 0.9rem; font-weight: 900; color: #fbbf24;">내일 도시락 3분 컷 루틴</span>
+          </div>
+          <span style="font-size: 0.72rem; color: #f59e0b; background: rgba(245, 158, 11, 0.18); padding: 2px 8px; border-radius: 6px; font-weight: 800;">설거지 1개!</span>
+        </div>
+        <p style="color: #cbd5e1; font-size: 0.81rem; line-height: 1.45; margin: 0 0 10px 0;">
+          🌙 <strong>저녁</strong>: 통 하나에 재료 툭툭 담아 냉장실 쏙! ➔ ☀️ <strong>점심</strong>: 전자레인지 2분 30초 돌리면 채소 스팀 찜 & 따끈한 한 끼 완성!
+        </p>
+        <button type="button" onclick="openLunchboxRoutineModal()" style="width: 100%; background: #f59e0b; color: #0b0f19; border: none; border-radius: 10px; padding: 9px; font-weight: 900; font-size: 0.86rem; cursor: pointer; box-shadow: 0 0 14px rgba(245, 158, 11, 0.3); display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>🍱</span> <span>선택한 재료로 실전 도시락 루틴 보기 ➔</span>
+        </button>
+      </div>
 
       <div style="display: flex; gap: 8px; margin-bottom: 10px;">
         <button type="button" onclick="openDailyRemainingModal()" style="flex: 1; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1.5px solid rgba(251, 191, 36, 0.4); border-radius: 12px; padding: 11px; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
@@ -2772,7 +2967,8 @@
         <input type="text" id="recipe-search-input" oninput="filterRecipesList()" placeholder="🔍 레시피명 또는 재료 검색 (예: 연어, 참치, 양배추, 파스타, 오트밀...)" style="width: 100%; box-sizing: border-box; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 11px 16px; color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px;">
         
         <div id="recipe-cat-filters" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
-          <button type="button" class="recipe-filter-btn active" onclick="setRecipeCategoryFilter('all', this)">전체 (50)</button>
+          <button type="button" class="recipe-filter-btn active" onclick="setRecipeCategoryFilter('all', this)">전체 (52)</button>
+          <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('🍱 3분 컷 도시락', this)" style="border-color: rgba(245, 158, 11, 0.5); color: #fbbf24; background: rgba(245, 158, 11, 0.15);">🍱 3분 컷 도시락 (2)</button>
           <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('샐러드 & 웜보울', this)">🥗 샐러드·보울 (10)</button>
           <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('원팬 구이 & 볶음', this)">🥩 원팬 구이·볶음 (10)</button>
           <button type="button" class="recipe-filter-btn" onclick="setRecipeCategoryFilter('든든한 밥 & 덮밥', this)">🍚 밥·덮밥 (10)</button>
@@ -2838,6 +3034,128 @@
       <button type="button" onclick="closeRecipeModal()" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: #0b0f19; font-weight: 900; font-size: 0.95rem; padding: 12px; border: none; border-radius: 10px; cursor: pointer;">
         확인 완료
       </button>
+    </div>
+  </div>
+
+
+  <!-- 🍱 직장인 3분 도시락 루틴 실전 가이드 전용 모달 (Lunchbox Routine Modal) -->
+  <div id="lunchbox-routine-modal" class="modal-overlay" style="display: none; align-items: center; justify-content: center; z-index: 10000;" onclick="handleLunchboxOverlay(event)">
+    <div class="modal-card" style="max-width: 680px; max-height: 90vh; overflow-y: auto; padding: 28px 24px; border-color: rgba(245, 158, 11, 0.5); box-shadow: 0 0 60px rgba(245, 158, 11, 0.28);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.8rem;">🍱</span>
+            <h2 style="font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0;">퇴근 후 3분 도시락 루틴 실전 가이드</h2>
+          </div>
+          <p style="color: #cbd5e1; font-size: 0.85rem; margin: 4px 0 0 0;">
+            🌙 저녁에 2분 툭툭 담기 ➔ ☀️ 다음 날 점심 렌지 3분 원터치 해결! (귀차니즘 제로 & 설거지 1개)
+          </p>
+        </div>
+        <button type="button" onclick="closeLunchboxRoutineModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
+      </div>
+
+      <!-- 📸 비주얼 헤더 카드 (레퍼런스 이미지 연동) -->
+      <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%); border: 1.5px solid rgba(245, 158, 11, 0.35); border-radius: 16px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center;">
+          <div style="flex: 1; min-width: 220px; max-width: 280px; height: 180px; overflow: hidden;">
+            <img src="assets/lunchbox_power_bowl.jpg" alt="클린 파워 보울 도시락" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+          <div style="flex: 1.3; min-width: 260px; padding: 18px 20px;">
+            <span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 6px;">💡 다이어트 지속가능의 핵심 철학</span>
+            <h3 style="font-size: 1.15rem; font-weight: 900; color: #fff; margin: 8px 0 6px 0;">"복잡한 조리는 오래 못 갑니다"</h3>
+            <p style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.5; margin: 0;">
+              도시락통 하나에 툭툭 담아두고, 다음 날 전자레인지 2분 30초만 돌리세요.<br>
+              <strong>양배추/채소는 내부 수분 스팀으로 촉촉하게 삶아지고, 냉동 닭가슴살과 고구마는 갓 만든 듯 따끈하게 완성</strong>됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3단계 실전 루틴 타임라인 -->
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 18px 20px; margin-bottom: 18px;">
+        <div style="font-size: 0.92rem; font-weight: 900; color: #fbbf24; margin-bottom: 14px; display: flex; align-items: center; gap: 6px;">
+          <span>⚡</span> <span>초간단 3단계 도시락 타임라인</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Step 1 -->
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: #f59e0b; color: #0b0f19; font-weight: 900; font-size: 0.8rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">1</div>
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #fff;">🌙 [전날 밤 퇴근 후 2분] 도시락통에 툭툭 담기</div>
+              <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-top: 3px;">
+                내열 유리/실리콘 밀폐용기 1개 준비! 양배추 등 채소는 툭툭 썰어 담고 물 1스푼 뿌립니다. 냉동 닭가슴살 팩, 냉동 군고구마, 아보카도 큐브를 그대로 툭 담아 뚜껑 덮고 냉장고에 넣고 편하게 주무세요.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: #34d399; color: #0b0f19; font-weight: 900; font-size: 0.8rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">2</div>
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #fff;">☀️ [다음 날 점심 3분] 전자레인지 원터치 가열</div>
+              <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-top: 3px;">
+                도시락통 뚜껑을 살짝 비스듬히 덮고 전자레인지 2분 30초~3분! 통 안의 수분이 스팀을 형성해 <strong>양배추와 브로콜리는 달콤촉촉 갓 찐 채소로 삶아지고</strong>, 닭가슴살과 고구마는 따끈하게 해동 완료됩니다.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="background: #38bdf8; color: #0b0f19; font-weight: 900; font-size: 0.8rem; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">3</div>
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #fff;">😋 [0초 식사 & 설거지 Zero] 드레싱 둘러 맛있게 식사!</div>
+              <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5; margin-top: 3px;">
+                올리브오일 1스푼이나 저당 스리라차 톡톡 뿌려 쓱쓱 비벼 드세요. 남은 팬이나 냄비 없이 <strong>도시락통 1개만 헹구면 설거지까지 10초 컷</strong>으로 끝납니다!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; padding: 10px 14px; background: rgba(16, 185, 129, 0.1); border-left: 3px solid #10b981; border-radius: 0 8px 8px 0; font-size: 0.78rem; color: #a7f3d0; line-height: 1.45;">
+          🔥 <strong>조리 난이도 상한선 규칙</strong>: 소고기·생선 팬에 3분 칙 굽기나 파스타면 7분 삶기까지만 허용! 그 이상의 번거로운 칼질, 튀김, 복잡한 양념은 절대 하지 않습니다.
+        </div>
+      </div>
+
+      <!-- 선택된 식재료별 도시락 담기 액션 테이블 -->
+      <div style="background: rgba(15, 23, 42, 0.9); border: 1.2px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="font-size: 0.92rem; font-weight: 900; color: #fff; display: flex; align-items: center; gap: 6px;">
+            <span>🍽️</span> <span>현재 도시락에 담길 재료별 실전 팁:</span>
+          </div>
+          <div id="lb-routine-total-cal" style="font-size: 0.88rem; font-weight: 900; color: #34d399;">총 425 kcal</div>
+        </div>
+
+        <div id="lb-routine-items-list" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- JS dynamically renders items here -->
+        </div>
+      </div>
+
+      <!-- 빠른 프리셋 변경 버튼 바 -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px 16px; margin-bottom: 20px;">
+        <div style="font-size: 0.78rem; font-weight: 800; color: #94a3b8; margin-bottom: 8px;">🔄 다른 도시락 조합으로 즉시 변경:</div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" onclick="loadLunchboxPreset('golden')" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1.2px solid rgba(52, 211, 153, 0.35); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
+            🏆 3분 렌지 황금 도시락 (닭·아·양·고)
+          </button>
+          <button type="button" onclick="loadLunchboxPreset('power_bowl')" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1.2px solid rgba(56, 189, 248, 0.35); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
+            📸 사진 속 클린 파워 보울 (닭·현미·아보카도·채소)
+          </button>
+          <button type="button" onclick="loadLunchboxPreset('one_pan')" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1.2px solid rgba(251, 113, 133, 0.35); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 800; cursor: pointer;">
+            🍳 원팬 5분 고단백 볼 (소고기·통밀파스타·아스파라거스)
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="closeLunchboxRoutineModal()" class="btn-action-secondary" style="flex: 1; padding: 12px;">
+          닫기
+        </button>
+        <button type="button" onclick="confirmOpenCart()" class="btn-action-primary" style="flex: 2; padding: 12px; justify-content: center; background: #f59e0b; color: #0b0f19;">
+          <span>🛒 이 도시락 재료 쿠팡 한 번에 담기 ➔</span>
+        </button>
+      </div>
     </div>
   </div>
 
