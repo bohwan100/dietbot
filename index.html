@@ -738,7 +738,7 @@
         <button type="button" onclick="openLunchboxRoutineModal()" class="nav-btn" style="background: rgba(245, 158, 11, 0.18); border: 1.5px solid #f59e0b; color: #fbbf24; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(245, 158, 11, 0.25);">
           🍱 3분 도시락 루틴
         </button>
-        <button type="button" onclick="openSurveyModal()" class="nav-btn" style="background: rgba(16, 185, 129, 0.18); border-color: #10b981; color: #34d399; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);">
+        <button type="button" onclick="location.href='survey.html'" class="nav-btn" style="background: rgba(16, 185, 129, 0.18); border-color: #10b981; color: #34d399; font-weight: 800; padding: 7px 14px; font-size: 0.85rem; box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);">
           🎯 신체 스펙 입력 & AI 맞춤 식단
         </button>
         <button type="button" onclick="openCartModal()" class="btn-cart-nav" id="btn-cart-nav">
@@ -1027,7 +1027,41 @@
     };
     var DAILY_TARGET = window.DAILY_TARGET;
 
+    function initParamsFromUrl() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cal = parseInt(urlParams.get('cal'), 10);
+        const p = parseFloat(urlParams.get('p'));
+        const c = parseFloat(urlParams.get('c'));
+        const f = parseFloat(urlParams.get('f'));
+
+        if (cal && !isNaN(cal)) {
+          DAILY_TARGET.cal = cal;
+          DAILY_TARGET.p = p || Math.round(cal * 0.3 / 4);
+          DAILY_TARGET.c = c || Math.round(cal * 0.45 / 4);
+          DAILY_TARGET.f = f || Math.round(cal * 0.25 / 9 * 2) / 2;
+
+          // 한 끼 기준 (하루의 1/3)
+          TARGET.cal = Math.round(DAILY_TARGET.cal / 3);
+          TARGET.p = Math.round(DAILY_TARGET.p / 3);
+          TARGET.c = Math.round(DAILY_TARGET.c / 3);
+          TARGET.f = Math.round(DAILY_TARGET.f / 3);
+
+          setTimeout(() => {
+            updateMacroGauges();
+            const banner = document.getElementById('guide-instruction');
+            if (banner) {
+              banner.innerHTML = `🎉 <strong>집밥보이 1:1 맞춤 분석 완료!</strong> 하루 ${DAILY_TARGET.cal.toLocaleString()}kcal 중 <strong>한 끼 목표(${TARGET.cal}kcal · 단 ${TARGET.p}g)</strong>에 맞춰 원물을 자유롭게 담아보세요!`;
+            }
+          }, 300);
+        }
+      } catch (e) {
+        console.error('URL params init error:', e);
+      }
+    }
+
     async function loadFoods() {
+      initParamsFromUrl();
       try {
         const res = await fetch('data/diet_foods_db.json');
         foodsData = await res.json();

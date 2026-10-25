@@ -2,1010 +2,1707 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>개인 맞춤 다이어트 식단 & 매크로 분석 설문지 | 다이어트봇</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>집밥보이 — 나에게 맞는 식단 찾기 | 1분 맞춤 영양 분석</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #059669;
-      --primary-hover: #047857;
-      --accent: #10b981;
-      --bg: #0b0f19;
-      --card-bg: rgba(18, 24, 38, 0.9);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text: #f8fafc;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #0284c7;        /* 신뢰감 있는 스카이블루 */
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;  /* 소프트 하늘색 */
+      --primary-border: #bae6fd;
+      --accent: #0ea5e9;
+      --text-main: #0f172a;      /* 짙은 슬레이트 */
+      --text-sub: #475569;
       --text-muted: #94a3b8;
-      --input-bg: rgba(15, 23, 42, 0.8);
-      --input-border: rgba(255, 255, 255, 0.12);
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
       --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 30px 16px 80px;
-      display: flex;
-      justify-content: center;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
       min-height: 100vh;
-    }
-
-    .form-container {
-      width: 100%;
-      max-width: 720px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      padding: 40px 32px;
-      backdrop-filter: blur(12px);
-    }
-
-    header {
-      margin-bottom: 32px;
-      text-align: center;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 24px;
-    }
-
-    .header-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-      color: #34d399;
-      padding: 5px 14px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: 1.85rem;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .sub-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Token Status Badge */
-    .token-badge {
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .token-badge.admin {
-      background: rgba(245, 158, 11, 0.12);
-      border-color: rgba(245, 158, 11, 0.35);
-      color: #fbbf24;
-    }
-
-    /* Question Block */
-    .question-block {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 24px;
-      transition: all 0.2s;
-    }
-    .question-block:focus-within {
-      border-color: rgba(52, 211, 153, 0.5);
-      background: rgba(16, 185, 129, 0.03);
-    }
-
-    .question-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #f1f5f9;
-      margin-bottom: 14px;
-    }
-    .question-title .num {
-      background: #10b981;
-      color: #0b0f19;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-    .required { color: #f87171; margin-left: 2px; }
-
-    /* Inputs */
-    .input-text {
-      width: 100%;
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-size: 0.95rem;
-      color: #f8fafc;
-      outline: none;
-      transition: all 0.2s;
-    }
-    .input-text:focus {
-      border-color: #34d399;
-      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
-    }
-    .input-text::placeholder { color: #64748b; }
-
-    .input-subtext {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-      line-height: 1.4;
-    }
-
-    /* Grid Layouts */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-
-    /* Selectable Cards (Radio & Checkbox) */
-    .option-card-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-    }
-    .option-card {
-      position: relative;
-      cursor: pointer;
-    }
-    .option-card input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .option-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px 12px;
-      text-align: center;
-      transition: all 0.2s;
-      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .option-box .icon { font-size: 1.5rem; }
-    .option-box .label { font-size: 0.92rem; font-weight: 700; color: #cbd5e1; }
-    .option-box .desc { font-size: 0.76rem; color: #64748b; line-height: 1.3; }
-
-    .option-card input:checked + .option-box {
-      background: rgba(16, 185, 129, 0.15);
-      border-color: #34d399;
-      box-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
-    }
-    .option-card input:checked + .option-box .label {
-      color: #34d399;
+      padding: 0;
     }
 
-    /* Live Calculator Preview Card */
-    .live-calc-card {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 78, 59, 0.25) 100%);
-      border: 1.5px solid #10b981;
-      border-radius: 18px;
-      padding: 24px;
-      margin: 32px 0;
-      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.15);
-    }
-    .calc-header {
+    /* 상단 네비게이션 헤더 */
+    .top-header {
+      width: 100%;
+      max-width: 560px;
+      padding: 16px 20px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-    .calc-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #34d399;
-    }
-    .calc-badge {
-      background: #10b981;
-      color: #0b0f19;
-      font-size: 0.76rem;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
+      position: sticky;
+      top: 0;
+      background: rgba(248, 250, 252, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 50;
     }
 
-    .calc-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: -0.4px;
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .btn-back:hover {
+      background: var(--border);
+    }
+    .btn-back.hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* 상단 프로그레스 바 */
+    .progress-wrapper {
+      width: 100%;
+      max-width: 560px;
+      padding: 0 20px 14px;
+    }
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, #38bdf8, #0284c7);
+      border-radius: 999px;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-counter {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* 메인 컨테이너 */
+    .survey-container {
+      width: 100%;
+      max-width: 560px;
+      flex: 1;
+      padding: 10px 20px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 질문 카드 전환 애니메이션 */
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      animation: fadeInSlide 0.25s ease-out forwards;
+    }
+    .question-card.active {
+      display: flex;
+    }
+
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .q-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      border: 1px solid var(--primary-border);
+    }
+
+    .q-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--text-main);
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .q-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* 선택형 옵션 버튼 */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
       gap: 12px;
+    }
+
+    .opt-btn {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.18s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .opt-btn:hover {
+      border-color: var(--accent);
+      background: #f0f9ff;
+      transform: translateY(-1px);
+    }
+
+    .opt-btn:active {
+      transform: translateY(1px);
+    }
+
+    .opt-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .opt-icon {
+      font-size: 1.4rem;
+      margin-right: 12px;
+    }
+
+    .opt-label {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .opt-desc {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* 인풋 필드 스타일 */
+    .input-group {
       margin-bottom: 20px;
     }
-    .calc-stat-box {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 14px 10px;
-      text-align: center;
+    .input-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--text-sub);
+      margin-bottom: 8px;
     }
-    .calc-stat-box.highlight {
-      background: rgba(16, 185, 129, 0.2);
-      border-color: rgba(52, 211, 153, 0.5);
-    }
-    .stat-name { font-size: 0.78rem; color: #94a3b8; font-weight: 600; margin-bottom: 4px; }
-    .stat-val { font-size: 1.25rem; font-weight: 900; color: #fff; }
-    .stat-val span { font-size: 0.8rem; font-weight: 600; color: #94a3b8; }
-    .stat-val.green { color: #34d399; }
-
-    /* Macro Bar */
-    .macro-bar-container {
-      background: rgba(15, 23, 42, 0.7);
-      border-radius: 12px;
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .macro-bar-title {
-      font-size: 0.84rem;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-    .macro-bar {
-      height: 14px;
-      border-radius: 999px;
-      display: flex;
-      overflow: hidden;
-      background: #1e293b;
-      margin-bottom: 12px;
-    }
-    .bar-protein { background: #38bdf8; transition: width 0.3s; }
-    .bar-carbs { background: #fbbf24; transition: width 0.3s; }
-    .bar-fat { background: #f87171; transition: width 0.3s; }
-
-    .macro-legend {
-      display: flex;
-      justify-content: space-around;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
-
-    /* Submit Button */
-    .btn-submit {
+    .text-input {
       width: 100%;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      height: 56px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 0 18px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .text-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    .input-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* 다음 단계 액션 버튼 */
+    .btn-next-action {
+      width: 100%;
+      height: 56px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
       color: #ffffff;
       border: none;
-      padding: 18px 24px;
-      border-radius: 16px;
-      font-size: 1.15rem;
-      font-weight: 900;
-      letter-spacing: -0.3px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
-      transition: all 0.25s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 6px;
+      margin-top: 14px;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+      transition: all 0.18s;
     }
-    .btn-submit:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+    .btn-next-action:hover {
+      background: linear-gradient(135deg, #0369a1, #075985);
+      transform: translateY(-1px);
     }
-    .btn-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+    .btn-next-action:active {
+      transform: translateY(1px);
     }
 
-    /* Gate Card */
-    .token-gate-card {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
+    /* 안내 정보 박스 */
+    .info-callout {
+      background: #f0f9ff;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: 0.84rem;
+      color: #0369a1;
+      line-height: 1.5;
+      margin-bottom: 20px;
     }
-    .gate-icon { font-size: 3rem; margin-bottom: 14px; }
-    .gate-title { font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
-    .gate-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 480px; margin: 0 auto; }
-    .btn-gate-action {
-      display: inline-flex;
+
+    /* 체크박스 커스텀 */
+    .checkbox-item {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: #10b981;
-      color: #fff;
-      padding: 12px 24px;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
       border-radius: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .checkbox-item:hover {
+      border-color: var(--accent);
+      background: #f8fafc;
+    }
+    .checkbox-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--primary);
+      cursor: pointer;
     }
 
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
+    /* =========================================
+       최종 결과 화면 스타일
+       ========================================= */
+    #result-screen {
       display: none;
+      flex-direction: column;
+      animation: fadeInSlide 0.3s ease-out forwards;
+    }
+
+    .result-card {
+      background: #ffffff;
+      border: 1.5px solid var(--primary-border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      box-shadow: 0 15px 40px -10px rgba(2, 132, 199, 0.12);
+      margin-bottom: 20px;
+    }
+
+    .result-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .result-sub-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .result-main-title {
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.6px;
+      margin-bottom: 8px;
+    }
+
+    .result-rec-quote {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: #f0f9ff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px dashed var(--primary-border);
+      display: inline-block;
+    }
+
+    /* 4분할 매크로 그리드 */
+    .macro-display-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .macro-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .macro-box.highlight {
+      background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+      border-color: var(--primary-border);
+      grid-column: span 2;
+    }
+
+    .macro-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 9999;
-      padding: 20px;
+      gap: 5px;
     }
-    .modal-card {
-      background: #0f172a;
-      border: 1.5px solid #10b981;
-      border-radius: 20px;
+
+    .macro-val {
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .macro-val.primary { color: var(--primary); }
+    .macro-val.protein { color: #0284c7; }
+    .macro-val.fat { color: #f43f5e; }
+    .macro-val.carbs { color: #d97706; }
+
+    /* 시각적 탄단지 바 그래프 */
+    .ratio-bar-wrapper {
+      margin-bottom: 24px;
+    }
+    .ratio-bar {
+      height: 18px;
       width: 100%;
-      max-width: 480px;
-      padding: 32px 26px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      margin-bottom: 8px;
+    }
+    .bar-carbs { background: #f59e0b; height: 100%; transition: width 0.6s; }
+    .bar-protein { background: #0ea5e9; height: 100%; transition: width 0.6s; }
+    .bar-fat { background: #f43f5e; height: 100%; transition: width 0.6s; }
+
+    .ratio-legend {
+      display: flex;
+      justify-content: space-around;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-sub);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* 산출 공식 및 분석 상세 지표 */
+    .metric-list {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+    }
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .metric-row:last-child {
+      border-bottom: none;
+    }
+    .metric-label {
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+    .metric-value {
+      color: var(--text-main);
+      font-weight: 800;
+    }
+
+    /* 계산 원리 및 시작점 안내 팁 */
+    .tip-box {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.84rem;
+      color: #92400e;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* 4대 액션 버튼 그리드 */
+    .result-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-action-builder {
+      width: 100%;
+      height: 56px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 1.08rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+      transition: all 0.18s;
+      text-decoration: none;
+    }
+    .btn-action-builder:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+
+    .action-sub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-sub-action {
+      height: 48px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .btn-sub-action:hover {
+      background: #f8fafc;
+      border-color: var(--text-muted);
+    }
+
+    /* 안전 주의 분기 화면 (위험군) */
+    .safety-card {
+      background: #fff;
+      border: 2px solid #fecdd3;
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      box-shadow: 0 10px 30px rgba(244, 63, 94, 0.08);
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: none;
+    }
+    .safety-icon {
+      font-size: 3.5rem;
+      margin-bottom: 14px;
+    }
+    .safety-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #be123c;
+      margin-bottom: 12px;
+    }
+    .safety-desc {
+      font-size: 0.92rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      text-align: left;
+      background: #fff1f2;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    /* 토스트 알림 */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+    }
+    .toast-popup.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* JSON 아코디언 */
+    .json-details {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      font-size: 0.82rem;
+    }
+    .json-details summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text-sub);
+      user-select: none;
+    }
+    .json-pre {
+      margin-top: 10px;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.76rem;
     }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <header>
-      <div class="header-badge">🥗 다이어트봇 식단 챌린지 1:1 맞춤 설계</div>
-      <h1>개인 맞춤 다이어트 식단 설계</h1>
-      <p class="sub-desc">
-        신체 대사량과 생활 패턴을 정밀 분석하여, <strong>목표 감량을 위한 최적 권장 칼로리와 탄·단·지 매크로</strong>를 도출하고 그에 맞는 <strong>클린 원물 식단(피그인더가든 샐러드, 스팀 닭가슴살, 고단백 두유 등)</strong>을 100% 자동 추천합니다.
-      </p>
-    </header>
-
-    <!-- 1회용 토큰 인증 상태 배너 -->
-    <div id="token-status-area"></div>
-
-    <!-- 토큰 차단 게이트 카드 -->
-    <div id="token-gate-card" class="token-gate-card" style="display: none;"></div>
-
-    <!-- 검증 중 로딩 안내 -->
-    <div id="token-loading" style="text-align: center; padding: 50px 20px; color: #64748b;">
-      <div style="font-size: 2.2rem; margin-bottom: 12px;">⏳</div>
-      <div style="font-weight: 800; font-size: 1.1rem; color: #f8fafc;">1회용 초대 코드 인증 중...</div>
-      <div style="font-size: 0.88rem; margin-top: 6px; color: #94a3b8;">잠시만 기다려 주세요.</div>
+  <!-- Top Header -->
+  <header class="top-header">
+    <button type="button" id="btn-back" class="btn-back hidden" onclick="prevStep()">
+      <span>‹</span> <span>이전</span>
+    </button>
+    <div class="brand-title">
+      <span>🥗</span> <span>집밥보이 — 나에게 맞는 식단 찾기</span>
     </div>
+    <div style="width: 45px;"></div>
+  </header>
 
-    <form id="intake-form" onsubmit="handleFormSubmit(event)" style="display: none;">
-
-      <!-- 1. 나이 / 성별 / 키 / 현재 체중 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">1</span> 나이 / 성별 / 키 / 현재 체중 <span class="required">*</span>
-        </label>
-        
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">참여자 성함</label>
-          <input type="text" id="client_name" class="input-text" placeholder="예: 김민수" required oninput="triggerLiveCalc()">
-        </div>
-
-        <div class="grid-2" style="margin-bottom: 12px;">
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">나이</label>
-            <input type="number" id="client_age" class="input-text" placeholder="예: 30" value="30" required oninput="triggerLiveCalc()">
-          </div>
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">성별</label>
-            <div class="grid-2">
-              <label class="option-card">
-                <input type="radio" name="gender" value="남성" checked onchange="triggerLiveCalc()">
-                <div class="option-box" style="padding: 10px;">
-                  <span class="label">👨 남성</span>
-                </div>
-              </label>
-              <label class="option-card">
-                <input type="radio" name="gender" value="여성" onchange="triggerLiveCalc()">
-                <div class="option-box" style="padding: 10px;">
-                  <span class="label">👩 여성</span>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">키 (cm)</label>
-            <input type="number" id="height_cm" class="input-text" placeholder="예: 175" value="175" step="0.1" required oninput="triggerLiveCalc()">
-          </div>
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">현재 체중 (kg)</label>
-            <input type="number" id="weight_kg" class="input-text" placeholder="예: 75" value="75" step="0.1" required oninput="triggerLiveCalc()">
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. 목표 체중 & 변화되고 싶은 모습 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">2</span> 목표 체중 & 변화되고 싶은 모습 <span class="required">*</span>
-        </label>
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">목표 체중 (kg)</label>
-          <input type="number" id="target_weight_kg" class="input-text" placeholder="예: 68" value="68" step="0.1" required oninput="triggerLiveCalc()">
-          <div class="input-subtext" id="target_diff_text">💡 현재보다 7.0kg 감량을 목표로 설정합니다.</div>
-        </div>
-        <div>
-          <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">변화되고 싶은 모습 / 목표 서술</label>
-          <textarea id="goal_notes" class="input-text" rows="2" placeholder="예: 체지방 7kg 빼고 턱선과 뱃살을 정리하고 싶어요 / 건강한 원물 식단 습관을 만들어 바디프로필 찍고 싶어요."></textarea>
-        </div>
-      </div>
-
-      <!-- 3. 평소 활동량 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">3</span> 평소 활동량은 어느 정도인가요? <span class="required">*</span>
-        </label>
-        <div class="option-card-group">
-          <label class="option-card">
-            <input type="radio" name="activity_level" value="좌식 생활" checked onchange="triggerLiveCalc()">
-            <div class="option-box">
-              <span class="icon">🪑</span>
-              <span class="label">좌식 생활</span>
-              <span class="desc">주로 앉아서 근무<br>운동 거의 없음 (1.2)</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="activity_level" value="가벼운 활동" onchange="triggerLiveCalc()">
-            <div class="option-box">
-              <span class="icon">🚶</span>
-              <span class="label">가벼운 활동</span>
-              <span class="desc">서서 일하거나<br>가벼운 도보 이동 (1.375)</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="activity_level" value="활동적인 직업" onchange="triggerLiveCalc()">
-            <div class="option-box">
-              <span class="icon">🏃</span>
-              <span class="label">활동적인 직업</span>
-              <span class="desc">현장직·영업·서비스<br>활동량 많음 (1.55)</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="activity_level" value="매우 활동적" onchange="triggerLiveCalc()">
-            <div class="option-box">
-              <span class="icon">⚡</span>
-              <span class="label">매우 활동적</span>
-              <span class="desc">육체적 강도 높음<br>전문 운동선수 (1.725)</span>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- 4. 운동량 (종류, 횟수, 시간) -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">4</span> 운동은 얼마나 하나요? <span class="required">*</span>
-        </label>
-        
-        <div style="margin-bottom: 12px;">
-          <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">운동 종류</label>
-          <input type="text" id="workout_type" class="input-text" placeholder="예: 헬스(웨이트), 러닝, 필라테스, 홈트 (안 하면 '안 함')">
-        </div>
-
-        <div class="grid-2">
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">주당 횟수</label>
-            <select id="workout_freq" class="input-text" onchange="triggerLiveCalc()">
-              <option value="주 0회 (운동 안 함)">주 0회 (운동 안 함)</option>
-              <option value="주 1~2회">주 1~2회</option>
-              <option value="주 3~4회" selected>주 3~4회</option>
-              <option value="주 5회 이상">주 5회 이상</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">1회당 운동 시간</label>
-            <select id="workout_duration" class="input-text">
-              <option value="30분 미만">30분 미만</option>
-              <option value="30분~1시간" selected>30분~1시간</option>
-              <option value="1시간~1시간 30분">1시간~1시간 30분</option>
-              <option value="1시간 30분 이상">1시간 30분 이상</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. 평소 식사 패턴 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">5</span> 평소 하루 식사는 어떻게 하나요? <span class="required">*</span>
-        </label>
-        
-        <div class="grid-2" style="margin-bottom: 12px;">
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">하루 식사 횟수</label>
-            <select id="meal_count" class="input-text">
-              <option value="하루 2끼">하루 2끼</option>
-              <option value="하루 3끼" selected>하루 3끼</option>
-              <option value="하루 1끼">하루 1끼</option>
-              <option value="간헐적 단식 (16:8)">간헐적 단식 (16:8)</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">주당 배달/외식 빈도</label>
-            <select id="delivery_freq" class="input-text">
-              <option value="주 0~1회">주 0~1회 (거의 안 먹음)</option>
-              <option value="주 2~3회" selected>주 2~3회</option>
-              <option value="주 4~5회">주 4~5회</option>
-              <option value="매일 배달">매일 배달/외식</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 6px;">간식 / 야식 습관</label>
-          <input type="text" id="snack_habit" class="input-text" placeholder="예: 밤 11시 야식 습관, 달달한 라떼/디저트 자주 먹음 (없으면 '거의 안 먹음')">
-        </div>
-      </div>
-
-      <!-- 6. 어떤 식사를 바꾸고 싶나요? -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">6</span> 어떤 식사를 클린 원물 식단으로 바꾸고 싶나요? <span class="required">*</span>
-        </label>
-        <div class="option-card-group">
-          <label class="option-card">
-            <input type="radio" name="meal_target" value="점심만" checked>
-            <div class="option-box">
-              <span class="icon">🍱</span>
-              <span class="label">점심만</span>
-              <span class="desc">직장 휴대용<br>샐러드+닭+두유팩</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="meal_target" value="저녁만">
-            <div class="option-box">
-              <span class="icon">🌙</span>
-              <span class="label">저녁만</span>
-              <span class="desc">퇴근 후 부담 없는<br>라이트 클린팩</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="meal_target" value="점심+저녁">
-            <div class="option-box">
-              <span class="icon">🥗</span>
-              <span class="label">점심 + 저녁</span>
-              <span class="desc">2끼 집중 감량<br>원물 챌린지</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="meal_target" value="아침만">
-            <div class="option-box">
-              <span class="icon">🌅</span>
-              <span class="label">아침만</span>
-              <span class="desc">모닝 고단백<br>두유+오트밀</span>
-            </div>
-          </label>
-          <label class="option-card">
-            <input type="radio" name="meal_target" value="전체">
-            <div class="option-box">
-              <span class="icon">🏆</span>
-              <span class="label">전체 (3끼)</span>
-              <span class="desc">전면 개편<br>마스터 챌린지</span>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- 7. 건강 특이사항 & 알레르기 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">7</span> 알레르기, 질환, 복용약 등 건강상 특이사항
-        </label>
-        <input type="text" id="health_notes" class="input-text" placeholder="예: 유당불내증, 대두/콩 알레르기, 갑각류, 당뇨 등 (없으면 '없음')">
-      </div>
-
-      <!-- 8. 한 달 식비 예산 -->
-      <div class="question-block">
-        <label class="question-title">
-          <span class="num">8</span> 한 달 다이어트 식비 예산 (원) <span class="required">*</span>
-        </label>
-        <input type="text" id="budget" class="input-text" inputmode="numeric" placeholder="예: 250,000 (또는 25만원)" value="250,000" required>
-        <div class="input-subtext">💡 쿠팡 로켓프레시 소용량 단품 기준으로 4주 분할 장바구니를 최적화 편성합니다.</div>
-      </div>
-
-      <!-- 🔮 실시간 라이브 분석 카드 (BMR / TDEE / 권장 칼로리 / 매크로) -->
-      <div class="live-calc-card">
-        <div class="calc-header">
-          <div class="calc-title">
-            <span>🔮</span>
-            <span>실시간 대사량 & 목표 탄·단·지 매크로 분석</span>
-          </div>
-          <span class="calc-badge">실시간 계산 중</span>
-        </div>
-
-        <div class="calc-stats-grid">
-          <div class="calc-stat-box">
-            <div class="stat-name">기초대사량 (BMR)</div>
-            <div class="stat-val" id="disp_bmr">1,699 <span>kcal</span></div>
-          </div>
-          <div class="calc-stat-box">
-            <div class="stat-name">유지 대사량 (TDEE)</div>
-            <div class="stat-val" id="disp_tdee">2,209 <span>kcal</span></div>
-          </div>
-          <div class="calc-stat-box highlight">
-            <div class="stat-name">🎯 권장 일일 칼로리</div>
-            <div class="stat-val green" id="disp_target_cal">1,729 <span>kcal</span></div>
-          </div>
-          <div class="calc-stat-box">
-            <div class="stat-name">안전 칼로리 결손</div>
-            <div class="stat-val" id="disp_deficit">-480 <span>kcal</span></div>
-          </div>
-        </div>
-
-        <div class="macro-bar-container">
-          <div class="macro-bar-title">
-            <span>황금 매크로 영양 배분 (일일 기준)</span>
-            <span id="disp_macro_summary" style="color: #34d399; font-weight: 800;">단 135g · 탄 198g · 지 44g</span>
-          </div>
-
-          <div class="macro-bar">
-            <div class="bar-protein" id="bar_p" style="width: 31%;"></div>
-            <div class="bar-carbs" id="bar_c" style="width: 46%;"></div>
-            <div class="bar-fat" id="bar_f" style="width: 23%;"></div>
-          </div>
-
-          <div class="macro-legend">
-            <div class="legend-item"><span class="dot" style="background: #38bdf8;"></span> 단백질 (Protein) <span id="leg_p">135g (31%)</span></div>
-            <div class="legend-item"><span class="dot" style="background: #fbbf24;"></span> 탄수화물 (Carbs) <span id="leg_c">198g (46%)</span></div>
-            <div class="legend-item"><span class="dot" style="background: #f87171;"></span> 지방 (Fat) <span id="leg_f">44g (23%)</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 제출 버튼 -->
-      <button type="submit" id="btn-submit" class="btn-submit">
-        <span>🥗 맞춤 원물 식단 & 로켓프레시 장바구니 생성하기</span>
-      </button>
-
-    </form>
+  <!-- Progress Bar -->
+  <div class="progress-wrapper" id="progress-container">
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="step-counter" id="step-counter">질문 1 / 10</div>
   </div>
 
-  <!-- 결과 안내 모달 -->
-  <div id="result-modal" class="modal-overlay">
-    <div class="modal-card">
-      <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
-      <h2 style="font-size: 1.45rem; font-weight: 800; color: #fff; margin-bottom: 8px;">맞춤 다이어트 플랜 완성!</h2>
-      <p id="modal-desc" style="color: #94a3b8; font-size: 0.92rem; line-height: 1.5; margin-bottom: 24px;">
-        회원님의 BMR, TDEE, 매크로 영양소에 맞춘 <strong>원물 식단과 4주 로켓프레시 장바구니</strong>가 구축되었습니다.
-      </p>
+  <!-- Survey Container -->
+  <main class="survey-container">
 
-      <a id="modal-portal-btn" href="#" class="btn-submit" style="text-decoration: none; margin-bottom: 12px;">
-        👉 내 맞춤 다이어트 포털 열기
-      </a>
+    <!-- ==============================================
+         Q1. 목표 확인
+         ============================================== -->
+    <div class="question-card active" id="card-q1">
+      <span class="q-badge">Q1. 목표 확인</span>
+      <h2 class="q-title">이번 식단으로 어떤 변화를 만들고 싶으세요?</h2>
+      <p class="q-subtitle">목표에 따라 하루 필요한 에너지와 단백질 비율이 완전히 달라집니다.</p>
 
-      <button type="button" onclick="copyPortalLink()" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 10px 18px; border-radius: 12px; font-weight: 700; width: 100%; cursor: pointer;">
-        📋 포털 링크 복사하기
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectSingleOption('goal', 'fat_loss')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🔥</span>
+            <div class="opt-label">
+              <span>체지방을 줄이고 싶어요</span>
+              <span class="opt-desc">근손실 없이 체지방만 똑똑하게 감량</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('goal', 'maintain')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">⚖️</span>
+            <div class="opt-label">
+              <span>지금 체중을 유지하고 싶어요</span>
+              <span class="opt-desc">건강한 활력과 일정한 신체 밸런스 유지</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('goal', 'muscle_gain')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">💪</span>
+            <div class="opt-label">
+              <span>근육을 늘리고 싶어요</span>
+              <span class="opt-desc">체계적인 린매스업과 골격근량 증가</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q2. 나이
+         ============================================== -->
+    <div class="question-card" id="card-q2">
+      <span class="q-badge">Q2. 나이 확인</span>
+      <h2 class="q-title">현재 나이가 어떻게 되세요?</h2>
+      <p class="q-subtitle">정확한 기초대사량(RMR) 산출을 위해 만 나이를 입력해 주세요.</p>
+
+      <div class="input-group">
+        <label class="input-label" for="input-age">만 나이 (숫자만 입력)</label>
+        <input type="number" id="input-age" class="text-input" placeholder="예: 28" min="10" max="100" inputmode="numeric" onkeydown="if(event.key==='Enter') submitAge()">
+        <p class="input-hint">만 19세 미만 청소년은 별도의 성장기 영양 가이드가 적용됩니다.</p>
+      </div>
+
+      <button type="button" class="btn-next-action" onclick="submitAge()">
+        다음 질문으로 이동 ➔
       </button>
     </div>
-  </div>
+
+    <!-- ==============================================
+         Q3. 신체 정보 (키 / 몸무게)
+         ============================================== -->
+    <div class="question-card" id="card-q3">
+      <span class="q-badge">Q3. 신체 스펙</span>
+      <h2 class="q-title">키와 몸무게를 알려주세요.</h2>
+      <p class="q-subtitle">에너지 소비 공식의 가장 기본이 되는 정보입니다.</p>
+
+      <div class="input-group">
+        <label class="input-label" for="input-height">키 (cm)</label>
+        <input type="number" id="input-height" class="text-input" placeholder="예: 175.5" step="0.1" inputmode="decimal">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="input-weight">몸무게 (kg)</label>
+        <input type="number" id="input-weight" class="text-input" placeholder="예: 72.0" step="0.1" inputmode="decimal" onkeydown="if(event.key==='Enter') submitBodyInfo()">
+      </div>
+
+      <button type="button" class="btn-next-action" onclick="submitBodyInfo()">
+        다음 질문으로 이동 ➔
+      </button>
+    </div>
+
+    <!-- ==============================================
+         Q4. 신체 에너지 계산 기준 (성별 상수)
+         ============================================== -->
+    <div class="question-card" id="card-q4">
+      <span class="q-badge">Q4. 계산 기준</span>
+      <h2 class="q-title">기초 에너지 소비량 계산을 위한 기준이에요.</h2>
+      <p class="q-subtitle">국제 표준 Mifflin-St Jeor 공식의 체성분 상수를 결정합니다.</p>
+
+      <div class="info-callout">
+        💡 <strong>안내</strong>: 성별에 따라 평균 근육량과 장기 대사율 상수가 다르게 적용됩니다. 선택이 어려우신 경우 중간 추정치(±83kcal 범위)로 안전하게 계산해 드립니다.
+      </div>
+
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectSingleOption('sexForEquation', 'male')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">👨</span>
+            <div class="opt-label">
+              <span>남성 기준 공식 적용</span>
+              <span class="opt-desc">기초대사량 공식 상수 (+5) 적용</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('sexForEquation', 'female')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">👩</span>
+            <div class="opt-label">
+              <span>여성 기준 공식 적용</span>
+              <span class="opt-desc">기초대사량 공식 상수 (-161) 적용</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('sexForEquation', 'neutral')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🌈</span>
+            <div class="opt-label">
+              <span>선택이 어려워요</span>
+              <span class="opt-desc">임의 추정 대신 남녀 중간 범위 기준 적용</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q5. 평소 생활 활동량
+         ============================================== -->
+    <div class="question-card" id="card-q5">
+      <span class="q-badge">Q5. 평소 활동량</span>
+      <h2 class="q-title">하루 중 대부분의 시간을 어떻게 보내세요?</h2>
+      <p class="q-subtitle">운동 시간을 제외한 평소 일상 생활의 움직임 수준입니다.</p>
+
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectSingleOption('dailyActivity', 'sedentary')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🪑</span>
+            <div class="opt-label">
+              <span>앉아서 생활해요</span>
+              <span class="opt-desc">사무직, 학생, 재택근무 등 주로 앉아 있는 생활</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('dailyActivity', 'light')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🚶</span>
+            <div class="opt-label">
+              <span>서 있거나 가볍게 움직이는 편이에요</span>
+              <span class="opt-desc">서비스직, 육아, 통근 시 도보 이동이 많은 편</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('dailyActivity', 'active')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🏃</span>
+            <div class="opt-label">
+              <span>몸을 많이 움직이는 일을 해요</span>
+              <span class="opt-desc">현장직, 트레이너, 물류 등 육체 활동이 많은 직업</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q6. 운동 횟수
+         ============================================== -->
+    <div class="question-card" id="card-q6">
+      <span class="q-badge">Q6. 운동 습관</span>
+      <h2 class="q-title">일주일에 운동은 얼마나 하세요?</h2>
+      <p class="q-subtitle">숨이 차거나 땀이 날 정도의 의도적인 운동 빈도입니다.</p>
+
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectExerciseFreq('none')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🛋️</span>
+            <div class="opt-label">
+              <span>거의 하지 않아요</span>
+              <span class="opt-desc">운동 관련 질문을 건너뛰고 기본 계수를 적용합니다</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectExerciseFreq('1-2')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">👟</span>
+            <div class="opt-label">
+              <span>주 1~2회</span>
+              <span class="opt-desc">가벼운 주말 운동 또는 주 1~2회 트레이닝</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectExerciseFreq('3-4')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🏋️</span>
+            <div class="opt-label">
+              <span>주 3~4회</span>
+              <span class="opt-desc">규칙적인 운동 습관을 가진 다이어터</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectExerciseFreq('5+')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🔥</span>
+            <div class="opt-label">
+              <span>주 5회 이상</span>
+              <span class="opt-desc">운동 매니아 또는 고강도 트레이닝 루틴</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q7. 운동 종류 (Q6에서 운동함 선택 시에만 표시)
+         ============================================== -->
+    <div class="question-card" id="card-q7">
+      <span class="q-badge">Q7. 운동 유형</span>
+      <h2 class="q-title">주로 어떤 운동을 하세요?</h2>
+      <p class="q-subtitle">근육 합성과 단백질 소모량 계산을 위해 운동 종류를 파악합니다.</p>
+
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectSingleOption('exerciseType', 'strength')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🏋️</span>
+            <div class="opt-label">
+              <span>헬스·웨이트 등 근력운동</span>
+              <span class="opt-desc">근손실 방지 및 근합성을 위해 단백질 비중을 높입니다</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('exerciseType', 'cardio')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🏃</span>
+            <div class="opt-label">
+              <span>러닝·수영 등 유산소운동</span>
+              <span class="opt-desc">글리코겐 회복과 지구력을 위한 탄수화물/단백질 밸런스</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('exerciseType', 'both')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">⚡</span>
+            <div class="opt-label">
+              <span>근력운동과 유산소를 함께 해요</span>
+              <span class="opt-desc">체지방 연소와 근력 유지를 동시에 노리는 황금 조합</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q8. 목표 강도 (유지 선택 시 자동 건너뜀)
+         ============================================== -->
+    <div class="question-card" id="card-q8">
+      <span class="q-badge">Q8. 목표 속도</span>
+      <h2 class="q-title" id="q8-title">어떤 속도로 체중을 줄이고 싶으세요?</h2>
+      <p class="q-subtitle" id="q8-subtitle">무리한 굶기는 요요를 부릅니다. 지속 가능한 적정 속도를 추천합니다.</p>
+
+      <div class="options-grid" id="q8-options">
+        <!-- JS로 동적 생성 (감량 or 근육증가) -->
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q9. 식사 선호 (탄단지 비율 조절)
+         ============================================== -->
+    <div class="question-card" id="card-q9">
+      <span class="q-badge">Q9. 식사 스타일</span>
+      <h2 class="q-title">어떤 식사가 더 편하게 느껴지세요?</h2>
+      <p class="q-subtitle">나에게 맞는 영양 비율을 선택하면 식단 유지가 훨씬 쉬워집니다.</p>
+
+      <div class="options-grid">
+        <button type="button" class="opt-btn" onclick="selectSingleOption('macroPreference', 'high_carb')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🍚</span>
+            <div class="opt-label">
+              <span>밥이나 면 등 탄수화물이 충분한 식사</span>
+              <span class="opt-desc">지방 20% / 활동량이 많거나 한식을 선호하시는 분</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('macroPreference', 'balanced')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🥑</span>
+            <div class="opt-label">
+              <span>탄수화물과 지방이 균형 잡힌 식사 (추천)</span>
+              <span class="opt-desc">지방 25% / 가장 호르몬 균형과 포만감이 우수한 황금 비율</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectSingleOption('macroPreference', 'high_fat')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🥩</span>
+            <div class="opt-label">
+              <span>탄수화물보다 지방 비중이 조금 높은 식사</span>
+              <span class="opt-desc">지방 30% / 견과류·올리브유·고기 위주의 긴 포만감 선호</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         Q10. 건강 관련 확인 (안전 가드레일)
+         ============================================== -->
+    <div class="question-card" id="card-q10">
+      <span class="q-badge">Q10. 안전 확인</span>
+      <h2 class="q-title">안전한 식단 설계를 위해 마지막으로 확인할게요.</h2>
+      <p class="q-subtitle">해당하는 항목을 모두 체크해 주세요. (복수 선택 가능)</p>
+
+      <div class="options-grid" style="gap: 10px;">
+        <label class="checkbox-item">
+          <input type="checkbox" name="healthRisk" value="none" checked onchange="handleHealthCheckbox(this)">
+          <span style="font-weight: 700; font-size: 0.95rem;">특별히 고려해야 할 건강 문제가 없어요</span>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" name="healthRisk" value="pregnancy" onchange="handleHealthCheckbox(this)">
+          <span style="font-weight: 600; font-size: 0.92rem; color: #475569;">임신 또는 수유 중이에요</span>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" name="healthRisk" value="kidney" onchange="handleHealthCheckbox(this)">
+          <span style="font-weight: 600; font-size: 0.92rem; color: #475569;">신장질환 등 식단에 영향을 주는 질환이 있어요</span>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" name="healthRisk" value="eating_disorder" onchange="handleHealthCheckbox(this)">
+          <span style="font-weight: 600; font-size: 0.92rem; color: #475569;">섭식장애 병력이나 관련 어려움이 있어요</span>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" name="healthRisk" value="unsure" onchange="handleHealthCheckbox(this)">
+          <span style="font-weight: 600; font-size: 0.92rem; color: #475569;">잘 모르겠어요</span>
+        </label>
+      </div>
+
+      <button type="button" class="btn-next-action" onclick="finishSurvey()" style="margin-top: 20px;">
+        ✨ 맞춤 영양 분석 결과 보기
+      </button>
+    </div>
+
+    <!-- ==============================================
+         안전 주의 안내 화면 (위험군 / 미성년자 / 저체중)
+         ============================================== -->
+    <div class="safety-card" id="safety-screen">
+      <div class="safety-icon">🩺</div>
+      <h2 class="safety-title" id="safety-title">건강과 안전을 위한 전문가 상담 안내</h2>
+      <div class="safety-desc" id="safety-message">
+        안전한 영양 관리를 위해 전문의와의 상담을 권장합니다.
+      </div>
+      <button type="button" class="btn-next-action" onclick="resetSurvey()" style="background: #475569;">
+        🔄 설문 다시 시작하기
+      </button>
+    </div>
+
+    <!-- ==============================================
+         최종 결과 화면
+         ============================================== -->
+    <div id="result-screen">
+      <div class="result-card" id="capture-card">
+        <div class="result-header">
+          <span class="result-sub-badge">집밥보이 1:1 맞춤 영양 솔루션</span>
+          <h1 class="result-main-title">나에게 맞는 하루 식단 기준</h1>
+          <div class="result-rec-quote" id="result-quote">
+            "하루에 약 2,000kcal를 섭취하는 것을 시작 목표로 추천해요."
+          </div>
+        </div>
+
+        <!-- 4대 핵심 매크로 그리드 -->
+        <div class="macro-display-grid">
+          <div class="macro-box highlight">
+            <div class="macro-label">🔥 하루 권장 목표 칼로리</div>
+            <div class="macro-val primary" id="res-cal">2,000 <span style="font-size: 1.1rem; font-weight: 700;">kcal</span></div>
+          </div>
+          <div class="macro-box">
+            <div class="macro-label">🍗 단백질 (Protein)</div>
+            <div class="macro-val protein" id="res-p">144 <span style="font-size: 1rem; font-weight: 700;">g</span></div>
+          </div>
+          <div class="macro-box">
+            <div class="macro-label">🥑 지방 (Fat)</div>
+            <div class="macro-val fat" id="res-f">55.5 <span style="font-size: 1rem; font-weight: 700;">g</span></div>
+          </div>
+          <div class="macro-box" style="grid-column: span 2;">
+            <div class="macro-label">🍠 탄수화물 (Carbs)</div>
+            <div class="macro-val carbs" id="res-c">231 <span style="font-size: 1rem; font-weight: 700;">g</span></div>
+          </div>
+        </div>
+
+        <!-- 시각적 탄단지 비율 바 그래프 -->
+        <div class="ratio-bar-wrapper">
+          <div class="ratio-bar">
+            <div class="bar-carbs" id="bar-c" style="width: 50%;"></div>
+            <div class="bar-protein" id="bar-p" style="width: 30%;"></div>
+            <div class="bar-fat" id="bar-f" style="width: 20%;"></div>
+          </div>
+          <div class="ratio-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> <span>탄수화물 <span id="pct-c-text">50%</span></span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#0ea5e9;"></span> <span>단백질 <span id="pct-p-text">30%</span></span></div>
+            <div class="legend-item"><span class="legend-dot" style="background:#f43f5e;"></span> <span>지방 <span id="pct-f-text">20%</span></span></div>
+          </div>
+        </div>
+
+        <!-- 산출 공식 및 분석 상세 지표 -->
+        <div class="metric-list">
+          <div class="metric-row">
+            <span class="metric-label">추정 휴식대사량 (RMR)</span>
+            <span class="metric-value" id="res-rmr">1,709 kcal</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">추정 하루 총에너지소비량 (TDEE)</span>
+            <span class="metric-value" id="res-tdee">2,649 kcal</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">선택한 목표</span>
+            <span class="metric-value" id="res-goal-name">체지방 감량</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">적용한 활동계수</span>
+            <span class="metric-value" id="res-act-factor">1.55</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">적용한 단백질 계산식</span>
+            <span class="metric-value" id="res-p-formula">체중 × 1.8g</span>
+          </div>
+        </div>
+
+        <!-- 계산 원리 설명 -->
+        <div class="tip-box">
+          💡 <strong>영양 배분 원리</strong>: 근손실 없는 포만감을 위해 <strong>단백질과 필수 지방을 먼저 계산하고, 남은 열량을 복합 탄수화물에 배분</strong>했습니다.<br><br>
+          "이 수치는 여러분의 몸과 생활습관을 기준으로 계산한 시작점이에요. 실제로 필요한 열량은 사람마다 다를 수 있으니, <strong>약 2~4주 동안 체중 변화와 컨디션을 확인하며 조정</strong>해 보세요."
+        </div>
+      </div>
+
+      <!-- 최종 4대 액션 버튼 -->
+      <div class="result-actions">
+        <!-- 1. 식단 만들기 (DIY 빌더 연결) -->
+        <a href="#" id="link-make-meal" class="btn-action-builder">
+          <span>🍱</span> <span>이 기준으로 나만의 식단 만들기 ➔</span>
+        </a>
+
+        <!-- 서브 액션 3종 -->
+        <div class="action-sub-grid">
+          <button type="button" class="btn-sub-action" onclick="copyResultText()">
+            <span>📋</span> <span>결과 복사하기</span>
+          </button>
+          <button type="button" class="btn-sub-action" onclick="saveResultAsImage()">
+            <span>🖼️</span> <span>이미지 저장</span>
+          </button>
+        </div>
+
+        <button type="button" class="btn-sub-action" onclick="resetSurvey()" style="width: 100%; height: 44px; margin-top: 4px; color: var(--text-muted); border-style: dashed;">
+          <span>🔄</span> <span>다시 계산하기</span>
+        </button>
+      </div>
+
+      <!-- 개발자 & 시스템 연동용 JSON 뷰어 (아코디언) -->
+      <details class="json-details">
+        <summary>⚙️ 연동용 영양 데이터 객체 (JSON 확인)</summary>
+        <pre class="json-pre" id="json-output"></pre>
+      </details>
+    </div>
+
+  </main>
+
+  <!-- 토스트 팝업 -->
+  <div class="toast-popup" id="toast-popup">클립보드에 복사되었습니다!</div>
+
+  <!-- 계산 엔진 스크립트 로드 -->
+  <script src="js/survey_calculator.js"></script>
 
   <script>
-    let currentToken = '';
-    let isAdminMode = false;
-    let generatedPortalUrl = '';
+    // ==========================================
+    // 설문 상태 관리 및 UI 스크립트
+    // ==========================================
+    const surveyState = {
+      currentStepIndex: 0,
+      steps: ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'],
+      answers: {
+        goal: '',
+        age: '',
+        height: '',
+        weight: '',
+        sexForEquation: '',
+        dailyActivity: '',
+        exerciseFrequency: '',
+        exerciseType: '',
+        goalIntensity: '',
+        macroPreference: '',
+        healthRisks: ['none']
+      },
+      computedPlan: null
+    };
 
-    // 실시간 라이브 계산기 함수
-    function triggerLiveCalc() {
-      const age = parseFloat(document.getElementById('client_age')?.value) || 30;
-      const gender = document.querySelector('input[name="gender"]:checked')?.value || '남성';
-      const height = parseFloat(document.getElementById('height_cm')?.value) || 175;
-      const weight = parseFloat(document.getElementById('weight_kg')?.value) || 75;
-      const targetWeight = parseFloat(document.getElementById('target_weight_kg')?.value) || (weight - 5);
+    // DOM 요소
+    const progressFill = document.getElementById('progress-fill');
+    const stepCounter = document.getElementById('step-counter');
+    const btnBack = document.getElementById('btn-back');
+    const toast = document.getElementById('toast-popup');
 
-      const diff = weight - targetWeight;
-      const diffTextEl = document.getElementById('target_diff_text');
-      if (diffTextEl) {
-        if (diff > 0) {
-          diffTextEl.innerHTML = `💡 현재보다 <strong>${diff.toFixed(1)}kg 감량</strong>을 목표로 설정합니다. (체지방 집중 감량)`;
-        } else if (diff < 0) {
-          diffTextEl.innerHTML = `💡 현재보다 <strong>${Math.abs(diff).toFixed(1)}kg 증량</strong>을 목표로 설정합니다. (근육량 린매스업)`;
-        } else {
-          diffTextEl.innerHTML = `💡 현재 체중 유지를 목표로 설정합니다. (체지방 컷팅 & 린바디 유지)`;
-        }
-      }
-
-      // 1. BMR (Mifflin-St Jeor)
-      let bmr = (10 * weight) + (6.25 * height) - (5 * age);
-      if (gender === '남성') {
-        bmr += 5;
-      } else {
-        bmr -= 161;
-      }
-      bmr = Math.round(bmr);
-
-      // 2. 활동 계수
-      const act = document.querySelector('input[name="activity_level"]:checked')?.value || '좌식 생활';
-      let factor = 1.2;
-      if (act.includes('가벼운')) factor = 1.375;
-      else if (act.includes('활동적인')) factor = 1.55;
-      else if (act.includes('매우')) factor = 1.725;
-
-      const freq = document.getElementById('workout_freq')?.value || '주 3~4회';
-      if (freq.includes('5회')) factor += 0.15;
-      else if (freq.includes('3~4회')) factor += 0.10;
-      else if (freq.includes('1~2회')) factor += 0.05;
-
-      const tdee = Math.round(bmr * factor);
-
-      // 3. 목표 칼로리
-      let targetCal = tdee;
-      if (diff > 0) {
-        targetCal = tdee - 480;
-        if (targetCal < bmr) targetCal = Math.max(bmr, targetCal + 150);
-      } else if (diff < 0) {
-        targetCal = tdee + 250;
-      }
-      targetCal = Math.round(targetCal);
-
-      // 4. 매크로
-      const proteinG = Math.round(weight * 1.8);
-      const proteinCal = proteinG * 4;
-      const fatCal = Math.round(targetCal * 0.23);
-      const fatG = Math.round(fatCal / 9);
-      const carbsCal = Math.max(0, targetCal - proteinCal - fatCal);
-      const carbsG = Math.round(carbsCal / 4);
-
-      const pPct = Math.round((proteinCal / targetCal) * 100);
-      const fPct = Math.round((fatCal / targetCal) * 100);
-      const cPct = Math.max(0, 100 - pPct - fPct);
-
-      // 화면 반영
-      document.getElementById('disp_bmr').innerHTML = `${bmr.toLocaleString()} <span>kcal</span>`;
-      document.getElementById('disp_tdee').innerHTML = `${tdee.toLocaleString()} <span>kcal</span>`;
-      document.getElementById('disp_target_cal').innerHTML = `${targetCal.toLocaleString()} <span>kcal</span>`;
-      document.getElementById('disp_deficit').innerHTML = `${(targetCal - tdee).toLocaleString()} <span>kcal</span>`;
-
-      document.getElementById('disp_macro_summary').innerText = `단 ${proteinG}g · 탄 ${carbsG}g · 지 ${fatG}g`;
-      document.getElementById('bar_p').style.width = `${pPct}%`;
-      document.getElementById('bar_c').style.width = `${cPct}%`;
-      document.getElementById('bar_f').style.width = `${fPct}%`;
-
-      document.getElementById('leg_p').innerText = `${proteinG}g (${pPct}%)`;
-      document.getElementById('leg_c').innerText = `${carbsG}g (${cPct}%)`;
-      document.getElementById('leg_f').innerText = `${fatG}g (${fPct}%)`;
+    // 질문 초기화
+    function initSurvey() {
+      updateActiveStep();
     }
 
-    async function initTokenGate() {
-      const urlParams = new URLSearchParams(window.location.search);
-      currentToken = (urlParams.get('token') || '').trim();
-      isAdminMode = urlParams.get('admin') === 'true' || currentToken === 'ADMIN_MASTER';
+    // 단계별 UI 렌더링
+    function updateActiveStep() {
+      const activeStepId = surveyState.steps[surveyState.currentStepIndex];
 
-      const loadingEl = document.getElementById('token-loading');
-      const formEl = document.getElementById('intake-form');
-      const gateCard = document.getElementById('token-gate-card');
-      const statusArea = document.getElementById('token-status-area');
+      // 모든 질문 카드 비활성화
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+      const activeCard = document.getElementById(`card-${activeStepId}`);
+      if (activeCard) activeCard.classList.add('active');
 
-      // A. 관리자 직접 입력 또는 일반 다이어트 설문 접속 (토큰 없이도 즉시 설문 개방)
-      if (isAdminMode || !currentToken) {
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (formEl) formEl.style.display = 'block';
-        if (statusArea) {
-          statusArea.innerHTML = `
-            <div class="token-badge admin">
-              <span>🥗</span>
-              <span><strong>[다이어트 챌린지 1:1 맞춤 설문]</strong> 8가지 질문에 답변하시면 나만의 클린 원물 식단이 100% 자동 생성됩니다.</span>
-            </div>
-          `;
+      // 이전 버튼 가시성
+      if (surveyState.currentStepIndex === 0) {
+        btnBack.classList.add('hidden');
+      } else {
+        btnBack.classList.remove('hidden');
+      }
+
+      // 프로그레스 바 계산
+      const totalSteps = surveyState.steps.length;
+      const pct = Math.round(((surveyState.currentStepIndex + 1) / totalSteps) * 100);
+      progressFill.style.width = `${pct}%`;
+      stepCounter.innerText = `질문 ${surveyState.currentStepIndex + 1} / ${totalSteps}`;
+
+      // 동적 스텝 UI 보정 (Q8 목표 강도 내용)
+      if (activeStepId === 'q8') {
+        renderQ8Options();
+      }
+    }
+
+    // 다음 단계 이동 (스킵 로직 포함)
+    function nextStep() {
+      let nextIdx = surveyState.currentStepIndex + 1;
+
+      // 조건부 건너뛰기 검사
+      while (nextIdx < surveyState.steps.length) {
+        const stepId = surveyState.steps[nextIdx];
+
+        // Q7 운동 종류: 운동 안 함(none)인 경우 스킵
+        if (stepId === 'q7' && surveyState.answers.exerciseFrequency === 'none') {
+          surveyState.answers.exerciseType = 'none';
+          nextIdx++;
+          continue;
         }
-        triggerLiveCalc();
+
+        // Q8 목표 강도: 체중 유지(maintain)인 경우 스킵
+        if (stepId === 'q8' && surveyState.answers.goal === 'maintain') {
+          surveyState.answers.goalIntensity = 'default';
+          nextIdx++;
+          continue;
+        }
+
+        break;
+      }
+
+      if (nextIdx < surveyState.steps.length) {
+        surveyState.currentStepIndex = nextIdx;
+        updateActiveStep();
+      } else {
+        finishSurvey();
+      }
+    }
+
+    // 이전 단계 이동 (스킵 로직 역방향)
+    function prevStep() {
+      let prevIdx = surveyState.currentStepIndex - 1;
+
+      while (prevIdx >= 0) {
+        const stepId = surveyState.steps[prevIdx];
+        if (stepId === 'q7' && surveyState.answers.exerciseFrequency === 'none') {
+          prevIdx--;
+          continue;
+        }
+        if (stepId === 'q8' && surveyState.answers.goal === 'maintain') {
+          prevIdx--;
+          continue;
+        }
+        break;
+      }
+
+      if (prevIdx >= 0) {
+        surveyState.currentStepIndex = prevIdx;
+        updateActiveStep();
+      }
+    }
+
+    // 단일 선택 버튼 핸들러
+    function selectSingleOption(field, value) {
+      surveyState.answers[field] = value;
+      // 부드러운 전환을 위해 약간의 딜레이
+      setTimeout(() => {
+        nextStep();
+      }, 150);
+    }
+
+    // Q2 나이 입력 제출
+    function submitAge() {
+      const val = parseInt(document.getElementById('input-age').value, 10);
+      if (!val || val < 10 || val > 105) {
+        alert('올바른 나이를 입력해 주세요 (10 ~ 105세)');
+        return;
+      }
+      surveyState.answers.age = val;
+      nextStep();
+    }
+
+    // Q3 신체 정보 제출
+    function submitBodyInfo() {
+      const h = parseFloat(document.getElementById('input-height').value);
+      const w = parseFloat(document.getElementById('input-weight').value);
+
+      if (!h || h < 100 || h > 240) {
+        alert('올바른 키를 입력해 주세요 (100 ~ 240cm)');
+        return;
+      }
+      if (!w || w < 30 || w > 250) {
+        alert('올바른 몸무게를 입력해 주세요 (30 ~ 250kg)');
         return;
       }
 
-      // C. 토큰 유효성 검증
-      try {
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiBase = isLocal ? '' : window.location.origin;
-        const res = await fetch(`${apiBase}/api/tokens/verify?token=${encodeURIComponent(currentToken)}`);
-        const result = await res.json();
+      surveyState.answers.height = h;
+      surveyState.answers.weight = w;
+      nextStep();
+    }
 
-        if (loadingEl) loadingEl.style.display = 'none';
+    // Q6 운동 빈도 선택
+    function selectExerciseFreq(val) {
+      surveyState.answers.exerciseFrequency = val;
+      setTimeout(() => {
+        nextStep();
+      }, 150);
+    }
 
-        if (result.status === 'valid') {
-          if (formEl) formEl.style.display = 'block';
-          if (statusArea) {
-            statusArea.innerHTML = `
-              <div class="token-badge">
-                <span>🎟️</span>
-                <span><strong>1회용 다이어트 초대 코드 인증 완료</strong> (코드: <code>${result.token}</code>)</span>
+    // Q8 동적 선택지 렌더링 (감량 vs 근육증가)
+    function renderQ8Options() {
+      const title = document.getElementById('q8-title');
+      const subtitle = document.getElementById('q8-subtitle');
+      const container = document.getElementById('q8-options');
+      container.innerHTML = '';
+
+      if (surveyState.answers.goal === 'fat_loss') {
+        title.innerText = '어떤 속도로 체중을 줄이고 싶으세요?';
+        subtitle.innerText = '급격한 감량은 근손실을 부릅니다. 적당한 속도를 권장합니다.';
+        container.innerHTML = `
+          <button type="button" class="opt-btn" onclick="selectSingleOption('goalIntensity', 'slow')">
+            <div style="display:flex; align-items:center;">
+              <span class="opt-icon">🌱</span>
+              <div class="opt-label">
+                <span>천천히, 부담 없이</span>
+                <span class="opt-desc">TDEE의 90% / 식단 스트레스 없이 자연스러운 감량</span>
               </div>
-            `;
-          }
-          triggerLiveCalc();
-        } else if (result.status === 'already_used') {
-          if (formEl) formEl.style.display = 'none';
-          if (gateCard) {
-            gateCard.style.display = 'block';
-            const portalUrl = result.portal_url || '/clients.html';
-            gateCard.innerHTML = `
-              <div class="gate-icon">✅</div>
-              <h2 class="gate-title" style="color: #34d399;">이미 작성이 완료된 1회용 설문입니다!</h2>
-              <p class="gate-desc">
-                이미 설문이 제출되어 맞춤 다이어트 포털이 생성되었습니다.<br>
-                아래 버튼을 눌러 내 맞춤 페이지로 이동해 주세요.
-              </p>
-              <a href="${portalUrl}" class="btn-gate-action">
-                <span>👉 내 맞춤 다이어트 포털 바로가기</span>
-              </a>
-            `;
-          }
-        } else {
-          if (formEl) formEl.style.display = 'none';
-          if (gateCard) {
-            gateCard.style.display = 'block';
-            gateCard.innerHTML = `
-              <div class="gate-icon">⚠️</div>
-              <h2 class="gate-title" style="color: #f87171;">유효하지 않은 초대 코드입니다</h2>
-              <p class="gate-desc">입력하신 초대 코드가 만료되었거나 올바르지 않습니다.</p>
-              <button type="button" onclick="promptAdminMode()" style="background: transparent; border: none; color: #94a3b8; font-size: 0.85rem; cursor: pointer; text-decoration: underline; margin-top: 15px;">
-                관리자 직접 입력 전환
-              </button>
-            `;
-          }
-        }
-      } catch (err) {
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (formEl) formEl.style.display = 'block';
-        triggerLiveCalc();
+            </div>
+            <span>➔</span>
+          </button>
+          <button type="button" class="opt-btn" onclick="selectSingleOption('goalIntensity', 'moderate')">
+            <div style="display:flex; align-items:center;">
+              <span class="opt-icon">⭐</span>
+              <div class="opt-label">
+                <span>적당한 속도로 꾸준히 (추천)</span>
+                <span class="opt-desc">TDEE의 85% / 가장 검증된 지속 가능한 다이어트 속도</span>
+              </div>
+            </div>
+            <span>➔</span>
+          </button>
+          <button type="button" class="opt-btn" onclick="selectSingleOption('goalIntensity', 'fast')">
+            <div style="display:flex; align-items:center;">
+              <span class="opt-icon">⚡</span>
+              <div class="opt-label">
+                <span>조금 더 빠르게</span>
+                <span class="opt-desc">TDEE의 80% / 단기간 집중 감량 (단백질 보충 필수)</span>
+              </div>
+            </div>
+            <span>➔</span>
+          </button>
+        `;
+      } else if (surveyState.answers.goal === 'muscle_gain') {
+        title.innerText = '어떤 방식으로 근육을 늘리고 싶으세요?';
+        subtitle.innerText = '체지방 증가를 통제하면서 골격근량을 키우는 방법입니다.';
+        container.innerHTML = `
+          <button type="button" class="opt-btn" onclick="selectSingleOption('goalIntensity', 'slow')">
+            <div style="display:flex; align-items:center;">
+              <span class="opt-icon">🛡️</span>
+              <div class="opt-label">
+                <span>체지방 증가를 최소화하면서 천천히</span>
+                <span class="opt-desc">TDEE의 105% / 깔끔한 린매스업</span>
+              </div>
+            </div>
+            <span>➔</span>
+          </button>
+          <button type="button" class="opt-btn" onclick="selectSingleOption('goalIntensity', 'moderate')">
+            <div style="display:flex; align-items:center;">
+              <span class="opt-icon">💪</span>
+              <div class="opt-label">
+                <span>적당한 속도로 근육 증가 (추천)</span>
+                <span class="opt-desc">TDEE의 108% / 충분한 영양 공급으로 근성장 극대화</span>
+              </div>
+            </div>
+            <span>➔</span>
+          </button>
+        `;
       }
     }
 
-    function promptAdminMode() {
-      const pw = prompt('관리자 인증 번호를 입력하세요:');
-      if (pw === '1234' || pw === 'admin' || pw === 'diet') {
-        window.location.search = '?admin=true';
-      } else if (pw) {
-        alert('인증 번호가 올바르지 않습니다.');
+    // Q10 건강 체크박스 상호 배타성 관리
+    function handleHealthCheckbox(target) {
+      const allChecks = document.querySelectorAll('input[name="healthRisk"]');
+      if (target.value === 'none' && target.checked) {
+        allChecks.forEach(c => { if (c.value !== 'none') c.checked = false; });
+      } else if (target.checked) {
+        document.querySelector('input[name="healthRisk"][value="none"]').checked = false;
       }
     }
 
-    window.addEventListener('DOMContentLoaded', initTokenGate);
+    // 최종 설문 완료 및 결과 산출
+    function finishSurvey() {
+      // 건강 체크값 취합
+      const selectedRisks = Array.from(document.querySelectorAll('input[name="healthRisk"]:checked')).map(c => c.value);
+      surveyState.answers.healthRisks = selectedRisks;
 
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btn-submit');
-      btn.disabled = true;
+      // 1. 안전 가드레일 검사
+      const safetyRisks = evaluateSafetyRisks(surveyState.answers);
+      if (safetyRisks.length > 0) {
+        showSafetyScreen(safetyRisks);
+        return;
+      }
 
-      const loadingStages = [
-        '🧮 신체 대사량 (BMR/TDEE) 및 권장 칼로리 계산 중...',
-        '🍗 목표 감량에 맞춘 황금 탄·단·지 매크로 배분 중...',
-        '🥗 피그인더가든 샐러드 & 스팀닭 & 두유 원물 식단 편성 중...',
-        '🛒 쿠팡 로켓프레시 1초 원클릭 장바구니 구축 중...',
-        '🚀 나만의 다이어트 포털 완성 중! 거의 다 됐어요...'
+      // 2. 결정론적 영양 계산 실행
+      const result = calculateDietPlan(surveyState.answers);
+      surveyState.computedPlan = result;
+
+      // 3. 결과 화면 렌더링
+      renderResultScreen(result);
+    }
+
+    // 안전 분기 화면 표시
+    function showSafetyScreen(risks) {
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+      document.getElementById('progress-container').style.display = 'none';
+      btnBack.classList.add('hidden');
+
+      const safetyScreen = document.getElementById('safety-screen');
+      const title = document.getElementById('safety-title');
+      const msg = document.getElementById('safety-message');
+
+      const primaryRisk = risks[0];
+      title.innerText = primaryRisk.title;
+      msg.innerHTML = risks.map(r => `• <strong>${r.title}</strong>: ${r.message}`).join('<br><br>');
+
+      safetyScreen.style.display = 'block';
+    }
+
+    // 결과 화면 렌더링
+    function renderResultScreen(res) {
+      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+      document.getElementById('progress-container').style.display = 'none';
+      btnBack.classList.add('hidden');
+
+      // 값 채우기
+      document.getElementById('result-quote').innerText = `"하루에 약 ${res.targetCalories.toLocaleString()}kcal를 섭취하는 것을 시작 목표로 추천해요."`;
+      document.getElementById('res-cal').innerHTML = `${res.targetCalories.toLocaleString()} <span style="font-size: 1.1rem; font-weight: 700;">kcal</span>`;
+      document.getElementById('res-p').innerHTML = `${res.proteinG} <span style="font-size: 1rem; font-weight: 700;">g</span>`;
+      document.getElementById('res-f').innerHTML = `${res.fatG} <span style="font-size: 1rem; font-weight: 700;">g</span>`;
+      document.getElementById('res-c').innerHTML = `${res.carbsG} <span style="font-size: 1rem; font-weight: 700;">g</span>`;
+
+      // 비율 바
+      document.getElementById('bar-c').style.width = `${res.macroRatioPct.carbs}%`;
+      document.getElementById('bar-p').style.width = `${res.macroRatioPct.protein}%`;
+      document.getElementById('bar-f').style.width = `${res.macroRatioPct.fat}%`;
+
+      document.getElementById('pct-c-text').innerText = `${res.macroRatioPct.carbs}% (${res.carbsCal}kcal)`;
+      document.getElementById('pct-p-text').innerText = `${res.macroRatioPct.protein}% (${res.proteinCal}kcal)`;
+      document.getElementById('pct-f-text').innerText = `${res.macroRatioPct.fat}% (${res.fatCal}kcal)`;
+
+      // 메트릭 목록
+      document.getElementById('res-rmr').innerText = `${res.rmrKcal.toLocaleString()} kcal`;
+      document.getElementById('res-tdee').innerText = `${res.tdeeKcal.toLocaleString()} kcal`;
+
+      const goalNames = { fat_loss: '체지방 감량', maintain: '체중 유지', muscle_gain: '근육 증가' };
+      document.getElementById('res-goal-name').innerText = goalNames[res.goal] || res.goal;
+      document.getElementById('res-act-factor').innerText = `${res.activityFactor.toFixed(3).replace(/0+$/, '').replace(/\.$/, '')} (${res.dailyActivity === 'sedentary' ? '좌식' : '활동적'})`;
+      
+      let pFormulaText = `체중 × ${res.proteinFactor}g`;
+      if (res.weightAdjusted) {
+        pFormulaText += ` (비만 구간 적정 기준체중 ${res.calcWeightKg}kg 적용)`;
+      }
+      document.getElementById('res-p-formula').innerText = pFormulaText;
+
+      // 식단 만들기 버튼 링크 구성 (DIY 빌더로 데이터 전달)
+      const builderUrl = `diy_meal_builder.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&goal=${res.goal}&from=survey`;
+      document.getElementById('link-make-meal').href = builderUrl;
+
+      // JSON 출력창
+      document.getElementById('json-output').innerText = JSON.stringify(res, null, 2);
+
+      // 결과 화면 표시
+      document.getElementById('result-screen').style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 결과 텍스트 복사하기
+    function copyResultText() {
+      if (!surveyState.computedPlan) return;
+      const res = surveyState.computedPlan;
+      const text = `[집밥보이 — 나에게 맞는 하루 식단 기준]
+• 하루 목표 칼로리: ${res.targetCalories.toLocaleString()} kcal
+• 단백질: ${res.proteinG}g (${res.proteinCal}kcal)
+• 지방: ${res.fatG}g (${res.fatCal}kcal)
+• 탄수화물: ${res.carbsG}g (${res.carbsCal}kcal)
+• 추정 휴식대사량(RMR): ${res.rmrKcal} kcal
+• 추정 하루 총소비량(TDEE): ${res.tdeeKcal} kcal
+(집밥보이 맞춤형 영양 알고리즘 분석 결과)`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 내 식단 기준이 복사되었습니다!');
+      }).catch(() => {
+        showToast('복사에 실패했습니다. 브라우저 권한을 확인해주세요.');
+      });
+    }
+
+    // 결과 이미지 저장 (Canvas 렌더링 다운로드)
+    function saveResultAsImage() {
+      if (!surveyState.computedPlan) return;
+      const res = surveyState.computedPlan;
+
+      // 간이 고해상도 Canvas 카드 생성
+      const canvas = document.createElement('canvas');
+      canvas.width = 800;
+      canvas.height = 1000;
+      const ctx = canvas.getContext('2d');
+
+      // 배경
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(0, 0, 800, 1000);
+
+      // 카드 배경
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#bae6fd';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(40, 40, 720, 920, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      // 헤더 뱃지
+      ctx.fillStyle = '#e0f2fe';
+      ctx.beginPath();
+      ctx.roundRect(280, 70, 240, 36, 18);
+      ctx.fill();
+
+      ctx.fillStyle = '#0284c7';
+      ctx.font = 'bold 16px Pretendard, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('집밥보이 1:1 맞춤 영양 기준', 400, 94);
+
+      // 메인 타이틀
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 34px Pretendard, sans-serif';
+      ctx.fillText('나에게 맞는 하루 식단 기준', 400, 160);
+
+      // 추천 쿼트 박스
+      ctx.fillStyle = '#f0f9ff';
+      ctx.strokeStyle = '#bae6fd';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(80, 190, 640, 60, 14);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = '#0284c7';
+      ctx.font = 'bold 20px Pretendard, sans-serif';
+      ctx.fillText(`"하루에 약 ${res.targetCalories.toLocaleString()}kcal 섭취를 추천해요."`, 400, 228);
+
+      // 칼로리 박스
+      ctx.fillStyle = '#e0f2fe';
+      ctx.beginPath();
+      ctx.roundRect(80, 280, 640, 120, 16);
+      ctx.fill();
+
+      ctx.fillStyle = '#0369a1';
+      ctx.font = 'bold 18px Pretendard, sans-serif';
+      ctx.fillText('🔥 하루 권장 목표 칼로리', 400, 318);
+
+      ctx.fillStyle = '#0284c7';
+      ctx.font = '900 48px Pretendard, sans-serif';
+      ctx.fillText(`${res.targetCalories.toLocaleString()} kcal`, 400, 375);
+
+      // 탄단지 3분할 박스
+      const macros = [
+        { label: '🍗 단백질', val: `${res.proteinG}g`, cal: `${res.proteinCal}kcal`, color: '#0284c7' },
+        { label: '🥑 지방', val: `${res.fatG}g`, cal: `${res.fatCal}kcal`, color: '#f43f5e' },
+        { label: '🍠 탄수화물', val: `${res.carbsG}g`, cal: `${res.carbsCal}kcal`, color: '#d97706' }
       ];
-      let stageIdx = 0;
-      btn.innerHTML = `<span>${loadingStages[0]}</span>`;
-      const timer = setInterval(() => {
-        stageIdx = (stageIdx + 1) % loadingStages.length;
-        btn.innerHTML = `<span>${loadingStages[stageIdx]}</span>`;
+
+      macros.forEach((m, idx) => {
+        const x = 80 + (idx * 220);
+        ctx.fillStyle = '#f8fafc';
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.roundRect(x, 430, 200, 130, 14);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 16px Pretendard, sans-serif';
+        ctx.fillText(m.label, x + 100, 465);
+
+        ctx.fillStyle = m.color;
+        ctx.font = '900 32px Pretendard, sans-serif';
+        ctx.fillText(m.val, x + 100, 510);
+
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '14px Pretendard, sans-serif';
+        ctx.fillText(m.cal, x + 100, 540);
+      });
+
+      // 상세 지표
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.roundRect(80, 590, 640, 210, 14);
+      ctx.fill();
+
+      const details = [
+        `추정 휴식대사량 (RMR): ${res.rmrKcal} kcal`,
+        `추정 하루 총소비량 (TDEE): ${res.tdeeKcal} kcal`,
+        `목표: ${res.goal === 'fat_loss' ? '체지방 감량' : (res.goal === 'muscle_gain' ? '근육 증가' : '체중 유지')}`,
+        `적용 활동계수: ${res.activityFactor}`,
+        `적용 단백질 기준: 체중 × ${res.proteinFactor}g`
+      ];
+
+      ctx.fillStyle = '#334155';
+      ctx.font = '600 16px Pretendard, sans-serif';
+      ctx.textAlign = 'left';
+      details.forEach((d, i) => {
+        ctx.fillText(`• ${d}`, 110, 630 + (i * 34));
+      });
+
+      // 하단 안내
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '14px Pretendard, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('집밥보이 — 나에게 맞는 식단 찾기 (zipbabboy)', 400, 840);
+      ctx.fillText('이 수치는 2~4주간 실천하며 컨디션에 맞게 조정해나가는 시작점입니다.', 400, 870);
+
+      // 다운로드 링크 생성
+      const link = document.createElement('a');
+      link.download = `집밥보이_맞춤식단_${res.targetCalories}kcal.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      showToast('🖼️ 식단 결과 카드가 이미지로 저장되었습니다!');
+    }
+
+    // 토스트 팝업
+    function showToast(msg) {
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
       }, 2500);
+    }
 
-      const name = document.getElementById('client_name').value.trim() || '회원님';
-      const age = document.getElementById('client_age').value.trim() || '30';
-      const gender = document.querySelector('input[name="gender"]:checked')?.value || '남성';
-      const height = document.getElementById('height_cm').value.trim() || '175';
-      const weight = document.getElementById('weight_kg').value.trim() || '75';
-      const targetWeight = document.getElementById('target_weight_kg').value.trim() || '68';
-      const goalNotes = document.getElementById('goal_notes').value.trim() || '';
-
-      const activity = document.querySelector('input[name="activity_level"]:checked')?.value || '좌식 생활';
-      const workoutType = document.getElementById('workout_type').value.trim() || '안 함';
-      const workoutFreq = document.getElementById('workout_freq').value;
-      const workoutDur = document.getElementById('workout_duration').value;
-
-      const mealCount = document.getElementById('meal_count').value;
-      const deliveryFreq = document.getElementById('delivery_freq').value;
-      const snackHabit = document.getElementById('snack_habit').value.trim() || '없음';
-
-      const mealTarget = document.querySelector('input[name="meal_target"]:checked')?.value || '점심만';
-      const healthNotes = document.getElementById('health_notes').value.trim() || '없음';
-
-      let rawBudget = (document.getElementById('budget')?.value || '250000').replace(/,/g, '').trim();
-      let budget = 250000;
-      if (rawBudget.includes('만')) {
-        const numPart = parseFloat(rawBudget.replace(/[^0-9.]/g, '')) || 25;
-        budget = Math.round(numPart * 10000);
-      } else {
-        const parsed = parseInt(rawBudget.replace(/[^0-9]/g, ''), 10);
-        if (!isNaN(parsed)) {
-          budget = (parsed >= 5 && parsed <= 200) ? parsed * 10000 : parsed;
-        }
-      }
-
-      const payload = {
-        name,
-        age: `${age}세`,
-        gender,
-        height,
-        weight,
-        target_weight: targetWeight,
-        activity_level: activity,
-        workout_type: workoutType,
-        workout_freq: workoutFreq,
-        workout_duration: workoutDur,
-        meal_count: mealCount,
-        delivery_freq: deliveryFreq,
-        snack_habit: snackHabit,
-        meal_target: mealTarget,
-        health_notes: healthNotes,
-        budget,
-        goal_notes: goalNotes,
-        token: currentToken,
-        admin: isAdminMode
+    // 설문 다시 시작
+    function resetSurvey() {
+      surveyState.currentStepIndex = 0;
+      surveyState.answers = {
+        goal: '',
+        age: '',
+        height: '',
+        weight: '',
+        sexForEquation: '',
+        dailyActivity: '',
+        exerciseFrequency: '',
+        exerciseType: '',
+        goalIntensity: '',
+        macroPreference: '',
+        healthRisks: ['none']
       };
+      surveyState.computedPlan = null;
 
-      try {
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        const apiBase = isLocal ? '' : window.location.origin;
-        const res = await fetch(`${apiBase}/api/create-diet-client`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+      document.getElementById('input-age').value = '';
+      document.getElementById('input-height').value = '';
+      document.getElementById('input-weight').value = '';
+      document.querySelector('input[name="healthRisk"][value="none"]').checked = true;
+      document.querySelectorAll('input[name="healthRisk"]:not([value="none"])').forEach(c => c.checked = false);
 
-        clearInterval(timer);
-        const result = await res.json();
+      document.getElementById('result-screen').style.display = 'none';
+      document.getElementById('safety-screen').style.display = 'none';
+      document.getElementById('progress-container').style.display = 'block';
 
-        if (result.success) {
-          generatedPortalUrl = result.portal_url || result.local_portal_url;
-          document.getElementById('modal-portal-btn').href = generatedPortalUrl;
-          document.getElementById('result-modal').style.display = 'flex';
-        } else {
-          alert('식단 생성 오류: ' + (result.error || '잠시 후 다시 시도해 주세요.'));
-          btn.disabled = false;
-          btn.innerHTML = '<span>🥗 맞춤 원물 식단 & 로켓프레시 장바구니 생성하기</span>';
-        }
-      } catch (err) {
-        clearInterval(timer);
-        alert('서버 통신 오류: ' + err.message);
-        btn.disabled = false;
-        btn.innerHTML = '<span>🥗 맞춤 원물 식단 & 로켓프레시 장바구니 생성하기</span>';
-      }
+      updateActiveStep();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function copyPortalLink() {
-      if (generatedPortalUrl) {
-        navigator.clipboard.writeText(generatedPortalUrl).then(() => {
-          alert('📋 맞춤 다이어트 포털 링크가 클립보드에 복사되었습니다!\n\n' + generatedPortalUrl);
-        });
-      }
-    }
+    // 페이지 로드 시 시작
+    window.addEventListener('DOMContentLoaded', initSurvey);
   </script>
 </body>
 </html>
