@@ -1504,73 +1504,91 @@
       return 100;
     }
 
-    // 실제 사람이 섭취 가능한 현실적인 1인분 레시피 규격 엄격 계산기
+    // 실제 사용자의 한 끼 목표(TARGET.cal, p, c, f)에 정밀 1:1 비례하는 현실적 레시피 중량 계산기
     function calculateRealisticFoodGrams(food, role, itemConfig) {
       const id = (food.id || '').toLowerCase();
       const name = (food.name || '');
+      const portG = getFoodPortionGrams(food);
 
-      // 1) 식용유/기름류: 무조건 딱 1작은술 (5g) 고정 (들기름 420g 등 비정상 수치 절대 차단!)
-      if (id.includes('oil') || name.includes('기름')) {
-        return 5;
-      }
-      // 2) 견과류: 하루/한끼 권장 1줌 (15g ~ 18g)
-      if (id.includes('almond') || id.includes('walnut') || name.includes('아몬드') || name.includes('호두') || name.includes('견과')) {
-        return 18;
-      }
-      // 3) 아보카도: 1/4개 슬라이스 (50g)
-      if (id.includes('avocado') || name.includes('아보카도')) {
-        return 50;
-      }
-      // 4) 올리브 절임: 4~5알 (15g)
-      if (id.includes('olive') || name.includes('올리브')) {
-        return 15;
-      }
-      // 5) 달걀: 2개 (100g)
-      if (id.includes('egg') || name.includes('달걀') || name.includes('계란')) {
-        return 100;
-      }
-      // 6) 캔참치: 라이트 1캔 (80g)
-      if (id.includes('tuna') || name.includes('참치')) {
-        return 80;
-      }
-      // 7) 두부: 부침/생식 반 모 (130g)
-      if (id.includes('tofu') || name.includes('두부')) {
-        return 130;
-      }
-      // 8) 훈제오리: 1인분 소포장 (130g, 오일 추가 절대 금지)
-      if (id.includes('duck') || name.includes('오리')) {
-        return 130;
-      }
-
-      // 9) 단백질 주재료 (닭가슴살, 소고기 우둔살, 돼지안심 등)
+      // 1. 단백질 주재료 (role === 'protein')
+      // 목표 단백질(TARGET.p)의 약 85~90%를 주재료가 담당하도록 중량 산출
       if (role === 'protein') {
-        const portG = getFoodPortionGrams(food);
-        const pPerG = food.protein / portG;
-        let targetG = Math.round((TARGET.p * 0.75) / Math.max(0.08, pPerG) / 10) * 10;
-        return Math.max(100, Math.min(140, targetG)); // 시판 1팩 규격인 100g~140g 이내
-      }
+        const pPerG = (food.protein || 1) / portG;
+        const targetP = TARGET.p * 0.88;
+        let grams = Math.round((targetP / Math.max(0.06, pPerG)) / 10) * 10;
 
-      // 10) 탄수화물 주재료 (밥류, 고구마, 감자, 단호박)
-      if (role === 'carb') {
-        const isRice = name.includes('밥') || id.includes('rice');
-        if (isRice) {
-          const portG = getFoodPortionGrams(food);
-          const cPerG = food.carbs / portG;
-          let targetG = Math.round((TARGET.c * 0.75) / Math.max(0.20, cPerG) / 10) * 10;
-          return Math.max(120, Math.min(150, targetG)); // 즉석밥 1공기 130~150g
+        if (id.includes('egg') || name.includes('달걀') || name.includes('계란')) {
+          // 달걀: 1알 약 50g (단백질 6g) 단위
+          const eggCount = Math.max(2, Math.min(5, Math.round(targetP / 6)));
+          return eggCount * 50;
+        } else if (id.includes('tofu') || name.includes('두부')) {
+          return Math.max(130, Math.min(350, grams)); // 130g ~ 350g (반 모 ~ 1모)
+        } else if (id.includes('tuna') || name.includes('참치')) {
+          return Math.max(80, Math.min(180, grams)); // 80g ~ 180g (1캔 ~ 2캔)
+        } else if (id.includes('duck') || name.includes('오리')) {
+          // 훈제오리는 지방도 풍부하므로 TARGET.p와 f를 고르게 반영
+          return Math.max(120, Math.min(240, grams));
         } else {
-          // 고구마, 단호박, 감자 중간 크기 1개
-          return 150;
+          // 닭가슴살, 소고기 우둔살, 돼지안심, 연어 등
+          return Math.max(100, Math.min(260, grams));
         }
       }
 
-      // 11) 채소류 (양배추, 브로콜리, 버섯, 토마토 등)
-      if (role === 'veg') {
-        return 100; // 신선 채소 1줌 80~100g
+      // 2. 탄수화물 주재료 (role === 'carb')
+      // 목표 탄수화물(TARGET.c)의 약 85~90%를 주재료가 담당하도록 중량 산출
+      if (role === 'carb') {
+        const cPerG = (food.carbs || 1) / portG;
+        const targetC = TARGET.c * 0.88;
+        let grams = Math.round((targetC / Math.max(0.15, cPerG)) / 10) * 10;
+
+        const isRice = name.includes('밥') || id.includes('rice');
+        if (isRice) {
+          // 즉석밥/현미밥/잡곡밥: 130g(작은 1팩) ~ 360g(고봉밥 1.5팩)
+          return Math.max(130, Math.min(360, grams));
+        } else {
+          // 고구마, 단호박, 감자: 130g(중간 1개) ~ 450g(큰 것 2개)
+          return Math.max(130, Math.min(450, grams));
+        }
       }
 
-      // 12) 기타 기본 가드레일
-      if (itemConfig && itemConfig.fixedG) return itemConfig.fixedG;
+      // 3. 건강한 지방 주재료 (role === 'fat')
+      if (role === 'fat') {
+        // 식용유/기름류 (들기름, 올리브유, 참기름 등):
+        // 요리용으로 현실적이고 안전한 최대 6g~10g (약 1.5~2작은술)
+        if (id.includes('oil') || name.includes('기름')) {
+          const targetF = TARGET.f * 0.35;
+          let oilG = Math.round(targetF / 1) * 1;
+          return Math.max(5, Math.min(10, oilG));
+        }
+
+        // 견과류 (아몬드, 호두 등): 하루/한끼 권장 1줌 (15g ~ 35g)
+        if (id.includes('almond') || id.includes('walnut') || name.includes('아몬드') || name.includes('호두') || name.includes('견과')) {
+          const fPerG = (food.fat || 1) / portG;
+          let nutG = Math.round((TARGET.f * 0.70 / fPerG) / 5) * 5;
+          return Math.max(15, Math.min(35, nutG));
+        }
+
+        // 아보카도 (반 개 70g ~ 1개 140g ~ 1개 반 170g)
+        if (id.includes('avocado') || name.includes('아보카도')) {
+          const fPerG = (food.fat || 1) / portG;
+          let avoG = Math.round((TARGET.f * 0.85 / fPerG) / 10) * 10;
+          return Math.max(50, Math.min(170, avoG));
+        }
+
+        // 올리브 절임
+        if (id.includes('olive') || name.includes('올리브')) {
+          return Math.max(15, Math.min(40, Math.round(TARGET.f * 1.2)));
+        }
+
+        return 20;
+      }
+
+      // 4. 채소류 (role === 'veg')
+      if (role === 'veg') {
+        // 한 끼 칼로리가 800kcal 이상이면 120g, 기본 100g
+        return (TARGET.cal >= 800) ? 120 : 100;
+      }
+
       return 100;
     }
 
