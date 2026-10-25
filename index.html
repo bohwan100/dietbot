@@ -324,14 +324,20 @@
       }
     }
     .food-edu-card {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-md);
+      background: #0d1527;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
       padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .food-edu-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
     }
     .food-card-top {
       display: flex;
@@ -804,7 +810,122 @@
     .toast.show {
       transform: translateX(-50%) translateY(0);
     }
-  </style>
+  
+    /* 사용자 지정 식재료 네모난 카드 섹션 */
+    .pantry-section {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .pantry-section-header {
+      margin-bottom: 20px;
+    }
+    .pantry-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pantry-section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .pantry-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 768px) {
+      .pantry-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .pantry-category-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .pantry-card-head {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 12px;
+    }
+    .pantry-cat-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pantry-cat-badge {
+      font-size: 0.72rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .pantry-cat-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .pantry-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pantry-item-row {
+      background: rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .pantry-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pantry-item-icon {
+      font-size: 1.4rem;
+    }
+    .pantry-item-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .pantry-item-timing {
+      font-size: 0.72rem;
+      color: #38bdf8;
+      margin-top: 2px;
+    }
+    .pantry-item-right {
+      text-align: right;
+    }
+    .pantry-item-qty {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #10b981;
+    }
+    .pantry-item-price {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+</style>
 </head>
 <body>
 
