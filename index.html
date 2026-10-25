@@ -1179,18 +1179,23 @@
     let foodsMap = {};
 
     // 8종 현실적 5~10분 도시락 템플릿
+
+    // ==========================================
+    // 검증된 맛있는 5~10분 황금 도시락 7대 조합
+    // (기름 범벅, 어색한 조합 원천 배제 & 대중적 꿀조합만 엄선)
+    // ==========================================
     const LUNCHBOX_TEMPLATES = [
       {
         id: 'golden_bowl',
-        title: '🏆 5분 렌지 황금 도시락',
-        subtitle: '직장인 인기 1위! 닭가슴살 · 아보카도 · 양배추 · 고구마',
+        title: '🏆 5분 렌지 닭·고·양·아 황금 도시락',
+        subtitle: '촉촉 닭가슴살 · 달콤 군고구마 · 스팀 양배추 · 크리미 아보카도',
         typeBadge: '⚡ 전자레인지형 (전날 준비 5분)',
-        theme: '초간단 클린 식단',
+        theme: '직장인 인기 1위 원물 식단',
         items: [
-          { id: 'protein_chicken_breast', role: 'protein', ratio: 0.35 },
-          { id: 'carb_sweet_potato', role: 'carb', ratio: 0.40 },
-          { id: 'veg_cabbage', role: 'veg', ratio: 0.05 },
-          { id: 'fat_avocado', role: 'fat', ratio: 0.20 }
+          { id: 'protein_chicken_breast', role: 'protein', minG: 110, maxG: 150 },
+          { id: 'carb_sweet_potato', role: 'carb', minG: 130, maxG: 170 },
+          { id: 'veg_cabbage', role: 'veg', baseG: 100 },
+          { id: 'fat_avocado', role: 'fat', fixedG: 50 }
         ],
         prepSteps: [
           '도시락통 바닥에 양배추를 한입 크기로 툭툭 썰어 담습니다 (물 1스푼 톡톡).',
@@ -1199,285 +1204,161 @@
         ],
         storageText: '밀폐용기에 담아 냉장 보관 (24시간 이내 섭취 권장)',
         heatingText: '섭취 전 뚜껑을 살짝 얹고 전자레인지 2분 30초~3분 가열 (양배추 자체 수분으로 촉촉하게 스팀 찜 완성)',
-        combinationReason: '닭가슴살의 양질의 단백질과 고구마의 복합 탄수화물, 양배추의 비타민U·식이섬유가 결합되어 위장 부담 없이 4~5시간 동안 안정적인 에너지를 유지해 줍니다.'
+        combinationReason: '닭가슴살의 퍽퍽함을 달콤촉촉한 스팀 양배추와 크리미한 아보카도가 감싸주어 소스 없이도 부드럽고 든든하게 즐길 수 있습니다.'
+      },
+      {
+        id: 'duck_pumpkin',
+        title: '🦆 5분 훈제오리 & 단호박 부추 찜 도시락',
+        subtitle: '훈제오리의 고소한 풍미가 달콤한 단호박과 팽이버섯/부추에 사르르',
+        typeBadge: '⚡ 전자레인지형 (전날 준비 5분)',
+        theme: '오일 추가 Zero! 자연 단짠 식단',
+        items: [
+          { id: 'protein_duck', role: 'protein', minG: 120, maxG: 150 },
+          { id: 'carb_pumpkin', role: 'carb', minG: 140, maxG: 180 },
+          { id: 'veg_enoki', role: 'veg', baseG: 80 }
+        ],
+        prepSteps: [
+          '도시락통에 찐 단호박과 팽이버섯(또는 부추)을 깔아줍니다.',
+          '그 위에 슬라이스 훈제오리를 얹고 뚜껑을 닫습니다. (오일 추가 절대 없음!)',
+          '냉장실에 보관하면 전날 준비 완료! (소요시간 4분)'
+        ],
+        storageText: '냉장 보관 (오리기름 응고를 방지하기 위해 밀폐 보관)',
+        heatingText: '전자레인지에 2분~2분 30초 가열 (오리 자체 기름이 단호박과 버섯에 배어 촉촉하고 고소하게 완성)',
+        combinationReason: '훈제오리를 데우면서 나오는 천연 기름이 달콤한 단호박과 버섯에 자연스럽게 스며들어, 기름이나 소스를 전혀 더하지 않아도 식당 일품요리처럼 감칠맛이 폭발합니다.'
       },
       {
         id: 'beef_pumpkin',
-        title: '🥩 7분 원팬 우둔살 & 단호박 보울',
-        subtitle: '지방이 적고 철분이 풍부한 소고기 우둔살과 촉촉한 단호박',
+        title: '🥩 7분 소고기 우둔살 깍둑구이 & 단호박 보울',
+        subtitle: '지방 적고 육즙 가득한 소고기 우둔살과 달콤 찐단호박, 구운 브로콜리',
         typeBadge: '🍳 원팬형 (전날 준비 7분)',
-        theme: '활력 & 고단백',
+        theme: '고기파 최애 고단백 식단',
         items: [
-          { id: 'protein_beef_round', role: 'protein', ratio: 0.35 },
-          { id: 'carb_pumpkin', role: 'carb', ratio: 0.35 },
-          { id: 'veg_broccoli', role: 'veg', ratio: 0.08 },
-          { id: 'fat_olive_oil', role: 'fat', ratio: 0.22 }
+          { id: 'protein_beef_round', role: 'protein', minG: 110, maxG: 140 },
+          { id: 'carb_pumpkin', role: 'carb', minG: 140, maxG: 180 },
+          { id: 'veg_broccoli', role: 'veg', baseG: 80 },
+          { id: 'fat_olive_oil', role: 'fat', fixedG: 8 }
         ],
         prepSteps: [
-          '팬을 달궈 올리브유를 두르고 소고기 우둔살을 소금 한 꼬집과 함께 3분간 센 불에 볶습니다.',
-          '찐 단호박과 데친 브로콜리를 먹기 좋은 크기로 썰어 도시락통에 함께 담습니다.',
-          '볶은 우둔살을 얹고 한 김 식힌 뒤 뚜껑을 닫아 냉장 보관합니다. (소요시간 7분)'
+          '팬을 달궈 올리브유 1작은술을 두르고 깍둑 썬 소고기 우둔살을 소금 한 꼬집과 3분간 센 불에 볶습니다.',
+          '도시락통에 찐 단호박과 데친 브로콜리를 담고 볶은 우둔살을 올립니다.',
+          '한 김 식힌 뒤 뚜껑을 닫아 냉장 보관합니다. (소요시간 7분)'
         ],
         storageText: '밀폐 후 냉장 보관 (소고기는 속까지 75℃ 이상 완전히 익혀 냉장 보관)',
         heatingText: '전자레인지에 약 1분 30초~2분 가열하여 따뜻하게 섭취',
-        combinationReason: '소고기의 철분과 단백질이 단호박의 카로티노이드, 브로콜리의 비타민C와 만나 체내 흡수율을 높이고 피로 회복을 돕습니다.'
+        combinationReason: '소고기의 철분과 단백질이 단호박의 카로티노이드, 브로콜리의 비타민C와 만나 영양 흡수율을 높이고 피로 회복을 돕습니다.'
       },
       {
-        id: 'duck_brown_rice',
-        title: '🦆 5분 렌지 훈제오리 & 현미밥 보울',
-        subtitle: '부드러운 불포화지방 훈제오리와 톡톡 터지는 현미밥의 조화',
-        typeBadge: '⚡ 전자레인지형 (전날 준비 5분)',
-        theme: '든든한 활력 충전',
-        items: [
-          { id: 'protein_duck', role: 'protein', ratio: 0.35 },
-          { id: 'carb_brown_rice', role: 'carb', ratio: 0.45 },
-          { id: 'veg_enoki', role: 'veg', ratio: 0.05 },
-          { id: 'fat_perilla_oil', role: 'fat', ratio: 0.15 }
-        ],
-        prepSteps: [
-          '도시락통에 즉석 현미밥을 담습니다.',
-          '그 위에 팽이버섯과 슬라이스 훈제오리를 얹고 들기름 몇 방울을 둘러줍니다.',
-          '뚜껑을 닫아 냉장고에 보관하면 전날 준비 완료! (소요시간 4분)'
-        ],
-        storageText: '냉장 보관 (오리기름 응고를 방지하기 위해 밀폐 보관)',
-        heatingText: '전자레인지 2분~2분 30초 가열 (오리 기름이 버섯과 밥에 스며들어 고소하게 완성)',
-        combinationReason: '훈제오리의 불포화지방산과 현미밥의 식이섬유가 소화 흡수 속도를 완만하게 하여 오후 내내 든든함이 오래갑니다.'
-      },
-      {
-        id: 'salmon_salad',
-        title: '🥗 3분 조립형 훈제연어 & 통밀빵 보울',
-        subtitle: '불 사용 Zero! 오메가-3 연어와 신선한 채소의 3분 완성',
+        id: 'salmon_potato',
+        title: '🐟 3분 훈제연어 & 포슬 감자 & 방울토마토 보울',
+        subtitle: '불 사용 Zero! 짭조름한 훈제연어와 포슬포슬 감자의 고급 브런치 스타일',
         typeBadge: '🥗 조립형 (전날 준비 3분)',
-        theme: '가열 없는 초스피드',
+        theme: '가열 없는 초스피드 식단',
         items: [
-          { id: 'protein_salmon', role: 'protein', ratio: 0.35 },
-          { id: 'carb_whole_bread', role: 'carb', ratio: 0.35 },
-          { id: 'veg_tomato', role: 'veg', ratio: 0.10 },
-          { id: 'fat_olives', role: 'fat', ratio: 0.20 }
+          { id: 'protein_salmon', role: 'protein', minG: 100, maxG: 130 },
+          { id: 'carb_sweet_potato', role: 'carb', minG: 120, maxG: 160 },
+          { id: 'veg_tomato', role: 'veg', baseG: 80 },
+          { id: 'fat_olives', role: 'fat', fixedG: 15 }
         ],
         prepSteps: [
-          '도시락통에 씻은 방울토마토를 담아줍니다.',
-          '소분된 훈제연어 슬라이스와 블랙 올리브를 올립니다.',
-          '통밀빵은 별도 지퍼백에 챙겨두면 끝! (가열 없이 시원하게 즐기는 3분 샐러드 도시락)'
+          '도시락통에 찐 감자(또는 고구마)를 먹기 좋게 썰어 담습니다.',
+          '씻은 방울토마토와 훈제연어 슬라이스, 블랙 올리브를 통에 보기 좋게 올립니다.',
+          '뚜껑을 닫아 냉장고에 보관하면 3분 만에 끝! (가열 없이 시원하고 신선하게 즐김)'
         ],
         storageText: '반드시 냉장 보관 (아이스팩과 함께 휴대 권장)',
         heatingText: '가열할 필요 없이 차갑고 신선하게 바로 섭취',
-        combinationReason: '연어의 오메가-3 지방산과 토마토의 라이코펜이 만나 영양소 산화를 방지하고 세포막 건강을 지원합니다.'
+        combinationReason: '훈제연어의 오메가-3와 토마토의 라이코펜이 어우러져 지친 오후에 가볍고 상쾌한 에너지를 채워줍니다.'
       },
       {
         id: 'pork_tenderloin',
-        title: '🍖 8분 원팬 돼지안심 & 구운가지 보울',
-        subtitle: '닭가슴살만큼 단백질이 높고 부드러운 안심과 구운 가지',
+        title: '🍖 8분 돼지안심 찹스테이크 & 잡곡밥 도시락',
+        subtitle: '닭가슴살보다 부드러운 안심 큐브와 알록달록 구운 채소, 든든한 잡곡밥',
         typeBadge: '🍳 원팬형 (전날 준비 8분)',
-        theme: '부드러운 육류 식단',
+        theme: '한식 백반 스타일 든든한 식단',
         items: [
-          { id: 'protein_pork_tenderloin', role: 'protein', ratio: 0.38 },
-          { id: 'carb_mixed_grain_rice', role: 'carb', ratio: 0.38 },
-          { id: 'veg_eggplant', role: 'veg', ratio: 0.08 },
-          { id: 'fat_perilla_oil', role: 'fat', ratio: 0.16 }
+          { id: 'protein_pork_tenderloin', role: 'protein', minG: 110, maxG: 140 },
+          { id: 'carb_mixed_grain_rice', role: 'carb', minG: 130, maxG: 160 },
+          { id: 'veg_paprika', role: 'veg', baseG: 60 },
+          { id: 'veg_king_oyster', role: 'veg', baseG: 50 },
+          { id: 'fat_perilla_oil', role: 'fat', fixedG: 5 }
         ],
         prepSteps: [
-          '돼지안심과 가지를 한입 크기로 썰어 팬에 들기름을 두르고 중불에 4~5분간 볶습니다.',
-          '도시락통에 잡곡밥을 담고 볶은 안심과 가지를 얹어줍니다.',
+          '돼지안심과 파프리카, 새송이버섯을 깍둑 썰어 팬에 들기름 1작은술을 두르고 4~5분간 볶습니다.',
+          '도시락통에 잡곡밥을 담고 볶은 안심 찹스테이크와 채소를 얹어줍니다.',
           '한 김 식힌 후 뚜껑을 닫아 냉장실에 넣습니다. (소요시간 8분)'
         ],
         storageText: '밀폐 후 냉장 보관 (돼지고기는 속까지 75℃ 이상 완전히 익힘)',
         heatingText: '전자레인지에 약 2분간 데워 따뜻하게 섭취',
-        combinationReason: '돼지안심에 풍부한 비타민 B1이 가지의 안토시아닌과 함께 탄수화물 대사를 촉진하여 피로감을 줄여줍니다.'
+        combinationReason: '돼지안심의 비타민 B1과 파프리카의 비타민 C, 잡곡밥의 복합 탄수화물이 만나 피로를 풀고 든든함을 보장합니다.'
       },
       {
         id: 'tofu_tuna',
-        title: '🌱 4분 조립형 단단두부 & 담백 참치 보울',
-        subtitle: '식물성+동물성 복합 단백질과 고소한 참기름의 담백한 조화',
+        title: '🌱 4분 단단두부 & 라이트 참치 비빔 보울',
+        subtitle: '고소한 두부와 담백한 참치, 아삭한 오이에 참기름 한 방울의 조화',
         typeBadge: '🥗 조립형 (전날 준비 4분)',
-        theme: '속 편한 고단백',
+        theme: '한국인 입맛 저격 속 편한 식단',
         items: [
-          { id: 'protein_tofu', role: 'protein', ratio: 0.25 },
-          { id: 'protein_light_tuna', role: 'protein', ratio: 0.15 },
-          { id: 'carb_brown_rice', role: 'carb', ratio: 0.40 },
-          { id: 'veg_cucumber', role: 'veg', ratio: 0.05 },
-          { id: 'fat_sesame_oil', role: 'fat', ratio: 0.15 }
+          { id: 'protein_tofu', role: 'protein', minG: 120, maxG: 160 },
+          { id: 'protein_light_tuna', role: 'protein', fixedG: 80 },
+          { id: 'carb_brown_rice', role: 'carb', minG: 120, maxG: 150 },
+          { id: 'veg_cucumber', role: 'veg', baseG: 60 },
+          { id: 'fat_sesame_oil', role: 'fat', fixedG: 5 }
         ],
         prepSteps: [
-          '부침두부는 깍둑썰기하고, 참치캔은 기름을 쏙 뺍니다.',
+          '부침두부는 주사위 모양으로 썰고, 참치캔은 기름기를 쏙 뺍니다.',
           '도시락통에 현미밥을 담고 두부, 참치, 썰어둔 오이를 둘러 담습니다.',
-          '참기름 반 스푼을 톡 떨어뜨리고 뚜껑을 닫아 냉장 보관합니다. (소요시간 4분)'
+          '참기름 1작은술(5g)을 톡 떨어뜨리고 뚜껑을 닫아 냉장 보관합니다. (소요시간 4분)'
         ],
         storageText: '냉장 보관 (두부의 수분을 살짝 키친타월로 제거하면 더 깔끔)',
         heatingText: '상온에서 바로 비벼 드시거나 렌지에 1분 가볍게 데워 섭취',
-        combinationReason: '대두 이소플라본과 참치의 오메가-3가 조화를 이루며 위장에 자극 없이 편안한 단백질을 공급합니다.'
+        combinationReason: '대두 단백질과 참치의 오메가-3가 만나 자극 없이 소화가 잘되며, 참기름의 고소함이 식욕을 돋워줍니다.'
       },
       {
-        id: 'egg_tortilla',
-        title: '🌯 6분 렌지 스팀 계란 & 통밀 또띠아 보울',
-        subtitle: '완전식품 계란과 통밀 또띠아를 즐기는 가볍고 든든한 식사',
-        typeBadge: '⚡ 렌지/조립형 (전날 준비 6분)',
-        theme: '가볍고 경쾌한 식단',
+        id: 'egg_sweet_potato',
+        title: '🍳 5분 촉촉 반숙란 & 밤고구마 브런치 도시락',
+        subtitle: '촉촉한 달걀 2개와 달콤한 밤고구마, 상큼 방울토마토와 오독 아몬드',
+        typeBadge: '⚡ 렌지/조립형 (전날 준비 5분)',
+        theme: '가볍고 경쾌한 카페 브런치 스타일',
         items: [
-          { id: 'protein_eggs', role: 'protein', ratio: 0.35 },
-          { id: 'carb_whole_tortilla', role: 'carb', ratio: 0.35 },
-          { id: 'veg_cabbage', role: 'veg', ratio: 0.10 },
-          { id: 'fat_almond', role: 'fat', ratio: 0.20 }
+          { id: 'protein_eggs', role: 'protein', fixedG: 100 },
+          { id: 'carb_sweet_potato', role: 'carb', minG: 130, maxG: 160 },
+          { id: 'veg_tomato', role: 'veg', baseG: 80 },
+          { id: 'fat_almond', role: 'fat', fixedG: 18 }
         ],
         prepSteps: [
-          '삶은 계란 2개를 반으로 자르고, 양배추는 채 썰어 통에 담습니다.',
-          '아몬드 한 줌을 곁들이고, 통밀 또띠아는 4등분으로 잘라 함께 담습니다.',
-          '뚜껑을 닫아 냉장 보관합니다. (소요시간 5분)'
+          '삶은 달걀 2개를 반으로 자르고, 찐 고구마를 먹기 좋은 크기로 담습니다.',
+          '방울토마토와 구운 아몬드 한 줌(18g)을 곁들여 통에 담습니다.',
+          '뚜껑을 닫아 냉장 보관하면 5분 만에 브런치 도시락 완성! (소요시간 4분)'
         ],
-        storageText: '냉장 보관 (또띠아는 눅눅해지지 않도록 유산지나 랩으로 분리)',
-        heatingText: '전자레인지에 1분간 살짝 데워 또띠아에 계란과 채소를 싸 먹기',
-        combinationReason: '계란의 필수 아미노산과 통밀의 복합 탄수화물, 아몬드의 비타민 E가 균형을 이루어 활동량이 많은 날에 제격입니다.'
-      },
-      {
-        id: 'chicken_oatmeal',
-        title: '🥣 5분 렌지 닭가슴살 오트밀 보울',
-        subtitle: '따뜻하게 속을 달래주는 고단백 오트밀 닭죽 스타일',
-        typeBadge: '⚡ 전자레인지형 (전날 준비 5분)',
-        theme: '소화 편한 따뜻한 식사',
-        items: [
-          { id: 'protein_chicken_breast', role: 'protein', ratio: 0.38 },
-          { id: 'carb_oatmeal', role: 'carb', ratio: 0.40 },
-          { id: 'veg_button_mushrooms', role: 'veg', ratio: 0.07 },
-          { id: 'fat_sesame_oil', role: 'fat', ratio: 0.15 }
-        ],
-        prepSteps: [
-          '전자레인지 전용 도시락 용기에 오트밀과 찢은 닭가슴살, 양송이버섯을 담습니다.',
-          '물 150ml를 부은 뒤 참기름과 소금 한 꼬집을 넣습니다.',
-          '뚜껑을 닫아 냉장 보관하면 끝! (소요시간 4분)'
-        ],
-        storageText: '냉장 보관 (오트밀이 수분을 흡수해 불려집니다)',
-        heatingText: '전자레인지에 2분 30초 돌려 저어주면 갓 끓인 고소한 영양 닭죽 완성',
-        combinationReason: '오트밀의 베타글루칸 식이섬유와 닭가슴살 단백질이 결합하여 혈중 콜레스테롤 안정과 속 편한 소화를 돕습니다.'
+        storageText: '냉장 보관 (껍질 깐 달걀은 밀폐용기에 담아 신선 보관)',
+        heatingText: '상온에서 바로 시원하게 드시거나 렌지에 1분 살짝 데워 섭취',
+        combinationReason: '완전식품 달걀의 필수 아미노산과 고구마의 베타카로틴, 아몬드의 비타민 E가 어우러져 아침이나 점심으로 가볍고 깔끔합니다.'
       }
     ];
 
     let currentTemplateIndex = 0;
     let activeCustomItems = null;
 
-    // 4주 챌린지 실천 트래커 상태
-    let trackerState = {
-      startDate: new Date().toISOString().slice(0, 10),
-      baselineDelivery: 4,
-      completedDays: {},
-      todayDone: false
-    };
-
-    // ==========================================
-    // 2. 초기화 및 영양 타겟 단일 로딩
-    // ==========================================
-    function initApp() {
-      // 1. URL 파라미터 로드
-      const urlParams = new URLSearchParams(window.location.search);
-      const cal = parseInt(urlParams.get('cal'), 10);
-      const p = parseFloat(urlParams.get('p'));
-      const c = parseFloat(urlParams.get('c'));
-      const f = parseFloat(urlParams.get('f'));
-      const meals = parseInt(urlParams.get('meals'), 10);
-
-      if (cal && !isNaN(cal)) {
-        DAILY_TARGET.cal = cal;
-        DAILY_TARGET.p = p ? Math.round(p) : Math.round(cal * 0.3 / 4);
-        DAILY_TARGET.c = c ? Math.round(c) : Math.round(cal * 0.45 / 4);
-        DAILY_TARGET.f = f ? (Math.round(f * 2) / 2) : Math.round((cal * 0.25 / 9) * 2) / 2;
-        DAILY_TARGET.meals = (meals && meals >= 1) ? meals : 3;
-        currentMealRatio = 1 / DAILY_TARGET.meals;
-
-        saveTargetsToStorage();
-      } else {
-        // 로컬스토리지 복원
-        loadTargetsFromStorage();
-      }
-
-      // 트래커 상태 로드
-      loadTrackerState();
-
-      // UI 렌더링
-      updateTargetDisplay();
-      renderTrackerUI();
-
-      // 식재료 DB 로드
-      loadFoodsDatabase();
+    // 식품별 1회 제공량(g) 파싱 헬퍼
+    function getFoodPortionGrams(food) {
+      if (!food || !food.portion) return 100;
+      const m = food.portion.match(/(\d+)\s*g/);
+      if (m) return parseFloat(m[1]);
+      return 100;
     }
 
-    function saveTargetsToStorage() {
-      try {
-        localStorage.setItem('user_diet_target', JSON.stringify({
-          daily: DAILY_TARGET,
-          ratio: currentMealRatio
-        }));
-      } catch (e) {}
+    // 식품별 실제 중량에 따른 칼로리 및 영양소 계산
+    function calculateItemNutrients(food, grams) {
+      const portG = getFoodPortionGrams(food);
+      const ratio = grams / portG;
+      return {
+        grams: grams,
+        calories: Math.round(food.calories * ratio),
+        protein: Math.round(food.protein * ratio * 10) / 10,
+        carbs: Math.round(food.carbs * ratio * 10) / 10,
+        fat: Math.round(food.fat * ratio * 10) / 10
+      };
     }
 
-    function loadTargetsFromStorage() {
-      try {
-        const saved = localStorage.getItem('user_diet_target');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.daily) Object.assign(DAILY_TARGET, parsed.daily);
-          if (parsed.ratio) currentMealRatio = parsed.ratio;
-          else currentMealRatio = 1 / (DAILY_TARGET.meals || 3);
-        } else {
-          // 신규 방문자 안내 배너 노출
-          document.getElementById('global-notice-banner').style.display = 'flex';
-        }
-      } catch (e) {}
-
-      // 한 끼 타겟 계산
-      recalcMealTarget();
-    }
-
-    function recalcMealTarget() {
-      TARGET.cal = Math.round(DAILY_TARGET.cal * currentMealRatio);
-      TARGET.p = Math.round(DAILY_TARGET.p * currentMealRatio);
-      TARGET.c = Math.round(DAILY_TARGET.c * currentMealRatio);
-      TARGET.f = Math.round((DAILY_TARGET.f * currentMealRatio) * 2) / 2;
-    }
-
-    function updateTargetDisplay() {
-      recalcMealTarget();
-
-      // 화면 A
-      document.getElementById('target-daily-cal').innerText = DAILY_TARGET.cal.toLocaleString();
-      document.getElementById('target-daily-p').innerText = `${DAILY_TARGET.p}g`;
-      document.getElementById('target-daily-c').innerText = `${DAILY_TARGET.c}g`;
-      document.getElementById('target-daily-f').innerText = `${DAILY_TARGET.f}g`;
-
-      document.getElementById('target-meal-badge').innerText = `🍱 한 끼 식단 목표 (하루 ${DAILY_TARGET.meals || 3}끼 기준)`;
-      document.getElementById('target-meal-cal').innerText = TARGET.cal.toLocaleString();
-      document.getElementById('target-meal-p').innerText = `${TARGET.p}g`;
-      document.getElementById('target-meal-c').innerText = `${TARGET.c}g`;
-      document.getElementById('target-meal-f').innerText = `${TARGET.f}g`;
-
-      // 남은 끼니 계산
-      const remainCal = Math.max(0, DAILY_TARGET.cal - TARGET.cal);
-      const remainCount = Math.max(1, (DAILY_TARGET.meals || 3) - 1);
-      const perRemain = Math.round(remainCal / remainCount);
-      document.getElementById('target-remain-info').innerText = `남은 ${remainCount}끼 배분 가능: ${remainCal.toLocaleString()} kcal (끼니당 ${perRemain.toLocaleString()} kcal)`;
-
-      // 화면 B 뱃지
-      document.getElementById('lb-target-chip').innerText = `🎯 한 끼 목표: ${TARGET.cal} kcal (단 ${TARGET.p}g · 탄 ${TARGET.c}g · 지 ${TARGET.f}g)`;
-
-      // 도시락 재렌더링
-      if (allFoodsData.length > 0) {
-        renderCurrentLunchbox();
-      }
-    }
-
-    // ==========================================
-    // 3. 식재료 DB 로드 & 도시락 추천 엔진
-    // ==========================================
-    async function loadFoodsDatabase() {
-      try {
-        const res = await fetch('data/diet_foods_db.json');
-        allFoodsData = await res.json();
-        allFoodsData.forEach(f => {
-          foodsMap[f.id] = f;
-        });
-        renderCurrentLunchbox();
-      } catch (e) {
-        console.error('Failed to load foods DB:', e);
-      }
-    }
 
     function renderCurrentLunchbox() {
       const template = LUNCHBOX_TEMPLATES[currentTemplateIndex];
@@ -1491,42 +1372,47 @@
       document.getElementById('lb-heating-text').innerText = template.heatingText;
       document.getElementById('lb-combination-text').innerText = template.combinationReason;
 
-      // 각 재료별 정확한 중량(g) 계산 (한 끼 목표 분할)
-      // 단백질 재료는 TARGET.p 충족 기준, 탄수화물 재료는 TARGET.c 기준, 지방 재료는 TARGET.f 기준
+      // 각 재료별 정확하고 상식적인 중량(g) 계산 (식품안전 & 가드레일 적용)
       const calculatedFoods = itemsConfig.map(it => {
-        const food = foodsMap[it.id] || { name: '알 수 없음', icon: '🍽️', calories: 100, protein: 10, carbs: 10, fat: 5, category: it.role };
+        const food = foodsMap[it.id] || { name: '알 수 없음', icon: '🍽️', calories: 100, protein: 10, carbs: 10, fat: 5, category: it.role, portion: '100g' };
         let grams = 100;
 
-        if (it.role === 'protein') {
-          // 단백질 주재료: 목표 단백질의 약 80% 담당 (채소/탄수화물에서도 일부 나옴)
-          const targetP = TARGET.p * 0.82;
-          const pPer100g = Math.max(1, food.protein || 20);
-          grams = Math.round((targetP / pPer100g) * 100 / 10) * 10;
+        if (it.fixedG) {
+          grams = it.fixedG;
+        } else if (it.role === 'protein') {
+          // 단백질 주재료: 목표 단백질량의 약 75% 담당 (100g ~ 150g 범위 유지)
+          const portG = getFoodPortionGrams(food);
+          const pPerG = food.protein / portG;
+          grams = Math.round((TARGET.p * 0.75) / Math.max(0.08, pPerG) / 10) * 10;
+          grams = Math.max(it.minG || 110, Math.min(it.maxG || 150, grams));
         } else if (it.role === 'carb') {
-          const targetC = TARGET.c * 0.85;
-          const cPer100g = Math.max(1, food.carbs || 30);
-          grams = Math.round((targetC / cPer100g) * 100 / 10) * 10;
-        } else if (it.role === 'fat') {
-          const targetF = TARGET.f * 0.70;
-          const fPer100g = Math.max(1, food.fat || 10);
-          grams = Math.round((targetF / fPer100g) * 100 / 5) * 5;
+          // 탄수화물 주재료: 목표 탄수화물의 약 80% 담당 (120g ~ 180g 즉석밥 1공기 이내)
+          const portG = getFoodPortionGrams(food);
+          const cPerG = food.carbs / portG;
+          grams = Math.round((TARGET.c * 0.80) / Math.max(0.15, cPerG) / 10) * 10;
+          grams = Math.max(it.minG || 120, Math.min(it.maxG || 180, grams));
         } else if (it.role === 'veg') {
-          // 신선 채소: 80~120g 표준 소분
-          grams = 100;
+          grams = it.baseG || 100;
+        } else if (it.role === 'fat') {
+          // 오일류는 5~8g, 견과류는 18g으로 엄격 제한
+          if (it.id.includes('oil')) grams = 8;
+          else if (it.id.includes('almond') || it.id.includes('walnut')) grams = 18;
+          else if (it.id.includes('avocado')) grams = 50;
+          else if (it.id.includes('olive')) grams = 15;
+          else grams = 20;
         }
-        grams = Math.max(20, grams);
 
-        const factor = grams / 100;
+        const nut = calculateItemNutrients(food, grams);
         return {
           id: it.id,
           role: it.role,
           name: food.name,
           icon: food.icon,
           grams: grams,
-          calories: Math.round(food.calories * factor),
-          protein: Math.round(food.protein * factor * 10) / 10,
-          carbs: Math.round(food.carbs * factor * 10) / 10,
-          fat: Math.round(food.fat * factor * 10) / 10,
+          calories: nut.calories,
+          protein: nut.protein,
+          carbs: nut.carbs,
+          fat: nut.fat,
           category: food.category
         };
       });
@@ -1616,6 +1502,7 @@
         stepsList.appendChild(li);
       });
     }
+
 
     // 영양 교육 정보 매핑 (지시서 4절)
     function getNutritionalEducation(role, foodName) {
