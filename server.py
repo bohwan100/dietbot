@@ -161,8 +161,12 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
             self.path = '/survey.html'
         elif parsed.path in ['/clients', '/clients/', '/admin', '/admin/', '/manage', '/manage/']:
             self.path = '/clients.html'
+        elif parsed.path in ['/challenge', '/challenge/', '/feed', '/feed/', '/cert', '/cert/']:
+            self.path = '/challenge.html'
         elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
             self.path = '/diy_meal_builder.html'
+        elif parsed.path in ['/challenge', '/challenge/', '/feed', '/feed/', '/cert', '/cert/']:
+            self.path = '/challenge.html'
         elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
             self.path = '/diy_meal_builder.html'
 
@@ -174,6 +178,8 @@ class CoupangAutoServer(http.server.SimpleHTTPRequestHandler):
             self.path = '/survey.html'
         elif parsed.path in ['/clients', '/clients/', '/admin', '/admin/', '/manage', '/manage/']:
             self.path = '/clients.html'
+        elif parsed.path in ['/challenge', '/challenge/', '/feed', '/feed/', '/cert', '/cert/']:
+            self.path = '/challenge.html'
         elif parsed.path in ['/builder', '/builder/', '/diy', '/diy/', '/meal', '/meal/']:
             self.path = '/diy_meal_builder.html'
         elif parsed.path in ['/api/ping', '/api/partners/status', '/api/partners/links', '/api/public-url']:
