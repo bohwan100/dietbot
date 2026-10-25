@@ -1909,20 +1909,20 @@
       // 3가지 대표 테마 레시피 템플릿
       currentAiThemes = [
         {
-          title: "🥑 지중해식 프레시 연어 보울",
-          desc: "오메가-3와 지용성 리코펜 흡수를 극대화한 최고급 클린 식단",
+          title: "🍱 [원팬 5분] 노릇 연어 & 통밀파스타 지중해 도시락",
+          desc: "🌙 전날 밤 면 7분 삶아 통에 담기 ➔ ☀️ 점심 렌지 1분 데워 레몬 오일 비벼먹기",
           foodIds: ["protein_salmon", "protein_egg_whites", "carb_whole_pasta", "veg_arugula", "veg_tomato", "fat_olive_oil"],
           dressing: DRESSINGS.find(d => d.id === 'mediterranean_lemon')
         },
         {
-          title: "🥩 정갈한 고단백 한식 쌈밥상",
-          desc: "철분 흡수와 위벽 보호, 알리티아민 합성으로 속 편한 든든한 한상",
+          title: "🍱 [3분 렌지] 우둔살 & 두부 스팀 쌈 도시락",
+          desc: "🌙 전날 밤 통에 툭툭 담기 ➔ ☀️ 점심 렌지 2분 30초 돌려 신선한 쌈채소와 원볼 식사",
           foodIds: ["protein_beef_round", "protein_tofu", "carb_barley_rice", "veg_perilla", "veg_lettuce_korean", "fat_perilla_oil"],
           dressing: DRESSINGS.find(d => d.id === 'sesame_oriental')
         },
         {
-          title: "🦆 훈제오리 양배추 웜샐러드",
-          desc: "불포화지방산과 식이섬유를 단짠 피넛 소스로 무한 흡입하는 구성",
+          title: "🍱 [3분 렌지] 훈제오리 & 단호박 양배추 스팀 도시락",
+          desc: "🌙 전날 밤 통에 담고 물 1스푼 ➔ ☀️ 점심 렌지 3분 스팀으로 양배추 쪄지고 오리 따끈 완성!",
           foodIds: ["protein_duck", "protein_eggs", "carb_sweet_potato", "veg_cabbage", "veg_carrot", "fat_peanut_butter"],
           dressing: DRESSINGS.find(d => d.id === 'peanut_sauce')
         }
@@ -1956,6 +1956,11 @@
               <span style="font-size: 1.15rem; font-weight: 900; color: #34d399;">${tCal} kcal</span>
               <div style="font-size: 0.76rem; color: #94a3b8; font-weight: 700;">단 ${tP}g · 탄 ${tC}g · 지 ${tF}g</div>
             </div>
+          </div>
+
+          <!-- 🍱 3분 도시락 루틴 바 -->
+          <div style="font-size: 0.74rem; color: #fbbf24; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 6px 10px; margin-bottom: 8px;">
+            🍱 <strong>직장인 도시락 루틴</strong>: 저녁에 도시락통에 2분 툭툭 담기 ➔ 다음 날 점심 전자레인지 3분이면 끝! (설거지 1개)
           </div>
 
           <!-- 📊 오늘 하루 잔여량 안내 바 -->
@@ -2037,96 +2042,81 @@
     const THEME_RECIPES = [
       {
         themeIdx: 0,
-        title: "🥑 지중해식 프레시 연어 & 통밀파스타 보울",
-        time: "7분",
+        title: "🍱 [원팬 5분] 노릇 연어 & 통밀파스타 지중해 도시락",
+        time: "5분 (원팬 굽기/삶기)",
         difficulty: "초간단 ★☆☆",
-        calText: "597 kcal · 단 48g · 탄 55g · 지 20g",
-        ingredientsSummary: "연어 100g, 난백 150ml, 통밀파스타 70g, 루꼴라 30g, 방울토마토 100g, 올리브유 10g",
-        dressingRecipe: "엑스트라 버진 올리브유 1T + 생레몬즙 1T + 알룰로스 0.5T + 디종머스터드 0.5t + 통후추 톡톡",
+        calText: "490 kcal · 단 38g · 탄 45g · 지 16g",
+        ingredientsSummary: "생연어 100g, 난백(계란흰자) 100g, 통밀파스타 60g, 루꼴라 30g, 방울토마토 5알, 엑스트라 버진 올리브유 10g",
+        dressingRecipe: "엑스트라 버진 올리브유 1T + 생레몬즙 1T + 알룰로스 0.5T + 디종머스터드 0.3t + 소금/후추",
         steps: [
           {
             num: 1,
-            title: "통밀면 삶기 (원팬 타이머 6분)",
-            desc: "끓는 물에 소금 반 티스푼 넣고 통밀파스타를 6분간 삶아 체에 건져둡니다."
+            title: "🌙 [전날 밤 5분] 면 삶기 & 연어 칙 구워 통에 담기",
+            desc: "끓는 물에 통밀파스타를 7분 삶아 건지고, 팬에 연어를 3분 칙 구워 도시락통에 루꼴라·방울토마토와 함께 툭 담아 냉장 보관합니다."
           },
           {
             num: 2,
-            title: "연어 & 난백 노릇 굽기",
-            desc: "달군 팬에 올리브유를 살짝 두르고 연어와 난백을 앞뒤로 노릇하게 2~3분간 구워냅니다."
+            title: "☀️ [다음 날 점심 1분] 렌지 1분 데우기",
+            desc: "도시락 뚜껑을 덮고 전자레인지에 1분~1분 30초 살짝 데워 따끈한 온기와 고소한 연어 풍미를 살립니다."
           },
           {
             num: 3,
-            title: "특급 레몬 올리브유 드레싱 유화",
-            desc: "작은 볼에 레몬즙 1T, 알룰로스 0.5T, 디종머스터드를 넣고 올리브유를 천천히 저으며 섞어 상큼하게 완성합니다."
-          },
-          {
-            num: 4,
-            title: "보울 플레이팅 & 시너지 완성",
-            desc: "넓은 볼에 루꼴라와 반 자른 방울토마토, 삶은 통밀면, 구운 연어를 올린 뒤 드레싱을 둘러 완성합니다."
+            title: "😋 [0초 식사 & 설거지 1개] 특급 레몬 오일 둘러 식사",
+            desc: "특급 레몬 올리브유 드레싱을 쪼르륵 둘러 쓱쓱 비벼 먹으면, 그릇 여럿 쓸 필요 없이 도시락통 1개로 고급 지중해 식사 완료!"
           }
         ],
         chefTip: "생레몬즙의 구연산이 연어의 잡내를 100% 제거하고, 올리브유의 지방산이 토마토의 지용성 리코펜 흡수를 4배 극대화합니다."
       },
       {
         themeIdx: 1,
-        title: "🥩 정갈한 고단백 우둔살 & 두부 쌈밥상",
-        time: "6분",
-        difficulty: "초간단 ★☆☆",
+        title: "🍱 [3분 렌지] 우둔살 & 두부 스팀 쌈 도시락",
+        time: "3분 (전자레인지)",
+        difficulty: "귀차니즘 0% ★☆☆",
         calText: "530 kcal · 단 42g · 탄 52g · 지 15g",
         ingredientsSummary: "소고기 우둔살 100g, 부침두부 150g, 보리밥 130g, 깻잎 20g(7~8장), 상추 40g(5~6장), 들기름 5g",
         dressingRecipe: "양조간장 1T + 알룰로스 1T + 사과식초 1T + 들기름 0.5T + 들깨가루 1t",
         steps: [
           {
             num: 1,
-            title: "신선 쌈채소 씻기",
-            desc: "깻잎과 상추를 찬물에 가볍게 흔들어 씻은 뒤 탈탈 털어 접시에 담아둡니다."
+            title: "🌙 [전날 밤 2분] 도시락통에 툭툭 담기",
+            desc: "도시락통에 보리밥과 깍둑 썬 부침두부, 소고기 우둔살을 담고, 깻잎과 상추는 작은 반찬칸에 생으로 툭 넣어 냉장고 쏙!"
           },
           {
             num: 2,
-            title: "소고기 우둔살 & 두부 굽기",
-            desc: "팬에 들기름을 두르고 키친타월로 핏물을 닦은 우둔살과 두부를 중강불에 2분간 노릇하게 구워냅니다."
+            title: "☀️ [다음 날 점심 2분 30초] 렌지 원터치 가열",
+            desc: "뚜껑을 비스듬히 덮고 전자레인지에 2분 30초 돌립니다. 두부와 소고기가 촉촉하고 따뜻하게 데워집니다."
           },
           {
             num: 3,
-            title: "만능 참깨 들깨 오리엔탈장 배합",
-            desc: "간장, 식초, 알룰로스를 1큰술씩 섞어 녹인 뒤 들기름과 고소한 들깨가루를 섞어 감칠맛 장을 만듭니다."
-          },
-          {
-            num: 4,
-            title: "따뜻한 보리밥과 쌈 싸먹기",
-            desc: "따뜻하게 데운 보리밥 위에 구운 고기와 두부를 얹고, 깻잎·상추에 오리엔탈장을 살짝 올려 한 쌈씩 즐깁니다."
+            title: "😋 [0초 식사 & 설거지 1개] 오리엔탈장 찍먹",
+            desc: "만능 들깨 오리엔탈장을 둘러 신선한 쌈채소와 함께 원볼로 든든하게 먹고 도시락통 1개만 헹구면 끝!"
           }
         ],
         chefTip: "들기름의 오메가-3와 깻잎의 철분이 만나 체내 혈관 염증을 제거하며 속 편하고 든든한 포만감을 유지합니다."
       },
       {
         themeIdx: 2,
-        title: "🦆 훈제오리 양배추 5분 웜샐러드",
-        time: "5분",
-        difficulty: "초간단 ★☆☆",
+        title: "🍱 [3분 렌지] 훈제오리 & 단호박 양배추 스팀 도시락",
+        time: "3분 (전자레인지 스팀 찜)",
+        difficulty: "귀차니즘 0% ★☆☆",
         calText: "565 kcal · 단 38g · 탄 48g · 지 22g",
         ingredientsSummary: "훈제오리 100g, 달걀 2알, 단호박 150g, 양배추 100g, 당근 80g, 땅콩버터 15g",
         dressingRecipe: "100% 무첨가 땅콩버터 1T + 온수 1T + 진간장 0.5T + 알룰로스 1T + 식초 1T",
         steps: [
           {
             num: 1,
-            title: "단호박 & 달걀 준비",
-            desc: "단호박은 전자레인지에 2분간 돌려 부드럽게 익히고, 삶은 달걀을 반으로 자릅니다."
+            title: "🌙 [전날 밤 2분] 통에 툭툭 담고 물 1스푼 뿌리기",
+            desc: "도시락통 바닥에 양배추와 당근을 툭툭 썰어 담고 물 1스푼 뿌린 뒤, 훈제오리 팩 뜯어 투하 + 단호박/삶은달걀을 툭 얹어 냉장고 쏙!"
           },
           {
             num: 2,
-            title: "원팬 훈제오리 & 채소 볶기",
-            desc: "달군 팬에 훈제오리를 굽다가 나오는 기름에 채 썬 양배추와 당근을 넣어 강불에 1~2분간 아삭하게 볶습니다."
+            title: "☀️ [다음 날 점심 3분] 전자레인지 자체 스팀 찜",
+            desc: "뚜껑 비스듬히 덮고 전자레인지 2분 30초~3분! 통 속 수분이 스팀을 만들어 양배추와 당근은 달콤촉촉 삶아지고 훈제오리는 따끈하게 완성!"
           },
           {
             num: 3,
-            title: "단짠 고소 피넛 소스 풀기",
-            desc: "땅콩버터 1T에 따뜻한 물 1T를 넣어 부드럽게 푼 뒤 진간장, 알룰로스, 식초를 섞어 디핑 소스로 완성합니다."
-          },
-          {
-            num: 4,
-            title: "원플레이트 담기",
-            desc: "넓은 접시에 볶은 오리와 채소, 달걀, 단호박을 올린 뒤 피넛 소스를 곁들여 맛있게 찍먹합니다."
+            title: "😋 [0초 식사 & 설거지 1개] 고소한 피넛 소스 믹싱",
+            desc: "땅콩 소스를 톡 뿌려 쓱쓱 비벼 먹으면 요리와 설거지 스트레스 없이 완벽한 영양 밸런스 식단 완료!"
           }
         ],
         chefTip: "땅콩버터의 불포화지방이 당근의 지용성 베타카로틴 흡수를 극대화하고, 양배추의 비타민 U가 소화를 돕습니다."
@@ -2158,36 +2148,37 @@
       const tC = Math.round(selectedItems.reduce((acc, cur) => acc + cur.carbs, 0) * 10) / 10;
       const tF = Math.round(selectedItems.reduce((acc, cur) => acc + cur.fat, 0) * 10) / 10;
 
+      // 조리 방식 자동 판별
+      const hasPanItem = selectedItems.some(it => {
+        const n = it.name;
+        return n.includes('소고기') || n.includes('우둔살') || n.includes('연어') || n.includes('고등어') || n.includes('파스타');
+      });
+
       const dynamicRecipe = {
-        title: `✨ 나만의 클린 ${proteins[0] || '단백질'} & ${vegs[0] || '신선'} 식단`,
-        time: "5~7분",
-        difficulty: "초간단 ★☆☆",
+        title: `🍱 3분 원터치 도시락: ${proteins[0] || '단백질'} & ${vegs[0] || '채소'} 보울`,
+        time: hasPanItem ? "5분 (원팬 굽기/삶기)" : "3분 (전자레인지 스팀)",
+        difficulty: hasPanItem ? "원팬 5분 ★★☆" : "귀차니즘 0% ★☆☆",
         calText: `${tCal} kcal · 단 ${tP}g · 탄 ${tC}g · 지 ${tF}g`,
         ingredientsSummary: selectedItems.map(it => `${it.name} ${it.portion}`).join(', '),
-        dressingRecipe: dressing ? `${dressing.icon} ${dressing.name}: ${dressing.ingredients}` : "기호에 맞게 가벼운 소금·후추 또는 올리브유 드레즐링",
+        dressingRecipe: dressing ? `${dressing.icon} ${dressing.name}: ${dressing.ingredients}` : "기호에 맞게 올리브유 1T 또는 저당 스리라차 톡톡",
         steps: [
           {
             num: 1,
-            title: "재료 세척 및 손질 (1분)",
-            desc: `${vegs.length > 0 ? vegs.join(', ') + ' 채소를 찬물에 씻어 물기를 털고, ' : ''}모든 재료를 먹기 좋은 한 입 크기로 준비합니다.`
+            title: "🌙 [전날 밤 퇴근 후 2분] 도시락통에 툭툭 담기",
+            desc: `내열 밀폐 도시락통 1개 준비! ${vegs.length > 0 ? vegs.join(', ') + ' 채소는 한입 크기로 툭툭 썰어 담고 물 1스푼 뿌립니다. ' : ''}${proteins.length > 0 ? proteins.join(', ') + ' 팩 뜯어 투하, ' : ''}${carbs.length > 0 ? carbs.join(', ') + ' 투하, ' : ''}${fats.length > 0 ? fats.join(', ') + ' 툭 얹기!' : ''} ${hasPanItem ? '(소고기/생선은 팬에 3분 칙 굽거나 면은 7분 삶아 얹기 - 그 이상 복잡한 손질 Zero!)' : ''} 뚜껑 닫고 냉장실 쏙 넣고 편하게 주무세요.`
           },
           {
             num: 2,
-            title: "주재료 간편 열조리 (3~4분)",
-            desc: `${proteins.length > 0 ? proteins.join(', ') + '을(를) 달군 팬에 노릇하게 굽거나 끓는 물/에어프라이어에 데웁니다.' : '탄수화물과 단백질을 따뜻하게 데웁니다.'} ${carbs.length > 0 ? '(' + carbs.join(', ') + ' 준비)' : ''}`
+            title: "☀️ [다음 날 점심 3분 컷] 전자레인지 원터치 가열",
+            desc: `도시락통 뚜껑을 살짝 비스듬히 덮고 전자레인지 2분 30초~3분 돌립니다. 💡 통 안의 수분이 스팀을 만들어 ${vegs[0] || '채소'}는 냄비에 삶은 것처럼 달콤촉촉 쪄지고, ${proteins[0] || '단백질'}과 ${carbs[0] || '탄수화물'}은 갓 지은 밥처럼 따끈하게 해동 완료!`
           },
           {
             num: 3,
-            title: "황금 소스/드레싱 배합 (1분)",
-            desc: dressing ? `${dressing.how_to}` : "올리브유나 들기름을 가볍게 둘러 지용성 비타민 흡수를 돕습니다."
-          },
-          {
-            num: 4,
-            title: "플레이팅 & 맛있게 섭취",
-            desc: "보울이나 접시에 준비한 재료를 보기 좋게 담고 소스를 둘러 최상의 식감과 영양 밸런스로 즐깁니다."
+            title: "😋 [0초 식사 & 설거지 1개] 소스 둘러 원볼 식사",
+            desc: `${dressing ? dressing.name : '추천 드레싱이나 올리브유'}를 쪼르륵 뿌려 쓱쓱 비벼 맛있게 드세요. 남는 냄비나 프라이팬 없이 도시락통 딱 1개만 물로 헹구면 설거지까지 10초 컷으로 끝납니다!`
           }
         ],
-        chefTip: dressing ? dressing.synergy_note : "단백질과 채소를 함께 섭취하면 인슐린 스파이크를 방지하고 포만감이 4시간 이상 지속됩니다."
+        chefTip: "도시락통 하나로 채소 스팀 찜과 단백질/탄수화물 보충이 동시에 끝나는 궁극의 지속가능 식단입니다. 번거로운 조리가 없어 직장인 다이어트를 365일 지치지 않고 지속할 수 있습니다."
       };
 
       renderRecipeContent(dynamicRecipe);
