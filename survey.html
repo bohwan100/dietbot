@@ -1500,6 +1500,19 @@
       }
 
       // 6. 식단 만들기 버튼 링크 구성 (DIY 빌더로 1/3 균등 분할 연동)
+      try {
+        localStorage.setItem('user_diet_target', JSON.stringify({
+          daily: {
+            cal: res.targetCalories,
+            p: res.proteinG,
+            c: res.carbsG,
+            f: res.fatG,
+            meals: res.mealsPerDay || 3
+          },
+          ratio: 1 / (res.mealsPerDay || 3)
+        }));
+      } catch(e) {}
+
       const builderUrl = `index.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&meals=${res.mealsPerDay || 3}&goal=${res.goal}&from=survey`;
       document.getElementById('link-make-meal').href = builderUrl;
 
