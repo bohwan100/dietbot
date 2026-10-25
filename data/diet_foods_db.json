@@ -4866,5 +4866,930 @@
     "market_spec": "로켓프레시 국산참깨",
     "coupang_url": "https://link.coupang.com/a/sesame_oil_fresh",
     "market_badge": "로켓프레시"
+  },
+  {
+    "id": "veg_baby_leaves",
+    "category": "veg",
+    "category_name": "신선 채소",
+    "name": "어린잎채소",
+    "icon": "🥗",
+    "portion": "30g (가벼운 1줌)",
+    "calories": 7,
+    "protein": 0.8,
+    "carbs": 1.1,
+    "fat": 0.1,
+    "fiber": 0.9,
+    "tag": "부드러운 새싹 영양",
+    "detailed_benefit": {
+      "tagline": "어린 잎의 성숙 전 단계로 미네랄과 효소 활성이 성체 채소보다 3~4배 농축되어 있습니다.",
+      "points": [
+        "어린 잎의 성숙 전 단계로 미네랄과 효소 활성이 성체 채소보다 3~4배 농축되어 있습니다.",
+        "올리브유나 요거트 드레싱과 함께 먹으면 지용성 비타민 흡수가 즉각 촉진됩니다."
+      ]
+    },
+    "storage": "세척 후 키친타월을 깐 밀폐용기에 보관하면 5일간 아삭함이 유지됩니다.",
+    "storage_prep": {
+      "method": "세척 후 키친타월을 깐 밀폐용기에 보관하면 5일간 아삭함이 유지됩니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "올리브유나 요거트 드레싱과 함께 먹으면 지용성 비타민 흡수가 즉각 촉진됩니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "protein_salmon",
+      "fat_olive_oil"
+    ],
+    "market_product": "무농약 친환경 어린잎채소 150g",
+    "price": 3200,
+    "market_spec": "신선 어린잎 150g (약 5회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "veg_kohlrabi",
+    "category": "veg",
+    "category_name": "신선 채소",
+    "name": "콜라비",
+    "icon": "🥬",
+    "portion": "80g (약 5~6조각)",
+    "calories": 22,
+    "protein": 1.4,
+    "carbs": 4.8,
+    "fat": 0.1,
+    "fiber": 2.8,
+    "tag": "아삭한 순무 단맛",
+    "detailed_benefit": {
+      "tagline": "사과의 10배에 달하는 비타민 C를 함유하고 있으며, 칼륨이 풍부해 붓기 완화에 탁월합니다.",
+      "points": [
+        "사과의 10배에 달하는 비타민 C를 함유하고 있으며, 칼륨이 풍부해 붓기 완화에 탁월합니다.",
+        "오리엔탈 드레싱이나 땅콩버터 소스와 곁들이면 달콤하고 아삭한 간식이 됩니다."
+      ]
+    },
+    "storage": "껍질을 깎지 않은 채 신문지에 싸서 냉장 보관하면 2주 이상 신선합니다.",
+    "storage_prep": {
+      "method": "껍질을 깎지 않은 채 신문지에 싸서 냉장 보관하면 2주 이상 신선합니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "오리엔탈 드레싱이나 땅콩버터 소스와 곁들이면 달콤하고 아삭한 간식이 됩니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "fat_peanut_butter",
+      "carb_sweet_potato"
+    ],
+    "market_product": "국내산 제주 콜라비 1kg",
+    "price": 4900,
+    "market_spec": "콜라비 1kg (약 10회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "veg_red_onion",
+    "category": "veg",
+    "category_name": "신선 채소",
+    "name": "적양파",
+    "icon": "🧅",
+    "portion": "60g (반 개)",
+    "calories": 24,
+    "protein": 0.7,
+    "carbs": 5.6,
+    "fat": 0.1,
+    "fiber": 1.1,
+    "tag": "안토시아닌 자색 양파",
+    "detailed_benefit": {
+      "tagline": "일반 양파보다 퀘르세틴과 안토시아닌이 훨씬 풍부하여 혈관 속 중성지방을 녹여줍니다.",
+      "points": [
+        "일반 양파보다 퀘르세틴과 안토시아닌이 훨씬 풍부하여 혈관 속 중성지방을 녹여줍니다.",
+        "연어, 참치 등 오메가-3 생선과 함께 먹으면 비린내를 잡고 항산화 시너지를 냅니다."
+      ]
+    },
+    "storage": "껍질째 통풍이 잘되는 서늘한 곳에 보관하고, 썬 것은 밀폐용기에 담아 냉장 보관하세요.",
+    "storage_prep": {
+      "method": "껍질째 통풍이 잘되는 서늘한 곳에 보관하고, 썬 것은 밀폐용기에 담아 냉장 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "연어, 참치 등 오메가-3 생선과 함께 먹으면 비린내를 잡고 항산화 시너지를 냅니다.",
+    "synergy_ids": [
+      "protein_salmon",
+      "protein_beef_round",
+      "fat_olive_oil"
+    ],
+    "market_product": "국내산 자색 적양파 1.5kg",
+    "price": 5900,
+    "market_spec": "적양파 1.5kg (약 20회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "veg_soybean_sprout",
+    "category": "veg",
+    "category_name": "신선 채소",
+    "name": "콩나물",
+    "icon": "🌱",
+    "portion": "100g (1줌)",
+    "calories": 29,
+    "protein": 3.5,
+    "carbs": 2.8,
+    "fat": 0.8,
+    "fiber": 2.2,
+    "tag": "아스파라긴산 해독",
+    "detailed_benefit": {
+      "tagline": "콩나물 뿌리의 아스파라긴산이 간 해독과 피로 회복을 돕고 식물성 단백질과 식이섬유를 공급합니다.",
+      "points": [
+        "콩나물 뿌리의 아스파라긴산이 간 해독과 피로 회복을 돕고 식물성 단백질과 식이섬유를 공급합니다.",
+        "소고기나 돼지고기 안심 볶음에 넣으면 아삭한 식감과 수분을 더해줍니다."
+      ]
+    },
+    "storage": "밀폐용기에 콩나물이 잠길 정도로 찬물을 붓고 매일 물을 갈아주면 1주일간 싱싱합니다.",
+    "storage_prep": {
+      "method": "밀폐용기에 콩나물이 잠길 정도로 찬물을 붓고 매일 물을 갈아주면 1주일간 싱싱합니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "소고기나 돼지고기 안심 볶음에 넣으면 아삭한 식감과 수분을 더해줍니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "protein_pork_tenderloin",
+      "fat_sesame_oil"
+    ],
+    "market_product": "국산 국산콩 무농약 콩나물 300g",
+    "price": 2200,
+    "market_spec": "콩나물 300g (약 3회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "veg_green_beans",
+    "category": "veg",
+    "category_name": "신선 채소",
+    "name": "그린빈",
+    "icon": "🫛",
+    "portion": "60g (약 10~12줄기)",
+    "calories": 18,
+    "protein": 1.1,
+    "carbs": 4.0,
+    "fat": 0.1,
+    "fiber": 1.8,
+    "tag": "스테이크 가니쉬 1위",
+    "detailed_benefit": {
+      "tagline": "껍질째 먹는 콩 깍지로 엽산과 비타민 K가 풍부하여 뼈 건강과 혈액 응고 조절에 좋습니다.",
+      "points": [
+        "껍질째 먹는 콩 깍지로 엽산과 비타민 K가 풍부하여 뼈 건강과 혈액 응고 조절에 좋습니다.",
+        "올리브유에 소고기나 연어와 함께 살짝 볶아내면 최고의 지용성 비타민 흡수가 일어납니다."
+      ]
+    },
+    "storage": "세척 후 끓는 물에 30초 데쳐 냉동 보관하면 언제든 요리에 바로 꺼내 쓸 수 있습니다.",
+    "storage_prep": {
+      "method": "세척 후 끓는 물에 30초 데쳐 냉동 보관하면 언제든 요리에 바로 꺼내 쓸 수 있습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "올리브유에 소고기나 연어와 함께 살짝 볶아내면 최고의 지용성 비타민 흡수가 일어납니다.",
+    "synergy_ids": [
+      "protein_beef_tenderloin",
+      "protein_chicken_breast",
+      "fat_olive_oil"
+    ],
+    "market_product": "냉동 프레시 그린빈 껍질콩 1kg",
+    "price": 6900,
+    "market_spec": "그린빈 1kg (약 15회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_chicken_thigh",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "닭다리살",
+    "icon": "🍗",
+    "portion": "100g (순살 1장)",
+    "calories": 120,
+    "protein": 20.5,
+    "carbs": 0.0,
+    "fat": 3.8,
+    "fiber": 0.0,
+    "tag": "껍질벗긴 쫄깃살",
+    "detailed_benefit": {
+      "tagline": "껍질을 제거한 닭다리살은 지방 함량이 낮고 철분과 비타민 B군이 풍부해 부드럽고 촉촉합니다.",
+      "points": [
+        "껍질을 제거한 닭다리살은 지방 함량이 낮고 철분과 비타민 B군이 풍부해 부드럽고 촉촉합니다.",
+        "양배추나 대파와 함께 볶으면 파기름 향이 배어 닭가슴살보다 훨씬 맛있게 식단을 지속할 수 있습니다."
+      ]
+    },
+    "storage": "1회분(100g)씩 소분 랩핑 후 냉동 보관하세요.",
+    "storage_prep": {
+      "method": "1회분(100g)씩 소분 랩핑 후 냉동 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "양배추나 대파와 함께 볶으면 파기름 향이 배어 닭가슴살보다 훨씬 맛있게 식단을 지속할 수 있습니다.",
+    "synergy_ids": [
+      "veg_cabbage",
+      "veg_green_onion",
+      "carb_brown_rice"
+    ],
+    "market_product": "냉장 껍질벗긴 무항생제 닭다리살 순살 500g",
+    "price": 8900,
+    "market_spec": "순살 닭다리살 500g (약 5회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_quail_eggs",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "메추리알",
+    "icon": "🥚",
+    "portion": "삶은 6알 (약 60g)",
+    "calories": 95,
+    "protein": 7.8,
+    "carbs": 0.6,
+    "fat": 6.8,
+    "fiber": 0.0,
+    "tag": "한입 쏙 미니 단백질",
+    "detailed_benefit": {
+      "tagline": "달걀보다 비타민 A와 B2, 인지질(레시틴) 함량이 높아 두뇌 활성과 근육 합성을 지원합니다.",
+      "points": [
+        "달걀보다 비타민 A와 B2, 인지질(레시틴) 함량이 높아 두뇌 활성과 근육 합성을 지원합니다.",
+        "샐러드나 곤약 조림에 넣으면 간편하게 단백질을 추가 보충할 수 있습니다."
+      ]
+    },
+    "storage": "깐 메추리알은 국물째 냉장 보관하며 개봉 후 3일 이내 섭취하세요.",
+    "storage_prep": {
+      "method": "깐 메추리알은 국물째 냉장 보관하며 개봉 후 3일 이내 섭취하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "샐러드나 곤약 조림에 넣으면 간편하게 단백질을 추가 보충할 수 있습니다.",
+    "synergy_ids": [
+      "veg_tomato",
+      "veg_romaine",
+      "carb_sweet_potato"
+    ],
+    "market_product": "국산 무항생제 깐메추리알 500g",
+    "price": 4900,
+    "market_spec": "깐메추리알 500g (약 8회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_uncongealed_tofu",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "순두부",
+    "icon": "🥣",
+    "portion": "반 봉지 (약 175g)",
+    "calories": 85,
+    "protein": 9.5,
+    "carbs": 3.2,
+    "fat": 3.8,
+    "fiber": 1.2,
+    "tag": "부드러운 소화 1등",
+    "detailed_benefit": {
+      "tagline": "응고제를 최소화하여 두부 중 수분 함량이 가장 높고 소화 흡수율이 95%에 달해 위에 부담이 전혀 없습니다.",
+      "points": [
+        "응고제를 최소화하여 두부 중 수분 함량이 가장 높고 소화 흡수율이 95%에 달해 위에 부담이 전혀 없습니다.",
+        "달걀과 대파를 풀고 끓이면 5분 만에 고단백 저열량 몽글순두부탕이 완성됩니다."
+      ]
+    },
+    "storage": "개봉한 남은 순두부는 밀폐용기에 담고 찬물을 채워 냉장 보관하세요.",
+    "storage_prep": {
+      "method": "개봉한 남은 순두부는 밀폐용기에 담고 찬물을 채워 냉장 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "달걀과 대파를 풀고 끓이면 5분 만에 고단백 저열량 몽글순두부탕이 완성됩니다.",
+    "synergy_ids": [
+      "protein_eggs",
+      "veg_green_onion",
+      "fat_sesame_oil"
+    ],
+    "market_product": "국산콩 전통 순두부 350g 2개입",
+    "price": 2800,
+    "market_spec": "순두부 350g (약 2회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_edamame",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "풋콩",
+    "icon": "🫛",
+    "portion": "순살 60g (약 반 컵)",
+    "calories": 75,
+    "protein": 7.0,
+    "carbs": 5.5,
+    "fat": 2.8,
+    "fiber": 3.2,
+    "tag": "이자카야 에다마메",
+    "detailed_benefit": {
+      "tagline": "대두의 미성숙 콩으로 단백질과 비타민 C, 엽산, 식이섬유가 모두 풍부한 천연 슈퍼푸드입니다.",
+      "points": [
+        "대두의 미성숙 콩으로 단백질과 비타민 C, 엽산, 식이섬유가 모두 풍부한 천연 슈퍼푸드입니다.",
+        "포케 보울이나 샐러드에 올리면 씹는 고소함과 단백질을 극대화합니다."
+      ]
+    },
+    "storage": "데친 후 껍질을 까서 냉동 보관하면 샐러드 토핑으로 즉시 활용할 수 있습니다.",
+    "storage_prep": {
+      "method": "데친 후 껍질을 까서 냉동 보관하면 샐러드 토핑으로 즉시 활용할 수 있습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "포케 보울이나 샐러드에 올리면 씹는 고소함과 단백질을 극대화합니다.",
+    "synergy_ids": [
+      "protein_salmon",
+      "carb_brown_rice",
+      "fat_avocado"
+    ],
+    "market_product": "냉동 껍질 풋콩 에다마메 1kg",
+    "price": 6500,
+    "market_spec": "풋콩 1kg (약 15회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_black_beans",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "검은콩",
+    "icon": "🫘",
+    "portion": "삶은 50g (약 반 컵)",
+    "calories": 80,
+    "protein": 8.0,
+    "carbs": 9.5,
+    "fat": 1.5,
+    "fiber": 3.8,
+    "tag": "모발 & 안토시아닌",
+    "detailed_benefit": {
+      "tagline": "검은 껍질의 안토시아닌과 이소플라본이 모발 건강을 돕고 혈중 나쁜 콜레스테롤(LDL)을 낮춥니다.",
+      "points": [
+        "검은 껍질의 안토시아닌과 이소플라본이 모발 건강을 돕고 혈중 나쁜 콜레스테롤(LDL)을 낮춥니다.",
+        "현미밥이나 샐러드에 섞어 먹으면 식물성 단백질과 장내 유익균 식이섬유가 채워집니다."
+      ]
+    },
+    "storage": "한 번에 넉넉히 삶아 1회분(50g)씩 소분 냉동해두면 간편합니다.",
+    "storage_prep": {
+      "method": "한 번에 넉넉히 삶아 1회분(50g)씩 소분 냉동해두면 간편합니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "현미밥이나 샐러드에 섞어 먹으면 식물성 단백질과 장내 유익균 식이섬유가 채워집니다.",
+    "synergy_ids": [
+      "carb_brown_rice",
+      "veg_romaine",
+      "fat_olive_oil"
+    ],
+    "market_product": "국산 서리태 검은콩 1kg",
+    "price": 12900,
+    "market_spec": "서리태 1kg (약 20회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_kidney_beans",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "강낭콩",
+    "icon": "🫘",
+    "portion": "삶은 60g (약 반 컵)",
+    "calories": 75,
+    "protein": 5.5,
+    "carbs": 13.0,
+    "fat": 0.5,
+    "fiber": 4.0,
+    "tag": "탄수화물 억제 파세올라민",
+    "detailed_benefit": {
+      "tagline": "강낭콩 속 파세올라민 성분이 탄수화물 흡수 효소를 차단하여 체내 지방 축적을 억제합니다.",
+      "points": [
+        "강낭콩 속 파세올라민 성분이 탄수화물 흡수 효소를 차단하여 체내 지방 축적을 억제합니다.",
+        "토마토 수프나 샐러드에 넣으면 포만감을 4시간 이상 유지시킵니다."
+      ]
+    },
+    "storage": "삶아서 냉동 보관하거나 통조림 강낭콩은 흐르는 물에 헹궈 사용하세요.",
+    "storage_prep": {
+      "method": "삶아서 냉동 보관하거나 통조림 강낭콩은 흐르는 물에 헹궈 사용하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "토마토 수프나 샐러드에 넣으면 포만감을 4시간 이상 유지시킵니다.",
+    "synergy_ids": [
+      "veg_tomato",
+      "protein_chicken_breast",
+      "fat_olive_oil"
+    ],
+    "market_product": "국산 호랑이 강낭콩 1kg",
+    "price": 9900,
+    "market_spec": "강낭콩 1kg (약 15회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "protein_mozzarella",
+    "category": "protein",
+    "category_name": "신선 단백질",
+    "name": "모짜렐라치즈",
+    "icon": "🧀",
+    "portion": "생/피자용 40g",
+    "calories": 105,
+    "protein": 8.8,
+    "carbs": 1.2,
+    "fat": 7.2,
+    "fiber": 0.0,
+    "tag": "카프레제의 주인공",
+    "detailed_benefit": {
+      "tagline": "숙성 치즈보다 나트륨이 적고 칼슘과 고품질 유청 단백질이 풍부하여 근육 회복을 돕습니다.",
+      "points": [
+        "숙성 치즈보다 나트륨이 적고 칼슘과 고품질 유청 단백질이 풍부하여 근육 회복을 돕습니다.",
+        "완숙 토마토, 생바질, 올리브유와 함께 먹으면 지용성 리코펜 흡수를 극대화합니다."
+      ]
+    },
+    "storage": "생모짜렐라는 개봉 후 밀봉하여 냉장 보관하고 3일 이내에 드세요.",
+    "storage_prep": {
+      "method": "생모짜렐라는 개봉 후 밀봉하여 냉장 보관하고 3일 이내에 드세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "완숙 토마토, 생바질, 올리브유와 함께 먹으면 지용성 리코펜 흡수를 극대화합니다.",
+    "synergy_ids": [
+      "veg_tomato",
+      "veg_basil",
+      "fat_olive_oil"
+    ],
+    "market_product": "후레쉬 생 모짜렐라 치즈 125g",
+    "price": 4500,
+    "market_spec": "생모짜렐라 125g (약 3회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_mixed_grain_rice",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "잡곡밥",
+    "icon": "🍚",
+    "portion": "130g (작은 1공기)",
+    "calories": 185,
+    "protein": 4.5,
+    "carbs": 39.0,
+    "fat": 1.2,
+    "fiber": 3.5,
+    "tag": "오곡 영양 가득",
+    "detailed_benefit": {
+      "tagline": "현미, 흑미, 조, 수수, 팥 등 5곡이 어우러져 다양한 미네랄과 식이섬유를 공급하며 혈당을 천천히 올립니다.",
+      "points": [
+        "현미, 흑미, 조, 수수, 팥 등 5곡이 어우러져 다양한 미네랄과 식이섬유를 공급하며 혈당을 천천히 올립니다.",
+        "소고기 쌈밥이나 닭안심 볶음과 함께 먹으면 에너지 대사가 원활해집니다."
+      ]
+    },
+    "storage": "갓 지은 밥을 130g씩 용기에 담아 한 김 식힌 뒤 즉시 냉동하면 저항성 전분이 늘어납니다.",
+    "storage_prep": {
+      "method": "갓 지은 밥을 130g씩 용기에 담아 한 김 식힌 뒤 즉시 냉동하면 저항성 전분이 늘어납니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "소고기 쌈밥이나 닭안심 볶음과 함께 먹으면 에너지 대사가 원활해집니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "veg_perilla",
+      "fat_perilla_oil"
+    ],
+    "market_product": "햇반 발아현미 잡곡밥 130g 8개입",
+    "price": 9900,
+    "market_spec": "즉석 잡곡밥 130g 8개입",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_white_rice",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "백미밥",
+    "icon": "🍚",
+    "portion": "130g (작은 1공기)",
+    "calories": 170,
+    "protein": 3.5,
+    "carbs": 37.5,
+    "fat": 0.5,
+    "fiber": 0.8,
+    "tag": "깔끔하고 빠른 에너지",
+    "detailed_benefit": {
+      "tagline": "소화가 가장 빠르고 장에 가스를 유발하지 않아 고강도 운동 전후 글리코겐 보충에 최적입니다.",
+      "points": [
+        "소화가 가장 빠르고 장에 가스를 유발하지 않아 고강도 운동 전후 글리코겐 보충에 최적입니다.",
+        "소고기 우둔살, 연어, 달걀과 함께 섭취하면 단백질 동화 작용을 돕습니다."
+      ]
+    },
+    "storage": "냉장 보관하여 24시간 식히면 저항성 전분이 2배 증가해 흡수 칼로리가 줄어듭니다.",
+    "storage_prep": {
+      "method": "냉장 보관하여 24시간 식히면 저항성 전분이 2배 증가해 흡수 칼로리가 줄어듭니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "소고기 우둔살, 연어, 달걀과 함께 섭취하면 단백질 동화 작용을 돕습니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "protein_salmon",
+      "veg_cabbage"
+    ],
+    "market_product": "햇반 작은공기 백미밥 130g 8개입",
+    "price": 8900,
+    "market_spec": "작은공기 백미밥 130g 8개입",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_whole_tortilla",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "통밀또띠아",
+    "icon": "🫓",
+    "portion": "1장 (약 40g)",
+    "calories": 110,
+    "protein": 4.0,
+    "carbs": 20.5,
+    "fat": 1.5,
+    "fiber": 2.8,
+    "tag": "다이어트 랩 필수품",
+    "detailed_benefit": {
+      "tagline": "도정하지 않은 통밀로 만들어 정제 밀가루 또띠아보다 혈당 스파이크가 적고 식이섬유가 풍부합니다.",
+      "points": [
+        "도정하지 않은 통밀로 만들어 정제 밀가루 또띠아보다 혈당 스파이크가 적고 식이섬유가 풍부합니다.",
+        "닭가슴살, 로메인, 그릭요거트 소스를 싸서 먹으면 간편 랩 샌드위치가 완성됩니다."
+      ]
+    },
+    "storage": "장마다 종이호일을 끼워 지퍼백에 넣고 냉동 보관하면 달라붙지 않고 꺼내기 쉽습니다.",
+    "storage_prep": {
+      "method": "장마다 종이호일을 끼워 지퍼백에 넣고 냉동 보관하면 달라붙지 않고 꺼내기 쉽습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "닭가슴살, 로메인, 그릭요거트 소스를 싸서 먹으면 간편 랩 샌드위치가 완성됩니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "veg_romaine",
+      "protein_greek_yogurt"
+    ],
+    "market_product": "100% 통밀 또띠아 6인치 10장",
+    "price": 4900,
+    "market_spec": "통밀 또띠아 10장 (약 10회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "fat_olives",
+    "category": "fat",
+    "category_name": "건강한 지방 & 견과",
+    "name": "올리브",
+    "icon": "🫒",
+    "portion": "30g (약 8~10알)",
+    "calories": 35,
+    "protein": 0.3,
+    "carbs": 1.8,
+    "fat": 3.2,
+    "fiber": 1.0,
+    "tag": "지중해 항산화 열매",
+    "detailed_benefit": {
+      "tagline": "올레산(불포화지방)과 폴리페놀이 농축되어 있어 심혈관을 튼튼하게 하고 피부 노화를 방지합니다.",
+      "points": [
+        "올레산(불포화지방)과 폴리페놀이 농축되어 있어 심혈관을 튼튼하게 하고 피부 노화를 방지합니다.",
+        "통밀파스타나 토마토 샐러드에 썰어 넣으면 소금 없이도 깊은 짭조름한 감칠맛을 더합니다."
+      ]
+    },
+    "storage": "개봉 후 국물과 함께 유리 밀폐용기에 담아 냉장 보관하세요.",
+    "storage_prep": {
+      "method": "개봉 후 국물과 함께 유리 밀폐용기에 담아 냉장 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "통밀파스타나 토마토 샐러드에 썰어 넣으면 소금 없이도 깊은 짭조름한 감칠맛을 더합니다.",
+    "synergy_ids": [
+      "carb_whole_pasta",
+      "veg_tomato",
+      "protein_salmon"
+    ],
+    "market_product": "스페인산 씨없는 블랙 올리브 슬라이스 350g",
+    "price": 3500,
+    "market_spec": "블랙올리브 350g (약 10회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "fat_peanuts",
+    "category": "fat",
+    "category_name": "건강한 지방 & 견과",
+    "name": "땅콩",
+    "icon": "🥜",
+    "portion": "15g (약 15알)",
+    "calories": 85,
+    "protein": 3.8,
+    "carbs": 2.5,
+    "fat": 7.2,
+    "fiber": 1.2,
+    "tag": "레스베라트롤 혈관청소",
+    "detailed_benefit": {
+      "tagline": "항산화 물질인 레스베라트롤과 불포화지방산이 풍부하여 혈관을 깨끗하게 하고 뇌 건강을 돕습니다.",
+      "points": [
+        "항산화 물질인 레스베라트롤과 불포화지방산이 풍부하여 혈관을 깨끗하게 하고 뇌 건강을 돕습니다.",
+        "오징어나 샐러드에 다져 넣으면 고소한 식감과 포만감을 대폭 강화합니다."
+      ]
+    },
+    "storage": "밀폐용기에 담아 냉동 보관하면 산패를 완벽히 막을 수 있습니다.",
+    "storage_prep": {
+      "method": "밀폐용기에 담아 냉동 보관하면 산패를 완벽히 막을 수 있습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "오징어나 샐러드에 다져 넣으면 고소한 식감과 포만감을 대폭 강화합니다.",
+    "synergy_ids": [
+      "veg_cabbage",
+      "protein_squid",
+      "carb_banana"
+    ],
+    "market_product": "국산 무염 볶음 땅콩 알땅콩 300g",
+    "price": 6900,
+    "market_spec": "볶음땅콩 300g (약 20회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_strawberry",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "딸기",
+    "icon": "🍓",
+    "portion": "100g (약 6~7알)",
+    "calories": 32,
+    "protein": 0.7,
+    "carbs": 7.5,
+    "fat": 0.2,
+    "fiber": 2.0,
+    "tag": "과일 중 최저 칼로리",
+    "detailed_benefit": {
+      "tagline": "과일 중 당류가 가장 낮으면서 비타민 C는 레몬보다 풍부하여 다이어트 중 달콤한 디저트로 최적입니다.",
+      "points": [
+        "과일 중 당류가 가장 낮으면서 비타민 C는 레몬보다 풍부하여 다이어트 중 달콤한 디저트로 최적입니다.",
+        "그릭요거트나 리코타치즈와 곁들이면 환상적인 단백질 디저트가 됩니다."
+      ]
+    },
+    "storage": "꼭지를 떼지 말고 씻지 않은 채 밀폐용기에 키친타월을 깔고 보관하세요.",
+    "storage_prep": {
+      "method": "꼭지를 떼지 말고 씻지 않은 채 밀폐용기에 키친타월을 깔고 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "그릭요거트나 리코타치즈와 곁들이면 환상적인 단백질 디저트가 됩니다.",
+    "synergy_ids": [
+      "protein_greek_yogurt",
+      "protein_ricotta",
+      "carb_oatmeal"
+    ],
+    "market_product": "국내산 설향 딸기 500g",
+    "price": 8900,
+    "market_spec": "생딸기 500g (약 5회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_tangerine",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "귤",
+    "icon": "🍊",
+    "portion": "100g (작은 것 1~2개)",
+    "calories": 42,
+    "protein": 0.8,
+    "carbs": 10.5,
+    "fat": 0.1,
+    "fiber": 1.8,
+    "tag": "비타민P 헤스페리딘",
+    "detailed_benefit": {
+      "tagline": "귤의 흰 속껍질에 풍부한 헤스페리딘 성분이 혈관을 강화하고 모세혈관 탄력을 높여줍니다.",
+      "points": [
+        "귤의 흰 속껍질에 풍부한 헤스페리딘 성분이 혈관을 강화하고 모세혈관 탄력을 높여줍니다.",
+        "닭가슴살 샐러드에 곁들이면 상큼한 천연 과즙 소스 역할을 합니다."
+      ]
+    },
+    "storage": "통풍이 잘되는 서늘한 베란다에 신문지를 깔고 겹치지 않게 보관하세요.",
+    "storage_prep": {
+      "method": "통풍이 잘되는 서늘한 베란다에 신문지를 깔고 겹치지 않게 보관하세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "닭가슴살 샐러드에 곁들이면 상큼한 천연 과즙 소스 역할을 합니다.",
+    "synergy_ids": [
+      "protein_chicken_breast",
+      "veg_romaine",
+      "fat_almond"
+    ],
+    "market_product": "제주 서귀포 노지 감귤 2kg",
+    "price": 9900,
+    "market_spec": "감귤 2kg (약 20회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_pineapple",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "파인애플",
+    "icon": "🍍",
+    "portion": "슬라이스 100g",
+    "calories": 50,
+    "protein": 0.5,
+    "carbs": 13.0,
+    "fat": 0.1,
+    "fiber": 1.4,
+    "tag": "단백질 분해효소 브로멜라인",
+    "detailed_benefit": {
+      "tagline": "천연 단백질 분해효소인 브로멜라인이 풍부하여 고기 섭취 후 소화를 돕고 복부 팽만감을 줄여줍니다.",
+      "points": [
+        "천연 단백질 분해효소인 브로멜라인이 풍부하여 고기 섭취 후 소화를 돕고 복부 팽만감을 줄여줍니다.",
+        "소고기나 돼지고기 안심 구이와 함께 구워 먹으면 연육 작용과 감칠맛이 폭발합니다."
+      ]
+    },
+    "storage": "먹기 좋게 썰어 밀폐용기에 담아 냉장 보관하고 3일 내 드세요.",
+    "storage_prep": {
+      "method": "먹기 좋게 썰어 밀폐용기에 담아 냉장 보관하고 3일 내 드세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "소고기나 돼지고기 안심 구이와 함께 구워 먹으면 연육 작용과 감칠맛이 폭발합니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "protein_pork_tenderloin",
+      "veg_paprika"
+    ],
+    "market_product": "골드 파인애플 컷팅 400g",
+    "price": 5900,
+    "market_spec": "파인애플 400g (약 4회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_mango",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "망고",
+    "icon": "🥭",
+    "portion": "반 개 (약 100g)",
+    "calories": 65,
+    "protein": 0.6,
+    "carbs": 16.5,
+    "fat": 0.2,
+    "fiber": 1.6,
+    "tag": "달콤한 베타카로틴",
+    "detailed_benefit": {
+      "tagline": "베타카로틴과 제아잔틴이 풍부하여 시력 보호와 피부 재생을 돕고 면역력을 강화합니다.",
+      "points": [
+        "베타카로틴과 제아잔틴이 풍부하여 시력 보호와 피부 재생을 돕고 면역력을 강화합니다.",
+        "그릭요거트나 닭가슴살 샐러드에 큐브로 넣으면 이국적인 트로피컬 맛을 냅니다."
+      ]
+    },
+    "storage": "후숙 후 껍질을 벗겨 큐브 썰기한 뒤 냉동 보관하면 아이스크림처럼 먹을 수 있습니다.",
+    "storage_prep": {
+      "method": "후숙 후 껍질을 벗겨 큐브 썰기한 뒤 냉동 보관하면 아이스크림처럼 먹을 수 있습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "그릭요거트나 닭가슴살 샐러드에 큐브로 넣으면 이국적인 트로피컬 맛을 냅니다.",
+    "synergy_ids": [
+      "protein_greek_yogurt",
+      "protein_chicken_tenderloin",
+      "fat_chia_seed"
+    ],
+    "market_product": "항공직송 페루/태국 프리미엄 애플망고 2과",
+    "price": 9900,
+    "market_spec": "망고 2과 (약 4회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_grapes",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "포도",
+    "icon": "🍇",
+    "portion": "약 15알 (약 80g)",
+    "calories": 55,
+    "protein": 0.6,
+    "carbs": 14.0,
+    "fat": 0.1,
+    "fiber": 0.9,
+    "tag": "심혈관 수호 레스베라트롤",
+    "detailed_benefit": {
+      "tagline": "포도 껍질과 씨에 풍부한 폴리페놀이 혈압을 안정시키고 운동 후 젖산 축적을 억제합니다.",
+      "points": [
+        "포도 껍질과 씨에 풍부한 폴리페놀이 혈압을 안정시키고 운동 후 젖산 축적을 억제합니다.",
+        "리코타치즈나 통밀빵과 곁들이면 고급스러운 와인 안주 느낌의 다이어트 간식이 됩니다."
+      ]
+    },
+    "storage": "씻지 않고 신문지나 한지에 싸서 냉장 보관하며, 먹기 직전 베이킹소다 물에 씻으세요.",
+    "storage_prep": {
+      "method": "씻지 않고 신문지나 한지에 싸서 냉장 보관하며, 먹기 직전 베이킹소다 물에 씻으세요.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "리코타치즈나 통밀빵과 곁들이면 고급스러운 와인 안주 느낌의 다이어트 간식이 됩니다.",
+    "synergy_ids": [
+      "protein_ricotta",
+      "carb_whole_bread",
+      "fat_walnut"
+    ],
+    "market_product": "국내산 샤인머스캣/캠벨 포도 1송이 (500g)",
+    "price": 8900,
+    "market_spec": "생포도 500g (약 6회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_pear",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "배",
+    "icon": "🍐",
+    "portion": "120g (약 1/3개)",
+    "calories": 52,
+    "protein": 0.4,
+    "carbs": 13.5,
+    "fat": 0.1,
+    "fiber": 3.6,
+    "tag": "수분 85% 루테올린",
+    "detailed_benefit": {
+      "tagline": "루테올린 성분이 기관지 염증과 기침을 가라앉히고 수분과 칼륨이 풍부해 나트륨을 배출합니다.",
+      "points": [
+        "루테올린 성분이 기관지 염증과 기침을 가라앉히고 수분과 칼륨이 풍부해 나트륨을 배출합니다.",
+        "소고기 육회나 샐러드에 얇게 채 썰어 곁들이면 천연 연육과 단맛을 냅니다."
+      ]
+    },
+    "storage": "신문지에 싼 뒤 비닐 팩에 넣어 야채칸에 보관하면 1달 이상 아삭합니다.",
+    "storage_prep": {
+      "method": "신문지에 싼 뒤 비닐 팩에 넣어 야채칸에 보관하면 1달 이상 아삭합니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "소고기 육회나 샐러드에 얇게 채 썰어 곁들이면 천연 연육과 단맛을 냅니다.",
+    "synergy_ids": [
+      "protein_beef_round",
+      "veg_lettuce_korean",
+      "fat_pine_nuts"
+    ],
+    "market_product": "나주 신고배 3개입",
+    "price": 9900,
+    "market_spec": "신고배 3개 (약 9회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_peach",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "복숭아",
+    "icon": "🍑",
+    "portion": "120g (중간 크기 1개)",
+    "calories": 48,
+    "protein": 0.9,
+    "carbs": 11.8,
+    "fat": 0.1,
+    "fiber": 2.2,
+    "tag": "유기산 피로회복",
+    "detailed_benefit": {
+      "tagline": "사과산과 구연산 등 천연 유기산이 피로 물질을 분해하고 펙틴이 장내 노폐물을 청소합니다.",
+      "points": [
+        "사과산과 구연산 등 천연 유기산이 피로 물질을 분해하고 펙틴이 장내 노폐물을 청소합니다.",
+        "그릭요거트 볼에 깍둑썰기해 넣으면 인공 감미료 없는 달콤한 과일 요거트가 됩니다."
+      ]
+    },
+    "storage": "실온에서 후숙한 뒤 먹기 1~2시간 전에 냉장고에 넣어야 당도가 떨어지지 않습니다.",
+    "storage_prep": {
+      "method": "실온에서 후숙한 뒤 먹기 1~2시간 전에 냉장고에 넣어야 당도가 떨어지지 않습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "그릭요거트 볼에 깍둑썰기해 넣으면 인공 감미료 없는 달콤한 과일 요거트가 됩니다.",
+    "synergy_ids": [
+      "protein_greek_yogurt",
+      "fat_almond",
+      "carb_oatmeal"
+    ],
+    "market_product": "국내산 백도/황도 복숭아 4개입",
+    "price": 11900,
+    "market_spec": "복숭아 4개입 (약 4회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
+  },
+  {
+    "id": "carb_pomegranate",
+    "category": "carb",
+    "category_name": "복합 탄수화물",
+    "name": "석류",
+    "icon": "🍒",
+    "portion": "알맹이 80g (반 컵)",
+    "calories": 65,
+    "protein": 1.2,
+    "carbs": 15.0,
+    "fat": 0.8,
+    "fiber": 3.2,
+    "tag": "천연 에스트로겐",
+    "detailed_benefit": {
+      "tagline": "엘라그산과 천연 에스트로겐이 여성 호르몬 밸런스를 돕고 중년 다이어트에 강력한 항산화 작용을 합니다.",
+      "points": [
+        "엘라그산과 천연 에스트로겐이 여성 호르몬 밸런스를 돕고 중년 다이어트에 강력한 항산화 작용을 합니다.",
+        "루꼴라 샐러드나 그릭요거트 위에 붉은 보석처럼 뿌려 먹으면 톡톡 터지는 식감을 더합니다."
+      ]
+    },
+    "storage": "알맹이만 분리하여 밀폐용기에 담아 냉동 보관하면 6개월간 두고두고 쓸 수 있습니다.",
+    "storage_prep": {
+      "method": "알맹이만 분리하여 밀폐용기에 담아 냉동 보관하면 6개월간 두고두고 쓸 수 있습니다.",
+      "tip": "신선도 유지를 위해 물기 제거 후 밀폐 보관 권장"
+    },
+    "synergy_reason": "루꼴라 샐러드나 그릭요거트 위에 붉은 보석처럼 뿌려 먹으면 톡톡 터지는 식감을 더합니다.",
+    "synergy_ids": [
+      "veg_arugula",
+      "protein_greek_yogurt",
+      "protein_ricotta"
+    ],
+    "market_product": "캘리포니아산 프리미엄 석류 2과",
+    "price": 7900,
+    "market_spec": "생석류 2과 (약 4회분)",
+    "coupang_url": "",
+    "market_badge": "🚀 로켓프레시"
   }
 ]

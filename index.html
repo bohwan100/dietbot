@@ -828,11 +828,11 @@
     <!-- Category Filter & Elimination Mode Toggle -->
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 22px;">
       <div class="cat-tabs" style="margin-bottom: 0;">
-      <button class="tab-btn active" data-cat="all" onclick="filterCategory('all', this)">✨ 전체 원물 (111)</button>
-      <button class="tab-btn" data-cat="veg" onclick="filterCategory('veg', this)">🥗 신선 채소 & 샐러드 (40)</button>
-      <button class="tab-btn" data-cat="protein" onclick="filterCategory('protein', this)">🍗 신선 단백질 (32)</button>
-      <button class="tab-btn" data-cat="carb" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 (22)</button>
-      <button class="tab-btn" data-cat="fat" onclick="filterCategory('fat', this)">🥑 건강한 지방 (17)</button>
+      <button class="tab-btn active" data-cat="all" onclick="filterCategory('all', this)">✨ 전체 원물 (136)</button>
+      <button class="tab-btn" data-cat="veg" onclick="filterCategory('veg', this)">🥗 신선 채소 & 샐러드 (45)</button>
+      <button class="tab-btn" data-cat="protein" onclick="filterCategory('protein', this)">🍗 신선 단백질 (39)</button>
+      <button class="tab-btn" data-cat="carb" onclick="filterCategory('carb', this)">🍠 복합 탄수화물 & 과일 (33)</button>
+      <button class="tab-btn" data-cat="fat" onclick="filterCategory('fat', this)">🥑 건강한 지방 & 견과 (19)</button>
       </div>
       <button type="button" onclick="toggleShowAllMode()" id="toggle-show-all-btn" class="nav-btn" style="border-color: rgba(251, 191, 36, 0.4); color: #fbbf24; background: rgba(245, 158, 11, 0.1); font-size: 0.84rem; padding: 8px 14px;">
         🎯 추천 궁합만 보기 (소거 모드)
@@ -998,8 +998,8 @@
       if (tabAll) tabAll.textContent = `✨ 전체 원물 (${counts.all})`;
       if (tabVeg) tabVeg.textContent = `🥗 신선 채소 & 샐러드 (${counts.veg})`;
       if (tabProtein) tabProtein.textContent = `🍗 신선 단백질 (${counts.protein})`;
-      if (tabCarb) tabCarb.textContent = `🍠 복합 탄수화물 (${counts.carb})`;
-      if (tabFat) tabFat.textContent = `🥑 건강한 지방 (${counts.fat})`;
+      if (tabCarb) tabCarb.textContent = `🍠 복합 탄수화물 & 과일 (${counts.carb})`;
+      if (tabFat) tabFat.textContent = `🥑 건강한 지방 & 견과 (${counts.fat})`;
     }
 
     let showAllMode = true; // 소거법 vs 전체보기 토글
@@ -1958,7 +1958,7 @@
       // 자유 모드 진입
       const banner = document.getElementById('guide-instruction');
       if (banner) {
-        banner.innerHTML = `✏️ <strong>자유 빌더 모드</strong>: 설정된 맞춤 목표(칼로리: ${TARGET.cal}kcal)에 맞춰 111종 원물을 자유롭게 골라보세요!`;
+        banner.innerHTML = `✏️ <strong>자유 빌더 모드</strong>: 설정된 맞춤 목표(칼로리: ${TARGET.cal}kcal)에 맞춰 136종 원물을 자유롭게 골라보세요!`;
       }
     }
 
@@ -2761,7 +2761,7 @@
             <h2 style="font-size: 1.4rem; font-weight: 900; color: #fff; margin: 0;">5분 다이어트 황금 레시피 50선</h2>
           </div>
           <p style="color: #94a3b8; font-size: 0.84rem; margin: 4px 0 0 0;">
-            111종 클린 원재료와 특급 드레싱으로 완성하는 3~7분 컷 초간단 검증 레시피 라이브러리
+            136종 클린 원재료와 특급 드레싱으로 완성하는 3~7분 컷 초간단 검증 레시피 라이브러리
           </p>
         </div>
         <button type="button" onclick="closeRecipeExplorerModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; padding: 0 6px;">&times;</button>
