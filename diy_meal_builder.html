@@ -1336,6 +1336,28 @@
         heatingText: '상온에서 바로 시원하게 드시거나 렌지에 1분 살짝 데워 섭취',
         combinationReason: '완전식품 달걀의 필수 아미노산과 고구마의 베타카로틴, 아몬드의 비타민 E가 어우러져 아침이나 점심으로 가볍고 깔끔합니다.'
       }
+      ,
+      {
+        id: 'chickpea_chicken',
+        title: '🧆 5분 병아리콩 & 닭가슴살 지중해 웜샐러드 도시락',
+        subtitle: '밤맛 나는 고소한 삶은 병아리콩과 촉촉 닭가슴살, 상큼 방울토마토와 올리브유',
+        typeBadge: '⚡ 렌지 4분 컷 (전날 준비 5분)',
+        theme: '지중해식 클린 고단백 식단',
+        items: [
+          { id: 'protein_chicken_breast', role: 'protein' },
+          { id: 'carb_chickpeas', role: 'carb' },
+          { id: 'veg_tomato', role: 'veg' },
+          { id: 'fat_olive_oil', role: 'fat' }
+        ],
+        prepSteps: [
+          '삶은 병아리콩(또는 유기농 병아리콩 캔) 물기를 빼고 도시락 용기에 담습니다.',
+          '촉촉 닭가슴살과 반으로 썬 방울토마토를 둘러 담아줍니다.',
+          '엑스트라버진 올리브유 1작은술(5~8g)을 고르게 둘러 뚜껑을 닫고 냉장 보관합니다. (소요시간 4분)'
+        ],
+        storageText: '밀폐 후 냉장 보관 (삶은 병아리콩은 3~4일간 신선 유지)',
+        heatingText: '전자레인지에 1분 30초 살짝 데워 포크로 가볍게 섞어 섭취',
+        combinationReason: '병아리콩의 풍부한 수용성 식이섬유와 닭가슴살 단백질이 만나 포만감이 5시간 이상 유지되며, 올리브유가 토마토 리코펜 흡수를 촉진합니다.'
+      }
     ];
 
     let currentTemplateIndex = 0;
@@ -1542,7 +1564,10 @@
         let grams = Math.round((targetC / Math.max(0.15, cPerG)) / 10) * 10;
 
         const isRice = name.includes('밥') || id.includes('rice');
-        if (isRice) {
+        if (id.includes('chickpea') || name.includes('병아리콩')) {
+          // 병아리콩: 100g당 탄수화물 27g, 단백질 8.5g (식물성 듀얼 영양)
+          return Math.max(120, Math.min(320, grams));
+        } else if (isRice) {
           // 즉석밥/현미밥/잡곡밥: 130g(작은 1팩) ~ 360g(고봉밥 1.5팩)
           return Math.max(130, Math.min(360, grams));
         } else {
