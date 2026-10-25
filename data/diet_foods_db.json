@@ -5,51 +5,16 @@
     "category_name": "신선 채소",
     "name": "양배추",
     "icon": "🥬",
-    "portion": "100g (손바닥 크기 2~3장)",
-    "calories": 24,
-    "protein": 1.3,
-    "carbs": 5.5,
+    "portion": "70g (1회 분량)",
+    "calories": 20,
+    "protein": 0.9,
+    "carbs": 4.0,
     "fat": 0.1,
-    "fiber": 2.5,
-    "tag": "비타민U 위장 보호",
-    "detailed_benefit": {
-      "tagline": "속 쓰림 없는 클린 다이어트의 1등 공신, 위벽을 코팅하고 포만감을 채우는 천연 위장약",
-      "points": [
-        "천연 항궤양 성분인 비타민 U와 비타민 K가 위 점막을 재생시켜 다이어트 중 속 쓰림과 역류 완화",
-        "풍부한 설포라판 성분이 헬리코박터 파일로리균의 증식을 억제하고 위암 예방",
-        "채 썰어서 식전 5분간 천천히 씹어 먹으면 위장에 식이섬유 쿠션을 깔아 식후 혈당 스파이크 차단",
-        "열을 가해 찌면 부피가 줄고 단맛이 살아나 닭가슴살이나 밥을 싸 먹기 최적"
-      ]
-    },
-    "storage": "심지를 파내고 젖은 키친타월을 채워 랩핑 냉장 보관 (1개월 이상).",
-    "storage_prep": {
-      "method": "심지를 파내고 물 적신 키친타월을 넣어 랩핑 냉장 보관 (1개월)",
-      "tip": "전자레인지 용기에 물 2스푼과 함께 넣고 3분간 돌리면 냄비 찜기 없이 초간단 촉촉 달콤 양배추쌈 완성"
-    },
-    "synergy_reason": "돼지고기 안심이나 닭가슴살을 쪄서 양배추에 쌈을 싸 먹으면 소화력이 2배로 상승하고 포만감이 5시간 지속됩니다.",
-    "synergy_ids": [
-      "protein_chicken_breast",
-      "protein_pork_tenderloin",
-      "protein_tofu",
-      "carb_brown_rice",
-      "fat_perilla_oil",
-      "protein_egg_whites",
-      "protein_duck",
-      "protein_mackerel",
-      "protein_sea_snail",
-      "protein_tempeh"
-    ],
-    "market_product": "국내산 친환경 양배추 1통 (약 1.5kg)",
-    "price": 3500,
-    "market_spec": "1통 대용량 (약 15회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6Hg2",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave_steam",
-      "mode_badge": "⚡ 렌지 2분 스팀 찜",
-      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
-      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
-    }
+    "fiber": 1.8,
+    "market_product": "국내산 사각썰기 양배추 (1kg)",
+    "price": 4890,
+    "market_spec": "매일 점심·저녁 (70g × 2끼)",
+    "coupang_url": "https://link.coupang.com/a/bW6zgF"
   },
   {
     "id": "veg_red_cabbage",
@@ -342,50 +307,18 @@
     "id": "veg_broccoli",
     "category": "veg",
     "category_name": "신선 채소",
-    "name": "브로콜리",
+    "name": "브로콜리 (냉동)",
     "icon": "🥦",
-    "portion": "100g (약 4~5송이)",
-    "calories": 28,
+    "portion": "100g (1회 분량)",
+    "calories": 30,
     "protein": 2.8,
     "carbs": 5.0,
     "fat": 0.3,
-    "fiber": 2.6,
-    "tag": "설포라판 해독의 왕",
-    "detailed_benefit": {
-      "tagline": "모든 헬스 식단에 빠지지 않는 이유! 간 해독과 에스트로겐 밸런스 조절의 핵심 채소",
-      "points": [
-        "핵심 항암·항염 성분인 '설포라판(Sulforaphane)'이 간의 2단계 해독 효소를 자극해 체내 독소 배출",
-        "인돌-3-카비놀 성분이 불필요한 에스트로겐 수치를 조절하여 하체 부종과 허벅지 셀룰라이트 축적 방지",
-        "채소임에도 100g당 2.8g의 고단백질과 레몬의 2배에 달하는 풍부한 비타민C 함유",
-        "칼슘과 비타민K가 풍부하여 골격계를 단단하게 보호하고 관절염 예방"
-      ]
-    },
-    "storage": "밀폐용기에 키친타월을 깔고 송이가 위로 향하게 냉장 보관 (5일). 살짝 쪄서 냉동 보관 (3개월).",
-    "storage_prep": {
-      "method": "한입 크기로 잘라 끓는 물에 소금 넣고 40초만 데친 후 찬물 헹굼 후 냉동 (3개월)",
-      "tip": "물에 삶으면 수용성 비타민이 파괴되므로 찜기에 3분간 찌거나 전자레인지에 물 살짝 뿌려 2분 데우는 것을 권장"
-    },
-    "synergy_reason": "닭가슴살 및 소고기 우둔살과 결합하면 보디빌딩의 정석 식단으로 흡수율과 해독 능력이 극대화됩니다.",
-    "synergy_ids": [
-      "protein_chicken_breast",
-      "protein_beef_round",
-      "carb_sweet_potato",
-      "fat_olive_oil",
-      "protein_flounder",
-      "protein_tempeh",
-      "fat_brazil_nut"
-    ],
-    "market_product": "국내산 친환경 무농약 브로콜리 2입",
-    "price": 3800,
-    "market_spec": "신선 브로콜리 2개입",
-    "coupang_url": "https://link.coupang.com/a/bW6zc7",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave_steam",
-      "mode_badge": "⚡ 렌지 2분 스팀 찜",
-      "night_prep": "한입 크기로 툭툭 썰어 통에 담기 (물 1스푼 톡톡)",
-      "lunch_action": "전자레인지 돌릴 때 뚜껑 덮으면 자체 수분으로 달콤촉촉 갓 찐 양배추/채소 완성!"
-    }
+    "fiber": 3.0,
+    "market_product": "브로콜리 (냉동) (1kg × 2개)",
+    "price": 8590,
+    "market_spec": "매일 점심·저녁 (100g × 2끼)",
+    "coupang_url": "https://link.coupang.com/a/bW6zfE"
   },
   {
     "id": "veg_cauliflower",
@@ -598,64 +531,16 @@
     "category_name": "신선 채소",
     "name": "방울토마토",
     "icon": "🍅",
-    "portion": "100g (약 7~8알)",
-    "calories": 18,
-    "protein": 0.9,
-    "carbs": 3.9,
+    "portion": "150g (1회 분량)",
+    "calories": 30,
+    "protein": 1.5,
+    "carbs": 6.0,
     "fat": 0.2,
-    "fiber": 1.4,
-    "tag": "리코펜 항산화",
-    "detailed_benefit": {
-      "tagline": "의사를 멀어지게 하는 붉은 보약, 지방 분해와 소화를 돕는 뷰티 푸드",
-      "points": [
-        "붉은 색소 성분인 '리코펜(Lycopene)'의 항산화 능력이 비타민E의 100배로 유해 활성산소 강력 제거",
-        "풍부한 유기산(사과산, 구연산)이 위액 분비를 촉진해 육류 단백질의 소화 흡수를 돕고 젖산 분해",
-        "루틴(Rutin) 성분이 혈관 벽을 튼튼하게 만들어 혈압을 안정시키고 모세혈관 건강 유지",
-        "한 알씩 간편하게 집어먹을 수 있어 다이어트 중 달콤한 간식이나 과일이 당길 때 최고의 대체재"
-      ]
-    },
-    "storage": "꼭지를 떼어내고 세척 후 물기를 닦아 키친타월 깐 밀폐용기에 냉장 보관 (7~10일).",
-    "storage_prep": {
-      "method": "꼭지를 즉시 제거하고 키친타월을 깐 밀폐용기에 냉장 보관 (7~10일)",
-      "tip": "올리브유에 살짝 구워 먹으면 지용성 리코펜의 체내 흡수율이 생으로 먹을 때보다 최대 4배 이상 폭증"
-    },
-    "synergy_reason": "토마토의 지용성 리코펜은 올리브유·바질과 함께 섭취 시 체내 흡수율이 4.4배 증가하고 세포 산화를 강력 억제합니다.",
-    "synergy_ids": [
-      "fat_olive_oil",
-      "fat_avocado",
-      "protein_eggs",
-      "protein_chicken_breast",
-      "carb_whole_bread",
-      "veg_basil",
-      "veg_lettuce",
-      "veg_cucumber",
-      "protein_beef_tenderloin",
-      "protein_salmon",
-      "protein_shrimp",
-      "protein_light_tuna",
-      "protein_soft_tofu",
-      "veg_arugula",
-      "protein_egg_whites",
-      "veg_frillice",
-      "protein_mackerel",
-      "protein_cottage_cheese",
-      "protein_ricotta",
-      "protein_lentil",
-      "carb_whole_pasta",
-      "carb_quinoa",
-      "fat_pistachio"
-    ],
-    "market_product": "곰곰 GAP 인증 대추방울토마토 750g",
-    "price": 6900,
-    "market_spec": "리코펜 항산화 방울토마토 750g (약 7회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6Bd8",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "raw",
-      "mode_badge": "🥗 비가열 신선",
-      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
-      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
-    }
+    "fiber": 2.0,
+    "market_product": "대추 방울토마토 (1kg)",
+    "price": 7570,
+    "market_spec": "매일 점심 (150g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zhG"
   },
   {
     "id": "veg_ripe_tomato",
@@ -1136,93 +1021,19 @@
   {
     "id": "protein_chicken_breast",
     "category": "protein",
-    "category_name": "신선 단백질",
+    "category_name": "순수 단백질",
     "name": "닭가슴살",
     "icon": "🍗",
-    "portion": "100g (1팩)",
-    "calories": 115,
-    "protein": 23.0,
+    "portion": "200g (1회 분량)",
+    "calories": 220,
+    "protein": 46.0,
     "carbs": 0.0,
-    "fat": 1.5,
+    "fat": 3.0,
     "fiber": 0.0,
-    "tag": "순수 고단백",
-    "detailed_benefit": {
-      "tagline": "체지방 컷팅 및 근손실 방지의 절대 강자",
-      "points": [
-        "100g당 23g의 순수 동물성 단백질 함유, 생체 흡수율(BV)이 80 이상으로 매우 우수",
-        "필수 분지쇄 아미노산(BCAA·류신)이 풍부하여 운동 후 근육 합성(MPS)을 신속히 트리거",
-        "식사성 열발생효과(TEF)가 높아 섭취한 칼로리의 약 20~30%가 소화 과정에서 자연 소모",
-        "지방 1.5g 미만, 당류 0g으로 불필요한 인슐린 분비 없이 체지방 분해 상태를 지속 유지"
-      ]
-    },
-    "storage": "냉동실(-18℃ 이하) 밀폐 보관시 최대 6개월. 먹기 전날 냉장 해동 후 1분 30초 데우기.",
-    "storage_prep": {
-      "method": "냉동실(-18℃ 이하) 밀폐 보관시 최대 6개월 신선도 유지",
-      "tip": "먹기 전날 냉장실 자연 해동 후 전자레인지 1분 30초 또는 끓는 물에 팩째 3분 중탕하면 퍽퍽하지 않고 촉촉함 극대화"
-    },
-    "synergy_reason": "복합 탄수화물(고구마·현미) 및 식이섬유 채소와 함께 섭취 시 아미노산 흡수가 극대화됩니다.",
-    "synergy_ids": [
-      "carb_sweet_potato",
-      "carb_pumpkin",
-      "carb_brown_rice",
-      "fat_avocado",
-      "veg_frillice",
-      "veg_tomato",
-      "veg_cabbage",
-      "veg_red_cabbage",
-      "veg_lettuce",
-      "veg_romaine",
-      "veg_kale",
-      "veg_spinach",
-      "veg_bokchoy",
-      "veg_broccoli",
-      "veg_cauliflower",
-      "veg_paprika",
-      "veg_cucumber",
-      "veg_ripe_tomato",
-      "veg_celery",
-      "veg_carrot",
-      "veg_onion",
-      "veg_green_onion",
-      "veg_king_oyster",
-      "veg_button_mushrooms",
-      "carb_boiled_potato",
-      "carb_whole_bread",
-      "carb_chickpeas",
-      "carb_apple",
-      "fat_olive_oil",
-      "veg_butterhead",
-      "veg_radicchio",
-      "veg_shiitake",
-      "veg_beet",
-      "veg_lettuce_korean",
-      "veg_perilla",
-      "veg_chicory",
-      "veg_chard",
-      "veg_mustard",
-      "veg_basil",
-      "veg_sprouts",
-      "protein_lentil",
-      "carb_whole_pasta",
-      "carb_oat_rice",
-      "carb_grapefruit",
-      "carb_orange",
-      "carb_corn",
-      "fat_cashew",
-      "fat_sunflower_seed",
-      "fat_mct_oil"
-    ],
-    "market_product": "하림 자연실록 냉동 닭가슴살 1kg (개별급속동결)",
-    "price": 8900,
-    "market_spec": "100g 개별 소분 팩",
-    "coupang_url": "https://link.coupang.com/a/bW5yU9",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "냉동/조리팩 뜯어서 도시락통에 그대로 툭 투하",
-      "lunch_action": "도시락 뚜껑 덮고 전자레인지 2분 30초 돌리면 따끈촉촉 완성"
-    }
+    "market_product": "하림 수비드 닭가슴살 오리지널 (1.2kg)",
+    "price": 23900,
+    "market_spec": "월·목 점심, 화·토 저녁 (한 끼 200g)",
+    "coupang_url": "https://link.coupang.com/a/bW6y4O"
   },
   {
     "id": "protein_chicken_tenderloin",
@@ -1392,128 +1203,36 @@
   {
     "id": "protein_pork_tenderloin",
     "category": "protein",
-    "category_name": "신선 단백질",
-    "name": "돼지고기 안심",
-    "icon": "🥩",
-    "portion": "100g (1회)",
-    "calories": 120,
-    "protein": 22.5,
+    "category_name": "순수 단백질",
+    "name": "돼지안심",
+    "icon": "🍖",
+    "portion": "200g (1회 분량)",
+    "calories": 230,
+    "protein": 44.0,
     "carbs": 0.0,
-    "fat": 3.0,
+    "fat": 5.0,
     "fiber": 0.0,
-    "tag": "비타민B1의 왕",
-    "detailed_benefit": {
-      "tagline": "탄수화물 대사를 돌려 젖산을 없애주는 천연 피로 회복제",
-      "points": [
-        "돼지고기 부위 중 지방이 3% 미만으로 닭가슴살과 거의 동일한 초고단백 저칼로리 프로필",
-        "비타민 B1(티아민) 함량이 소고기의 10배로, 섭취한 탄수화물을 에너지로 전환시켜 만성 피로 타파",
-        "근육 내 젖산 축적을 막아 운동 후 회복 속도를 2배 이상 단축",
-        "필수 아미노산 스펙트럼이 풍부하고 육질이 부드러워 소화력이 약한 사람에게 최적"
-      ]
-    },
-    "storage": "1회분(100g)씩 랩핑 후 냉동실 보관 (3개월 권장).",
-    "storage_prep": {
-      "method": "1회분(100g)씩 랩핑 후 냉동실 보관 (3개월 권장)",
-      "tip": "너무 오래 구우면 수분이 빠져 퍽퍽해지므로 중약불에서 겉면을 굽고 호일로 3분 레스팅하면 촉촉한 육즙 유지"
-    },
-    "synergy_reason": "돼지고기의 비타민B1과 대파·양파의 알리신이 결합해 '알리티아민'을 합성하여 피로물질을 분해하고 흡수율을 10배 높입니다.",
-    "synergy_ids": [
-      "carb_sweet_potato",
-      "carb_brown_rice",
-      "fat_olive_oil",
-      "veg_lettuce_korean",
-      "veg_paprika",
-      "veg_onion",
-      "veg_green_onion",
-      "veg_mustard",
-      "veg_cabbage",
-      "carb_konjac_rice",
-      "veg_eggplant",
-      "carb_kiwi"
-    ],
-    "market_product": "국내산 한돈 무항생제 안심 400g",
-    "price": 6500,
-    "market_spec": "초저지방 고단백 400g (4회분)",
-    "coupang_url": "",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "one_pan",
-      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
-      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
-      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
-    }
+    "market_product": "돼지 안심살 소포장 식단고기 (200g × 10팩)",
+    "price": 27800,
+    "market_spec": "금 점심, 수·일 저녁 (한 끼 200g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zdC"
   },
   {
     "id": "protein_eggs",
     "category": "protein",
-    "category_name": "신선 단백질",
+    "category_name": "순수 단백질",
     "name": "달걀",
     "icon": "🥚",
-    "portion": "2알 (약 100g)",
+    "portion": "100g (대란 2알)",
     "calories": 140,
-    "protein": 13.0,
+    "protein": 12.5,
     "carbs": 1.0,
     "fat": 9.5,
     "fiber": 0.0,
-    "tag": "완전 단백질",
-    "detailed_benefit": {
-      "tagline": "인체 이용률 100%의 천연 멀티 영양소 캡슐",
-      "points": [
-        "단백질 생물가(BV) 100점 만점으로 모든 식품 중 체내 단백질 합성 전환율이 가장 높음",
-        "노른자의 콜린(Choline)과 레시틴 성분이 뇌 세포막을 구성하고 간의 지방 대사를 촉진",
-        "루테인과 지아잔틴이 풍부하여 장시간 스마트폰·모니터를 보는 현대인의 시력 보호",
-        "풍부한 지용성 비타민(A, D, E)과 양질의 지방산이 호르몬 밸런스를 건강하게 지지"
-      ]
-    },
-    "storage": "냉장고 안쪽 신선실에 둥근 부분이 위로 가도록 보관 (3~4주).",
-    "storage_prep": {
-      "method": "생란은 냉장고 안쪽 신선실에 둥근 부분이 위로 가도록 보관 (3~4주)",
-      "tip": "구운란은 상온 그늘진 곳에 2주 보관 가능하며, 외출 시 2알씩 챙기면 최고의 휴대용 고단백 간식"
-    },
-    "synergy_reason": "오트밀이나 통밀빵과 곁들이면 탄수화물과 단백질이 완벽한 3:1 비율을 형성하여 식후 4시간 이상 든든한 포만감을 제공합니다.",
-    "synergy_ids": [
-      "carb_oatmeal",
-      "carb_whole_bread",
-      "carb_banana",
-      "fat_avocado",
-      "veg_tomato",
-      "veg_paprika",
-      "veg_red_cabbage",
-      "veg_lettuce",
-      "veg_romaine",
-      "veg_kale",
-      "veg_spinach",
-      "veg_cauliflower",
-      "veg_ripe_tomato",
-      "veg_carrot",
-      "veg_green_onion",
-      "veg_zucchini",
-      "veg_enoki",
-      "protein_light_tuna",
-      "protein_natto",
-      "carb_boiled_potato",
-      "fat_perilla_oil",
-      "veg_chard",
-      "veg_basil",
-      "protein_crab",
-      "carb_buckwheat_noodles",
-      "carb_oat_rice",
-      "carb_corn",
-      "carb_rye_bread",
-      "fat_brazil_nut",
-      "fat_ghee"
-    ],
-    "market_product": "곰곰 무항생제 신선 대란 10구",
-    "price": 4200,
-    "market_spec": "10구 1팩 (1인분 2알씩 5회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6aB1",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "삶은 계란 껍질 까서 도시락통에 툭 넣기",
-      "lunch_action": "차갑게 먹거나 렌지 20초 살짝 데워 섭취"
-    }
+    "market_product": "곰곰 무항생제 대란 30구 (2판)",
+    "price": 16740,
+    "market_spec": "아침 3개, 오후 간식 2개 (하루 5개)",
+    "coupang_url": "https://link.coupang.com/a/bW6zeD"
   },
   {
     "id": "protein_salmon",
@@ -1915,111 +1634,36 @@
   {
     "id": "protein_soymilk",
     "category": "protein",
-    "category_name": "신선 단백질",
+    "category_name": "유제품 대체",
     "name": "두유",
     "icon": "🥛",
-    "portion": "1팩 (190ml)",
+    "portion": "200ml (1팩)",
     "calories": 95,
-    "protein": 12.0,
-    "carbs": 3.0,
-    "fat": 3.5,
-    "fiber": 2.0,
-    "tag": "무가당 클린팩",
-    "detailed_benefit": {
-      "tagline": "바쁜 직장인·다이어터를 위한 0초 컷팅 액상 식물성 단백질",
-      "points": [
-        "당류 1g 미만의 무가당 설계로 혈당 스파이크(Blood Sugar Spike)를 완벽히 차단",
-        "1팩당 식물성 대두 단백질 12g을 액상 형태로 빠르게 공급하여 근육 아미노산 풀 보충",
-        "대두 사포닌 성분이 장내 융모가 커지는 것을 억제해 지방의 체내 흡수를 지연",
-        "우유를 못 마시는 유당불내증 환자도 속 쓰림이나 복부 팽만 없이 편안하게 음용 가능"
-      ]
-    },
-    "storage": "직사광선을 피한 서늘한 실온 보관 (제조일로부터 6개월).",
-    "storage_prep": {
-      "method": "직사광선을 피한 서늘한 실온 보관 (제조일로부터 6개월)",
-      "tip": "오트밀에 부어 전자레인지 1분 30초 돌리면 부드러운 고단백 오트밀 죽 완성"
-    },
-    "synergy_reason": "오트밀이나 바나나와 갈아 마시면 탄수화물과 단백질이 즉시 공급되어 운동 전후 골든타임 식단으로 이상적입니다.",
-    "synergy_ids": [
-      "carb_oatmeal",
-      "carb_banana",
-      "carb_sweet_potato",
-      "fat_almond",
-      "veg_frillice",
-      "veg_kale",
-      "carb_blueberries",
-      "fat_walnut",
-      "fat_chia_seed",
-      "fat_pecan"
-    ],
-    "market_product": "매일두유 99.9 무가당 고단백 190ml 16팩",
-    "price": 11900,
-    "market_spec": "190ml 1팩당 단백질 12g (16회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6fN4",
-    "market_badge": "🚀 로켓배송",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
-      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
-    }
+    "protein": 9.0,
+    "carbs": 4.0,
+    "fat": 5.0,
+    "fiber": 1.0,
+    "market_product": "매일두유 99.9 (950ml × 6개)",
+    "price": 16900,
+    "market_spec": "아침 (오트밀 볼 200ml)",
+    "coupang_url": "https://link.coupang.com/a/bW6zkJ"
   },
   {
     "id": "protein_greek_yogurt",
     "category": "protein",
-    "category_name": "신선 단백질",
-    "name": "그릭요거트",
+    "category_name": "유제품 대체",
+    "name": "락토프리 그릭요거트",
     "icon": "🥣",
-    "portion": "100g (1컵)",
-    "calories": 110,
+    "portion": "150g (1회 분량)",
+    "calories": 140,
     "protein": 11.0,
-    "carbs": 4.0,
-    "fat": 5.0,
+    "carbs": 6.0,
+    "fat": 8.0,
     "fiber": 0.0,
-    "tag": "유청분리 농축단백",
-    "detailed_benefit": {
-      "tagline": "디저트 욕구를 채우며 장 건강까지 챙기는 꾸덕한 단백질",
-      "points": [
-        "유청(Whey)을 걸러내어 일반 요거트 대비 단백질 밀도가 2~3배 높고 당분은 절반 이하",
-        "수십억 마리의 생 프로바이오틱스 유산균이 다이어트 중 생기기 쉬운 변비와 복부 팽만 해결",
-        "꾸덕하고 묵직한 크림치즈 질감으로 다이어트 중 찾아오는 달콤한 디저트 갈망을 완벽 대체",
-        "유당이 대부분 빠져나가 우유를 소화하지 못하는 사람도 속 편하게 섭취 가능"
-      ]
-    },
-    "storage": "냉장 보관 (0~5℃, 유통기한 내 밀폐 보관).",
-    "storage_prep": {
-      "method": "냉장 보관 (0~5℃, 유통기한 내 밀폐 보관)",
-      "tip": "위에 물(유청)이 생기면 버리거나 저어 먹으면 되며, 아몬드 슬라이스나 바나나 반 개를 얹으면 완벽한 카페식 보울 완성"
-    },
-    "synergy_reason": "블루베리, 바나나, 아몬드와 곁들이면 항산화 물질과 건강한 지방이 유산균과 시너지를 냅니다.",
-    "synergy_ids": [
-      "carb_banana",
-      "carb_oatmeal",
-      "carb_whole_bread",
-      "fat_almond",
-      "carb_blueberries",
-      "carb_boiled_potato",
-      "carb_apple",
-      "fat_walnut",
-      "fat_chia_seed",
-      "carb_persimmon",
-      "carb_kiwi",
-      "fat_cashew",
-      "fat_pistachio",
-      "fat_pumpkin_seed",
-      "fat_cacao_nibs"
-    ],
-    "market_product": "요즘(YOZM) 플레인 그릭요거트 100g 2입",
-    "price": 7900,
-    "market_spec": "무가당 꾸덕 그릭 100g 2컵",
-    "coupang_url": "https://link.coupang.com/a/bW6gP5",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "raw",
-      "mode_badge": "🥗 비가열 신선",
-      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
-      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
-    }
+    "market_product": "불가리스 락토프리 그릭요거트 (400g × 3개)",
+    "price": 10060,
+    "market_spec": "매일 아침 (150g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zlK"
   },
   {
     "id": "carb_sweet_potato",
@@ -2027,52 +1671,16 @@
     "category_name": "복합 탄수화물",
     "name": "고구마",
     "icon": "🍠",
-    "portion": "130g (중간 크기 1개)",
-    "calories": 160,
-    "protein": 2.0,
-    "carbs": 36.0,
+    "portion": "150g (중간 크기 1개)",
+    "calories": 185,
+    "protein": 2.3,
+    "carbs": 41.5,
     "fat": 0.3,
-    "fiber": 3.8,
-    "tag": "저GI 복합탄수",
-    "detailed_benefit": {
-      "tagline": "천천히 흡수되어 4시간 동안 안정적인 에너지를 내는 슈퍼 탄수화물",
-      "points": [
-        "혈당지수(GI 55 이하)가 낮아 식후 혈당이 급격히 치솟지 않고 완만하게 상승하여 인슐린 스파이크 방지",
-        "껍질에 풍부한 고유 성분 '얄라핀(Jalapin)'이 장 청소를 돕고 숙변 배출을 촉진",
-        "체내 나트륨을 배출해 붓기를 빼주는 칼륨(Potassium) 함량이 바나나보다 풍부",
-        "베타카로틴 성분이 체내에서 비타민A로 전환되어 다이어트 중 피부 탄력 저하 방지"
-      ]
-    },
-    "storage": "냉장 보관 절대 금지(냉해로 썩음). 통풍 잘되는 상온(12~15℃) 보관. 쪄서 냉동시 3개월.",
-    "storage_prep": {
-      "method": "생고구마는 통풍 잘되는 상온(12~15℃) 보관. 찐 후에는 1개씩 랩핑하여 냉동 보관 (3개월)",
-      "tip": "삶거나 찐 고구마가 군고구마보다 혈당지수(GI)가 훨씬 낮으므로 찜기에 쪄서 얼려두고 하나씩 꺼내 먹는 것을 권장"
-    },
-    "synergy_reason": "닭가슴살의 단백질과 고구마의 복합 탄수화물이 만나면 단백질 합성을 위한 이상적인 호르몬 환경을 구축합니다.",
-    "synergy_ids": [
-      "protein_chicken_breast",
-      "protein_beef_round",
-      "protein_pork_tenderloin",
-      "veg_frillice",
-      "fat_almond",
-      "veg_broccoli",
-      "veg_paprika",
-      "veg_cucumber",
-      "protein_chicken_tenderloin",
-      "protein_salmon",
-      "protein_soymilk"
-    ],
-    "market_product": "곰곰 해남 꿀 밤고구마 1kg",
-    "price": 6900,
-    "market_spec": "다이어트용 중소과 1kg (약 7~8개)",
-    "coupang_url": "https://link.coupang.com/a/bW6hR6",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
-      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
-    }
+    "fiber": 4.0,
+    "market_product": "국내산 꿀밤고구마 (1.5kg)",
+    "price": 9900,
+    "market_spec": "점심·저녁 탄수화물 (150g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zqP"
   },
   {
     "id": "carb_pumpkin",
@@ -2185,65 +1793,12 @@
     "calories": 190,
     "protein": 4.0,
     "carbs": 40.0,
-    "fat": 1.2,
+    "fat": 1.5,
     "fiber": 3.0,
-    "tag": "GABA 성분 풍부",
-    "detailed_benefit": {
-      "tagline": "뇌 신경을 안정시키고 지방 축적을 막는 똑똑한 통곡물 밥",
-      "points": [
-        "현미가 발아하는 과정에서 뇌 신경전달물질이자 억제성 아미노산인 GABA가 5배 이상 급증하여 식욕 안정",
-        "백미 대비 식이섬유 3배, 비타민B군 4배로 섭취한 당질이 지방으로 전환되지 않고 에너지로 소비되도록 유도",
-        "쌀겨와 쌀눈의 미네랄이 살아있어 식후 인슐린 감수성을 개선하고 혈당 스파이크 차단",
-        "오래 씹어야 하는 특성상 저작 운동을 유도해 뇌의 포만중추를 자연스럽게 자극"
-      ]
-    },
-    "storage": "130g씩 소분 용기에 담아 급속 냉동 (3개월). 렌지 2분 데우면 갓 지은 밥맛.",
-    "storage_prep": {
-      "method": "지은 밥을 130g씩 소분 용기에 담아 급속 냉동 (3개월)",
-      "tip": "냉동실에서 꺼내 전자레인지에 물 한 방울 뿌려 2분 돌리면 갓 지은 밥처럼 찰지고 부드러움 복원"
-    },
-    "synergy_reason": "모둠 쌈채소와 소고기 우둔살을 싸 먹으면 한국인 입맛에 가장 잘 맞으면서도 포만감이 오래갑니다.",
-    "synergy_ids": [
-      "protein_beef_round",
-      "protein_pork_tenderloin",
-      "protein_tofu",
-      "veg_lettuce_korean",
-      "fat_perilla_oil",
-      "veg_cabbage",
-      "veg_green_onion",
-      "veg_zucchini",
-      "veg_king_oyster",
-      "veg_enoki",
-      "veg_oyster_mushrooms",
-      "protein_chicken_breast",
-      "protein_salmon",
-      "protein_cod_fillet",
-      "protein_squid",
-      "protein_light_tuna",
-      "protein_natto",
-      "veg_baechu",
-      "veg_shiitake",
-      "veg_mustard",
-      "veg_sprouts",
-      "protein_duck",
-      "protein_beef_eye_round",
-      "protein_pork_loin",
-      "protein_mackerel",
-      "protein_spanish_mackerel",
-      "protein_tempeh",
-      "fat_sesame_oil"
-    ],
-    "market_product": "햇반 발아현미밥 130g 6개입",
-    "price": 7800,
-    "market_spec": "소용량 130g 다이어트팩 (6개입)",
-    "coupang_url": "https://link.coupang.com/a/bW6kU8",
-    "market_badge": "🚀 로켓배송",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "냉동밥/군고구마 1개 도시락통에 바로 툭 넣기",
-      "lunch_action": "전자레인지 함께 돌리면 갓 지은 밥처럼 쫀득하고 따끈하게 완성"
-    }
+    "market_product": "햇반 발아현미밥 130g (24개입)",
+    "price": 24900,
+    "market_spec": "점심·저녁 든든한 주식 (130~210g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zrQ"
   },
   {
     "id": "carb_konjac_rice",
@@ -2298,59 +1853,17 @@
     "category": "carb",
     "category_name": "복합 탄수화물",
     "name": "오트밀",
-    "icon": "🌾",
-    "portion": "40g (약 4~5큰술)",
-    "calories": 150,
-    "protein": 5.0,
-    "carbs": 26.0,
-    "fat": 2.5,
-    "fiber": 4.0,
-    "tag": "베타글루칸 포만감",
-    "detailed_benefit": {
-      "tagline": "물과 만나면 젤 형태로 부풀어 장시간 배고픔을 잊게 하는 귀리",
-      "points": [
-        "핵심 수용성 식이섬유인 베타글루칸(Beta-Glucan)이 위장에서 수분을 흡수해 3~4배 팽창하며 극강의 포만감 유지",
-        "담즙산을 흡착해 체외로 배출시킴으로써 혈중 나쁜 LDL 콜레스테롤 수치를 유의미하게 감소",
-        "곡물 중 단백질 비율이 가장 높아(100g당 13g) 탄수화물 섭취와 동시에 식물성 단백질 공급",
-        "조리가 필요 없어 끓는 물이나 두유를 부어 2분 만에 따뜻한 죽으로 섭취 가능"
-      ]
-    },
-    "storage": "밀폐용기에 담아 건조하고 서늘한 찬장에 실온 보관 (1년).",
-    "storage_prep": {
-      "method": "밀폐용기에 담아 건조하고 서늘한 찬장에 실온 보관 (1년)",
-      "tip": "두유나 아몬드밀크를 자작하게 붓고 전자레인지 1분 30초 돌려 계란 1알을 풀면 3분 완성 고단백 오트밀 계란죽"
-    },
-    "synergy_reason": "달걀 2알이나 무가당 두유와 조합하면 소화 흡수 시간이 완벽히 밸런싱되어 오전 내내 든든합니다.",
-    "synergy_ids": [
-      "protein_eggs",
-      "protein_soymilk",
-      "protein_greek_yogurt",
-      "fat_almond",
-      "carb_banana",
-      "protein_tofu",
-      "carb_blueberries",
-      "carb_apple",
-      "fat_walnut",
-      "fat_peanut_butter",
-      "protein_egg_whites",
-      "fat_chia_seed",
-      "fat_pecan",
-      "fat_pumpkin_seed",
-      "fat_sunflower_seed",
-      "fat_cacao_nibs",
-      "fat_mct_oil"
-    ],
-    "market_product": "플라하반 오리지널 퀵오트밀 500g",
-    "price": 6200,
-    "market_spec": "3분 완성 롤드오츠 500g (약 12회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6mV9",
-    "market_badge": "🚀 로켓배송",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "도시락통에 1회분 기준량 툭 담아 냉장 보관",
-      "lunch_action": "점심에 전자레인지 1~2분 돌려 간편하게 섭취"
-    }
+    "icon": "🥣",
+    "portion": "50g (반 컵)",
+    "calories": 185,
+    "protein": 6.5,
+    "carbs": 33.0,
+    "fat": 3.0,
+    "fiber": 5.0,
+    "market_product": "퀘이커 퀵오트밀 (1kg)",
+    "price": 8900,
+    "market_spec": "아침 오트밀 볼 (50g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zpO"
   },
   {
     "id": "carb_whole_bread",
@@ -2418,52 +1931,16 @@
     "category_name": "복합 탄수화물",
     "name": "바나나",
     "icon": "🍌",
-    "portion": "1개 (중간 크기 약 100g)",
+    "portion": "100g (1개)",
     "calories": 90,
     "protein": 1.1,
     "carbs": 23.0,
     "fat": 0.2,
     "fiber": 2.6,
-    "tag": "운동 전후 천연 부스터",
-    "detailed_benefit": {
-      "tagline": "운동 전 즉각적인 에너지 공급과 붓기를 쏙 빼주는 천연 에너지원",
-      "points": [
-        "포도당, 과당, 자당이 조화롭게 들어있어 운동 전 섭취 시 체내 흡수가 빨라 즉각적인 파워 공급",
-        "칼륨이 450mg 이상 풍부하여 짠 음식을 먹은 다음 날 나트륨 배출 및 얼굴 붓기 제거에 즉효",
-        "신경 안정 호르몬인 세로토닌의 원료인 '트립토판(Tryptophan)'과 비타민 B6가 풍부해 다이어트 우울감 개선",
-        "위 점막을 보호하는 성분이 들어있어 공복에 먹어도 속 쓰림이 없고 소화가 매우 편안함"
-      ]
-    },
-    "storage": "상온 바나나 걸이에 걸어 보관. 껍질 벗겨 냉동 시 2개월.",
-    "storage_prep": {
-      "method": "상온 바나나 걸이에 걸어 보관. 장기 보관 시 껍질을 벗겨 깍둑썰기 후 냉동 (2개월)",
-      "tip": "갈색 반점(슈가스팟)이 올라왔을 때 항산화 성분이 가장 풍부하며, 얼린 바나나는 두유와 함께 갈면 천연 아이스크림 완성"
-    },
-    "synergy_reason": "그릭요거트나 무가당 두유와 함께 섭취하면 단백질과 빠른 탄수화물이 만나 운동 후 글리코겐 보충과 근육 합성을 극대화합니다.",
-    "synergy_ids": [
-      "protein_greek_yogurt",
-      "protein_soymilk",
-      "protein_eggs",
-      "fat_almond",
-      "carb_oatmeal",
-      "veg_kale",
-      "protein_soft_tofu",
-      "fat_walnut",
-      "fat_peanut_butter",
-      "fat_brazil_nut",
-      "fat_cacao_nibs"
-    ],
-    "market_product": "델몬트 고산지 바나나 1송이 (약 1kg)",
-    "price": 3900,
-    "market_spec": "운동 전후 천연 부스터 (약 5~6개)",
-    "coupang_url": "https://link.coupang.com/a/bW6qX2",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "raw",
-      "mode_badge": "🥗 비가열 신선",
-      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
-      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
-    }
+    "market_product": "돌 코리아 바나나 (1kg × 2개)",
+    "price": 6730,
+    "market_spec": "아침 1개, 오전 간식 1개 (하루 2개)",
+    "coupang_url": "https://link.coupang.com/a/bW6zjI"
   },
   {
     "id": "carb_chickpeas",
@@ -2618,56 +2095,18 @@
     "id": "fat_avocado",
     "category": "fat",
     "category_name": "건강한 지방",
-    "name": "아보카도",
+    "name": "아보카도 (냉동)",
     "icon": "🥑",
-    "portion": "반 개 (약 70g)",
+    "portion": "70g (반 개 분량)",
     "calories": 110,
     "protein": 1.4,
     "carbs": 6.0,
-    "fat": 10.5,
+    "fat": 10.0,
     "fiber": 4.5,
-    "tag": "착한 올레산 불포화지방",
-    "detailed_benefit": {
-      "tagline": "지방을 태우는 착한 지방, 숲속의 버터가 선사하는 고급 영양",
-      "points": [
-        "지방의 70% 이상이 단일불포화지방산인 '올레산(Oleic Acid)'으로 구성되어 나쁜 LDL 콜레스테롤 감소",
-        "다이어트 중 극단적 저지방 식사로 인해 발생하기 쉬운 탈모, 피부 건조, 생리불순 호르몬 불균형 방지",
-        "함께 섭취한 채소(토마토, 샐러드) 속 지용성 비타민(A, D, E, K) 흡수율을 최대 15배까지 촉진",
-        "탄수화물 함량이 매우 낮고 식이섬유가 4.5g에 달해 당류 걱정 없이 깊은 풍미와 든든함 제공"
-      ]
-    },
-    "storage": "진갈색으로 익으면 냉장 보관. 자른 단면에 레몬즙 발라 밀폐 냉장 (2일).",
-    "storage_prep": {
-      "method": "진갈색으로 익으면 냉장 보관. 반 개 보관 시 씨를 남겨두고 단면에 레몬즙을 발라 랩 밀착 냉장 (2일)",
-      "tip": "포크로 으깨어 소금 한 꼬집, 후추를 넣고 통밀빵 위에 얹으면 최고급 다이어트 과카몰리 오픈 샌드위치 완성"
-    },
-    "synergy_reason": "아보카도의 단일불포화지방산(올레산)은 당근과 토마토의 지용성 카로티노이드 성분을 체내에 완벽히 유화·흡수시킵니다.",
-    "synergy_ids": [
-      "protein_chicken_breast",
-      "protein_eggs",
-      "carb_whole_bread",
-      "veg_tomato",
-      "veg_frillice",
-      "veg_carrot",
-      "protein_salmon",
-      "protein_chicken_tenderloin",
-      "protein_shrimp",
-      "protein_crab",
-      "carb_quinoa",
-      "carb_grapefruit",
-      "carb_rye_bread"
-    ],
-    "market_product": "멕시코산 항공직송 아보카도 3입",
-    "price": 5900,
-    "market_spec": "올레산 불포화지방 3입 (반 개씩 6회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6sY3",
-    "market_badge": "🚀 로켓프레시",
-    "lunchbox_prep": {
-      "mode": "microwave",
-      "mode_badge": "⚡ 렌지 3분 원터치 해동",
-      "night_prep": "냉동 아보카도 큐브(or 껍질 벗겨 반 개) 툭 얹어두기",
-      "lunch_action": "오전에 자연 해동되어 버터처럼 부드럽게 쓱 비벼짐"
-    }
+    "market_product": "곰곰 냉동 아보카도 (500g)",
+    "price": 6900,
+    "market_spec": "매일 저녁 (70g)",
+    "coupang_url": "https://link.coupang.com/a/bW6ziH"
   },
   {
     "id": "fat_almond",
@@ -2675,51 +2114,16 @@
     "category_name": "건강한 지방",
     "name": "아몬드",
     "icon": "🌰",
-    "portion": "15알 (약 18g)",
-    "calories": 105,
-    "protein": 3.8,
-    "carbs": 3.8,
-    "fat": 9.0,
-    "fiber": 2.2,
-    "tag": "비타민E 항산화",
-    "detailed_benefit": {
-      "tagline": "다이어트 중 눈밑 떨림과 피부 노화를 막는 휴대용 슈퍼푸드",
-      "points": [
-        "강력한 항산화 물질인 알파-토코페롤(비타민E)이 풍부하여 유산소 운동 중 발생하는 활성산소로부터 세포막 보호",
-        "마그네슘(Magnesium)이 풍부하여 다이어트 중 흔히 겪는 눈밑 떨림, 근육 경련, 불면증 완화",
-        "견과류의 불포화지방과 섬유질이 위장 비움 시간을 늦춰 식간 폭식 욕구를 완벽히 잠재움",
-        "단단한 저작감으로 씹는 욕구를 해소해주어 스트레스성 식이장애 완화에 큰 도움"
-      ]
-    },
-    "storage": "공기 접촉을 차단하는 밀폐용기에 담아 냉동실 보관 (1년 바삭).",
-    "storage_prep": {
-      "method": "공기 접촉을 차단하는 밀폐용기에 담아 냉동실 보관 (1년)",
-      "tip": "하루 15알(손바닥 1줌)을 작은 지퍼백에 챙겨 다니면 오후 3~4시 나른하고 허기질 때 최고의 건강 간식"
-    },
-    "synergy_reason": "그릭요거트의 단백질에 아몬드의 바삭한 식감과 비타민E가 더해져 영양과 맛의 밸런스를 완벽하게 맞춥니다.",
-    "synergy_ids": [
-      "protein_greek_yogurt",
-      "carb_oatmeal",
-      "carb_banana",
-      "carb_sweet_potato",
-      "veg_frillice",
-      "veg_kale",
-      "protein_soymilk",
-      "carb_blueberries",
-      "carb_persimmon",
-      "carb_orange"
-    ],
-    "market_product": "곰곰 구운 아몬드 300g (지퍼백)",
-    "price": 4900,
-    "market_spec": "비타민E 항산화 300g (하루 15알 16회분)",
-    "coupang_url": "https://link.coupang.com/a/bW6uZ4",
-    "market_badge": "🚀 로켓배송",
-    "lunchbox_prep": {
-      "mode": "raw",
-      "mode_badge": "🥗 비가열 신선",
-      "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
-      "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
-    }
+    "portion": "20g (한 줌 약 18~20알)",
+    "calories": 120,
+    "protein": 4.2,
+    "carbs": 4.0,
+    "fat": 10.0,
+    "fiber": 2.5,
+    "market_product": "투데이넛 구운아몬드 (300g)",
+    "price": 7040,
+    "market_spec": "오전 간식 (20g)",
+    "coupang_url": "https://link.coupang.com/a/bW6znM"
   },
   {
     "id": "fat_walnut",
@@ -3985,48 +3389,19 @@
   {
     "id": "protein_beef_blade",
     "category": "protein",
-    "category_name": "신선 단백질",
+    "category_name": "순수 단백질",
     "name": "소고기 부채살",
     "icon": "🥩",
-    "portion": "120g (1장)",
-    "calories": 185,
-    "protein": 23.5,
+    "portion": "200g (1회 분량)",
+    "calories": 280,
+    "protein": 42.0,
     "carbs": 0.0,
-    "fat": 9.5,
+    "fat": 12.0,
     "fiber": 0.0,
-    "tag": "가운데 힘줄 콜라겐",
-    "detailed_benefit": {
-      "tagline": "쫀득한 천연 콜라겐 힘줄과 풍부한 육즙의 가성비 스테이크 단백질",
-      "points": [
-        "가운데 박힌 힘줄 부위에 천연 젤라틴과 콜라겐이 농축되어 관절과 피부 탄력 강화",
-        "등심/안심 대비 지방 함량이 낮으면서도 마블링이 적당해 부드러운 식감 유지",
-        "아연과 비타민 B12가 풍부하여 면역 세포 재생과 활력 대사 촉진",
-        "아스파라거스나 버섯과 함께 구우면 레스토랑 수준의 다이어트 만찬 완성"
-      ]
-    },
-    "storage": "냉장 3일 / 냉동 3개월",
-    "storage_prep": {
-      "method": "올리브유와 로즈마리/소금으로 가볍게 마리네이드하여 밀폐 보관",
-      "tip": "굽기 전 실온에 15분간 꺼내두어 냉기를 뺀 뒤 팬프라잉하면 육즙 손실 방지"
-    },
-    "synergy_reason": "부채살의 풍부한 단백질은 아스파라거스의 아스파라긴산과 만나 피로 회복을 극대화합니다.",
-    "synergy_ids": [
-      "veg_asparagus",
-      "veg_shiitake",
-      "fat_olive_oil",
-      "carb_boiled_potato"
-    ],
-    "market_product": "미국산 초이스 부채살 스테이크 300g",
-    "price": 11500,
-    "market_spec": "로켓프레시 냉장",
-    "coupang_url": "https://link.coupang.com/a/beef_blade_fresh",
-    "market_badge": "로켓프레시",
-    "lunchbox_prep": {
-      "mode": "one_pan",
-      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
-      "night_prep": "팬에 소금/후추 톡 뿌려 3분 칙 구워 통에 담기",
-      "lunch_action": "렌지 30초~1분 데워 부드러운 육즙 즐기기"
-    }
+    "market_product": "명장의 맛 시즈닝 부채살 스테이크 (200g × 3개)",
+    "price": 26610,
+    "market_spec": "화·토 점심, 목 저녁 (한 끼 200g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zcB"
   },
   {
     "id": "protein_pork_loin",
@@ -4077,48 +3452,19 @@
   {
     "id": "protein_mackerel",
     "category": "protein",
-    "category_name": "신선 단백질",
+    "category_name": "순수 단백질",
     "name": "고등어",
     "icon": "🐟",
-    "portion": "100g (반 토막)",
-    "calories": 180,
-    "protein": 20.0,
+    "portion": "140g (2개 분량)",
+    "calories": 290,
+    "protein": 28.0,
     "carbs": 0.0,
-    "fat": 11.0,
+    "fat": 19.0,
     "fiber": 0.0,
-    "tag": "DHA EPA 오메가3",
-    "detailed_benefit": {
-      "tagline": "바다의 보약, 뇌혈관을 정화하고 내장지방을 분해하는 오메가-3의 황제",
-      "points": [
-        "혈중 중성지방 수치를 낮추고 지방간 생성을 막는 EPA와 뇌신경을 활성화하는 DHA 풍부",
-        "양질의 고단백질과 비타민 D가 풍부하여 뼈 건강과 기초대사량 유지 지원",
-        "풍부한 셀레늄이 세포 노화를 막고 체내 중금속 배출 가속화",
-        "식물성 식이섬유가 풍부한 샐러드나 토마토와 결합 시 산패 방지 및 포만감 극대화"
-      ]
-    },
-    "storage": "냉동 6개월 (개별 진공)",
-    "storage_prep": {
-      "method": "개별 진공팩 그대로 냉동 보관하며 조리 전날 냉장 해동",
-      "tip": "에어프라이어 190도 12분 굽고 레몬즙을 뿌리면 비린내 없이 겉바속촉 완성"
-    },
-    "synergy_reason": "고등어의 오메가-3 불포화지방은 토마토와 라디치오의 항산화제와 만나 체내 산패가 완벽 방어됩니다.",
-    "synergy_ids": [
-      "veg_tomato",
-      "veg_radicchio",
-      "carb_brown_rice",
-      "veg_cabbage"
-    ],
-    "market_product": "노르웨이 순살 자반 고등어 필렛 800g",
-    "price": 10900,
-    "market_spec": "로켓프레시 개별가시제거",
-    "coupang_url": "https://link.coupang.com/a/mackerel_fresh",
-    "market_badge": "로켓프레시",
-    "lunchbox_prep": {
-      "mode": "one_pan",
-      "mode_badge": "🍳 원팬 5분 칙 굽기/삶기",
-      "night_prep": "팬에 종이호일 깔고 4분 노릇하게 구워 담기",
-      "lunch_action": "렌지 40초 살짝 데워 고소하게 섭취"
-    }
+    "market_product": "곰곰 바로먹는 고등어 구이 (70g × 10개)",
+    "price": 26500,
+    "market_spec": "수·일 점심, 월·금 저녁 (140g = 2개)",
+    "coupang_url": "https://link.coupang.com/a/bW6zaA"
   },
   {
     "id": "protein_spanish_mackerel",
@@ -6607,5 +5953,39 @@
       "night_prep": "작은 반찬칸/소스통에 생으로 툭 담기",
       "lunch_action": "렌지 가열 없이 아삭하고 시원하게 그대로 섭취 (드레싱 곁들임)"
     }
+  },
+  {
+    "id": "veg_kimchi",
+    "category": "veg",
+    "category_name": "발효 채소",
+    "name": "김치",
+    "icon": "🥬",
+    "portion": "50g (1회 분량)",
+    "calories": 15,
+    "protein": 1.0,
+    "carbs": 2.5,
+    "fat": 0.2,
+    "fiber": 1.2,
+    "market_product": "한우 더맛나 썰은 배추김치 (1.1kg)",
+    "price": 6870,
+    "market_spec": "매일 점심·저녁 (50g × 2끼)",
+    "coupang_url": "https://link.coupang.com/a/bW6zmL"
+  },
+  {
+    "id": "fat_almond_butter",
+    "category": "fat",
+    "category_name": "건강한 지방",
+    "name": "아몬드버터",
+    "icon": "🥜",
+    "portion": "10g (1작은술)",
+    "calories": 62,
+    "protein": 2.1,
+    "carbs": 2.0,
+    "fat": 5.4,
+    "fiber": 1.1,
+    "market_product": "아스티 순 아몬드 스프레드 무첨가 (300g)",
+    "price": 12400,
+    "market_spec": "아침 (오트밀 볼 10g)",
+    "coupang_url": "https://link.coupang.com/a/bW6zoN"
   }
 ]
