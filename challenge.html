@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>집밥보이 4주 도시락 챌린지 · 인증 센터</title>
+  <meta name="description" content="매일 5분 초간단 도시락으로 배달 음식 끊고 평생 유지 가능한 식습관 만들기 4주 챌린지">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #070b14;
+      --card-bg: #0e1626;
+      --card-border: #1e293b;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --primary-light: rgba(16, 185, 129, 0.12);
+      --accent: #38bdf8;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --text: #f8fafc;
+      --text-sub: #cbd5e1;
+      --text-dim: #94a3b8;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* 상단 헤더 */
+    header.top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 20px;
+    }
+    .header-content {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: var(--accent);
+      color: #070b14;
+    }
+
+    /* 메인 컨테이너 */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* 탭 바 */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      background: var(--card-bg);
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 0;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: #1e293b;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 공통 카드 스타일 */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .card-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 규칙 카드 */
+    .rules-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-size: 0.88rem;
+      color: #fde68a;
+      line-height: 1.6;
+    }
+    .rules-list {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    .rules-list li { margin-bottom: 6px; }
+
+    /* 인증 폼 */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .image-upload-zone {
+      border: 2px dashed var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(14, 22, 38, 0.5);
+      transition: all 0.2s;
+    }
+    .image-upload-zone:hover {
+      border-color: var(--primary);
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .preview-box {
+      margin-top: 14px;
+      display: none;
+      position: relative;
+    }
+    .preview-img {
+      max-width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+    }
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), #059669);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s;
+    }
+    .btn-submit:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    /* 피드 카드 */
+    .feed-item {
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .feed-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .feed-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #10b981);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #070b14;
+    }
+    .author-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .feed-meta {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .feed-day-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .feed-menu-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .feed-photo {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border: 1px solid var(--card-border);
+    }
+    .feed-comment {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    .feed-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .action-btn {
+      background: transparent;
+      border: 1px solid var(--card-border);
+      color: var(--text-dim);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .action-btn:hover, .action-btn.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* 명예의 전당 */
+    .hall-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .hall-rank {
+      font-size: 1.2rem;
+      font-weight: 800;
+      width: 32px;
+    }
+    .hall-user {
+      flex: 1;
+      margin-left: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .hall-streak {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #f59e0b;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 28일 잔디밭 트래커 */
+    .grid-28 {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .day-cell {
+      aspect-ratio: 1;
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      position: relative;
+    }
+    .day-cell.completed {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .day-cell.completed::after {
+      content: '✓';
+      font-size: 0.7rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+    .day-cell.today {
+      border: 2px solid var(--accent);
+      color: #fff;
+    }
+
+    /* 토스트 알림 */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      border: 1px solid var(--card-border);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 상단 바 -->
+  <header class="top-bar">
+    <div class="header-content">
+      <a href="index.html" class="brand-title">
+        <span>🥗 집밥보이</span>
+        <span class="brand-badge">4주 챌린지</span>
+      </a>
+      <a href="index.html" class="nav-btn">
+        <span>🍱 맞춤 도시락 만들기</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- 탭 네비게이션 -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchChallengeTab('certify')">✍️ 오늘 인증하기</button>
+      <button class="tab-btn" onclick="switchChallengeTab('feed')">📸 참여자 피드</button>
+      <button class="tab-btn" onclick="switchChallengeTab('hall')">🏆 명예의 전당</button>
+      <button class="tab-btn" onclick="switchChallengeTab('my')">📊 내 28일 기록</button>
+    </div>
+
+    <!-- 1. 오늘 인증하기 탭 -->
+    <div id="tab-certify" class="tab-panel">
+      <!-- 규칙 카드 -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📖 4주 챌린지 인증 규칙</h2>
+          <span style="font-size: 0.8rem; color: #f59e0b; font-weight: 700;">마감 23:59</span>
+        </div>
+        <div class="rules-box">
+          <strong>🚨 매일 밤 23:59까지 제출해 주세요!</strong>
+          <ul class="rules-list">
+            <li>1분이라도 넘으면 미인증(누락) 처리됩니다.</li>
+            <li>누적 미인증 5회 시 챌린지 킥아웃(탈락)되니 주의해 주세요.</li>
+            <li>오늘 직접 싸둔 5분 도시락 사진과 한 줄 소감을 남겨주시면 완료됩니다.</li>
+            <li>28일간 지속하면 배달비 약 42만원 절약 및 건강한 자취 식습관이 완성됩니다.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 인증 제출 폼 -->
+      <div class="card">
+        <h2 class="card-title" style="margin-bottom: 20px;">🍱 오늘의 도시락 실천 인증</h2>
+        <form id="challengeForm" onsubmit="handleCertificationSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">참여자 닉네임</label>
+            <input type="text" id="participantName" class="form-input" placeholder="성함 또는 닉네임을 입력하세요" required>
+          </div>
+
+          <div class="form-group" style="display: flex; gap: 12px;">
+            <div style="flex: 1;">
+              <label class="form-label">인증 일차</label>
+              <select id="certifyDay" class="form-select">
+                <!-- JS에서 1~28일차 자동 생성 -->
+              </select>
+            </div>
+            <div style="flex: 1;">
+              <label class="form-label">조리 시간</label>
+              <select id="prepTime" class="form-select">
+                <option value="3분 컷 ⚡">3분 컷 (초스피드)</option>
+                <option value="5분 렌지 🏆" selected>5분 렌지 (표준)</option>
+                <option value="7분 팬조리 🍳">7분 팬조리</option>
+                <option value="10분 밀프랩 🍱">10분 2일분 밀프랩</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">오늘의 도시락 메뉴 & 영양 포인트</label>
+            <input type="text" id="lunchboxMenu" class="form-input" placeholder="예: 5분 닭고양아 황금 도시락 (485kcal · 단 38g)" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">도시락 실물 사진 첨부</label>
+            <div class="image-upload-zone" onclick="document.getElementById('lunchboxPhoto').click()">
+              <div style="font-size: 2rem; margin-bottom: 6px;">📸</div>
+              <div style="font-size: 0.9rem; font-weight: 600; color: var(--text-sub);">사진을 찍거나 앨범에서 선택하세요</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim); margin-top: 4px;">(미리 싸둔 밀프랩 용기나 섭취 직전 식단)</div>
+              <input type="file" id="lunchboxPhoto" accept="image/*" style="display: none;" onchange="handlePhotoSelect(event)">
+            </div>
+            <div id="previewBox" class="preview-box">
+              <img id="previewImg" class="preview-img" src="" alt="미리보기">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">오늘의 실천 소감 (배달 끊기 & 포만감 후기)</label>
+            <textarea id="reflection" class="form-textarea" placeholder="오늘 식단을 실천하며 느낀 점(배고픔 여부, 컨디션, 배달비 아낀 뿌듯함 등)을 남겨주세요." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">🚀 오늘의 도시락 인증 제출하기</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. 참여자 피드 탭 -->
+    <div id="tab-feed" class="tab-panel" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📸 참여자 실시간 식단 피드</h2>
+          <span id="feedCount" style="font-size: 0.85rem; color: var(--primary); font-weight: 700;">실시간 공유 중</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 16px;">
+          다른 참가자들의 5분 도시락 식단을 구경하고 서로 🔥 불꽃 응원을 남겨보세요!
+        </p>
+        <div id="feedList">
+          <!-- 피드 카드 동적 렌더링 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 명예의 전당 탭 -->
+    <div id="tab-hall" class="tab-panel" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🏆 명예의 전당 · 연속 인증 TOP 5</h2>
+          <span style="font-size: 0.8rem; color: #f59e0b; font-weight: 700;">실시간 집계</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 16px;">
+          단 하루도 빠짐없이 5분 집밥 도시락을 실천하고 있는 식단 마스터들입니다.
+        </p>
+        <div id="hallOfFameList">
+          <!-- 명예의 전당 목록 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 나의 28일 기록 탭 -->
+    <div id="tab-my" class="tab-panel" style="display: none;">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📊 나의 28일 챌린지 대시보드</h2>
+          <span id="myStreakBadge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; font-size: 0.8rem; padding: 4px 10px; border-radius: 20px; font-weight: 700;">0일 연속 달성</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+          <div style="background: #090e1a; border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px;">누적 배달 절약액</div>
+            <div id="mySavedMoney" style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">0원</div>
+          </div>
+          <div style="background: #090e1a; border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; text-align: center;">
+            <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px;">4주 완주 달성률</div>
+            <div id="myCompletionRate" style="font-size: 1.4rem; font-weight: 800; color: var(--accent);">0%</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">🌱 28일 스트릭 잔디밭</h3>
+        <div class="grid-28" id="streakGrid">
+          <!-- 1~28일 잔디밭 셀 -->
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-dim); text-align: center; margin-top: 10px;">
+          매일 밤 23:59까지 도시락을 인증하면 잔디에 초록 불이 켜집니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 -->
+  <div id="toast" class="toast">알림</div>
+
+  <script>
+    // 챌린지 저장소 키
+    const STORAGE_KEY = 'zipbab_challenge_hub_data';
+    const USER_KEY = 'zipbab_challenge_user';
+
+    // 기본 샘플 데이터 (초기 로딩 시 풍성한 피드 제공)
+    const DEFAULT_FEEDS = [
+      {
+        id: 'feed_1',
+        name: '다이어터지우',
+        day: 8,
+        prepTime: '5분 렌지 🏆',
+        menu: '5분 렌지 닭·고·양·아 황금 도시락 (485kcal · 단 38g)',
+        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+        reflection: '밤에 양배추 썰고 닭가슴살 뜯어두니 아침에 렌지 4분 돌리고 바로 챙겼어요! 배달 떡볶이 유혹 완벽 퇴치 성공 ㅎㅎ',
+        likes: 14,
+        liked: false,
+        time: '오늘 12:35'
+      },
+      {
+        id: 'feed_2',
+        name: '직장인준호',
+        day: 6,
+        prepTime: '3분 컷 ⚡',
+        menu: '5분 훈제오리 & 단호박 부추찜 (520kcal · 단 32g)',
+        photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
+        reflection: '훈제오리에서 나오는 자체 기름으로 팽이버섯 찌니까 기름 한 방울 안 넣어도 진짜 고소합니다. 점심값 15,000원 아꼈네요!',
+        likes: 9,
+        liked: false,
+        time: '오늘 11:50'
+      },
+      {
+        id: 'feed_3',
+        name: '헬린이민경',
+        day: 12,
+        prepTime: '7분 팬조리 🍳',
+        menu: '소고기 우둔살 깍둑구이 & 단호박 보울 (470kcal · 단 42g)',
+        photo: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80',
+        reflection: '단백질 40g 넘게 채우는데 포만감이 저녁까지 가서 간식 생각이 아예 안 나요. 28일 완주 꼭 하겠습니다!',
+        likes: 21,
+        liked: false,
+        time: '어제 19:20'
+      }
+    ];
+
+    let state = {
+      user: '',
+      feeds: [],
+      myCompletions: {}
+    };
+
+    let selectedPhotoBase64 = '';
+
+    // 초기화
+    function init() {
+      loadState();
+      initDaysSelect();
+      renderFeed();
+      renderHallOfFame();
+      renderMyProgress();
+
+      // index.html에서 넘어온 임시 도시락 정보 확인
+      const prefilled = localStorage.getItem('zipbab_prepared_lunchbox');
+      if (prefilled) {
+        try {
+          const data = JSON.parse(prefilled);
+          if (data && data.menu) {
+            document.getElementById('lunchboxMenu').value = data.menu;
+            showToast('🍱 준비하신 도시락 정보가 자동으로 채워졌습니다!');
+          }
+        } catch (e) {}
+      }
+
+      // 저장된 사용자명 복원
+      const savedUser = localStorage.getItem(USER_KEY);
+      if (savedUser) {
+        document.getElementById('participantName').value = savedUser;
+        state.user = savedUser;
+      }
+    }
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          state = Object.assign(state, JSON.parse(saved));
+        } else {
+          state.feeds = DEFAULT_FEEDS;
+          state.myCompletions = { 1: true, 2: true, 3: true, 4: true, 5: true }; // 데모 5일 달성
+          saveState();
+        }
+      } catch (e) {
+        state.feeds = DEFAULT_FEEDS;
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    // 1~28일차 셀렉트 박스 채우기
+    function initDaysSelect() {
+      const select = document.getElementById('certifyDay');
+      select.innerHTML = '';
+      for (let i = 1; i <= 28; i++) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = `${i}일차 챌린지`;
+        if (i === 6) opt.selected = true; // 데모 6일차
+        select.appendChild(opt);
+      }
+    }
+
+    // 탭 전환
+    function switchChallengeTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+
+      event.target.classList.add('active');
+      document.getElementById(`tab-${tabName}`).style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 사진 파일 선택 핸들러
+    function handlePhotoSelect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        selectedPhotoBase64 = e.target.result;
+        document.getElementById('previewImg').src = selectedPhotoBase64;
+        document.getElementById('previewBox').style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // 인증 폼 제출
+    function handleCertificationSubmit(event) {
+      event.preventDefault();
+      const name = document.getElementById('participantName').value.trim();
+      const day = parseInt(document.getElementById('certifyDay').value);
+      const prepTime = document.getElementById('prepTime').value;
+      const menu = document.getElementById('lunchboxMenu').value.trim();
+      const reflection = document.getElementById('reflection').value.trim();
+
+      if (!name || !menu || !reflection) {
+        showToast('모든 필수 항목을 입력해 주세요.');
+        return;
+      }
+
+      // 기기에 닉네임 기억
+      localStorage.setItem(USER_KEY, name);
+      state.user = name;
+
+      // 피드에 새 인증 카드 추가
+      const newFeed = {
+        id: 'feed_' + Date.now(),
+        name: name,
+        day: day,
+        prepTime: prepTime,
+        menu: menu,
+        photo: selectedPhotoBase64 || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+        reflection: reflection,
+        likes: 0,
+        liked: false,
+        time: '방금 전'
+      };
+
+      state.feeds.unshift(newFeed);
+      state.myCompletions[day] = true;
+      saveState();
+
+      // UI 갱신
+      renderFeed();
+      renderMyProgress();
+      renderHallOfFame();
+
+      // 폼 초기화
+      document.getElementById('reflection').value = '';
+      document.getElementById('previewBox').style.display = 'none';
+      selectedPhotoBase64 = '';
+      localStorage.removeItem('zipbab_prepared_lunchbox');
+
+      showToast(`🎉 ${day}일차 도시락 인증이 성공적으로 등록되었습니다!`);
+
+      // 피드 탭으로 자동 이동
+      setTimeout(() => {
+        document.querySelectorAll('.tab-btn')[1].click();
+      }, 800);
+    }
+
+    // 피드 렌더링
+    function renderFeed() {
+      const list = document.getElementById('feedList');
+      list.innerHTML = '';
+      document.getElementById('feedCount').innerText = `${state.feeds.length}개의 인증`;
+
+      state.feeds.forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'feed-item';
+        item.innerHTML = `
+          <div class="feed-header">
+            <div class="feed-author">
+              <div class="author-avatar">${f.name.slice(0, 1)}</div>
+              <div>
+                <div class="author-name">${f.name}</div>
+                <div class="feed-meta">${f.time} · ${f.prepTime}</div>
+              </div>
+            </div>
+            <span class="feed-day-badge">${f.day}일차 완료 ✓</span>
+          </div>
+
+          <div class="feed-menu-title">🍱 ${f.menu}</div>
+          ${f.photo ? `<img class="feed-photo" src="${f.photo}" alt="도시락 사진">` : ''}
+          <div class="feed-comment">"${f.reflection}"</div>
+
+          <div class="feed-actions">
+            <button class="action-btn ${f.liked ? 'active' : ''}" onclick="toggleLike('${f.id}')">
+              🔥 응원 ${f.likes}
+            </button>
+            <div style="display: flex; gap: 8px;">
+              <button class="action-btn" onclick="copyShareText('${f.id}')">
+                📋 카톡 복사
+              </button>
+            </div>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // 좋아요 토글
+    function toggleLike(feedId) {
+      const feed = state.feeds.find(f => f.id === feedId);
+      if (!feed) return;
+
+      if (feed.liked) {
+        feed.likes--;
+        feed.liked = false;
+      } else {
+        feed.likes++;
+        feed.liked = true;
+        showToast('🔥 응원의 불꽃을 보냈습니다!');
+      }
+      saveState();
+      renderFeed();
+    }
+
+    // 카톡 공유 텍스트 복사
+    function copyShareText(feedId) {
+      const feed = state.feeds.find(f => f.id === feedId);
+      if (!feed) return;
+
+      const text = [
+        `[🥗 집밥보이 4주 도시락 챌린지 - ${feed.day}일차 인증]`,
+        `👤 참여자: ${feed.name}님`,
+        `🍱 메뉴: ${feed.menu}`,
+        `⚡ 조리: ${feed.prepTime}`,
+        `💬 후기: "${feed.reflection}"`,
+        `💰 배달비 15,000원 아끼기 성공! 🔥`
+      ].join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 단톡방 공유용 텍스트가 복사되었습니다!');
+      }).catch(() => {
+        showToast('복사에 실패했습니다.');
+      });
+    }
+
+    // 명예의 전당 렌더링
+    function renderHallOfFame() {
+      const list = document.getElementById('hallOfFameList');
+      list.innerHTML = '';
+
+      const masters = [
+        { rank: '🥇', name: '헬린이민경', streak: '12일 연속', count: 12 },
+        { rank: '🥈', name: '다이어터지우', streak: '8일 연속', count: 8 },
+        { rank: '🥉', name: '직장인준호', streak: '6일 연속', count: 6 },
+        { rank: '4위', name: '자취생민수', streak: '5일 연속', count: 5 },
+        { rank: '5위', name: '클린식단러', streak: '4일 연속', count: 4 }
+      ];
+
+      masters.forEach(m => {
+        const row = document.createElement('div');
+        row.className = 'hall-item';
+        row.innerHTML = `
+          <div class="hall-rank">${m.rank}</div>
+          <div class="hall-user">${m.name}</div>
+          <div class="hall-streak">🔥 ${m.streak}</div>
+        `;
+        list.appendChild(row);
+      });
+    }
+
+    // 나의 진행 현황 렌더링
+    function renderMyProgress() {
+      const doneDays = Object.keys(state.myCompletions).length;
+      const savedMoney = doneDays * 15000;
+      const rate = Math.round((doneDays / 28) * 100);
+
+      document.getElementById('myStreakBadge').innerText = `${doneDays}일 연속 달성 🔥`;
+      document.getElementById('mySavedMoney').innerText = `${savedMoney.toLocaleString()}원`;
+      document.getElementById('myCompletionRate').innerText = `${rate}%`;
+
+      const grid = document.getElementById('streakGrid');
+      grid.innerHTML = '';
+
+      for (let i = 1; i <= 28; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'day-cell';
+        if (state.myCompletions[i]) {
+          cell.classList.add('completed');
+        }
+        if (i === 6) {
+          cell.classList.add('today');
+        }
+        cell.innerText = `${i}일`;
+        grid.appendChild(cell);
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(() => {
+        t.classList.remove('show');
+      }, 2500);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

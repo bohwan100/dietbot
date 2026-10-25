@@ -834,6 +834,9 @@
 
       <!-- 우측 빠른 액션 -->
       <div class="nav-actions">
+        <a href="challenge.html" class="btn-action-sm" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: rgba(16, 185, 129, 0.4); font-weight: 700;" title="참여자 인증 피드 & 명예의 전당">
+          <span>🏆</span> <span>인증 센터</span>
+        </a>
         <button type="button" class="btn-action-sm" onclick="copyIngredientsList()" title="필요 재료 텍스트 복사">
           <span>📋</span> <span>재료 복사</span>
         </button>
@@ -1634,7 +1637,17 @@
       
       if (trackerState.todayDone) {
         trackerState.completedDays[todayKey] = true;
-        showToast('내일의 나를 위한 5분 도시락 준비 완료! 👏');
+        
+        // 현재 선택된 도시락 메뉴 정보를 인증 센터에 연동
+        try {
+          const tmpl = LUNCHBOX_TEMPLATES[currentTemplateIndex];
+          const info = {
+            menu: `${tmpl.title} (${TARGET.cal}kcal · 단 ${TARGET.p}g)`
+          };
+          localStorage.setItem('zipbab_prepared_lunchbox', JSON.stringify(info));
+        } catch(e) {}
+
+        showToast('내일의 도시락 준비 완료! 👏 [인증 센터]에서 오늘 실천을 등록해보세요.');
       } else {
         delete trackerState.completedDays[todayKey];
         showToast('오늘 실천 완료가 취소되었습니다.');
