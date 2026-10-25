@@ -1151,7 +1151,7 @@
       <div class="result-actions">
         <!-- 1. 식단 만들기 (DIY 빌더 연결) -->
         <a href="#" id="link-make-meal" class="btn-action-builder">
-          <span>🍱</span> <span>이 기준으로 나만의 식단 만들기 ➔</span>
+          <span>🍱</span> <span>이 기준으로 내일 도시락 만들기 ➔</span>
         </a>
 
         <!-- 서브 액션 3종 -->
@@ -1500,7 +1500,7 @@
       }
 
       // 6. 식단 만들기 버튼 링크 구성 (DIY 빌더로 1/3 균등 분할 연동)
-      const builderUrl = `diy_meal_builder.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&meals=${res.mealsPerDay || 3}&goal=${res.goal}&from=survey`;
+      const builderUrl = `index.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&meals=${res.mealsPerDay || 3}&goal=${res.goal}&from=survey`;
       document.getElementById('link-make-meal').href = builderUrl;
 
       // 결과 화면 표시
