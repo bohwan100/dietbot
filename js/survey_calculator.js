@@ -253,6 +253,18 @@ function calculateDietPlan(input) {
 
   let carbsCal = carbsG * 4;
 
+  // 3-9. 한 끼 식단 영양 배분 (식사 횟수 기준)
+  const mealsPerDay = Math.max(1, parseInt(input.mealsPerDay, 10) || 3);
+  const mealCal = Math.round(targetCalories / mealsPerDay);
+  const mealProtein = Math.round((proteinG / mealsPerDay) * 10) / 10;
+  const mealFat = Math.round((fatG / mealsPerDay) * 100) / 100;
+  const mealCarbs = Math.round((carbsG / mealsPerDay) * 10) / 10;
+
+  let oneMealNotice = null;
+  if (mealsPerDay === 1) {
+    oneMealNotice = '하루 1끼(간헐적 단식): 전체 영양소를 한 번에 무리하게 담지 않고, 건강한 간식이나 보충 식사로 분산 섭취하는 것을 권장합니다.';
+  }
+
   // 퍼센트 계산
   const pctP = Math.round((proteinCal / targetCalories) * 100);
   const pctF = Math.round((fatCal / targetCalories) * 100);
@@ -289,6 +301,14 @@ function calculateDietPlan(input) {
     macroRatioPct: { carbs: pctC, protein: pctP, fat: pctF },
     caloricDiff: calDiff,
     safetyNotice: safetyNotice,
+    mealsPerDay: mealsPerDay,
+    oneMealNotice: oneMealNotice,
+    mealTarget: {
+      cal: mealCal,
+      proteinG: mealProtein,
+      fatG: mealFat,
+      carbsG: mealCarbs
+    },
     isIllustrative: false
   };
 }

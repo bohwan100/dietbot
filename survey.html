@@ -884,10 +884,83 @@
     </div>
 
     <!-- ==============================================
-         STEP 5. 안전 확인
+         STEP 5. 하루 식사 횟수
          ============================================== -->
     <div class="question-card" id="card-step5">
-      <span class="q-badge">STEP 5. 안전 확인</span>
+      <span class="q-badge">STEP 5. 식사 횟수</span>
+      <h2 class="q-title">평소 하루에 몇 끼를 드시나요?</h2>
+      <p class="q-subtitle">간식을 제외하고 평소 식사 횟수를 선택해 주세요.</p>
+
+      <div class="options-grid" id="meals-options">
+        <button type="button" class="opt-btn" onclick="selectMealsPerDay(1)">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🥗</span>
+            <div class="opt-label">
+              <span>하루 1끼</span>
+              <span class="opt-desc">간헐적 단식, 1일 1식 집중 식사</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectMealsPerDay(2)">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🥪</span>
+            <div class="opt-label">
+              <span>하루 2끼</span>
+              <span class="opt-desc">아점 / 저녁 등 2회 분할 식사</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectMealsPerDay(3)">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🍱</span>
+            <div class="opt-label">
+              <span>하루 3끼</span>
+              <span class="opt-desc">아침, 점심, 저녁 3회 규칙적인 식사</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+
+        <button type="button" class="opt-btn" onclick="selectMealsPerDay('4+')">
+          <div style="display: flex; align-items: center;">
+            <span class="opt-icon">🍽️</span>
+            <div class="opt-label">
+              <span>하루 4끼 이상</span>
+              <span class="opt-desc">운동인을 위한 다회 분할 식사 (선택 시 횟수 지정)</span>
+            </div>
+          </div>
+          <span>➔</span>
+        </button>
+      </div>
+
+      <!-- 4끼 이상 선택 시 세부 횟수 지정 서브 섹션 -->
+      <div class="sub-section" id="sub-meals-count" style="display: none;">
+        <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+          구체적인 식사 횟수를 선택해 주세요
+        </h3>
+        <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 14px;">
+          한 끼당 권장 영양소를 정확히 배분합니다 (기본 4끼).
+        </p>
+        <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+          <button type="button" class="seg-btn active" id="btn-meals-4" onclick="setSpecificMeals(4)" style="flex: 1; padding: 12px; font-weight: 800;">4끼</button>
+          <button type="button" class="seg-btn" id="btn-meals-5" onclick="setSpecificMeals(5)" style="flex: 1; padding: 12px; font-weight: 800;">5끼</button>
+          <button type="button" class="seg-btn" id="btn-meals-6" onclick="setSpecificMeals(6)" style="flex: 1; padding: 12px; font-weight: 800;">6끼 이상</button>
+        </div>
+        <button type="button" class="btn-next-action" onclick="submitStep5()">
+          다음 단계로 이동 ➔
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         STEP 6. 안전 확인
+         ============================================== -->
+    <div class="question-card" id="card-step6">
+      <span class="q-badge">STEP 6. 안전 확인</span>
       <h2 class="q-title">일반적인 식단 계산에 앞서 마지막으로 확인할게요.</h2>
       <p class="q-subtitle">해당하는 항목을 하나 선택해 주세요.</p>
 
@@ -1008,6 +1081,35 @@
           </div>
         </div>
 
+        <!-- 한 끼 권장 식단 목표 (식사 횟수 기준 배분) -->
+        <div class="result-meal-box">
+          <div class="meal-box-header">
+            <span class="meal-badge" id="res-meal-badge">🍱 한 끼 권장 식단 목표 (하루 3끼 기준)</span>
+            <span class="meal-cal-val" id="res-meal-cal">667 kcal</span>
+          </div>
+
+          <div class="meal-macro-grid">
+            <div class="meal-macro-item">
+              <span class="m-label">🍗 한 끼 단백질</span>
+              <strong class="m-val p" id="res-meal-p">48g</strong>
+            </div>
+            <div class="meal-macro-item">
+              <span class="m-label">🥑 한 끼 지방</span>
+              <strong class="m-val f" id="res-meal-f">18.5g</strong>
+            </div>
+            <div class="meal-macro-item">
+              <span class="m-label">🍠 한 끼 탄수화물</span>
+              <strong class="m-val c" id="res-meal-c">77g</strong>
+            </div>
+          </div>
+
+          <!-- 하루 1끼 선택 시 소화 부담 완화 & 간식 분산 권장 안내 -->
+          <div id="res-one-meal-tip" class="one-meal-tip" style="display: none;">
+            <span>💡</span>
+            <span id="res-one-meal-tip-text">하루 1끼(간헐적 단식): 전체 영양소를 한 번에 무리하게 담지 않고, 건강한 간식이나 보충 식사로 분산 섭취하는 것을 권장합니다.</span>
+          </div>
+        </div>
+
         <!-- 산출 근거 자세히 보기 (접이식 아코디언) -->
         <details class="detail-accordion">
           <summary>
@@ -1030,6 +1132,10 @@
             <div class="detail-row">
               <span>단백질 기준</span>
               <strong id="detail-p-factor">체중 × 1.8g</strong>
+            </div>
+            <div class="detail-row">
+              <span>하루 식사 횟수</span>
+              <strong id="detail-meals">하루 3끼</strong>
             </div>
             <div id="detail-safety-notice" style="margin-top: 8px; font-size: 0.78rem; color: #0284c7; line-height: 1.45;"></div>
           </div>
@@ -1077,8 +1183,8 @@
     // 최종 5단계 설문 상태 관리 및 UI 스크립트
     // ==========================================
     const surveyState = {
-      currentStep: 1, // 1 ~ 5
-      totalSteps: 5,
+      currentStep: 1, // 1 ~ 6
+      totalSteps: 6,
       answers: {
         goal: 'fat_loss',
         age: '',
@@ -1088,6 +1194,7 @@
         dailyActivity: '',
         exerciseFrequency: '',
         includesResistanceTraining: false,
+        mealsPerDay: 3,
         healthScreening: 'none'
       },
       computedPlan: null
@@ -1105,7 +1212,7 @@
 
     function updateActiveStep() {
       // 1. 모든 카드 숨기고 현재 스텝 활성화
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= surveyState.totalSteps; i++) {
         const card = document.getElementById(`card-step${i}`);
         if (card) {
           if (i === surveyState.currentStep) {
@@ -1237,7 +1344,37 @@
       setTimeout(nextStep, 150);
     }
 
-    // STEP 5. 안전 확인 선택
+    // STEP 5. 식사 횟수 선택
+    function selectMealsPerDay(meals) {
+      const sub = document.getElementById('sub-meals-count');
+      if (meals === '4+') {
+        surveyState.answers.mealsPerDay = 4;
+        if (sub) {
+          sub.style.display = 'block';
+          sub.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        return;
+      }
+      if (sub) sub.style.display = 'none';
+      surveyState.answers.mealsPerDay = parseInt(meals, 10) || 3;
+      setTimeout(nextStep, 150);
+    }
+
+    function setSpecificMeals(count) {
+      surveyState.answers.mealsPerDay = parseInt(count, 10) || 4;
+      ['4', '5', '6'].forEach(k => {
+        const b = document.getElementById(`btn-meals-${k}`);
+        if (b) b.classList.toggle('active', k === String(count));
+      });
+      setTimeout(nextStep, 150);
+    }
+
+    function submitStep5() {
+      if (!surveyState.answers.mealsPerDay) surveyState.answers.mealsPerDay = 4;
+      nextStep();
+    }
+
+    // STEP 6. 안전 확인 선택
     function selectHealthScreening(screening) {
       surveyState.answers.healthScreening = screening;
       finishSurvey();
@@ -1262,7 +1399,7 @@
 
     // 안전 분기 화면
     function showSafetyScreen(risks) {
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= surveyState.totalSteps; i++) {
         const c = document.getElementById(`card-step${i}`);
         if (c) c.classList.remove('active');
       }
@@ -1283,7 +1420,7 @@
 
     // 결과 화면 렌더링
     function renderResultScreen(res) {
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= surveyState.totalSteps; i++) {
         const c = document.getElementById(`card-step${i}`);
         if (c) c.classList.remove('active');
       }
@@ -1320,6 +1457,25 @@
       document.getElementById('pct-p-text').innerText = `${res.macroRatioPct.protein}% (${res.proteinCal}kcal)`;
       document.getElementById('pct-f-text').innerText = `${res.macroRatioPct.fat}% (${res.fatCal}kcal)`;
 
+      // 4-1. 한 끼 권장 식단 목표 렌더링
+      const meals = res.mealsPerDay || 3;
+      document.getElementById('res-meal-badge').innerText = `🍱 한 끼 권장 식단 목표 (하루 ${meals}끼 기준)`;
+      if (res.mealTarget) {
+        document.getElementById('res-meal-cal').innerText = `${res.mealTarget.cal.toLocaleString()} kcal`;
+        document.getElementById('res-meal-p').innerText = `${res.mealTarget.proteinG}g`;
+        document.getElementById('res-meal-f').innerText = `${res.mealTarget.fatG}g`;
+        document.getElementById('res-meal-c').innerText = `${res.mealTarget.carbsG}g`;
+      }
+      const oneMealTip = document.getElementById('res-one-meal-tip');
+      if (oneMealTip) {
+        if (res.oneMealNotice) {
+          document.getElementById('res-one-meal-tip-text').innerText = res.oneMealNotice;
+          oneMealTip.style.display = 'flex';
+        } else {
+          oneMealTip.style.display = 'none';
+        }
+      }
+
       // 5. 자세히 보기 아코디언 내용
       const rmrDisp = document.getElementById('detail-rmr');
       if (res.isRange && res.rmrRange) {
@@ -1332,6 +1488,8 @@
       const goalNames = { fat_loss: '체지방 감량', maintain: '체중 유지', muscle_gain: '근육 증가' };
       document.getElementById('detail-goal').innerText = goalNames[res.goal] || res.goal;
       document.getElementById('detail-p-factor').innerText = `체중 × ${res.proteinFactor}g${res.weightAdjusted ? ' (비만구간 기준체중 ' + res.calcWeightKg + 'kg 적용)' : ''}`;
+      const dMeals = document.getElementById('detail-meals');
+      if (dMeals) dMeals.innerText = `하루 ${res.mealsPerDay || 3}끼`;
 
       const noticeBox = document.getElementById('detail-safety-notice');
       if (res.safetyNotice) {
@@ -1342,7 +1500,7 @@
       }
 
       // 6. 식단 만들기 버튼 링크 구성 (DIY 빌더로 1/3 균등 분할 연동)
-      const builderUrl = `diy_meal_builder.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&goal=${res.goal}&from=survey`;
+      const builderUrl = `diy_meal_builder.html?cal=${res.targetCalories}&p=${res.proteinG}&c=${res.carbsG}&f=${res.fatG}&meals=${res.mealsPerDay || 3}&goal=${res.goal}&from=survey`;
       document.getElementById('link-make-meal').href = builderUrl;
 
       // 결과 화면 표시
@@ -1354,12 +1512,17 @@
     function copyResultText() {
       if (!surveyState.computedPlan) return;
       const res = surveyState.computedPlan;
-      const text = `[집밥보이 — 나에게 맞는 하루 식단 기준]
-• 하루 목표 섭취량: ${res.targetCalories.toLocaleString()} kcal
-• 하루 예상 소비량(TDEE): ${res.tdeeKcal.toLocaleString()} kcal
-• 단백질: ${res.proteinG}g (${res.proteinCal}kcal)
-• 지방: ${res.fatG}g (${res.fatCal}kcal)
-• 탄수화물: ${res.carbsG}g (${res.carbsCal}kcal)
+      const meals = res.mealsPerDay || 3;
+      const mt = res.mealTarget || {};
+      const text = `[집밥보이 — 나에게 맞는 하루 & 한 끼 식단 기준]
+🌟 하루 전체 목표: ${res.targetCalories.toLocaleString()} kcal (TDEE: 약 ${res.tdeeKcal.toLocaleString()} kcal)
+• 하루 단백질: ${res.proteinG}g (${res.proteinCal}kcal)
+• 하루 지방: ${res.fatG}g (${res.fatCal}kcal)
+• 하루 탄수화물: ${res.carbsG}g (${res.carbsCal}kcal)
+
+🍱 한 끼 권장 목표 (하루 ${meals}끼 기준):
+• 한 끼 칼로리: ${mt.cal ? mt.cal.toLocaleString() : 0} kcal
+• 한 끼 단백질: ${mt.proteinG}g · 지방: ${mt.fatG}g · 탄수화물: ${mt.carbsG}g
 (집밥보이 1:1 맞춤 영양 분석 결과)`;
 
       navigator.clipboard.writeText(text).then(() => {

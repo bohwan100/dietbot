@@ -102,6 +102,36 @@ assert("근육증가 + 근력포함 시 단백질 체중 × 1.8g (126g)", gainSt
 const gainNoStrength = calculateDietPlan({ age: 25, heightCm: 180, weightKg: 70, sexForEquation: "male", goal: "muscle_gain", dailyActivity: "light", exerciseFrequency: "none" });
 assert("근육증가 + 근력미포함 시 열량 흑자 유보 및 권장 안내", gainNoStrength.safetyNotice && gainNoStrength.safetyNotice.includes("근력운동"));
 
+
+// 13. 하루 식사 횟수별 한 끼 배분 검증 (사용자 지시서 예시: 2끼)
+// 하루 2끼: 칼로리 1000kcal, 단백질 72g, 지방 27.75g, 탄수화물 115.5g (하루 2000kcal, 144g, 55.5g, 231g 기준)
+const plan2Meals = calculateDietPlan({
+  age: 30, heightCm: 175, weightKg: 80, sexForEquation: 'male',
+  goal: 'fat_loss', dailyActivity: 'sedentary', exerciseFrequency: '3-4',
+  includesResistanceTraining: true, mealsPerDay: 2
+});
+assert("하루 2끼 선택 시 한 끼 칼로리 1/2 정확 배분", plan2Meals.mealTarget.cal === Math.round(plan2Meals.targetCalories / 2));
+assert("하루 2끼 선택 시 한 끼 단백질 1/2 정확 배분", plan2Meals.mealTarget.proteinG === Math.round((plan2Meals.proteinG / 2) * 10) / 10);
+assert("하루 2끼 선택 시 한 끼 지방 1/2 정확 배분", plan2Meals.mealTarget.fatG === Math.round((plan2Meals.fatG / 2) * 100) / 100);
+
+// 14. 하루 1끼(간헐적 단식) 소화 부담 완화 및 간식 분산 안내문 검증
+const plan1Meal = calculateDietPlan({
+  age: 30, heightCm: 175, weightKg: 75, sexForEquation: 'male',
+  goal: 'fat_loss', dailyActivity: 'sedentary', exerciseFrequency: 'none',
+  mealsPerDay: 1
+});
+assert("하루 1끼 선택 시 한 끼 목표가 하루 목표와 일치", plan1Meal.mealTarget.cal === plan1Meal.targetCalories);
+assert("하루 1끼 선택 시 소화 부담 완화 및 분산 섭취 안내문(oneMealNotice) 생성", plan1Meal.oneMealNotice && plan1Meal.oneMealNotice.includes('분산 섭취'));
+
+// 15. 하루 4끼 이상 다회 분할 식사 검증
+const plan4Meals = calculateDietPlan({
+  age: 25, heightCm: 180, weightKg: 75, sexForEquation: 'male',
+  goal: 'muscle_gain', dailyActivity: 'light', exerciseFrequency: '5+',
+  includesResistanceTraining: true, mealsPerDay: 4
+});
+assert("하루 4끼 선택 시 한 끼 칼로리 1/4 정확 배분", plan4Meals.mealTarget.cal === Math.round(plan4Meals.targetCalories / 4));
+assert("하루 4끼 선택 시 mealsPerDay가 4로 저장", plan4Meals.mealsPerDay === 4);
+
 console.log(`\n=== 테스트 완료: ${passed} / ${total} 통과 ===`);
 if (passed === total) {
   process.exit(0);

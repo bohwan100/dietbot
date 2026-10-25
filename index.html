@@ -714,7 +714,151 @@
       background: rgba(22, 30, 48, 0.85);
     }
 
-  </style>
+  
+    /* 하루 영양 목표 vs 현재 한 끼 영양 목표 비교 배너 */
+    .target-compare-card {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+    @media (max-width: 640px) {
+      .target-compare-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+      }
+      .compare-divider { display: none; }
+    }
+    .compare-col {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .comp-badge {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #94a3b8;
+      letter-spacing: -0.2px;
+    }
+    .comp-badge.active {
+      color: #38bdf8;
+    }
+    .comp-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .comp-val strong {
+      font-size: 1.4rem;
+      color: #34d399;
+    }
+    .compare-col.meal .comp-val strong {
+      color: #38bdf8;
+    }
+    .comp-sub {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-left: 4px;
+    }
+    .comp-macros {
+      font-size: 0.76rem;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+    .compare-divider {
+      font-size: 1.2rem;
+      color: #38bdf8;
+      font-weight: 900;
+    }
+
+    /* 하루 1끼 집중 식단 주의 배너 */
+    .one-meal-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+      color: #fef3c7;
+      line-height: 1.5;
+    }
+
+    /* 한 끼 목표 배분 조정 위젯 */
+    .meal-adjust-box {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    .adjust-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .adjust-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .adjust-presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .preset-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .preset-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .preset-btn.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+    }
+    .adjust-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 180px;
+      justify-content: flex-end;
+    }
+    .ratio-slider {
+      flex: 1;
+      max-width: 160px;
+      accent-color: #38bdf8;
+      cursor: pointer;
+    }
+
+</style>
 </head>
 <body>
 
@@ -756,6 +900,55 @@
 
     <!-- Interactive Macro Dashboard -->
     <section class="macro-dashboard">
+      <!-- 🌟 오늘 하루 영양 목표 vs 🍱 현재 한 끼 식단 목표 비교 배너 -->
+      <div class="target-compare-card" id="target-compare-box">
+        <div class="compare-col daily">
+          <div class="comp-badge">🌟 오늘 하루 영양 목표</div>
+          <div class="comp-val"><strong id="disp_daily_cal">2,000</strong> kcal <span id="disp_daily_meals" class="comp-sub">(하루 3끼)</span></div>
+          <div class="comp-macros" id="disp_daily_macros">단백질 144g · 탄수화물 231g · 지방 55.5g</div>
+        </div>
+        <div class="compare-divider">➔</div>
+        <div class="compare-col meal">
+          <div class="comp-badge active">🍱 현재 한 끼 식단 목표</div>
+          <div class="comp-val"><strong id="disp_meal_cal">667</strong> kcal <span id="disp_meal_ratio" class="comp-sub">(하루의 33%)</span></div>
+          <div class="comp-macros" id="disp_meal_macros">단백질 48g · 탄수화물 77g · 지방 18.5g</div>
+        </div>
+      </div>
+
+      <!-- 1끼 선택 시 주의 안내 배너 -->
+      <div id="one-meal-warning-banner" class="one-meal-alert" style="display: none;">
+        <span style="font-size: 1.1rem;">💡</span>
+        <div>
+          <strong>하루 1끼 식단 안내</strong>: 하루 총 필요 영양소를 한 끼에 무리하게 모두 담기보다, 소화 부담 완화를 위해 견과류, 그릭요거트, 단백질 쉐이크 등 건강한 간식이나 보충 식사로 분산 섭취하는 것을 권장합니다.
+        </div>
+      </div>
+
+      <!-- 한 끼 배분 조정 위젯 -->
+      <div class="meal-adjust-box" id="meal-adjust-widget">
+        <div class="adjust-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 0.95rem;">⚖️</span>
+            <span style="font-weight: 800; font-size: 0.86rem; color: #f8fafc;">한 끼 목표 배분 조정</span>
+            <span style="font-size: 0.74rem; color: #94a3b8;" id="adjust-desc-text">(현재 한 끼: 33%)</span>
+          </div>
+          <div id="remain-meals-info" style="font-size: 0.76rem; color: #38bdf8; font-weight: 700;">
+            남은 2끼 배분 가능: 1,333 kcal (끼니당 667 kcal)
+          </div>
+        </div>
+        <div class="adjust-controls">
+          <div class="adjust-presets">
+            <button type="button" class="preset-btn active" id="btn-preset-even" onclick="setMealRatioPreset('even')">균등 배분</button>
+            <button type="button" class="preset-btn" id="btn-preset-light" onclick="setMealRatioPreset('light')">가벼운 식사 (25%)</button>
+            <button type="button" class="preset-btn" id="btn-preset-heavy" onclick="setMealRatioPreset('heavy')">든든한 식사 (40%)</button>
+          </div>
+          <div class="adjust-slider-wrap">
+            <span style="font-size: 0.74rem; color: #94a3b8; font-weight: 700;">배분 비율</span>
+            <input type="range" id="meal-ratio-slider" min="15" max="60" step="5" value="33" oninput="onMealSliderInput(this.value)" class="ratio-slider">
+            <span id="slider-ratio-label" style="font-size: 0.8rem; font-weight: 800; color: #38bdf8; min-width: 38px;">33%</span>
+          </div>
+        </div>
+      </div>
+
       <div class="dash-header">
         <div class="guide-banner" id="guide-banner-text">
           <span class="pulse-icon">👉</span>
@@ -1027,6 +1220,133 @@
     };
     var DAILY_TARGET = window.DAILY_TARGET;
 
+    
+    // ==========================================
+    // 한 끼 목표 배분 및 비율 조정 로직
+    // ==========================================
+    window.currentMealRatio = 1 / 3;
+
+    function applyMealRatio(ratio) {
+      if (!DAILY_TARGET || !DAILY_TARGET.cal) return;
+      window.currentMealRatio = ratio;
+      const meals = DAILY_TARGET.meals || 3;
+
+      // 1. 한 끼 영양 목표 계산 (소수점 및 정수 정리)
+      TARGET.cal = Math.round(DAILY_TARGET.cal * ratio);
+      TARGET.p = Math.round(DAILY_TARGET.p * ratio);
+      TARGET.c = Math.round(DAILY_TARGET.c * ratio);
+      TARGET.f = Math.round((DAILY_TARGET.f * ratio) * 2) / 2;
+
+      // 2. 게이지 분모 DOM 요소 갱신
+      const tCalDisp = document.getElementById('target_cal_disp');
+      const tPDisp = document.getElementById('target_p_disp');
+      const tCDisp = document.getElementById('target_c_disp');
+      const tFDisp = document.getElementById('target_f_disp');
+      if (tCalDisp) tCalDisp.innerText = TARGET.cal;
+      if (tPDisp) tPDisp.innerText = TARGET.p;
+      if (tCDisp) tCDisp.innerText = TARGET.c;
+      if (tFDisp) tFDisp.innerText = TARGET.f;
+
+      // 3. 상단 비교 배너 및 잔여량 갱신
+      updateTargetCompareDisplay();
+
+      // 4. 로컬스토리지 동기화
+      try {
+        localStorage.setItem('user_diet_target', JSON.stringify({
+          daily: DAILY_TARGET,
+          meal: TARGET,
+          ratio: window.currentMealRatio
+        }));
+      } catch (e) {}
+
+      // 5. 게이지 진행률 재계산
+      if (typeof updateMacroGauges === 'function') {
+        updateMacroGauges();
+      }
+    }
+
+    function updateTargetCompareDisplay() {
+      if (!DAILY_TARGET || !DAILY_TARGET.cal) return;
+      const meals = DAILY_TARGET.meals || 3;
+      const ratioPct = Math.round((window.currentMealRatio || (1 / meals)) * 100);
+
+      const dCal = document.getElementById('disp_daily_cal');
+      const dMeals = document.getElementById('disp_daily_meals');
+      const dMacros = document.getElementById('disp_daily_macros');
+
+      const mCal = document.getElementById('disp_meal_cal');
+      const mRatio = document.getElementById('disp_meal_ratio');
+      const mMacros = document.getElementById('disp_meal_macros');
+
+      if (dCal) dCal.innerText = DAILY_TARGET.cal.toLocaleString();
+      if (dMeals) dMeals.innerText = `(하루 ${meals}끼)`;
+      if (dMacros) dMacros.innerText = `단백질 ${DAILY_TARGET.p}g · 탄수화물 ${DAILY_TARGET.c}g · 지방 ${DAILY_TARGET.f}g`;
+
+      if (mCal) mCal.innerText = TARGET.cal.toLocaleString();
+      if (mRatio) mRatio.innerText = `(하루의 ${ratioPct}%)`;
+      if (mMacros) mMacros.innerText = `단백질 ${TARGET.p}g · 탄수화물 ${TARGET.c}g · 지방 ${TARGET.f}g`;
+
+      // 남은 끼니 배분 잔여량 표시
+      const remainInfo = document.getElementById('remain-meals-info');
+      const adjustDesc = document.getElementById('adjust-desc-text');
+      if (adjustDesc) adjustDesc.innerText = `(현재 한 끼: ${ratioPct}%)`;
+
+      if (remainInfo) {
+        if (meals > 1) {
+          const remainCal = Math.max(0, DAILY_TARGET.cal - TARGET.cal);
+          const remainCount = meals - 1;
+          const perRemainMeal = Math.round(remainCal / remainCount);
+          remainInfo.innerHTML = `남은 ${remainCount}끼 배분 가능: <strong>${remainCal.toLocaleString()} kcal</strong> (끼니당 평균 약 ${perRemainMeal.toLocaleString()} kcal)`;
+          remainInfo.style.display = 'block';
+        } else {
+          remainInfo.style.display = 'none';
+        }
+      }
+
+      // 하루 1끼 안내 배너
+      const oneMealBanner = document.getElementById('one-meal-warning-banner');
+      if (oneMealBanner) {
+        oneMealBanner.style.display = (meals === 1) ? 'flex' : 'none';
+      }
+
+      // 하루 1끼일 때는 배분 조정 위젯 숨김 (단일 끼니이므로)
+      const adjustWidget = document.getElementById('meal-adjust-widget');
+      if (adjustWidget) {
+        adjustWidget.style.display = (meals > 1) ? 'block' : 'none';
+      }
+
+      // 슬라이더 및 라벨 동기화
+      const slider = document.getElementById('meal-ratio-slider');
+      const sliderLabel = document.getElementById('slider-ratio-label');
+      if (slider) slider.value = ratioPct;
+      if (sliderLabel) sliderLabel.innerText = `${ratioPct}%`;
+    }
+
+    function setMealRatioPreset(type) {
+      const meals = DAILY_TARGET.meals || 3;
+      let ratio = 1 / meals;
+      if (type === 'light') {
+        ratio = 0.25;
+      } else if (type === 'heavy') {
+        ratio = 0.40;
+      } else {
+        ratio = 1 / meals;
+      }
+
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-preset-${type}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      applyMealRatio(ratio);
+    }
+
+    function onMealSliderInput(val) {
+      const pct = parseInt(val, 10);
+      const ratio = pct / 100;
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      applyMealRatio(ratio);
+    }
+
     function initParamsFromUrl() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -1037,42 +1357,25 @@
 
         if (cal && !isNaN(cal)) {
           window.hasUrlTargets = true;
+          const mealsParam = parseInt(urlParams.get('meals'), 10);
+          const meals = (mealsParam && !isNaN(mealsParam) && mealsParam >= 1) ? mealsParam : 3;
 
           // 1. 하루 전체 권장량 저장
           DAILY_TARGET.cal = cal;
           DAILY_TARGET.p = p ? Math.round(p) : Math.round(cal * 0.3 / 4);
           DAILY_TARGET.c = c ? Math.round(c) : Math.round(cal * 0.45 / 4);
           DAILY_TARGET.f = f ? (Math.round(f * 2) / 2) : Math.round((cal * 0.25 / 9) * 2) / 2;
+          DAILY_TARGET.meals = meals;
 
-          // 2. 한 끼 권장량 (하루 권장량을 3끼로 1/3 균등 분할)
-          TARGET.cal = Math.round(DAILY_TARGET.cal / 3);
-          TARGET.p = Math.round(DAILY_TARGET.p / 3);
-          TARGET.c = Math.round(DAILY_TARGET.c / 3);
-          TARGET.f = Math.round((DAILY_TARGET.f / 3) * 2) / 2;
+          // 2. 초기 기본 배분 비율 설정 (기본 1/meals 균등 배분)
+          window.currentMealRatio = 1 / meals;
+          applyMealRatio(window.currentMealRatio);
 
-          // 3. 게이지 분모 DOM 요소 즉시 반영
-          const tCalDisp = document.getElementById('target_cal_disp');
-          const tPDisp = document.getElementById('target_p_disp');
-          const tCDisp = document.getElementById('target_c_disp');
-          const tFDisp = document.getElementById('target_f_disp');
-          if (tCalDisp) tCalDisp.innerText = TARGET.cal;
-          if (tPDisp) tPDisp.innerText = TARGET.p;
-          if (tCDisp) tCDisp.innerText = TARGET.c;
-          if (tFDisp) tFDisp.innerText = TARGET.f;
-
-          // 4. 로컬스토리지에 최신 설문 타겟 저장 (새로고침 시 유지)
-          localStorage.setItem('user_diet_target', JSON.stringify({
-            daily: DAILY_TARGET,
-            meal: TARGET
-          }));
-
-          // 5. 배너 텍스트 갱신
+          // 3. 안내 배너 텍스트 갱신
           const banner = document.getElementById('guide-instruction');
           if (banner) {
-            banner.innerHTML = `🎉 <strong>집밥보이 1:1 맞춤 분석 완료!</strong> 하루 총 ${DAILY_TARGET.cal.toLocaleString()}kcal(단 ${DAILY_TARGET.p}g) 중 <strong>한 끼 목표(${TARGET.cal}kcal · 단 ${TARGET.p}g · 탄 ${TARGET.c}g · 지 ${TARGET.f}g)</strong>에 맞춰 원물을 자유롭게 담아보세요!`;
+            banner.innerHTML = `🎉 <strong>집밥보이 1:1 맞춤 분석 완료!</strong> 하루 총 ${DAILY_TARGET.cal.toLocaleString()}kcal(단 ${DAILY_TARGET.p}g) · <strong>하루 ${meals}끼 중 현재 한 끼(${TARGET.cal}kcal · 단 ${TARGET.p}g · 탄 ${TARGET.c}g · 지 ${TARGET.f}g)</strong>를 구성해 보세요!`;
           }
-
-          updateMacroGauges();
         }
       } catch (e) {
         console.error('URL params init error:', e);
@@ -2560,17 +2863,10 @@
           const parsed = JSON.parse(savedTarget);
           if (parsed.daily) Object.assign(DAILY_TARGET, parsed.daily);
           if (parsed.meal) Object.assign(TARGET, parsed.meal);
+          if (parsed.ratio) window.currentMealRatio = parsed.ratio;
+          else window.currentMealRatio = 1 / (DAILY_TARGET.meals || 3);
 
-          const tCal = document.getElementById('target_cal_disp');
-          const tP = document.getElementById('target_p_disp');
-          const tC = document.getElementById('target_c_disp');
-          const tF = document.getElementById('target_f_disp');
-          if (tCal) tCal.innerText = TARGET.cal;
-          if (tP) tP.innerText = TARGET.p;
-          if (tC) tC.innerText = TARGET.c;
-          if (tF) tF.innerText = TARGET.f;
-
-          updateMacroGauges();
+          applyMealRatio(window.currentMealRatio);
           return;
         }
 
