@@ -1608,6 +1608,16 @@
       allFoodsData = fallbackList;
     }
 
+    // 식품별 1회 제공량(g/ml) 파싱 헬퍼
+    function getFoodPortionGrams(food) {
+      if (!food || !food.portion) return 100;
+      const m = food.portion.match(/(\d+)\s*g/);
+      if (m) return parseFloat(m[1]);
+      const m2 = food.portion.match(/(\d+)\s*ml/);
+      if (m2) return parseFloat(m2[1]);
+      return 100;
+    }
+
     function calculateRealisticFoodGrams(food, role, itemConfig) {
       const id = (food.id || '').toLowerCase();
       const name = (food.name || '');
