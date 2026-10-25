@@ -1313,143 +1313,146 @@
     // (닭가슴살, 고등어, 부채살, 돼지안심, 달걀, 브로콜리, 양배추, 방울토마토, 
     //  아보카도, 바나나, 두유, 그릭요거트, 김치, 아몬드, 아몬드버터, 오트밀, 고구마, 현미밥)
     // ==========================================
+    // ==========================================
+    // 사용자 지정 18종 재료 기반 영양 100% 충족 황금 식단 템플릿
+    // (요일 구분 없이 단백질·탄수화물·지방 목표를 완벽하게 충족)
+    // ==========================================
     const LUNCHBOX_TEMPLATES = [
       {
-        id: 'user_chicken_lunch',
-        title: '🍗 [월·목 점심] 5분 수비드 닭가슴살 & 신선 채소 & 김치 도시락',
-        subtitle: '촉촉 닭가슴살 200g, 아삭 양배추 70g, 브로콜리 100g, 방울토마토 150g, 썰은김치 50g',
+        id: 'menu_chicken_sweet_potato',
+        title: '🏆 [황금 조합 1] 수비드 닭가슴살 & 달콤 고구마 & 클린 채소 보울',
+        subtitle: '촉촉 닭가슴살과 포슬 고구마, 브로콜리, 양배추, 방울토마토, 배추김치',
         typeBadge: '⚡ 렌지 4분 컷 (전날 준비 5분)',
-        theme: '월·목 점심 정석 클린식단',
+        theme: '정석 고단백 클린 식단',
         items: [
-          { id: 'protein_chicken_breast', role: 'protein', fixedG: 200 },
-          { id: 'carb_sweet_potato', role: 'carb', fixedG: 180 },
-          { id: 'veg_broccoli', role: 'veg', fixedG: 100 },
-          { id: 'veg_cabbage', role: 'veg', fixedG: 70 },
-          { id: 'veg_tomato', role: 'veg', fixedG: 150 },
-          { id: 'veg_kimchi', role: 'veg', fixedG: 50 }
+          { id: 'protein_chicken_breast', role: 'protein' },
+          { id: 'carb_sweet_potato', role: 'carb' },
+          { id: 'fat_avocado', role: 'fat' },
+          { id: 'veg_broccoli', role: 'veg' },
+          { id: 'veg_cabbage', role: 'veg' },
+          { id: 'veg_kimchi', role: 'veg' }
         ],
         prepSteps: [
-          '도시락통에 찐 고구마와 사각 썬 양배추(70g), 냉동 브로콜리(100g)를 담습니다.',
-          '하림 수비드 닭가슴살(200g)과 방울토마토(150g), 썰은 배추김치(50g)를 칸별로 담습니다.',
-          '뚜껑을 닫고 냉장 보관 후, 점심에 전자레인지 2분 데워 맛있게 섭취합니다.'
+          '도시락통에 찐 고구마와 먹기 좋게 썬 양배추, 브로콜리를 깔아줍니다.',
+          '하림 수비드 닭가슴살과 아보카도, 썰은 배추김치를 칸별로 정갈하게 담습니다.',
+          '뚜껑을 닫아 냉장 보관 후, 점심에 전자레인지 2분 데워 따뜻하게 섭취합니다.'
         ],
         storageText: '밀폐 후 냉장 보관 (수비드 닭가슴살과 채소는 2~3일간 신선 유지)',
         heatingText: '전자레인지에 약 2분간 데워 따뜻하고 촉촉하게 섭취',
-        combinationReason: '지정하신 단백질 200g과 풍부한 브로콜리·양배추의 식이섬유, 김치의 천연 유산균이 만나 완벽한 소화와 포만감을 선사합니다.'
+        combinationReason: '닭가슴살의 순수 단백질과 고구마의 복합 탄수화물, 아보카도의 불포화지방, 김치의 유산균이 완벽한 영양 균형을 이룹니다.'
       },
       {
-        id: 'user_beef_lunch',
-        title: '🥩 [화·토 점심] 7분 소고기 부채살 스테이크 & 구운 채소 도시락',
-        subtitle: '육즙 가득 부채살 200g, 브로콜리 100g, 양배추 70g, 방울토마토 150g, 배추김치 50g',
+        id: 'menu_beef_brown_rice',
+        title: '🥩 [황금 조합 2] 소고기 부채살 스테이크 & 발아현미밥 & 구운 채소 보울',
+        subtitle: '육즙 가득 부채살과 톡톡 씹히는 현미밥, 브로콜리, 양배추, 방울토마토, 김치',
         typeBadge: '🍳 원팬형 (전날 준비 7분)',
-        theme: '화·토 점심 파워 고단백 식단',
+        theme: '파워 고단백 에너지 식단',
         items: [
-          { id: 'protein_beef_blade', role: 'protein', fixedG: 200 },
-          { id: 'carb_brown_rice', role: 'carb', fixedG: 150 },
-          { id: 'veg_broccoli', role: 'veg', fixedG: 100 },
-          { id: 'veg_cabbage', role: 'veg', fixedG: 70 },
-          { id: 'veg_tomato', role: 'veg', fixedG: 150 },
-          { id: 'veg_kimchi', role: 'veg', fixedG: 50 }
+          { id: 'protein_beef_blade', role: 'protein' },
+          { id: 'carb_brown_rice', role: 'carb' },
+          { id: 'veg_broccoli', role: 'veg' },
+          { id: 'veg_cabbage', role: 'veg' },
+          { id: 'veg_tomato', role: 'veg' },
+          { id: 'veg_kimchi', role: 'veg' }
         ],
         prepSteps: [
-          '시즈닝된 소고기 부채살(200g)을 팬에 센 불로 앞뒤 2분씩 노릇하게 굽고 한입 크기로 깍둑 썹니다.',
-          '도시락통에 현미밥(150g), 브로콜리(100g), 양배추(70g), 방울토마토(150g)를 담습니다.',
-          '구운 부채살과 김치(50g)를 곁들여 완성합니다.'
+          '시즈닝된 소고기 부채살을 팬에서 센 불로 앞뒤 2분씩 노릇하게 굽고 한입 크기로 썹니다.',
+          '도시락통에 따뜻한 현미밥과 데친 브로콜리, 양배추, 방울토마토를 담습니다.',
+          '구운 부채살과 배추김치를 곁들여 완성합니다.'
         ],
-        storageText: '밀폐 후 냉장 보관 (소고기는 미디엄웰던으로 조리 추천)',
+        storageText: '밀폐 후 냉장 보관 (소고기는 미디엄웰던 추천)',
         heatingText: '전자레인지에 1분 30초 데워 육즙을 촉촉하게 즐기기',
-        combinationReason: '부채살의 풍부한 철분과 양질의 단백질, 방울토마토와 브로콜리의 항산화 비타민이 피로를 강력 회복시켜 줍니다.'
+        combinationReason: '부채살의 풍부한 철분과 양질의 단백질, 발아현미밥의 미네랄, 브로콜리와 김치가 만나 운동 전후 회복을 극대화합니다.'
       },
       {
-        id: 'user_mackerel_lunch',
-        title: '🐟 [수·일 점심] 3분 바로먹는 순살 고등어구이 & 채소 보울',
-        subtitle: '전자레인지 1분 컷 고등어구이 140g(2개), 브로콜리 100g, 양배추 70g, 방울토마토 150g, 김치 50g',
+        id: 'menu_mackerel_brown_rice',
+        title: '🐟 [황금 조합 3] 바로먹는 순살 고등어구이 & 현미밥 & 채소 백반 도시락',
+        subtitle: '전자레인지 1분 컷 고등어구이, 고소한 현미밥, 브로콜리, 양배추, 방울토마토, 김치',
         typeBadge: '⚡ 초간단 3분 컷 (전날 준비 3분)',
-        theme: '수·일 점심 오메가-3 혈관 식단',
+        theme: '오메가-3 혈관 케어 식단',
         items: [
-          { id: 'protein_mackerel', role: 'protein', fixedG: 140 },
-          { id: 'carb_brown_rice', role: 'carb', fixedG: 150 },
-          { id: 'veg_broccoli', role: 'veg', fixedG: 100 },
-          { id: 'veg_cabbage', role: 'veg', fixedG: 70 },
-          { id: 'veg_tomato', role: 'veg', fixedG: 150 },
-          { id: 'veg_kimchi', role: 'veg', fixedG: 50 }
+          { id: 'protein_mackerel', role: 'protein' },
+          { id: 'carb_brown_rice', role: 'carb' },
+          { id: 'veg_broccoli', role: 'veg' },
+          { id: 'veg_cabbage', role: 'veg' },
+          { id: 'veg_tomato', role: 'veg' },
+          { id: 'veg_kimchi', role: 'veg' }
         ],
         prepSteps: [
-          '바로먹는 순살 고등어구이 2팩(140g)을 뜯어 도시락 용기에 담습니다.',
-          '현미밥과 찐 브로콜리, 채 썬 양배추, 방울토마토를 둘러 담습니다.',
-          '배추김치(50g)를 반찬칸에 넣고 뚜껑을 닫습니다. (기름 한 방울 안 튀기고 3분 완성!)'
+          '순살 고등어구이를 뜯어 도시락 용기에 담고, 현미밥을 담습니다.',
+          '브로콜리와 양배추, 방울토마토를 넉넉히 곁들입니다.',
+          '배추김치를 반찬칸에 넣고 뚜껑을 닫습니다. (기름 한 방울 안 튀기고 3분 완성!)'
         ],
-        storageText: '밀폐 후 냉장 보관 (고등어 자체의 신선함을 유지하기 위해 밀폐 필수)',
+        storageText: '밀폐 후 냉장 보관 (고등어 자체의 신선도를 위해 밀폐 필수)',
         heatingText: '전자레인지에 1분 30초 데워 고소한 생선구이 백반으로 섭취',
-        combinationReason: '고등어의 천연 오메가-3(EPA/DHA)와 양배추, 김치가 어우러져 기름 추가 없이도 입안 가득 고소함과 혈관 청소를 동시에 달성합니다.'
+        combinationReason: '고등어의 천연 오메가-3(EPA/DHA)와 현미밥의 식이섬유, 김치가 어우러져 기름 추가 없이도 입안 가득 고소한 풍미를 줍니다.'
       },
       {
-        id: 'user_pork_lunch',
-        title: '🍖 [금 점심] 8분 돼지안심 찹스테이크 & 신선 채소 보울',
-        subtitle: '지방 적고 담백 부드러운 안심 200g, 브로콜리 100g, 양배추 70g, 방울토마토 150g, 김치 50g',
+        id: 'menu_pork_sweet_potato',
+        title: '🍖 [황금 조합 4] 부드러운 돼지안심 찹스테이크 & 고구마 & 채소 보울',
+        subtitle: '지방 적고 부드러운 안심 큐브, 달콤 고구마, 브로콜리, 양배추, 방울토마토, 김치',
         typeBadge: '🍳 원팬형 (전날 준비 8분)',
-        theme: '금요일 점심 든든한 한식 스타일',
+        theme: '비타민 B1 피로회복 식단',
         items: [
-          { id: 'protein_pork_tenderloin', role: 'protein', fixedG: 200 },
-          { id: 'carb_brown_rice', role: 'carb', fixedG: 150 },
-          { id: 'veg_broccoli', role: 'veg', fixedG: 100 },
-          { id: 'veg_cabbage', role: 'veg', fixedG: 70 },
-          { id: 'veg_tomato', role: 'veg', fixedG: 150 },
-          { id: 'veg_kimchi', role: 'veg', fixedG: 50 }
+          { id: 'protein_pork_tenderloin', role: 'protein' },
+          { id: 'carb_sweet_potato', role: 'carb' },
+          { id: 'veg_broccoli', role: 'veg' },
+          { id: 'veg_cabbage', role: 'veg' },
+          { id: 'veg_tomato', role: 'veg' },
+          { id: 'veg_kimchi', role: 'veg' }
         ],
         prepSteps: [
-          '돼지안심(200g)을 깍둑 썰어 팬에서 속까지 노릇하게 볶아냅니다.',
-          '도시락통에 현미밥(150g)과 데친 브로콜리, 양배추, 방울토마토를 담습니다.',
-          '안심 찹스테이크와 김치(50g)를 담고 뚜껑을 닫습니다.'
+          '돼지안심을 깍둑 썰어 팬에서 속까지 노릇하고 촉촉하게 볶아냅니다.',
+          '도시락통에 찐 고구마와 데친 브로콜리, 양배추, 방울토마토를 담습니다.',
+          '안심 찹스테이크와 김치를 담고 뚜껑을 닫습니다.'
         ],
-        storageText: '밀폐 후 냉장 보관 (돼지고기는 속까지 75℃ 이상 완전히 익힘)',
+        storageText: '밀폐 후 냉장 보관 (돼지고기는 속까지 완전히 익힘)',
         heatingText: '전자레인지에 약 2분간 데워 따뜻하게 섭취',
-        combinationReason: '돼지안심의 비타민 B1과 브로콜리·양배추의 비타민 C, 김치가 조화를 이루어 한 주의 피로를 깔끔하게 해소합니다.'
+        combinationReason: '돼지안심의 비타민 B1과 고구마의 베타카로틴, 브로콜리의 비타민 C가 조화를 이루어 피로를 풀고 든든함을 보장합니다.'
       },
       {
-        id: 'user_dinner_avocado',
-        title: '🥑 [매일 저녁] 단백질 & 냉동 아보카도(70g) 크리미 디너 보울',
-        subtitle: '단백질 200g(닭가슴살/부채살/고등어/안심), 냉동 아보카도 70g, 브로콜리 100g, 양배추 70g, 김치 50g',
-        typeBadge: '🥗 클린 디너 (전날 준비 5분)',
-        theme: '매일 저녁 든든하고 속 편한 식단',
+        id: 'menu_egg_avocado_brunch',
+        title: '🍳 [황금 조합 5] 삶은 달걀 & 밤고구마 & 크리미 아보카도 브런치 도시락',
+        subtitle: '단백질 달걀, 달콤 밤고구마, 냉동 아보카도 반 개, 방울토마토, 아삭 양배추',
+        typeBadge: '⚡ 조립형 4분 컷 (전날 준비 4분)',
+        theme: '가볍고 경쾌한 카페 브런치 스타일',
         items: [
-          { id: 'protein_chicken_breast', role: 'protein', fixedG: 200 },
-          { id: 'fat_avocado', role: 'fat', fixedG: 70 },
-          { id: 'carb_sweet_potato', role: 'carb', fixedG: 150 },
-          { id: 'veg_broccoli', role: 'veg', fixedG: 100 },
-          { id: 'veg_cabbage', role: 'veg', fixedG: 70 },
-          { id: 'veg_kimchi', role: 'veg', fixedG: 50 }
+          { id: 'protein_eggs', role: 'protein' },
+          { id: 'carb_sweet_potato', role: 'carb' },
+          { id: 'fat_avocado', role: 'fat' },
+          { id: 'veg_cabbage', role: 'veg' },
+          { id: 'veg_tomato', role: 'veg' }
         ],
         prepSteps: [
-          '도시락통에 단백질 주재료 200g(닭가슴살/안심/부채살 등)과 찐 고구마를 담습니다.',
-          '냉동 아보카도(70g)와 브로콜리, 채 썬 양배추를 둘러 담습니다.',
-          '배추김치(50g)를 곁들여 뚜껑을 닫고 냉장 보관합니다.'
+          '삶은 달걀을 반으로 자르고, 찐 고구마를 먹기 좋은 크기로 썰어 담습니다.',
+          '냉동 아보카도와 방울토마토, 채 썬 양배추를 둘러 담습니다.',
+          '뚜껑을 닫고 냉장 보관합니다. (소요시간 4분)'
         ],
-        storageText: '냉장 보관 (냉동 아보카도는 자연 해동되며 버터처럼 부드러워짐)',
-        heatingText: '단백질만 살짝 데우거나 아보카도와 채소를 함께 섞어 시원·따뜻하게 섭취',
-        combinationReason: '스크린샷에 명시된 매일 저녁 아보카도 70g과 단백질 200g, 김치 50g 조합으로 밤 시간 허기짐을 완벽하게 차단합니다.'
+        storageText: '냉장 보관 (껍질 깐 달걀과 아보카도는 밀폐 보관)',
+        heatingText: '상온에서 시원하게 드시거나 렌지에 1분 살짝 데워 섭취',
+        combinationReason: '완전식품 달걀의 필수 아미노산과 고구마의 복합 탄수화물, 아보카도의 건강한 지방이 완벽한 브런치 밸런스를 이룹니다.'
       },
       {
-        id: 'user_breakfast_oatmeal',
-        title: '🥣 [매일 아침] 3분 오트밀 두유 볼 & 바나나 & 아몬드버터',
-        subtitle: '오트밀 50g + 매일두유 200ml + 바나나 1개 + 아몬드버터 10g + 락토프리 그릭요거트 150g (or 달걀 3개)',
-        typeBadge: '⚡ 3분 아침식단 (당일 조립 3분)',
-        theme: '유당불내증 안심 고단백 모닝',
+        id: 'menu_oatmeal_soymilk_bowl',
+        title: '🥣 [황금 조합 6] 고단백 오트밀 두유 볼 & 바나나 & 아몬드버터',
+        subtitle: '오트밀 + 매일두유 99.9 + 달콤 바나나 + 아스티 순 아몬드버터 + 락토프리 그릭요거트',
+        typeBadge: '⚡ 3분 조립형 (당일 조립 3분)',
+        theme: '유당불내증 안심 속 편한 모닝 식단',
         items: [
-          { id: 'carb_oatmeal', role: 'carb', fixedG: 50 },
-          { id: 'protein_soymilk', role: 'protein', fixedG: 200 },
-          { id: 'carb_banana', role: 'carb', fixedG: 100 },
-          { id: 'fat_almond_butter', role: 'fat', fixedG: 10 },
-          { id: 'protein_greek_yogurt', role: 'protein', fixedG: 150 }
+          { id: 'carb_oatmeal', role: 'carb' },
+          { id: 'protein_soymilk', role: 'protein' },
+          { id: 'carb_banana', role: 'carb' },
+          { id: 'fat_almond_butter', role: 'fat' },
+          { id: 'protein_greek_yogurt', role: 'protein' }
         ],
         prepSteps: [
-          '보울에 오트밀(50g)과 매일두유 99.9(200ml)를 붓습니다.',
-          '전자레인지에 1분 30초 돌린 후 바나나 1개를 썰어 얹습니다.',
-          '순 아몬드버터(10g) 1티스푼을 떨어뜨리고, 락토프리 그릭요거트(150g)를 곁들여 완성합니다.'
+          '보울에 퀵오트밀과 매일두유 99.9를 붓고 렌지에 1분 30초 돌립니다.',
+          '바나나 1개를 송송 썰어 올리고, 순 아몬드버터 1스푼을 얹습니다.',
+          '락토프리 그릭요거트를 곁들여 고소하고 부드럽게 섞어 드시면 완성!'
         ],
-        storageText: '오트밀은 전날 밤 두유에 불려 오버나이트 오트밀로 보관 가능',
+        storageText: '전날 밤 두유에 오트밀을 불려두면 오버나이트 오트밀로 바로 섭취 가능',
         heatingText: '상온에서 시원하게 드시거나 렌지에 1분 살짝 데워 따뜻하게 섭취',
-        combinationReason: '유당 불내증을 배려한 두유와 락토프리 그릭요거트, 바나나와 아몬드버터가 완벽한 에너지를 공급합니다.'
+        combinationReason: '유당 불내증을 배려한 두유와 그릭요거트, 바나나와 아몬드버터가 위장에 자극 없이 활기찬 에너지를 채워줍니다.'
       }
     ];
 
@@ -1618,86 +1621,85 @@
       return 100;
     }
 
+    // 실제 사용자의 한 끼 영양 목표(TARGET.cal, p, c, f)를 100% 완벽 충족하는 맞춤 중량 계산기
     function calculateRealisticFoodGrams(food, role, itemConfig) {
       const id = (food.id || '').toLowerCase();
       const name = (food.name || '');
       const portG = getFoodPortionGrams(food);
 
       // 1. 단백질 주재료 (role === 'protein')
+      // 목표 단백질(TARGET.p)의 85~95%를 주재료가 담당하도록 계산
       if (role === 'protein') {
         const pPerG = (food.protein || 1) / portG;
         const targetP = TARGET.p * 0.85;
         let grams = Math.round((targetP / Math.max(0.06, pPerG)) / 10) * 10;
 
         if (id.includes('egg') || name.includes('달걀') || name.includes('계란')) {
-          // 달걀: 2개(100g) ~ 최대 3개(150g)
-          return Math.max(100, Math.min(150, Math.round(targetP / 6) * 50));
-        } else if (id.includes('tofu') || name.includes('두부')) {
-          // 두부: 반 모(130g) ~ 최대 2/3모(200g)
-          return Math.max(130, Math.min(200, grams));
-        } else if (id.includes('tuna') || name.includes('참치')) {
-          // 참치: 라이트 1캔(80g) ~ 1.5캔(120g)
-          return Math.max(80, Math.min(120, grams));
-        } else if (id.includes('duck') || name.includes('오리')) {
-          // 훈제오리: 130g ~ 최대 160g
-          return Math.max(120, Math.min(160, grams));
+          // 달걀 1알 약 50g (단백질 6g)
+          const eggCount = Math.max(2, Math.min(4, Math.round(targetP / 6)));
+          return eggCount * 50;
+        } else if (id.includes('soymilk') || name.includes('두유')) {
+          return 200; // 1팩 200ml
+        } else if (id.includes('greek') || name.includes('그릭')) {
+          return 150; // 150g
+        } else if (id.includes('mackerel') || name.includes('고등어')) {
+          // 고등어 1토막 70g (140g = 2개)
+          return Math.max(140, Math.min(210, grams));
         } else {
-          // 닭가슴살, 소고기 우둔살, 돼지안심: 시판 1팩(110g~130g) ~ 최대 150g
-          return Math.max(110, Math.min(150, grams));
+          // 닭가슴살, 부채살, 돼지안심: 140g ~ 220g (단백질 35~48g 완벽 충족)
+          return Math.max(140, Math.min(220, grams));
         }
       }
 
       // 2. 탄수화물 주재료 (role === 'carb')
+      // 목표 탄수화물(TARGET.c)의 85~90%를 주재료가 담당하도록 계산
       if (role === 'carb') {
         const cPerG = (food.carbs || 1) / portG;
         const targetC = TARGET.c * 0.85;
         let grams = Math.round((targetC / Math.max(0.15, cPerG)) / 10) * 10;
 
-        const isRice = name.includes('밥') || id.includes('rice');
-        if (isRice) {
-          // 밥류: 시중 즉석밥 1공기 규격인 130g(작은공기) ~ 최대 210g(일반공기)
-          return Math.max(130, Math.min(210, grams));
-        } else {
-          // 고구마, 단호박, 감자: 1인분으로 목메이지 않고 쾌적한 중간 1개(140g) ~ 최대 1.5개(220g)
-          // (450g 등 폭식 수준의 비현실적 중량 절대 차단!)
+        if (id.includes('banana') || name.includes('바나나')) {
+          return 100; // 바나나 1개 약 100g
+        } else if (id.includes('oatmeal') || name.includes('오트밀')) {
+          return Math.max(40, Math.min(80, grams));
+        } else if (name.includes('밥') || id.includes('rice')) {
+          // 현미밥: 130g(작은 1공기) ~ 220g(보통 1공기)
           return Math.max(130, Math.min(220, grams));
+        } else {
+          // 고구마, 감자: 140g(중간 1개) ~ 220g(1.5개)
+          return Math.max(140, Math.min(220, grams));
         }
       }
 
       // 3. 건강한 지방 주재료 (role === 'fat')
       if (role === 'fat') {
-        // 식용유/기름류: 요리용으로 현실적이고 안전한 5g(1작은술) ~ 최대 8g
-        if (id.includes('oil') || name.includes('기름')) {
-          return 5;
+        if (id.includes('almond_butter') || name.includes('아몬드버터')) {
+          return 10; // 아침 1작은술 (10g)
         }
-
-        // 견과류: 하루/한끼 권장량인 딱 한 줌 (15g ~ 20g)
-        if (id.includes('almond') || id.includes('walnut') || name.includes('아몬드') || name.includes('호두') || name.includes('견과')) {
-          return Math.max(15, Math.min(20, Math.round(TARGET.f * 0.6 / 5) * 5));
+        if (id.includes('almond') || name.includes('아몬드')) {
+          return 20; // 간식 한 줌 (20g)
         }
-
-        // 아보카도: 느끼하지 않고 크리미하게 곁들이는 50g(1/3개) ~ 최대 70g(딱 반 개)
         if (id.includes('avocado') || name.includes('아보카도')) {
-          return 70;
+          // 목표 지방에 맞춰 50g ~ 80g (반 개 분량)
+          const fPerG = (food.fat || 1) / portG;
+          let avoG = Math.round((TARGET.f * 0.65 / fPerG) / 10) * 10;
+          return Math.max(50, Math.min(80, avoG));
         }
-
-        // 올리브 절임: 15g ~ 20g
-        if (id.includes('olive') || name.includes('올리브')) {
-          return 20;
-        }
-
         return 20;
       }
 
-      // 4. 채소류 (role === 'veg')
+      // 4. 채소·과일류 (role === 'veg')
       if (role === 'veg') {
-        return 100; // 신선 채소 1줌 100g
+        if (id.includes('kimchi') || name.includes('김치')) return 50; // 매끼 김치 50g
+        if (id.includes('tomato') || name.includes('토마토')) return 100; // 방울토마토 100~150g
+        if (id.includes('cabbage') || name.includes('양배추')) return 70; // 양배추 70g
+        if (id.includes('broccoli') || name.includes('브로콜리')) return 100; // 브로콜리 100g
+        return 80;
       }
 
       return 100;
     }
 
-    // 식품별 실제 중량에 따른 칼로리 및 영양소 계산
     function calculateItemNutrients(food, grams) {
       const portG = getFoodPortionGrams(food);
       const ratio = grams / portG;
